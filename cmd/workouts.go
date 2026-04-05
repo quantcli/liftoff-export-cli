@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"os"
+	"strings"
 	"time"
 
 	"github.com/dturner/liftoff-cli/internal/client"
@@ -48,6 +49,7 @@ type Post struct {
 
 var listJSONFlag bool
 var listSinceFlag string
+var listExerciseFlag string
 
 var listCmd = &cobra.Command{
 	Use:   "list",
@@ -72,6 +74,9 @@ var listCmd = &cobra.Command{
 				}
 			}
 			posts = filtered
+		}
+		if listExerciseFlag != "" {
+			posts = filterExercises(posts, listExerciseFlag)
 		}
 		if listJSONFlag {
 			return printJSON(posts)
@@ -127,6 +132,47 @@ func init() {
 	workoutsCmd.AddCommand(showCmd)
 	listCmd.Flags().BoolVar(&listJSONFlag, "json", false, "Output as JSON instead of fitdown")
 	listCmd.Flags().StringVar(&listSinceFlag, "since", "", "Filter workouts on or after date (e.g. 2025-01-01, 30d, 4w, 6m, 1y)")
+	listCmd.Flags().StringVar(&listExerciseFlag, "exercise", "", "Filter to exercises matching this name (word-prefix match)")
+}
+
+// matchesExercise checks if every word in pattern matches a word-prefix in name.
+// e.g. "pull up" matches "Assisted Pull Ups", "chin" matches "Assisted Chin Ups"
+// but "chin" does not match "Machine Row".
+func matchesExercise(name, pattern string) bool {
+	nameWords := strings.Fields(strings.ToLower(name))
+	patWords := strings.Fields(strings.ToLower(pattern))
+	for _, pw := range patWords {
+		found := false
+		for _, nw := range nameWords {
+			if strings.HasPrefix(nw, pw) {
+				found = true
+				break
+			}
+		}
+		if !found {
+			return false
+		}
+	}
+	return true
+}
+
+// filterExercises keeps only exercises matching pattern within each post,
+// and drops posts that end up with no matching exercises.
+func filterExercises(posts []Post, pattern string) []Post {
+	var out []Post
+	for _, p := range posts {
+		var matched []ExerciseData
+		for _, e := range p.ExerciseData {
+			if matchesExercise(e.ExerciseName, pattern) {
+				matched = append(matched, e)
+			}
+		}
+		if len(matched) > 0 {
+			p.ExerciseData = matched
+			out = append(out, p)
+		}
+	}
+	return out
 }
 
 func printFitdown(posts []Post) error {
