@@ -7,7 +7,7 @@ import (
 )
 
 var rootCmd = &cobra.Command{
-	Use:   "liftoff",
+	Use:   "liftoff-export",
 	Short: "CLI for the Liftoff fitness app",
 }
 

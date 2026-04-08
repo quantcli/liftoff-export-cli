@@ -1,4 +1,4 @@
-module github.com/dturner/liftoff-cli
+module github.com/dturner/liftoff-export-cli
 
 go 1.21.3
 

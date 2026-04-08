@@ -7,7 +7,7 @@ import (
 	"strings"
 	"time"
 
-	"github.com/dturner/liftoff-cli/internal/client"
+	"github.com/dturner/liftoff-export-cli/internal/client"
 	"github.com/spf13/cobra"
 )
 

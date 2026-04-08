@@ -6,7 +6,7 @@ import (
 	"os"
 	"strings"
 
-	"github.com/dturner/liftoff-cli/internal/auth"
+	"github.com/dturner/liftoff-export-cli/internal/auth"
 	"github.com/spf13/cobra"
 )
 
@@ -37,7 +37,7 @@ var loginCmd = &cobra.Command{
 		if err := auth.Login(email, password); err != nil {
 			return err
 		}
-		fmt.Println("Logged in. Tokens saved to ~/.config/liftoff/auth.json")
+		fmt.Println("Logged in. Tokens saved to ~/.config/liftoff-export/auth.json")
 		return nil
 	},
 }

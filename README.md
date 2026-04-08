@@ -1,30 +1,30 @@
-# liftoff-cli
+# liftoff-export-cli
 
 A command-line interface for the [Liftoff](https://getgymbros.com) fitness app.
 
 ## Install
 
-Download the latest release for your platform from the [releases page](https://github.com/DTTerastar/liftoff-cli/releases/latest), unzip it, and place the binary in `~/bin`.
+Download the latest release for your platform from the [releases page](https://github.com/DTTerastar/liftoff-export-cli/releases/latest), unzip it, and place the binary in `~/bin`.
 
 **macOS (Apple Silicon):**
 ```sh
-curl -Lo /tmp/liftoff.zip https://github.com/DTTerastar/liftoff-cli/releases/latest/download/liftoff_darwin_arm64.zip
-unzip -jo /tmp/liftoff.zip -d ~/bin && rm /tmp/liftoff.zip
-chmod +x ~/bin/liftoff
+curl -Lo /tmp/liftoff-export.zip https://github.com/DTTerastar/liftoff-export-cli/releases/latest/download/liftoff-export_darwin_arm64.zip
+unzip -jo /tmp/liftoff-export.zip -d ~/bin && rm /tmp/liftoff-export.zip
+chmod +x ~/bin/liftoff-export
 ```
 
 **macOS (Intel):**
 ```sh
-curl -Lo /tmp/liftoff.zip https://github.com/DTTerastar/liftoff-cli/releases/latest/download/liftoff_darwin_amd64.zip
-unzip -jo /tmp/liftoff.zip -d ~/bin && rm /tmp/liftoff.zip
-chmod +x ~/bin/liftoff
+curl -Lo /tmp/liftoff-export.zip https://github.com/DTTerastar/liftoff-export-cli/releases/latest/download/liftoff-export_darwin_amd64.zip
+unzip -jo /tmp/liftoff-export.zip -d ~/bin && rm /tmp/liftoff-export.zip
+chmod +x ~/bin/liftoff-export
 ```
 
 **Linux (amd64):**
 ```sh
-curl -Lo /tmp/liftoff.zip https://github.com/DTTerastar/liftoff-cli/releases/latest/download/liftoff_linux_amd64.zip
-unzip -jo /tmp/liftoff.zip -d ~/bin && rm /tmp/liftoff.zip
-chmod +x ~/bin/liftoff
+curl -Lo /tmp/liftoff-export.zip https://github.com/DTTerastar/liftoff-export-cli/releases/latest/download/liftoff-export_linux_amd64.zip
+unzip -jo /tmp/liftoff-export.zip -d ~/bin && rm /tmp/liftoff-export.zip
+chmod +x ~/bin/liftoff-export
 ```
 
 Make sure `~/bin` is in your `PATH`. If not, add this to your `~/.zshrc` or `~/.bashrc`:
@@ -37,41 +37,41 @@ export PATH="$HOME/bin:$PATH"
 ### Auth
 
 ```sh
-liftoff auth login      # Log in to Liftoff
-liftoff auth logout     # Remove stored auth tokens
-liftoff auth refresh    # Manually refresh the access token
+liftoff-export auth login      # Log in to Liftoff
+liftoff-export auth logout     # Remove stored auth tokens
+liftoff-export auth refresh    # Manually refresh the access token
 ```
 
 ### Workouts
 
 ```sh
-liftoff workouts list                       # List workouts in fitdown format
-liftoff workouts list --json                # Output as JSON
-liftoff workouts list --since 30d           # Filter by relative date (30d, 4w, 6m, 1y)
-liftoff workouts list --since 2025-01-01    # Filter by absolute date
-liftoff workouts list --exercise bench      # Filter to matching exercises
-liftoff workouts show 2025-03-08            # Show workout(s) for a date
-liftoff workouts show today                 # Show today's workout
-liftoff workouts show yesterday             # Show yesterday's workout
+liftoff-export workouts list                       # List workouts in fitdown format
+liftoff-export workouts list --json                # Output as JSON
+liftoff-export workouts list --since 30d           # Filter by relative date (30d, 4w, 6m, 1y)
+liftoff-export workouts list --since 2025-01-01    # Filter by absolute date
+liftoff-export workouts list --exercise bench      # Filter to matching exercises
+liftoff-export workouts show 2025-03-08            # Show workout(s) for a date
+liftoff-export workouts show today                 # Show today's workout
+liftoff-export workouts show yesterday             # Show yesterday's workout
 ```
 
 ### Workout Stats
 
 ```sh
-liftoff workouts stats                      # Per-exercise summaries with monthly graphs
-liftoff workouts stats --detail             # Per-session breakdown
-liftoff workouts stats --exercise curl      # Filter to matching exercises
-liftoff workouts stats --since 6m           # Filter by date
-liftoff workouts stats --json               # Output as JSON
+liftoff-export workouts stats                      # Per-exercise summaries with monthly graphs
+liftoff-export workouts stats --detail             # Per-session breakdown
+liftoff-export workouts stats --exercise curl      # Filter to matching exercises
+liftoff-export workouts stats --since 6m           # Filter by date
+liftoff-export workouts stats --json               # Output as JSON
 ```
 
 ### Bodyweights
 
 ```sh
-liftoff bodyweights list                    # List recorded bodyweights
-liftoff bodyweights list --since 6m         # Filter by date
-liftoff bodyweights stats                   # Stats with monthly graph and trends
-liftoff bodyweights stats --since 2025-01-01
+liftoff-export bodyweights list                    # List recorded bodyweights
+liftoff-export bodyweights list --since 6m         # Filter by date
+liftoff-export bodyweights stats                   # Stats with monthly graph and trends
+liftoff-export bodyweights stats --since 2025-01-01
 ```
 
 ## Output Format

@@ -1,7 +1,7 @@
 version: 2
 
 builds:
-  - binary: liftoff
+  - binary: liftoff-export
     env:
       - CGO_ENABLED=0
     goos:
@@ -20,7 +20,7 @@ builds:
 archives:
   - formats:
       - zip
-    name_template: "liftoff_{{ .Os }}_{{ .Arch }}"
+    name_template: "liftoff-export_{{ .Os }}_{{ .Arch }}"
 
 checksum:
   name_template: checksums.txt

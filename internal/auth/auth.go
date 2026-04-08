@@ -26,14 +26,14 @@ type TokenStore struct {
 
 func configPath() string {
 	home, _ := os.UserHomeDir()
-	return filepath.Join(home, ".config", "liftoff", "auth.json")
+	return filepath.Join(home, ".config", "liftoff-export", "auth.json")
 }
 
 // GetToken returns a valid access token, refreshing if needed.
 func GetToken() (string, error) {
 	store, err := load()
 	if err != nil {
-		return "", fmt.Errorf("not logged in — run: liftoff auth login")
+		return "", fmt.Errorf("not logged in — run: liftoff-export auth login")
 	}
 	if time.Now().After(store.ExpiresAt) {
 		store, err = Refresh(store.RefreshToken)

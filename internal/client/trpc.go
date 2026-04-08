@@ -7,7 +7,7 @@ import (
 	"net/http"
 	"net/url"
 
-	"github.com/dturner/liftoff-cli/internal/auth"
+	"github.com/dturner/liftoff-export-cli/internal/auth"
 )
 
 // Base URL — versioned per Liftoff release. Update via: liftoff config set-url <url>
