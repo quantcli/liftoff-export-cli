@@ -29,6 +29,7 @@ brews:
   - repository:
       owner: DTTerastar
       name: homebrew-tap
+      token: "{{ .Env.HOMEBREW_TAP_GITHUB_TOKEN }}"
     homepage: https://github.com/DTTerastar/liftoff-export-cli
     description: CLI tool to export and analyze workout data from the Liftoff fitness app
     license: MIT
