@@ -26,7 +26,8 @@ checksum:
   name_template: checksums.txt
 
 brews:
-  - repository:
+  - name: liftoff-export
+    repository:
       owner: DTTerastar
       name: homebrew-tap
       token: "{{ .Env.HOMEBREW_TAP_GITHUB_TOKEN }}"
