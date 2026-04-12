@@ -1,5 +1,16 @@
 # SEO & Traffic Tracking - liftoff-export-cli
 
+## 2026-04-12
+
+### GitHub Traffic (14-day window)
+GITHUB_TOKEN not configured
+
+### Google Search Rankings
+- "liftoff-export-cli": API error (403 Forbidden - key not authorized)
+- "liftoff workout export": API error (403 Forbidden - key not authorized)
+- "liftoff fitness CLI": API error (403 Forbidden - key not authorized)
+- "export gym app data": API error (403 Forbidden - key not authorized)
+
 ## 2026-04-11
 
 ### GitHub Traffic (14-day window)
