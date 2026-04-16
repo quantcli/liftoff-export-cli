@@ -1,5 +1,16 @@
 # SEO & Traffic Tracking - liftoff-export-cli
 
+## 2026-04-16
+
+### GitHub Traffic (14-day window)
+GITHUB_TOKEN not configured
+
+### Google Search Rankings
+- "liftoff-export-cli": API error (403 Forbidden - Custom Search API not enabled for this project)
+- "liftoff workout export": API error (403 Forbidden - Custom Search API not enabled for this project)
+- "liftoff fitness CLI": API error (403 Forbidden - Custom Search API not enabled for this project)
+- "export gym app data": API error (403 Forbidden - Custom Search API not enabled for this project)
+
 ## 2026-04-15
 
 ### GitHub Traffic (14-day window)
