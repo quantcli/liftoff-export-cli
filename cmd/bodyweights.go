@@ -8,7 +8,7 @@ import (
 	"strings"
 	"time"
 
-	"github.com/dturner/liftoff-export-cli/internal/client"
+	"github.com/quantcli/liftoff-export-cli/internal/client"
 	"github.com/spf13/cobra"
 )
 

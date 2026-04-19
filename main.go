@@ -1,6 +1,6 @@
 package main
 
-import "github.com/dturner/liftoff-export-cli/cmd"
+import "github.com/quantcli/liftoff-export-cli/cmd"
 
 func main() {
 	cmd.Execute()

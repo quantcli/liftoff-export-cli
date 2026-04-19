@@ -25,15 +25,24 @@ archives:
 checksum:
   name_template: checksums.txt
 
-brews:
+homebrew_casks:
   - name: liftoff-export
     repository:
-      owner: DTTerastar
+      owner: quantcli
       name: homebrew-tap
       token: "{{ .Env.HOMEBREW_TAP_GITHUB_TOKEN }}"
-    homepage: https://github.com/DTTerastar/liftoff-export-cli
+    directory: Casks
+    homepage: https://github.com/quantcli/liftoff-export-cli
     description: CLI tool to export and analyze workout data from the Liftoff fitness app
     license: MIT
+    url:
+      verified: github.com/quantcli/liftoff-export-cli
+    hooks:
+      post:
+        install: |
+          if OS.mac?
+            system_command "/usr/bin/xattr", args: ["-dr", "com.apple.quarantine", "#{staged_path}/liftoff-export"]
+          end
 
 release:
   draft: true
