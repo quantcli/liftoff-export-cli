@@ -6,7 +6,7 @@ import (
 	"os"
 	"strings"
 
-	"github.com/dturner/liftoff-export-cli/internal/auth"
+	"github.com/quantcli/liftoff-export-cli/internal/auth"
 	"github.com/spf13/cobra"
 )
 

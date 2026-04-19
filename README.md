@@ -2,9 +2,9 @@
 
 Export and analyze your workout data from the [Liftoff](https://getgymbros.com) fitness app. A command-line tool to back up gym sessions, track bodyweight trends, and view exercise statistics — all from your terminal.
 
-[![Latest Release](https://img.shields.io/github/v/release/DTTerastar/liftoff-export-cli)](https://github.com/DTTerastar/liftoff-export-cli/releases/latest)
+[![Latest Release](https://img.shields.io/github/v/release/quantcli/liftoff-export-cli)](https://github.com/quantcli/liftoff-export-cli/releases/latest)
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
-[![Go](https://img.shields.io/github/go-mod/go-version/DTTerastar/liftoff-export-cli)](go.mod)
+[![Go](https://img.shields.io/github/go-mod/go-version/quantcli/liftoff-export-cli)](go.mod)
 ![Platforms](https://img.shields.io/badge/platform-macOS%20%7C%20Linux%20%7C%20Windows-lightgrey)
 
 ## Features
@@ -21,7 +21,7 @@ Export and analyze your workout data from the [Liftoff](https://getgymbros.com) 
 
 ```sh
 # Install with Homebrew
-brew tap DTTerastar/tap
+brew tap quantcli/tap
 brew install liftoff-export
 
 # Log in and list recent workouts
@@ -33,36 +33,36 @@ liftoff-export workouts list --since 7d
 
 **Homebrew (macOS / Linux):**
 ```sh
-brew tap DTTerastar/tap
+brew tap quantcli/tap
 brew install liftoff-export
 ```
 
-Or download a pre-built binary from the [releases page](https://github.com/DTTerastar/liftoff-export-cli/releases/latest):
+Or download a pre-built binary from the [releases page](https://github.com/quantcli/liftoff-export-cli/releases/latest):
 
 **macOS (Apple Silicon):**
 ```sh
-curl -Lo /tmp/liftoff-export.zip https://github.com/DTTerastar/liftoff-export-cli/releases/latest/download/liftoff-export_darwin_arm64.zip
+curl -Lo /tmp/liftoff-export.zip https://github.com/quantcli/liftoff-export-cli/releases/latest/download/liftoff-export_darwin_arm64.zip
 unzip -jo /tmp/liftoff-export.zip -d ~/bin && rm /tmp/liftoff-export.zip
 chmod +x ~/bin/liftoff-export
 ```
 
 **macOS (Intel):**
 ```sh
-curl -Lo /tmp/liftoff-export.zip https://github.com/DTTerastar/liftoff-export-cli/releases/latest/download/liftoff-export_darwin_amd64.zip
+curl -Lo /tmp/liftoff-export.zip https://github.com/quantcli/liftoff-export-cli/releases/latest/download/liftoff-export_darwin_amd64.zip
 unzip -jo /tmp/liftoff-export.zip -d ~/bin && rm /tmp/liftoff-export.zip
 chmod +x ~/bin/liftoff-export
 ```
 
 **Linux (amd64):**
 ```sh
-curl -Lo /tmp/liftoff-export.zip https://github.com/DTTerastar/liftoff-export-cli/releases/latest/download/liftoff-export_linux_amd64.zip
+curl -Lo /tmp/liftoff-export.zip https://github.com/quantcli/liftoff-export-cli/releases/latest/download/liftoff-export_linux_amd64.zip
 unzip -jo /tmp/liftoff-export.zip -d ~/bin && rm /tmp/liftoff-export.zip
 chmod +x ~/bin/liftoff-export
 ```
 
 **Windows (amd64):**
 
-Download `liftoff-export_windows_amd64.zip` from the [releases page](https://github.com/DTTerastar/liftoff-export-cli/releases/latest), extract it, and add the directory to your PATH.
+Download `liftoff-export_windows_amd64.zip` from the [releases page](https://github.com/quantcli/liftoff-export-cli/releases/latest), extract it, and add the directory to your PATH.
 
 Make sure `~/bin` is in your `PATH`. If not, add this to your `~/.zshrc` or `~/.bashrc`:
 ```sh
