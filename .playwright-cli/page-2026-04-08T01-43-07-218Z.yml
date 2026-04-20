@@ -1,0 +1,131 @@
+- generic [ref=e1]:
+  - link "DEV Community Home" [ref=e2] [cursor=pointer]:
+    - /url: /
+    - img "DEV Community" [ref=e3]
+  - generic [ref=e5]:
+    - generic [ref=e6]: New Post - DEV Community
+    - main [ref=e7]:
+      - form "Edit post" [ref=e8]:
+        - generic [ref=e9]:
+          - link "DEV Community Home" [ref=e11] [cursor=pointer]:
+            - /url: /
+            - img "DEV Community" [ref=e12]
+          - generic [ref=e14]: Create Post
+          - navigation "View post modes" [ref=e15]:
+            - list [ref=e16]:
+              - listitem [ref=e17]:
+                - button "Edit" [ref=e18] [cursor=pointer]
+              - listitem [ref=e19]:
+                - button "Preview" [ref=e20] [cursor=pointer]
+          - button "Close the editor" [ref=e22] [cursor=pointer]:
+            - img
+        - generic [ref=e893]:
+          - generic [ref=e894]:
+            - generic [ref=e895]:
+              - generic [ref=e896] [cursor=pointer]:
+                - text: Upload Cover Image
+                - button "Upload Cover Image Use a ratio of 1000:420 for best results."
+                - generic: Use a ratio of 1000:420 for best results.
+              - button "🍌 Generate Image" [ref=e897] [cursor=pointer]
+              - button "Cover Video Link" [ref=e898] [cursor=pointer]
+            - textbox "Post Title" [ref=e900]:
+              - /placeholder: New post title here...
+              - text: I pointed Claude at mitmproxy and it reverse-engineered my gym app's API
+            - generic [ref=e901]: Add up to 4 tags
+            - generic [ref=e902]: Maximum 4 selections
+            - generic [ref=e903]:
+              - paragraph [ref=e904]: "Selected items:"
+              - list [ref=e905]:
+                - listitem [ref=e1538]: ai
+                - listitem [ref=e1643]: go
+                - listitem [ref=e2825]: fitness
+                - listitem [ref=e3070]: programming
+            - generic [ref=e906]:
+              - combobox [expanded] [ref=e907]:
+                - list [ref=e908]:
+                  - listitem [ref=e1539]:
+                    - group "ai" [ref=e1540]:
+                      - button "Edit ai" [ref=e1541]: "# ai"
+                      - button "Remove ai" [ref=e1542] [cursor=pointer]:
+                        - img
+                  - listitem [ref=e1644]:
+                    - group "go" [ref=e1645]:
+                      - button "Edit go" [ref=e1646]: "# go"
+                      - button "Remove go" [ref=e1647] [cursor=pointer]:
+                        - img
+                  - listitem [ref=e2827]:
+                    - group "fitness" [ref=e2828]:
+                      - button "Edit fitness" [ref=e2829]: "# fitness"
+                      - button "Remove fitness" [ref=e2830] [cursor=pointer]:
+                        - img
+                  - listitem [ref=e3071]:
+                    - group "programming" [ref=e3072]:
+                      - button "Edit programming" [ref=e3073]: "# programming"
+                      - button "Remove programming" [ref=e3074] [cursor=pointer]:
+                        - img
+                  - listitem [ref=e913]:
+                    - textbox "Add up to 4 tags" [disabled] [active] [ref=e914]:
+                      - /placeholder: ""
+              - text: Only 4 selections allowed
+          - generic [ref=e915]:
+            - toolbar "Markdown formatting toolbar" [ref=e917]:
+              - button "Bold" [ref=e918] [cursor=pointer]:
+                - img
+                - generic:
+                  - generic: Bold CMD + B
+              - button "Italic" [ref=e919] [cursor=pointer]:
+                - img
+                - generic:
+                  - generic: Italic CMD + I
+              - button "Link" [ref=e920] [cursor=pointer]:
+                - img
+                - generic:
+                  - generic: Link CMD + K
+              - button "Ordered list" [ref=e921] [cursor=pointer]:
+                - img
+                - generic: Ordered list
+              - button "Unordered list" [ref=e922] [cursor=pointer]:
+                - img
+                - generic: Unordered list
+              - button "Heading" [ref=e923] [cursor=pointer]:
+                - img
+                - generic: Heading
+              - button "Quote" [ref=e924] [cursor=pointer]:
+                - img
+                - generic: Quote
+              - button "Code" [ref=e925] [cursor=pointer]:
+                - img
+                - generic: Code
+              - button "Code block" [ref=e926] [cursor=pointer]:
+                - img
+                - generic: Code block
+              - button "Embed" [ref=e927] [cursor=pointer]:
+                - img
+                - generic:
+                  - generic: Embed CMD + SHIFT + K
+              - button "Upload image" [ref=e929]
+              - button "Upload image" [ref=e930] [cursor=pointer]:
+                - img
+                - generic: Upload image
+              - link "Upload Agent Session" [ref=e931] [cursor=pointer]:
+                - /url: /agent_sessions/new
+                - img [ref=e932]
+              - button "More options" [ref=e935] [cursor=pointer]:
+                - img
+            - textbox "Post Content" [ref=e938]:
+              - /placeholder: Write your post content here...
+              - text: "I track my workouts in Liftoff, a gym tracking app. The app is great for logging sets and reps, but I wanted Claude to help me analyze my training — suggest programming changes, spot plateaus, flag imbalances. The problem: there's no export button. My data was locked inside the app. So I asked Claude to figure it out. ## Claude runs mitmproxy I told Claude I wanted to intercept my Liftoff app's traffic. It walked me through every step — installing mitmproxy, configuring my iPhone's proxy settings, installing the CA certificate for HTTPS decryption. All I did was follow instructions and tap through screens on my phone. Then Claude ran mitmdump, told me to open Liftoff and scroll through my workouts, and read the captured traffic itself. ## Claude reverse-engineers the API From the mitmdump output, Claude figured out that Liftoff uses tRPC — a TypeScript RPC framework that batches requests into a specific envelope format. The API lives at a versioned subdomain (`v2-12-2.api.getgymbros.com`) and expects an iOS user-agent string. Claude mapped out the entire API: - **Authentication flow** — a `user.signIn` endpoint that returns access and refresh tokens, with a `user.refreshToken` endpoint for renewal - **The workout endpoint** — `post.getMyPosts` returns every workout you've ever logged - **Exercise type codes** — `WR` for weight/reps, `AB` for assisted bodyweight, `BR` for bodyweight plus resistance, `DD` for distance/duration - **Set data structure** — each set has a type (warmup vs working), and two inputs whose meaning changes based on exercise type I didn't read a single packet. Claude did all of it. ## Claude builds the CLI Once Claude understood the API, it wrote a Go CLI using Cobra. It handled auth token storage, automatic token refresh, and the tRPC request format. The tool grew from there: - `workouts list` — export workouts in fitdown or JSON, filter by date or exercise - `workouts stats` — per-exercise volume summaries with monthly ASCII bar charts - `bodyweights stats` — trend analysis with plateau detection I set up goreleaser for multi-platform builds and a Homebrew tap for easy installation: ```sh brew tap DTTerastar/tap brew install liftoff-export ``` ## The full circle Here's the part I like most: the whole reason I built this was to pipe my workout data back to Claude. Now I can run `liftoff-export workouts list --since 6m --json` and hand Claude six months of structured training data. It can see my actual sets, reps, and weights across every exercise. From there it helps me with programming — what to change, where I'm stalling, what's working. Claude reverse-engineered the API, built the tool to extract my data, and now uses that data to coach my training. The AI closed its own loop. ## Links - GitHub: [DTTerastar/liftoff-export-cli](https://github.com/DTTerastar/liftoff-export-cli) - Liftoff app: [getgymbros.com](https://getgymbros.com)"
+        - generic [ref=e1532]:
+          - heading "Tagging Guidelines" [level=4] [ref=e1533]
+          - list [ref=e1534]:
+            - listitem [ref=e1535]: Tags help people find your post - think of them as the topics or categories that best describe your post.
+            - listitem [ref=e1536]: Add up to four comma-separated tags per post. Use existing tags whenever possible.
+            - listitem [ref=e1537]: Some tags have special posting guidelines - double check to make sure your post complies with them.
+        - generic [ref=e74]:
+          - button "Publish" [ref=e75] [cursor=pointer]
+          - button "Save draft" [ref=e76] [cursor=pointer]
+          - button "Advanced Post options" [ref=e77] [cursor=pointer]:
+            - img
+          - button "Revert new changes" [ref=e79] [cursor=pointer]
+    - button "Toggle AI Editor Helper" [ref=e78] [cursor=pointer]:
+      - generic: 🤖

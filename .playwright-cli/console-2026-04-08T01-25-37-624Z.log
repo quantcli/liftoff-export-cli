@@ -1,0 +1,10 @@
+[     415ms] [ERROR] Failed to load resource: net::ERR_BLOCKED_BY_CLIENT @ https://id.rlcdn.com/472486.gif:0
+[     466ms] [ERROR] Failed to load resource: net::ERR_BLOCKED_BY_CLIENT @ https://www.redditstatic.com/shreddit/assets/pix/ads/1.png:0
+[     606ms] [ERROR] Failed to load resource: net::ERR_BLOCKED_BY_CLIENT @ https://w3-reporting.reddit.com/reports:0
+[     606ms] [ERROR] Failed to load resource: net::ERR_BLOCKED_BY_CLIENT @ https://www.reddit.com/svc/shreddit/perfMetrics:0
+[     620ms] [ERROR] Failed to load resource: net::ERR_BLOCKED_BY_CLIENT @ https://www.redditstatic.com/shreddit/sentry-DswLfAC_.js:0
+[     622ms] Failed to fetch dynamically imported module: https://www.redditstatic.com/shreddit/sentry-DswLfAC_.js
+[     712ms] [ERROR] Failed to load resource: net::ERR_BLOCKED_BY_CLIENT @ https://w3-reporting.reddit.com/policy:0
+[     974ms] [WARNING] <meta name="apple-mobile-web-app-capable" content="yes"> is deprecated. Please include <meta name="mobile-web-app-capable" content="yes"> @ https://www.reddit.com/r/QuantifiedSelf/submit/?type=TEXT:0
+[     978ms] [ERROR] Failed to load resource: net::ERR_BLOCKED_BY_CLIENT @ https://w3-reporting.reddit.com/reports:0
+[    5602ms] [ERROR] Failed to load resource: net::ERR_BLOCKED_BY_CLIENT @ https://w3-reporting.reddit.com/reports:0

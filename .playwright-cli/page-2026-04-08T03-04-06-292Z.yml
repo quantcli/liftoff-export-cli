@@ -1,0 +1,239 @@
+- generic [ref=e1]:
+  - generic [ref=e3]:
+    - generic [ref=e4]:
+      - complementary "Skip links" [ref=e5]:
+        - link "Skip to main content" [ref=e6] [cursor=pointer]:
+          - /url: /
+          - generic [ref=e7]: Skip to main content
+        - button "Keyboard shortcuts" [ref=e8]:
+          - generic [ref=e9]: Keyboard shortcuts
+        - link "Accessibility Help external, opens new window" [ref=e10] [cursor=pointer]:
+          - /url: https://cloud.google.com/docs/accessibility?hl=en_US
+          - generic [ref=e11]:
+            - text: Accessibility Help
+            - generic "external, opens new window" [ref=e12]:
+              - img "external, opens new window" [ref=e13]:
+                - img [ref=e14]
+        - link "Accessibility Feedback external, opens new window" [ref=e16] [cursor=pointer]:
+          - /url: https://support.google.com/accessibility/contact/feedback?hl=en_US
+          - generic [ref=e17]:
+            - text: Accessibility Feedback
+            - generic "external, opens new window" [ref=e18]:
+              - img "external, opens new window" [ref=e19]:
+                - img [ref=e20]
+      - banner [ref=e23]:
+        - generic [ref=e24]:
+          - navigation [ref=e27]:
+            - button "Navigation menu (.)" [ref=e28] [cursor=pointer]:
+              - img [ref=e30]
+          - link "Google Cloud Platform Home" [ref=e32] [cursor=pointer]:
+            - /url: /
+            - generic:
+              - img
+          - button "You're currently working in My First Project. Hit enter to switch projects, folders, or organizations" [ref=e220]:
+            - generic [ref=e221]:
+              - img [ref=e223]
+              - generic [ref=e226]: My First Project
+        - search "Google Cloud Platform" [ref=e46]:
+          - combobox [ref=e47]:
+            - searchbox "Enter query to search for resources, docs, products, and more" [ref=e48]
+          - button "See all search results" [disabled]:
+            - generic:
+              - img
+            - generic: Search
+        - generic [ref=e49]:
+          - generic [ref=e50]:
+            - button "Open or close Gemini Cloud Assist chat (Option G)" [ref=e230] [cursor=pointer]:
+              - img [ref=e232]
+            - button "Free trial status" [ref=e237] [cursor=pointer]:
+              - img [ref=e239]
+            - button "Activate Cloud Shell (G then S)" [ref=e241] [cursor=pointer]:
+              - img [ref=e243]
+            - button "1 unread notifications. Open notifications" [ref=e57] [cursor=pointer]:
+              - generic [ref=e60]: "1"
+            - button "Settings and utilities" [ref=e65] [cursor=pointer]:
+              - img [ref=e67]
+          - 'button "Account: Darrell Turner (terastar@gmail.com)" [ref=e247]':
+            - img [ref=e248]
+    - generic [ref=e91]:
+      - navigation "APIs & Services" [ref=e98]:
+        - generic [ref=e99]:
+          - generic [ref=e100]:
+            - heading "APIs & Services" [level=2] [ref=e101]:
+              - link "APIs & Services" [ref=e102] [cursor=pointer]:
+                - /url: /apis
+                - img [ref=e105]
+                - generic [ref=e109]: APIs & Services
+            - button "Favorite APIs & Services to top" [ref=e251] [cursor=pointer]:
+              - img [ref=e253]
+          - list "Enabled APIs & services, 1 of 5 More options Library, 2 of 5 More options Credentials, 3 of 5 More options OAuth consent screen, 4 of 5 More options Page usage agreements, 5 of 5 More options" [ref=e113]:
+            - listitem [ref=e114]:
+              - generic [ref=e117]:
+                - link "Enabled APIs & services, 1 of 5" [ref=e118] [cursor=pointer]:
+                  - /url: /apis/dashboard
+                  - generic [ref=e119]:
+                    - img [ref=e122]
+                    - generic [ref=e124]: Enabled APIs & services
+                - button "More options" [ref=e126] [cursor=pointer]:
+                  - img [ref=e128]
+            - listitem [ref=e130]:
+              - generic [ref=e133]:
+                - link "Library, 2 of 5" [ref=e134] [cursor=pointer]:
+                  - /url: /apis/library
+                  - generic [ref=e135]:
+                    - img [ref=e138]
+                    - generic [ref=e140]: Library
+                - button "More options" [ref=e142] [cursor=pointer]:
+                  - img [ref=e144]
+            - listitem [ref=e146]:
+              - generic [ref=e149]:
+                - link "Credentials, 3 of 5" [ref=e150] [cursor=pointer]:
+                  - /url: /apis/credentials
+                  - generic [ref=e151]:
+                    - img [ref=e154]
+                    - generic [ref=e156]: Credentials
+                - button "More options" [ref=e158] [cursor=pointer]:
+                  - img [ref=e160]
+            - listitem [ref=e162]:
+              - generic [ref=e165]:
+                - link "OAuth consent screen, 4 of 5" [ref=e166] [cursor=pointer]:
+                  - /url: /apis/credentials/consent
+                  - generic [ref=e167]:
+                    - img [ref=e170]
+                    - generic [ref=e172]: OAuth consent screen
+                - button "More options" [ref=e174] [cursor=pointer]:
+                  - img [ref=e176]
+            - listitem [ref=e178]:
+              - generic [ref=e181]:
+                - link "Page usage agreements, 5 of 5" [ref=e182] [cursor=pointer]:
+                  - /url: /apis/agreements
+                  - generic [ref=e183]:
+                    - img [ref=e186]
+                    - generic [ref=e189]: Page usage agreements
+                - button "More options" [ref=e191] [cursor=pointer]:
+                  - img [ref=e193]
+          - button "Toggle APIs & Services navigation menu" [pressed] [ref=e197] [cursor=pointer]:
+            - img [ref=e200]
+      - main [active] [ref=e203]:
+        - generic [ref=e533]:
+          - generic [ref=e536]:
+            - button "Back to previous page" [ref=e540] [cursor=pointer]:
+              - img [ref=e542]
+            - heading "Edit API key" [level=1] [ref=e546]:
+              - generic [ref=e547]: Edit API key
+            - toolbar "Edit API key" [ref=e550]:
+              - generic [ref=e552]:
+                - button "Rotate key" [ref=e553] [cursor=pointer]:
+                  - img [ref=e555]:
+                    - img [ref=e556]
+                  - generic [ref=e558]: Rotate key
+                - button "Create a copy" [ref=e559] [cursor=pointer]:
+                  - img [ref=e561]:
+                    - img [ref=e562]
+                  - generic [ref=e564]: Create a copy
+                - button "Delete" [ref=e567]:
+                  - img [ref=e569]:
+                    - img [ref=e570]
+                  - generic [ref=e572]: Delete
+          - generic [ref=e577]:
+            - generic [ref=e581]:
+              - generic [ref=e582]:
+                - generic [ref=e584] [cursor=pointer]:
+                  - generic [ref=e585]:
+                    - text: Name
+                    - generic [ref=e586]: "*"
+                  - textbox "Name" [ref=e588]: API key 1
+                - generic [ref=e591]: Use a unique name to identify your API key
+              - generic [ref=e593]:
+                - generic [ref=e594]:
+                  - heading "APIs that can be accessed using this key" [level=2] [ref=e595]
+                  - button "Help with api restrictions" [ref=e597] [cursor=pointer]:
+                    - img [ref=e599]
+                - generic [ref=e601]:
+                  - generic [ref=e603] [cursor=pointer]:
+                    - generic [ref=e604]:
+                      - text: Select API restrictions
+                      - generic [ref=e605]: "*"
+                    - combobox "Select API restrictions" [ref=e607]:
+                      - generic [ref=e608]:
+                        - generic [ref=e610]: 1 API
+                        - img [ref=e612]
+                  - generic [ref=e616]:
+                    - text: This list includes only APIs enabled in this project. If you don't see the API you need, visit the
+                    - link "API Library" [ref=e617] [cursor=pointer]:
+                      - /url: /apis/library?project=crypto-iris-485515-v4
+                    - text: to enable it.
+                - heading "Selected APIs:" [level=3] [ref=e619]
+                - list [ref=e620]:
+                  - listitem [ref=e621]: Custom Search API
+              - group [ref=e622]:
+                - heading "Key restrictions" [level=2] [ref=e623]
+                - paragraph [ref=e624]:
+                  - text: Add restrictions to reduce security risk and prevent unauthorized use.
+                  - link "Learn more about API key restrictions external, opens new window" [ref=e625] [cursor=pointer]:
+                    - /url: https://cloud.google.com/docs/authentication/api-keys?hl=en_US#securing
+                    - generic [ref=e626]: Learn more
+                    - img "external, opens new window" [ref=e627]:
+                      - img [ref=e628]
+                - status [ref=e632]:
+                  - img "Warning" [ref=e633]:
+                    - img [ref=e634]
+                  - generic [ref=e638]:
+                    - text: This key is unrestricted. To prevent unauthorized use, we recommend restricting where and for which APIs it can be used.
+                    - link "Learn more about API key restrictions external, opens new window" [ref=e639] [cursor=pointer]:
+                      - /url: https://cloud.google.com/docs/authentication/api-keys?hl=en_US#securing
+                      - generic [ref=e640]: Learn more
+                      - img "external, opens new window" [ref=e641]:
+                        - img [ref=e642]
+                - generic [ref=e644]:
+                  - heading "Application restrictions" [level=3] [ref=e645]
+                  - button "Help with application restrictions" [ref=e647] [cursor=pointer]:
+                    - img [ref=e649]
+                - radiogroup "Application restrictions" [ref=e652]:
+                  - generic [ref=e654]:
+                    - radio "None" [checked] [ref=e656] [cursor=pointer]
+                    - generic [ref=e660] [cursor=pointer]: None
+                  - generic [ref=e662]:
+                    - radio "Websites" [ref=e664] [cursor=pointer]
+                    - generic [ref=e667] [cursor=pointer]: Websites
+                  - generic [ref=e669]:
+                    - radio "IP addresses" [ref=e671] [cursor=pointer]
+                    - generic [ref=e674] [cursor=pointer]: IP addresses
+                  - generic [ref=e676]:
+                    - radio "Android apps" [ref=e678] [cursor=pointer]
+                    - generic [ref=e681] [cursor=pointer]: Android apps
+                  - generic [ref=e683]:
+                    - radio "iOS apps" [ref=e685] [cursor=pointer]
+                    - generic [ref=e688] [cursor=pointer]: iOS apps
+              - generic [ref=e689]:
+                - paragraph [ref=e690]: "Note: It may take up to 5 minutes for settings to take effect"
+                - button "Save" [ref=e693]:
+                  - generic [ref=e694]: Save
+                - button "Cancel" [ref=e695]:
+                  - generic [ref=e696]: Cancel
+            - region "Page summary" [ref=e699]:
+              - heading "Additional information" [level=2] [ref=e701]:
+                - generic [ref=e702]: Additional information
+              - generic [ref=e703]:
+                - button "Show key" [ref=e707]:
+                  - img [ref=e709]
+                  - generic [ref=e712]: Show key
+                - generic [ref=e715]:
+                  - term [ref=e716]: Creation date
+                  - definition [ref=e717]: April 7, 2026, 10:38:50 PM GMT-4
+  - iframe [ref=e217]:
+    
+  - iframe [ref=e219]:
+    
+  - iframe [ref=e511]:
+    
+  - dialog "Help has moved" [ref=e514]:
+    - generic [ref=e515]:
+      - generic [ref=e516]:
+        - heading "Help has moved" [level=2] [ref=e519]:
+          - generic [ref=e520]: Help has moved
+        - paragraph [ref=e521]: Documentation, support, and tutorials are now located in the menu above
+      - button "Close callout" [ref=e522] [cursor=pointer]:
+        - img [ref=e524]:
+          - img [ref=e525]
+  - paragraph [ref=e719]: Edit API key – APIs & Services – My First Project – Google Cloud console

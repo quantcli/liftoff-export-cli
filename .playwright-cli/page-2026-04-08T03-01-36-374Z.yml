@@ -1,0 +1,114 @@
+- generic [active] [ref=e1]:
+  - banner [ref=e2]:
+    - generic [ref=e3]:
+      - generic [ref=e4]:
+        - button "Main menu" [ref=e5] [cursor=pointer]:
+          - img [ref=e6]
+        - heading "Programmable Search Engine" [level=1] [ref=e9]
+      - generic [ref=e11]:
+        - button "Google apps" [ref=e15] [cursor=pointer]:
+          - img [ref=e16]
+        - 'button "Google Account: Darrell Turner (terastar@gmail.com)" [ref=e21] [cursor=pointer]':
+          - img [ref=e23]
+  - generic [ref=e27]:
+    - dialog "navigational drawer" [ref=e30]:
+      - navigation [ref=e35]:
+        - link "Help Center" [ref=e36] [cursor=pointer]:
+          - /url: //support.google.com/programmable-search/
+          - generic [ref=e37]: Help Center
+        - link "Help Forum" [ref=e38] [cursor=pointer]:
+          - /url: //support.google.com/programmable-search/community
+          - generic [ref=e39]: Help Forum
+        - link "Blog" [ref=e40] [cursor=pointer]:
+          - /url: //googlecustomsearch.blogspot.com/
+          - generic [ref=e41]: Blog
+        - generic [ref=e43] [cursor=pointer]: Send feedback
+    - generic [ref=e44]:
+      - generic [ref=e45]:
+        - generic [ref=e46]: All search engines
+        - generic [ref=e47]:
+          - generic [ref=e49]:
+            - button "Delete" [disabled]:
+              - generic: Delete
+          - button "Add" [ref=e52]:
+            - generic [ref=e55]: Add
+      - generic [ref=e108]:
+        - table "All Search Engines" [ref=e110]:
+          - rowgroup [ref=e111]:
+            - row "Toggle all rows Name Sort by Name Role Sort by Role Public URL Last updated time Sort by Last updated time" [ref=e112]:
+              - columnheader "Toggle all rows" [ref=e113]:
+                - generic [ref=e115] [cursor=pointer]:
+                  - checkbox "Toggle all rows" [ref=e116]
+                  - generic:
+                    - img
+              - columnheader "Name Sort by Name" [ref=e117] [cursor=pointer]:
+                - generic [ref=e118]:
+                  - generic [ref=e119]: Name
+                  - button "Sort by Name" [ref=e120]:
+                    - generic [ref=e121]: arrow_upward
+              - columnheader "Role Sort by Role" [ref=e123] [cursor=pointer]:
+                - generic [ref=e124]:
+                  - generic [ref=e125]: Role
+                  - button "Sort by Role" [ref=e126]:
+                    - generic [ref=e127]: arrow_upward
+              - columnheader "Public URL" [ref=e129]
+              - columnheader "Last updated time Sort by Last updated time" [ref=e130] [cursor=pointer]:
+                - generic [ref=e131]:
+                  - generic [ref=e132]: Last updated time
+                  - button "Sort by Last updated time" [ref=e133]:
+                    - generic [ref=e134]: arrow_upward
+                  - generic [ref=e135]: Sorted in descending order
+          - rowgroup [ref=e136]:
+            - row "Select row liftoff-export-cli SEO tracker Owner Open in a new window Apr 7, 2026, 10:04 PM" [ref=e137]:
+              - cell "Select row" [ref=e138]:
+                - generic [ref=e140] [cursor=pointer]:
+                  - checkbox "Select row" [ref=e141]
+                  - generic:
+                    - img
+              - rowheader "liftoff-export-cli SEO tracker" [ref=e142]:
+                - link "liftoff-export-cli SEO tracker" [ref=e143] [cursor=pointer]:
+                  - /url: controlpanel/overview?cx=b716eccddff224eed
+              - cell "Owner" [ref=e144]
+              - cell "Open in a new window" [ref=e145]:
+                - generic [ref=e146]:
+                  - generic [ref=e147] [cursor=pointer]:
+                    - generic [ref=e148]: link
+                    - link "Open in a new window" [ref=e149]:
+                      - /url: //cse.google.com/cse?cx=b716eccddff224eed
+                  - tooltip [ref=e150]: Open in a new window
+              - cell "Apr 7, 2026, 10:04 PM" [ref=e151]
+            - row "Select row Inwoodgreetingcards Administrator - Unverified Open in a new window Jan 28, 2020, 6:40 PM" [ref=e152]:
+              - cell "Select row" [ref=e153]:
+                - generic [ref=e154]:
+                  - generic:
+                    - checkbox "Select row" [disabled]
+                    - generic:
+                      - img
+              - rowheader "Inwoodgreetingcards" [ref=e155]:
+                - link "Inwoodgreetingcards" [ref=e156] [cursor=pointer]:
+                  - /url: controlpanel/overview?cx=017327700166178143754%3Ajrn1dkqee3g
+              - cell "Administrator - Unverified" [ref=e157]
+              - cell "Open in a new window" [ref=e158]:
+                - generic [ref=e159]:
+                  - generic [ref=e160] [cursor=pointer]:
+                    - generic [ref=e161]: link
+                    - link "Open in a new window" [ref=e162]:
+                      - /url: //cse.google.com/cse?cx=017327700166178143754%3Ajrn1dkqee3g
+                  - tooltip [ref=e163]: Open in a new window
+              - cell "Jan 28, 2020, 6:40 PM" [ref=e164]
+        - generic [ref=e166]:
+          - generic [ref=e167]:
+            - generic [ref=e168]: Rows per page
+            - combobox "Rows per page 10" [ref=e171] [cursor=pointer]:
+              - generic:
+                - generic: "10"
+              - generic:
+                - img
+          - generic [ref=e173]:
+            - status [ref=e174]:
+              - generic [ref=e175]: Showing 1 to 2 of 2 rows
+              - generic [ref=e176]: 1‑2 of 2
+            - button "Go to previous page" [disabled]:
+              - generic: chevron_left
+            - button "Go to next page" [disabled]:
+              - generic: chevron_right

@@ -1,0 +1,127 @@
+- generic [active] [ref=e1]:
+  - banner [ref=e2]:
+    - generic [ref=e3]:
+      - generic [ref=e4]:
+        - button "Main menu" [ref=e5] [cursor=pointer]:
+          - img [ref=e6]
+        - heading "Programmable Search Engine" [level=1] [ref=e9]
+      - generic [ref=e11]:
+        - button "Google apps" [ref=e15] [cursor=pointer]:
+          - img [ref=e16]
+        - 'button "Google Account: Darrell Turner (terastar@gmail.com)" [ref=e21] [cursor=pointer]':
+          - img [ref=e23]
+  - generic [ref=e27]:
+    - dialog "navigational drawer" [ref=e30]:
+      - navigation [ref=e35]:
+        - link "Back to all engines" [ref=e36] [cursor=pointer]:
+          - /url: controlpanel/all
+          - generic [ref=e37]: arrow_back
+          - generic [ref=e38]: Back to all engines
+        - link "Help Center" [ref=e40] [cursor=pointer]:
+          - /url: //support.google.com/programmable-search/
+          - generic [ref=e41]: Help Center
+        - link "Help Forum" [ref=e42] [cursor=pointer]:
+          - /url: //support.google.com/programmable-search/community
+          - generic [ref=e43]: Help Forum
+        - link "Blog" [ref=e44] [cursor=pointer]:
+          - /url: //googlecustomsearch.blogspot.com/
+          - generic [ref=e45]: Blog
+        - generic [ref=e47] [cursor=pointer]: Send feedback
+    - generic [ref=e50]:
+      - generic [ref=e51]: Create a new search engine
+      - generic [ref=e52]:
+        - text: Get started by providing some basic information about your engine. You'll be able to customize the engine's configs (Languages, regions, etc.) further after it is created.
+        - link "Learn more" [ref=e53] [cursor=pointer]:
+          - /url: https://support.google.com/programmable-search/answer/11082370
+      - generic [ref=e55]:
+        - generic [ref=e56]: Name your search engine
+        - generic [ref=e59]:
+          - generic:
+            - generic:
+              - generic: Search engine name
+          - textbox "Search engine name" [ref=e60]
+      - generic [ref=e63]:
+        - generic [ref=e64]: Select sites or pages to search
+        - generic [ref=e66]:
+          - generic [ref=e68]:
+            - text: "You can add any of the following:"
+            - text: "Individual pages: www.example.com/page.html or www.example.com/docs/"
+            - text: "Entire site: www.mysite.com/*"
+            - text: "Parts of site: www.example.com/docs/*"
+            - text: "Entire domain: *.example.com"
+            - text: "You can't add any of the following:"
+            - text: Site patterns with
+            - link "public suffix" [ref=e69] [cursor=pointer]:
+              - /url: https://publicsuffix.org/
+            - text: ": like *.com, *.co.uk, *.blogspot.com."
+            - text: Your site patterns cannot be from more than 50 distinct domains.
+          - generic [ref=e71]:
+            - generic [ref=e73]:
+              - generic:
+                - generic:
+                  - generic: Enter a site or pages
+              - textbox "Enter a site or pages" [ref=e74]
+            - button "Add url patterns" [ref=e76]:
+              - generic [ref=e80]:
+                - generic [ref=e82]:
+                  - generic [ref=e83]: Adding url patterns
+                  - progressbar [ref=e84]:
+                    - img [ref=e86]
+                    - generic [ref=e90]:
+                      - img [ref=e92]
+                      - img [ref=e95]
+                      - img [ref=e98]
+                - generic [ref=e100]: Add
+            - grid
+      - generic [ref=e103]:
+        - generic [ref=e104]: Search settings
+        - button "button" [ref=e106] [cursor=pointer]:
+          - generic [ref=e107]: info_outline
+        - generic [ref=e108]:
+          - generic [ref=e109]:
+            - switch "Enable image search" [ref=e111] [cursor=pointer]:
+              - generic [ref=e116]:
+                - img [ref=e117]
+                - img [ref=e119]
+            - generic [ref=e124]: Image search
+          - generic [ref=e125]:
+            - switch "Enable SafeSearch" [ref=e127] [cursor=pointer]:
+              - generic [ref=e132]:
+                - img [ref=e133]
+                - img [ref=e135]
+            - generic [ref=e140]: SafeSearch
+      - generic [ref=e142]:
+        - iframe [ref=e148]:
+          - generic [ref=f1e2]:
+            - generic [ref=f1e3]:
+              - checkbox "I'm not a robot" [ref=f1e7]
+              - generic [ref=f1e11]: I'm not a robot
+              - generic [ref=f1e13]:
+                - text: reCAPTCHA is changing its terms of service.
+                - link "Take action." [ref=f1e14] [cursor=pointer]:
+                  - /url: https://google.com/recaptcha/admin/migrate
+            - generic [ref=f1e18]: reCAPTCHA
+        - generic [ref=e149]:
+          - text: By clicking 'Create', you agree with the
+          - link "Terms of Service" [ref=e150] [cursor=pointer]:
+            - /url: https://support.google.com/programmable-search/answer/1714300
+          - text: .
+        - generic [ref=e152]:
+          - button "Create new search engine" [disabled]:
+            - generic:
+              - generic:
+                - generic:
+                  - generic:
+                    - generic: Create new search engine
+                    - progressbar:
+                      - generic:
+                        - img
+                      - generic:
+                        - generic:
+                          - generic:
+                            - img
+                          - generic:
+                            - img
+                          - generic:
+                            - img
+                - generic: Create

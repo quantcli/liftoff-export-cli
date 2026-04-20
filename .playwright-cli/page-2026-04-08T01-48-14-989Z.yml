@@ -1,0 +1,80 @@
+- generic [ref=e1]:
+  - banner [ref=e2]:
+    - generic [ref=e3]:
+      - link "Alerts" [ref=e7] [cursor=pointer]:
+        - /url: https://www.google.com/alerts?hl=en&tab=33&authuser=0
+      - generic [ref=e10]:
+        - button "Google apps" [ref=e14] [cursor=pointer]:
+          - img [ref=e15]
+        - 'button "Google Account: Darrell Turner (terastar@gmail.com)" [ref=e20] [cursor=pointer]':
+          - img [ref=e22]
+  - generic [ref=e23]:
+    - generic [ref=e25]:
+      - heading "Alerts" [level=1] [ref=e26]
+      - generic [ref=e27]: Monitor the web for interesting new content
+    - generic [ref=e28]:
+      - textbox "Create an alert about..." [active] [ref=e34]
+      - generic [ref=e38]:
+        - heading "My alerts" [level=2] [ref=e39]
+        - generic [ref=e40]: (8)
+        - button "Settings" [ref=e41] [cursor=pointer]
+        - list [ref=e43]:
+          - listitem [ref=e44]:
+            - generic [ref=e46]:
+              - generic [ref=e48] [cursor=pointer]: "\"Darrell Turner\""
+              - generic [ref=e49]:
+                - button "Edit" [ref=e50] [cursor=pointer]
+                - button "Delete" [ref=e51] [cursor=pointer]
+          - listitem [ref=e52]:
+            - generic [ref=e54]:
+              - generic [ref=e56] [cursor=pointer]: "\"Griffin Miller\""
+              - generic [ref=e57]:
+                - button "Edit" [ref=e58] [cursor=pointer]
+                - button "Delete" [ref=e59] [cursor=pointer]
+          - listitem [ref=e60]:
+            - generic [ref=e62]:
+              - generic [ref=e64] [cursor=pointer]: "\"Jilianne Turner\""
+              - generic [ref=e65]:
+                - button "Edit" [ref=e66] [cursor=pointer]
+                - button "Delete" [ref=e67] [cursor=pointer]
+          - listitem [ref=e68]:
+            - generic [ref=e70]:
+              - generic [ref=e72] [cursor=pointer]: (484) 844-7528
+              - generic [ref=e73]:
+                - button "Edit" [ref=e74] [cursor=pointer]
+                - button "Delete" [ref=e75] [cursor=pointer]
+          - listitem [ref=e76]:
+            - generic [ref=e78]:
+              - generic [ref=e80] [cursor=pointer]: DT@Terastar.biz
+              - generic [ref=e81]:
+                - button "Edit" [ref=e82] [cursor=pointer]
+                - button "Delete" [ref=e83] [cursor=pointer]
+          - listitem [ref=e84]:
+            - generic [ref=e86]:
+              - generic [ref=e88] [cursor=pointer]: ESPresense
+              - generic [ref=e89]:
+                - button "Edit" [ref=e90] [cursor=pointer]
+                - button "Delete" [ref=e91] [cursor=pointer]
+          - listitem [ref=e92]:
+            - generic [ref=e94]:
+              - generic [ref=e96] [cursor=pointer]: Terastar@gmail.com
+              - generic [ref=e97]:
+                - button "Edit" [ref=e98] [cursor=pointer]
+                - button "Delete" [ref=e99] [cursor=pointer]
+          - listitem [ref=e100]:
+            - generic [ref=e102]:
+              - generic [ref=e104] [cursor=pointer]: Travis Nathan Turner
+              - generic [ref=e105]:
+                - button "Edit" [ref=e106] [cursor=pointer]
+                - button "Delete" [ref=e107] [cursor=pointer]
+    - list [ref=e109]:
+      - listitem [ref=e110] [cursor=pointer]:
+        - link "Help center" [ref=e111]:
+          - /url: //www.google.com/support/alerts/bin/static.py?page=faq.html&hl=en
+      - button "Send Feedback" [ref=e112] [cursor=pointer]
+      - listitem [ref=e113] [cursor=pointer]:
+        - link "Terms of service" [ref=e114]:
+          - /url: //www.google.com/accounts/TOS
+      - listitem [ref=e115] [cursor=pointer]:
+        - link "Privacy Policy" [ref=e116]:
+          - /url: //www.google.com/intl/en/privacy.html

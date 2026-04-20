@@ -1,0 +1,111 @@
+- generic [ref=e1]:
+  - link "DEV Community Home" [ref=e2] [cursor=pointer]:
+    - /url: /
+    - img "DEV Community" [ref=e3]
+  - generic [ref=e5]:
+    - generic [ref=e6]: New Post - DEV Community
+    - main [ref=e7]:
+      - form "Edit post" [ref=e8]:
+        - generic [ref=e9]:
+          - link "DEV Community Home" [ref=e11] [cursor=pointer]:
+            - /url: /
+            - img "DEV Community" [ref=e12]
+          - generic [ref=e14]: Create Post
+          - navigation "View post modes" [ref=e15]:
+            - list [ref=e16]:
+              - listitem [ref=e17]:
+                - button "Edit" [ref=e18] [cursor=pointer]
+              - listitem [ref=e19]:
+                - button "Preview" [ref=e20] [cursor=pointer]
+          - button "Close the editor" [ref=e22] [cursor=pointer]:
+            - img
+        - generic [ref=e24]:
+          - generic [ref=e25]:
+            - generic [ref=e26]:
+              - generic [ref=e27] [cursor=pointer]:
+                - text: Upload Cover Image
+                - button "Upload Cover Image Use a ratio of 1000:420 for best results."
+                - generic: Use a ratio of 1000:420 for best results.
+              - button "🍌 Generate Image" [ref=e28] [cursor=pointer]
+              - button "Cover Video Link" [ref=e29] [cursor=pointer]
+            - textbox "Post Title" [ref=e31]:
+              - /placeholder: New post title here...
+              - text: I pointed Claude at mitmproxy and it reverse-engineered my gym app's API
+            - generic: aigoclifitness
+            - generic [ref=e32]: Add up to 4 tags
+            - generic [ref=e33]: Maximum 4 selections
+            - generic [ref=e34]:
+              - paragraph [ref=e35]: "Selected items:"
+              - list [ref=e36]
+            - combobox [expanded] [ref=e38]:
+              - list [ref=e39]:
+                - listitem [ref=e40]:
+                  - textbox "Add up to 4 tags" [active] [ref=e41]:
+                    - /placeholder: Add up to 4 tags...
+                    - text: aigoclifitness
+              - listbox "Add up to 4 tags" [ref=e80]:
+                - option "# aigoclifitness" [ref=e807] [cursor=pointer]:
+                  - generic [ref=e809]:
+                    - generic [ref=e810]: "#"
+                    - generic [ref=e811]: aigoclifitness
+          - generic [ref=e42]:
+            - toolbar "Markdown formatting toolbar" [ref=e44]:
+              - button "Bold" [ref=e45] [cursor=pointer]:
+                - img
+                - generic:
+                  - generic: Bold CMD + B
+              - button "Italic" [ref=e46] [cursor=pointer]:
+                - img
+                - generic:
+                  - generic: Italic CMD + I
+              - button "Link" [ref=e47] [cursor=pointer]:
+                - img
+                - generic:
+                  - generic: Link CMD + K
+              - button "Ordered list" [ref=e48] [cursor=pointer]:
+                - img
+                - generic: Ordered list
+              - button "Unordered list" [ref=e49] [cursor=pointer]:
+                - img
+                - generic: Unordered list
+              - button "Heading" [ref=e50] [cursor=pointer]:
+                - img
+                - generic: Heading
+              - button "Quote" [ref=e51] [cursor=pointer]:
+                - img
+                - generic: Quote
+              - button "Code" [ref=e52] [cursor=pointer]:
+                - img
+                - generic: Code
+              - button "Code block" [ref=e53] [cursor=pointer]:
+                - img
+                - generic: Code block
+              - button "Embed" [ref=e54] [cursor=pointer]:
+                - img
+                - generic:
+                  - generic: Embed CMD + SHIFT + K
+              - button "Upload image" [ref=e56]
+              - button "Upload image" [ref=e57] [cursor=pointer]:
+                - img
+                - generic: Upload image
+              - link "Upload Agent Session" [ref=e58] [cursor=pointer]:
+                - /url: /agent_sessions/new
+                - img [ref=e59]
+              - button "More options" [ref=e62] [cursor=pointer]:
+                - img
+            - textbox "Post Content" [ref=e65]:
+              - /placeholder: Write your post content here...
+        - generic [ref=e672]:
+          - heading "Tagging Guidelines" [level=4] [ref=e673]
+          - list [ref=e674]:
+            - listitem [ref=e675]: Tags help people find your post - think of them as the topics or categories that best describe your post.
+            - listitem [ref=e676]: Add up to four comma-separated tags per post. Use existing tags whenever possible.
+            - listitem [ref=e677]: Some tags have special posting guidelines - double check to make sure your post complies with them.
+        - generic [ref=e74]:
+          - button "Publish" [ref=e75] [cursor=pointer]
+          - button "Save draft" [ref=e76] [cursor=pointer]
+          - button "Advanced Post options" [ref=e77] [cursor=pointer]:
+            - img
+          - button "Revert new changes" [ref=e79] [cursor=pointer]
+    - button "Toggle AI Editor Helper" [ref=e78] [cursor=pointer]:
+      - generic: 🤖

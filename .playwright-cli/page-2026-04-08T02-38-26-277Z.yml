@@ -1,0 +1,338 @@
+- generic [ref=e1]:
+  - generic [ref=e3]:
+    - generic [ref=e4]:
+      - complementary [ref=e881]:
+        - link [ref=e882] [cursor=pointer]:
+          - /url: /
+          - generic [ref=e7]: Skip to main content
+        - button [ref=e883]:
+          - generic [ref=e9]: Keyboard shortcuts
+        - link [ref=e884] [cursor=pointer]:
+          - /url: https://cloud.google.com/docs/accessibility?hl=en_US
+          - generic [ref=e11]:
+            - text: Accessibility Help
+            - img [ref=e886]:
+              - img [ref=e14]
+        - link [ref=e887] [cursor=pointer]:
+          - /url: https://support.google.com/accessibility/contact/feedback?hl=en_US
+          - generic [ref=e17]:
+            - text: Accessibility Feedback
+            - img [ref=e889]:
+              - img [ref=e20]
+      - banner [ref=e23]:
+        - generic [ref=e24]:
+          - navigation [ref=e27]:
+            - button [ref=e890] [cursor=pointer]:
+              - img [ref=e30]
+          - link [ref=e891] [cursor=pointer]:
+            - /url: /?project=crypto-iris-485515-v4
+            - generic:
+              - img
+          - button [ref=e892]:
+            - generic [ref=e242]:
+              - img [ref=e244]
+              - generic [ref=e247]: My First Project
+        - search [ref=e893]:
+          - combobox [ref=e47]:
+            - searchbox [ref=e894]
+          - button [disabled]:
+            - generic:
+              - img
+            - generic: Search
+        - generic [ref=e49]:
+          - generic [ref=e50]:
+            - button [ref=e895] [cursor=pointer]:
+              - img [ref=e255]
+            - button [ref=e896] [cursor=pointer]:
+              - img [ref=e262]
+            - button [ref=e897] [cursor=pointer]:
+              - img [ref=e266]
+            - button [ref=e898] [cursor=pointer]:
+              - generic [ref=e60]: "1"
+            - button [ref=e899] [cursor=pointer]:
+              - img [ref=e67]
+          - button [ref=e900]:
+            - img [ref=e273]
+    - generic [ref=e91]:
+      - navigation [ref=e901]:
+        - generic [ref=e99]:
+          - heading [level=2] [ref=e902]:
+            - link [ref=e903] [cursor=pointer]:
+              - /url: /apis?project=crypto-iris-485515-v4
+              - img [ref=e105]
+              - generic [ref=e109]: APIs & Services
+          - list [ref=e904]:
+            - listitem [ref=e114]:
+              - generic [ref=e117]:
+                - link [ref=e905] [cursor=pointer]:
+                  - /url: /apis/dashboard?project=crypto-iris-485515-v4
+                  - generic [ref=e119]:
+                    - img [ref=e122]
+                    - generic [ref=e124]: Enabled APIs & services
+                - button [ref=e906] [cursor=pointer]:
+                  - img [ref=e128]
+            - listitem [ref=e130]:
+              - generic [ref=e133]:
+                - link [ref=e907] [cursor=pointer]:
+                  - /url: /apis/library?project=crypto-iris-485515-v4
+                  - generic [ref=e135]:
+                    - img [ref=e138]
+                    - generic [ref=e140]: Library
+                - button [ref=e908] [cursor=pointer]:
+                  - img [ref=e144]
+            - listitem [ref=e146]:
+              - generic [ref=e149]:
+                - link [ref=e909] [cursor=pointer]:
+                  - /url: /apis/credentials?project=crypto-iris-485515-v4
+                  - generic [ref=e151]:
+                    - img [ref=e154]
+                    - generic [ref=e156]: Credentials
+                - button [ref=e910] [cursor=pointer]:
+                  - img [ref=e160]
+            - listitem [ref=e162]:
+              - generic [ref=e165]:
+                - link [ref=e911] [cursor=pointer]:
+                  - /url: /apis/credentials/consent?project=crypto-iris-485515-v4
+                  - generic [ref=e167]:
+                    - img [ref=e170]
+                    - generic [ref=e172]: OAuth consent screen
+                - button [ref=e912] [cursor=pointer]:
+                  - img [ref=e176]
+            - listitem [ref=e178]:
+              - generic [ref=e181]:
+                - link [ref=e913] [cursor=pointer]:
+                  - /url: /apis/agreements?project=crypto-iris-485515-v4
+                  - generic [ref=e183]:
+                    - img [ref=e186]
+                    - generic [ref=e189]: Page usage agreements
+                - button [ref=e914] [cursor=pointer]:
+                  - img [ref=e193]
+          - button [pressed] [ref=e915] [cursor=pointer]:
+            - img [ref=e200]
+      - main [ref=e203]:
+        - generic [ref=e294]:
+          - generic [ref=e297]:
+            - heading [level=1] [ref=e916]:
+              - generic [ref=e301]: Credentials
+            - generic [ref=e305]:
+              - generic [ref=e306]:
+                - button [ref=e917]:
+                  - generic [ref=e309]:
+                    - img [ref=e311]:
+                      - img [ref=e312]
+                    - text: Create credentials
+                  - img [ref=e315]
+                - button [disabled] [ref=e918]:
+                  - img [ref=e321]:
+                    - img [ref=e322]
+                  - generic [ref=e324]: Delete
+              - button [ref=e919] [cursor=pointer]:
+                - generic [ref=e326]:
+                  - img [ref=e328]:
+                    - img [ref=e329]
+                  - text: Restore deleted credentials
+          - generic [ref=e338]:
+            - paragraph [ref=e340]:
+              - text: Create credentials to access your enabled APIs.
+              - link [ref=e920] [cursor=pointer]:
+                - /url: https://cloud.google.com/docs/authentication
+                - text: Learn more
+                - img [ref=e921]:
+                  - img [ref=e343]
+            - generic [ref=e345]:
+              - heading [level=2] [ref=e922]: API Keys
+              - grid [ref=e923]:
+                - rowgroup [ref=e360]:
+                  - row [ref=e924] [cursor=pointer]:
+                    - gridcell [ref=e925]:
+                      - checkbox [disabled] [ref=e926]
+                    - columnheader [ref=e927]:
+                      - img [ref=e368]
+                    - columnheader [ref=e928]:
+                      - generic [ref=e372]:
+                        - generic [ref=e373]: Name
+                        - button [ref=e929]:
+                          - img [ref=e376]
+                    - columnheader [ref=e930]:
+                      - generic [ref=e380]:
+                        - generic [ref=e381]:
+                          - text: Bound account
+                          - button [ref=e931]:
+                            - img [ref=e385]
+                        - button [ref=e932]:
+                          - img [ref=e389]
+                    - columnheader [ref=e933]:
+                      - generic [ref=e393]:
+                        - generic [ref=e394]: Creation date
+                        - button [ref=e934]:
+                          - img [ref=e397]
+                    - columnheader [ref=e935]:
+                      - generic [ref=e401]:
+                        - generic [ref=e402]: Restrictions
+                        - button [ref=e936]:
+                          - img [ref=e405]
+                    - columnheader [ref=e937]:
+                      - generic [ref=e409]: Actions
+                - rowgroup [ref=e410]:
+                  - row [ref=e938] [cursor=pointer]:
+                    - gridcell [ref=e939]: No API keys to display
+            - generic [ref=e413]:
+              - heading [level=2] [ref=e940]: OAuth 2.0 Client IDs
+              - grid [ref=e941]:
+                - rowgroup [ref=e427]:
+                  - row [ref=e942] [cursor=pointer]:
+                    - gridcell [ref=e943]:
+                      - checkbox [disabled] [ref=e944]
+                    - columnheader [ref=e945]:
+                      - generic [ref=e433]:
+                        - generic [ref=e434]: Name
+                        - button [ref=e946]:
+                          - img [ref=e437]
+                    - columnheader [ref=e947]:
+                      - generic [ref=e441]:
+                        - generic [ref=e442]: Creation date
+                        - button [ref=e948]:
+                          - img [ref=e445]
+                    - columnheader [ref=e949]:
+                      - generic [ref=e449]:
+                        - generic [ref=e450]: Type
+                        - button [ref=e950]:
+                          - img [ref=e453]
+                    - columnheader [ref=e951]:
+                      - generic [ref=e457]:
+                        - generic [ref=e458]: Client ID
+                        - button [ref=e952]:
+                          - img [ref=e461]
+                    - columnheader [ref=e953]:
+                      - generic [ref=e465]: Actions
+                - rowgroup [ref=e466]:
+                  - row [ref=e954] [cursor=pointer]:
+                    - gridcell [ref=e955]: No OAuth clients to display
+            - generic [ref=e469]:
+              - generic [ref=e470]:
+                - heading [level=2] [ref=e956]: Service Accounts
+                - link [ref=e957] [cursor=pointer]:
+                  - /url: /iam-admin/serviceaccounts?project=crypto-iris-485515-v4
+                  - text: Manage service accounts
+              - grid [ref=e958]:
+                - rowgroup [ref=e485]:
+                  - row [ref=e959] [cursor=pointer]:
+                    - gridcell [ref=e960]:
+                      - checkbox [disabled] [ref=e961]
+                    - columnheader [ref=e962]:
+                      - generic [ref=e491]:
+                        - generic [ref=e492]: Email
+                        - button [ref=e963]:
+                          - img [ref=e495]
+                    - columnheader [ref=e964]:
+                      - generic [ref=e499]:
+                        - generic [ref=e500]: Name
+                        - button [ref=e965]:
+                          - img [ref=e503]
+                    - columnheader [ref=e966]:
+                      - generic [ref=e507]: Actions
+                - rowgroup [ref=e508]:
+                  - row [ref=e967] [cursor=pointer]:
+                    - gridcell [ref=e968]: No service accounts to display
+  - iframe [ref=e227]:
+    
+  - iframe [ref=e229]:
+    
+  - iframe [ref=e512]:
+    
+  - generic:
+    - dialog [ref=e1119]:
+      - generic [ref=e975]:
+        - generic [ref=e978]:
+          - heading [level=1] [ref=e1120]:
+            - generic [ref=e982]: Create API key
+          - button [ref=e1121] [cursor=pointer]:
+            - img [ref=e990]
+        - generic [ref=e998]:
+          - generic [ref=e1103]:
+            - img [ref=e1122]:
+              - img [ref=e1105]
+            - generic [ref=e1107]:
+              - generic [ref=e1109]: Make sure all fields are correct to continue
+              - button [ref=e1123]:
+                - generic [ref=e1112]: Go to issue(s)
+          - generic [ref=e999]:
+            - generic [ref=e1001] [cursor=pointer]:
+              - generic [ref=e1002]:
+                - text: Name
+                - generic [ref=e1003]: "*"
+              - textbox [ref=e1124]: API key 1
+            - generic [ref=e1008]: Use a unique name to identify your API key
+          - generic [ref=e1010]:
+            - generic [ref=e1011]:
+              - heading [level=2] [ref=e1125]: APIs that can be accessed using this key
+              - button [ref=e1126] [cursor=pointer]:
+                - img [ref=e1016]
+            - generic [ref=e1018]:
+              - generic [ref=e1020] [cursor=pointer]:
+                - generic [ref=e1021]:
+                  - text: Select API restrictions
+                  - generic [ref=e1022]: "*"
+                - combobox [expanded] [ref=e1127]:
+                  - generic [ref=e1025]:
+                    - generic [ref=e1027]: No APIs selected
+                    - img [ref=e1029]
+              - generic [ref=e1114]:
+                - img [ref=e1128]:
+                  - img [ref=e1116]
+                - generic [ref=e1118]: API selection required
+          - generic [ref=e1036]:
+            - generic [ref=e1038]:
+              - generic [ref=e1039] [cursor=pointer]:
+                - checkbox [ref=e1129]
+                - generic:
+                  - img
+              - generic [ref=e1041] [cursor=pointer]: Authenticate API calls through a service account
+            - generic [ref=e1042]: API calls made by this key will authenticate as the bound service account. This option is required to access some APIs such as Vertex AI.
+          - group [ref=e1043]:
+            - heading [level=2] [ref=e1130]: Restrict your key to reduce security risks
+            - paragraph [ref=e1045]: Select a specific application type to restrict access
+            - generic [ref=e1046]:
+              - heading [level=3] [ref=e1131]: Application restrictions
+              - button [ref=e1132] [cursor=pointer]:
+                - img [ref=e1051]
+            - radiogroup [ref=e1133]:
+              - generic [ref=e1056]:
+                - radio [checked] [ref=e1134] [cursor=pointer]
+                - generic [ref=e1062] [cursor=pointer]: None
+              - generic [ref=e1064]:
+                - radio [ref=e1135] [cursor=pointer]
+                - generic [ref=e1069] [cursor=pointer]: Websites
+              - generic [ref=e1071]:
+                - radio [ref=e1136] [cursor=pointer]
+                - generic [ref=e1076] [cursor=pointer]: IP addresses
+              - generic [ref=e1078]:
+                - radio [ref=e1137] [cursor=pointer]
+                - generic [ref=e1083] [cursor=pointer]: Android apps
+              - generic [ref=e1085]:
+                - radio [ref=e1138] [cursor=pointer]
+                - generic [ref=e1090] [cursor=pointer]: iOS apps
+          - generic [ref=e1091]:
+            - button [ref=e1139]:
+              - generic [ref=e1095]: Create
+            - button [ref=e1140]:
+              - generic [ref=e1097]: Cancel
+    - dialog "Select API restrictions" [ref=e1143]:
+      - generic [ref=e1145]:
+        - generic [ref=e1147]:
+          - img [ref=e1149]
+          - generic [ref=e1151]: Filter
+          - textbox "Filter" [active] [ref=e1152]:
+            - /placeholder: Type to filter
+            - text: Custom Search
+          - button "Clear filter" [ref=e1228] [cursor=pointer]:
+            - img [ref=e1230]
+        - listbox "Options" [ref=e1153]:
+          - option "Custom Search API" [ref=e1202] [cursor=pointer]:
+            - generic [ref=e1204]: Custom Search API
+        - generic [ref=e1222]:
+          - button "Cancel" [ref=e1223]:
+            - generic [ref=e1224]: Cancel
+          - button "OK" [ref=e1225]:
+            - generic [ref=e1226]: OK
+  - status [ref=e1232]: 1 result showing.

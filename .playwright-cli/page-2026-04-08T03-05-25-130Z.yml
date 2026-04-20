@@ -1,0 +1,515 @@
+- generic [active] [ref=e1]:
+  - generic [ref=e3]:
+    - generic [ref=e4]:
+      - complementary "Skip links" [ref=e5]:
+        - link "Skip to main content" [ref=e6] [cursor=pointer]:
+          - /url: /
+          - generic [ref=e7]: Skip to main content
+        - button "Keyboard shortcuts" [ref=e8]:
+          - generic [ref=e9]: Keyboard shortcuts
+        - link "Accessibility Help external, opens new window" [ref=e10] [cursor=pointer]:
+          - /url: https://cloud.google.com/docs/accessibility?hl=en_US
+          - generic [ref=e11]:
+            - text: Accessibility Help
+            - generic "external, opens new window" [ref=e12]:
+              - img "external, opens new window" [ref=e13]:
+                - img [ref=e14]
+        - link "Accessibility Feedback external, opens new window" [ref=e16] [cursor=pointer]:
+          - /url: https://support.google.com/accessibility/contact/feedback?hl=en_US
+          - generic [ref=e17]:
+            - text: Accessibility Feedback
+            - generic "external, opens new window" [ref=e18]:
+              - img "external, opens new window" [ref=e19]:
+                - img [ref=e20]
+      - banner [ref=e23]:
+        - generic [ref=e24]:
+          - navigation [ref=e27]:
+            - button "Navigation menu (.)" [ref=e28] [cursor=pointer]:
+              - img [ref=e30]
+          - link "Google Cloud Platform Home" [ref=e32] [cursor=pointer]:
+            - /url: /
+            - generic:
+              - img
+          - button "You're currently working in My First Project. Hit enter to switch projects, folders, or organizations" [ref=e230]:
+            - generic [ref=e231]:
+              - img [ref=e233]
+              - generic [ref=e236]: My First Project
+        - search "Google Cloud Platform" [ref=e46]:
+          - combobox [ref=e47]:
+            - searchbox "Enter query to search for resources, docs, products, and more" [ref=e48]
+          - button "See all search results" [disabled]:
+            - generic:
+              - img
+            - generic: Search
+        - generic [ref=e49]:
+          - generic [ref=e50]:
+            - button "Open or close Gemini Cloud Assist chat (Option G)" [ref=e240] [cursor=pointer]:
+              - img [ref=e242]
+            - button "Free trial status" [ref=e247] [cursor=pointer]:
+              - img [ref=e249]
+            - button "Activate Cloud Shell (G then S)" [ref=e251] [cursor=pointer]:
+              - img [ref=e253]
+            - button "1 unread notifications. Open notifications" [ref=e57] [cursor=pointer]:
+              - generic [ref=e60]: "1"
+            - button "Settings and utilities" [ref=e65] [cursor=pointer]:
+              - img [ref=e67]
+          - 'button "Account: Darrell Turner (terastar@gmail.com)" [ref=e257]':
+            - img [ref=e258]
+    - generic [ref=e91]:
+      - navigation "APIs & Services" [ref=e98]:
+        - generic [ref=e99]:
+          - generic [ref=e100]:
+            - heading "APIs & Services" [level=2] [ref=e101]:
+              - link "APIs & Services" [ref=e102] [cursor=pointer]:
+                - /url: /apis
+                - img [ref=e105]
+                - generic [ref=e109]: APIs & Services
+            - button "Favorite APIs & Services to top" [ref=e261] [cursor=pointer]:
+              - img [ref=e263]
+          - list "Enabled APIs & services, 1 of 5 More options Library, 2 of 5 More options Credentials, 3 of 5 More options OAuth consent screen, 4 of 5 More options Page usage agreements, 5 of 5 More options" [ref=e113]:
+            - listitem [ref=e114]:
+              - generic [ref=e117]:
+                - link "Enabled APIs & services, 1 of 5" [ref=e118] [cursor=pointer]:
+                  - /url: /apis/dashboard
+                  - generic [ref=e119]:
+                    - img [ref=e122]
+                    - generic [ref=e124]: Enabled APIs & services
+                - button "More options" [ref=e126] [cursor=pointer]:
+                  - img [ref=e128]
+            - listitem [ref=e130]:
+              - generic [ref=e133]:
+                - link "Library, 2 of 5" [ref=e134] [cursor=pointer]:
+                  - /url: /apis/library
+                  - generic [ref=e135]:
+                    - img [ref=e138]
+                    - generic [ref=e140]: Library
+                - button "More options" [ref=e142] [cursor=pointer]:
+                  - img [ref=e144]
+            - listitem [ref=e146]:
+              - generic [ref=e149]:
+                - link "Credentials, 3 of 5" [ref=e150] [cursor=pointer]:
+                  - /url: /apis/credentials
+                  - generic [ref=e151]:
+                    - img [ref=e154]
+                    - generic [ref=e156]: Credentials
+                - button "More options" [ref=e158] [cursor=pointer]:
+                  - img [ref=e160]
+            - listitem [ref=e162]:
+              - generic [ref=e165]:
+                - link "OAuth consent screen, 4 of 5" [ref=e166] [cursor=pointer]:
+                  - /url: /apis/credentials/consent
+                  - generic [ref=e167]:
+                    - img [ref=e170]
+                    - generic [ref=e172]: OAuth consent screen
+                - button "More options" [ref=e174] [cursor=pointer]:
+                  - img [ref=e176]
+            - listitem [ref=e178]:
+              - generic [ref=e181]:
+                - link "Page usage agreements, 5 of 5" [ref=e182] [cursor=pointer]:
+                  - /url: /apis/agreements
+                  - generic [ref=e183]:
+                    - img [ref=e186]
+                    - generic [ref=e189]: Page usage agreements
+                - button "More options" [ref=e191] [cursor=pointer]:
+                  - img [ref=e193]
+          - button "Toggle APIs & Services navigation menu" [pressed] [ref=e197] [cursor=pointer]:
+            - img [ref=e200]
+      - main [ref=e203]:
+        - generic [ref=e275]:
+          - generic [ref=e279]:
+            - link "Back to Enabled APIs & services" [ref=e283] [cursor=pointer]:
+              - /url: /apis/dashboard?project=crypto-iris-485515-v4
+              - img [ref=e285]
+            - heading "API/Service Details" [level=1] [ref=e289]:
+              - generic [ref=e290]: API/Service Details
+            - button "Disable API" [ref=e295]:
+              - img [ref=e297]:
+                - img [ref=e298]
+              - generic [ref=e300]: Disable API
+          - generic [ref=e301]:
+            - generic [ref=e303]:
+              - generic [ref=e305]:
+                - img "Information" [ref=e306]:
+                  - img [ref=e307]
+                - generic [ref=e309]:
+                  - generic [ref=e311]: To call this API from your own applications, you may need to create credentials.
+                  - link "Create credentials" [ref=e313] [cursor=pointer]:
+                    - /url: /apis/credentials/wizard?api=customsearch.googleapis.com&previousPage=%2Fapis%2Fapi%2Fcustomsearch.googleapis.com%2Fmetrics%3Fproject%3Dcrypto-iris-485515-v4&project=crypto-iris-485515-v4
+                    - generic [ref=e314]: Create credentials
+              - generic [ref=e315]:
+                - img [ref=e319]
+                - generic [ref=e320]:
+                  - heading "Custom Search API" [level=2] [ref=e321]
+                  - paragraph [ref=e322]: Searches over a website or collection of websites
+                  - generic [ref=e323]: By Google
+              - generic [ref=e326]:
+                - generic [ref=e327]:
+                  - term [ref=e328]: Service name
+                  - definition [ref=e329]: customsearch.googleapis.com
+                - generic [ref=e330]:
+                  - term [ref=e331]: Type
+                  - definition [ref=e332]: Public API
+                - generic [ref=e333]:
+                  - term [ref=e334]: Status
+                  - definition [ref=e335]:
+                    - generic [ref=e336]: Enabled
+                - generic [ref=e337]:
+                  - term [ref=e338]: Documentation
+                  - definition [ref=e339]:
+                    - link "View Documentation" [ref=e341] [cursor=pointer]:
+                      - /url: https://developers.google.com/custom-search/json-api/v1/overview?hl=en_US
+                      - img [ref=e343]:
+                        - img [ref=e344]
+                      - generic [ref=e346]:
+                        - text: Learn more
+                        - generic "external, opens new window" [ref=e347]:
+                          - img "external, opens new window" [ref=e348]:
+                            - img [ref=e349]
+                - generic [ref=e351]:
+                  - term [ref=e352]: Explore
+                  - definition [ref=e353]:
+                    - link "Try in API Explorer" [ref=e355] [cursor=pointer]:
+                      - /url: https://developers.google.com/apis-explorer/?hl=en_US#p/customsearch/v1/
+                      - img [ref=e357]:
+                        - img [ref=e358]
+                      - generic [ref=e360]:
+                        - text: Try in API Explorer
+                        - generic "external, opens new window" [ref=e361]:
+                          - img "external, opens new window" [ref=e362]:
+                            - img [ref=e363]
+                - generic [ref=e365]:
+                  - term [ref=e366]: Support
+                  - definition [ref=e367]:
+                    - link "Maintenance & Support" [ref=e369] [cursor=pointer]:
+                      - /url: https://developers.google.com/custom-search/json-api/v1/overview?hl=en_US
+                      - img [ref=e371]:
+                        - img [ref=e372]
+                      - generic [ref=e374]:
+                        - text: Maintenance & Support
+                        - generic "external, opens new window" [ref=e375]:
+                          - img "external, opens new window" [ref=e376]:
+                            - img [ref=e377]
+            - tablist "Navigation Bar" [ref=e379]:
+              - generic [ref=e382]:
+                - tab "Metrics" [selected] [ref=e383] [cursor=pointer]:
+                  - generic [ref=e385]: Metrics
+                - tab "Quotas & System Limits" [ref=e386] [cursor=pointer]:
+                  - generic [ref=e388]: Quotas & System Limits
+                - tab "Credentials" [ref=e389] [cursor=pointer]:
+                  - generic [ref=e391]: Credentials
+                - tab "Cost" [ref=e392] [cursor=pointer]:
+                  - generic [ref=e394]: Cost
+            - tabpanel "Metrics" [ref=e395]:
+              - generic [ref=e408]:
+                - heading "Settings" [level=2] [ref=e409]
+                - generic [ref=e411]:
+                  - generic [ref=e412]:
+                    - generic [ref=e415] [cursor=pointer]:
+                      - generic [ref=e416]: Select Graphs
+                      - combobox "Select Graphs" [ref=e418]:
+                        - generic [ref=e419]:
+                          - generic [ref=e421]: 4 Graphs
+                          - img [ref=e423]
+                    - radiogroup "Interval picker" [ref=e427]:
+                      - radio "1 hour" [ref=e428] [cursor=pointer]:
+                        - generic [ref=e429]: 1 hour
+                      - radio "6 hours" [ref=e430] [cursor=pointer]:
+                        - generic [ref=e431]: 6 hours
+                      - radio "12 hours" [ref=e432] [cursor=pointer]:
+                        - generic [ref=e433]: 12 hours
+                      - radio "1 day" [ref=e434] [cursor=pointer]:
+                        - generic [ref=e435]: 1 day
+                      - radio "2 days" [ref=e436] [cursor=pointer]:
+                        - generic [ref=e437]: 2 days
+                      - radio "4 days" [ref=e438] [cursor=pointer]:
+                        - generic [ref=e439]: 4 days
+                      - radio "7 days" [ref=e440] [cursor=pointer]:
+                        - generic [ref=e441]: 7 days
+                      - radio "14 days" [ref=e442] [cursor=pointer]:
+                        - generic [ref=e443]: 14 days
+                      - radio "30 days" [checked] [ref=e444] [cursor=pointer]:
+                        - generic [ref=e445]:
+                          - img [ref=e447]
+                          - text: 30 days
+                  - generic [ref=e449]:
+                    - generic [ref=e450]: "Filters:"
+                    - generic "Filters:" [ref=e451]:
+                      - generic [ref=e453] [cursor=pointer]:
+                        - generic [ref=e454]: Credentials
+                        - combobox "Credentials" [ref=e456]:
+                          - generic [ref=e457]:
+                            - generic [ref=e459]: API key 1, Unspecified, Anonymous, and Google Cloud console API key
+                            - img [ref=e461]
+                    - generic "Filters:" [ref=e463]:
+                      - generic [ref=e465] [cursor=pointer]:
+                        - generic [ref=e466]: Methods
+                        - combobox "Methods" [ref=e468]:
+                          - generic [ref=e469]:
+                            - generic [ref=e471]: List, SiteRestrictList, GetDiscovery, and GetDiscoveryRest
+                            - img [ref=e473]
+                - heading "Graphs" [level=2] [ref=e475]
+                - generic [ref=e476]:
+                  - generic [ref=e478]:
+                    - generic [ref=e482]:
+                      - heading "Traffic by response code" [level=3] [ref=e485]:
+                        - generic [ref=e486]: Traffic by response code
+                      - generic [ref=e489]:
+                        - button "Collapse chart legend for chart titled Traffic by response code" [ref=e490] [cursor=pointer]:
+                          - img [ref=e492]:
+                            - img [ref=e493]
+                        - button "Explore data for chart titled Traffic by response code" [ref=e495] [cursor=pointer]:
+                          - img [ref=e497]
+                        - button "More options for chart titled Traffic by response code" [ref=e500] [cursor=pointer]:
+                          - img [ref=e502]:
+                            - img [ref=e503]
+                    - generic [ref=e505]:
+                      - generic [ref=e507]:
+                        - figure "Traffic by response code":
+                          - paragraph [ref=e509]: Traffic by response code
+                          - paragraph [ref=e511]: This chart is described by one or more grids. A grid row represents a time series. A grid column corresponds to a timestamp. By default, charts hide most columns. To display the hidden columns next to the activated column, use the Read previous item (up arrow) key until you access the column header, and then use the Activate button (enter) key.
+                          - generic:
+                            - paragraph [ref=e517]
+                            - generic [ref=e518]:
+                              - paragraph [ref=e522]: Data in this chart spans a time range from Sunday, March 8, 2026 at 11:05:15 PM UTC-4 to Tuesday, April 7, 2026 at 11:05:15 PM UTC-4.
+                              - paragraph [ref=e523]: Unpinning the X axis cursor allows the cursor to follow the mouse while hovering over the chart. The X axis cursor will always be pinned while using keyboard navigation to indicate that the values reflected in the tooltip or the legend are associated with the position of the X axis cursor.
+                            - generic [ref=e529]:
+                              - button "Populate data for table, \"Line 1\", on chart, \"Traffic by response code\"" [ref=e530]
+                              - grid "No data available for table, Line 1, on chart, Traffic by response code" [ref=e531]:
+                                - rowgroup:
+                                  - row "Grid for data, \"Line 1\", on chart, \"Traffic by response code\". Navigate this grid using arrow keys. Page Up and Page Down moves focus up and down by 10 rows. Home and End moves focus to the first and last cell in the current row. Ctrl+Home and Ctrl+End moves focus to the first and last cell of the grid. Audio":
+                                    - columnheader "Grid for data, \"Line 1\", on chart, \"Traffic by response code\". Navigate this grid using arrow keys. Page Up and Page Down moves focus up and down by 10 rows. Home and End moves focus to the first and last cell in the current row. Ctrl+Home and Ctrl+End moves focus to the first and last cell of the grid.":
+                                      - generic [ref=e532]: Grid for data, "Line 1", on chart, "Traffic by response code". Navigate this grid using arrow keys. Page Up and Page Down moves focus up and down by 10 rows. Home and End moves focus to the first and last cell in the current row. Ctrl+Home and Ctrl+End moves focus to the first and last cell of the grid.
+                                    - columnheader "Audio":
+                                      - generic [ref=e533]: Audio
+                                - rowgroup [ref=e534]:
+                                  - row "To save memory, this table is inactive by default. To populate this table, click the \"Populate data for table, \"Line 1\", on chart, \"Traffic by response code\"\" button just prior to this table." [ref=e535]:
+                                    - gridcell "To save memory, this table is inactive by default. To populate this table, click the \"Populate data for table, \"Line 1\", on chart, \"Traffic by response code\"\" button just prior to this table." [ref=e536]:
+                                      - generic [ref=e537]: To save memory, this table is inactive by default. To populate this table, click the "Populate data for table, "Line 1", on chart, "Traffic by response code"" button just prior to this table.
+                              - paragraph [ref=e538]: If subsequent columns are omitted, activating a column header will reveal all subsequent columns up to the next revealed column.
+                              - paragraph [ref=e539]: If subsequent rows are omitted, activating a row header will reveal all subsequent rows up to the next revealed row.
+                              - paragraph [ref=e540]: Activating a grid cell will open the tooltip at this data point.
+                              - status [ref=e541]
+                      - generic [ref=e544]:
+                        - generic:
+                          - list "Legend for nearby chart"
+                          - paragraph [ref=e545]: Name and value for each data series. Values listed are usually the most recent values for the data series. When using keyboard navigation on the chart, values listed are the values as of the focused time.
+                  - generic [ref=e547]:
+                    - generic [ref=e551]:
+                      - heading "Errors by API method" [level=3] [ref=e554]:
+                        - generic [ref=e555]: Errors by API method
+                      - generic [ref=e558]:
+                        - button "Collapse chart legend for chart titled Errors by API method" [ref=e559] [cursor=pointer]:
+                          - img [ref=e561]:
+                            - img [ref=e562]
+                        - button "Explore data for chart titled Errors by API method" [ref=e564] [cursor=pointer]:
+                          - img [ref=e566]
+                        - button "More options for chart titled Errors by API method" [ref=e569] [cursor=pointer]:
+                          - img [ref=e571]:
+                            - img [ref=e572]
+                    - generic [ref=e574]:
+                      - generic [ref=e576]:
+                        - figure "Errors by API method":
+                          - paragraph [ref=e578]: Errors by API method
+                          - paragraph [ref=e580]: This chart is described by one or more grids. A grid row represents a time series. A grid column corresponds to a timestamp. By default, charts hide most columns. To display the hidden columns next to the activated column, use the Read previous item (up arrow) key until you access the column header, and then use the Activate button (enter) key.
+                          - generic:
+                            - paragraph [ref=e586]
+                            - generic [ref=e587]:
+                              - paragraph [ref=e591]: Data in this chart spans a time range from Sunday, March 8, 2026 at 11:05:15 PM UTC-4 to Tuesday, April 7, 2026 at 11:05:15 PM UTC-4.
+                              - paragraph [ref=e592]: Unpinning the X axis cursor allows the cursor to follow the mouse while hovering over the chart. The X axis cursor will always be pinned while using keyboard navigation to indicate that the values reflected in the tooltip or the legend are associated with the position of the X axis cursor.
+                            - generic [ref=e598]:
+                              - button "Populate data for table, \"Line 1\", on chart, \"Errors by API method\"" [ref=e599]
+                              - grid "No data available for table, Line 1, on chart, Errors by API method" [ref=e600]:
+                                - rowgroup:
+                                  - row "Grid for data, \"Line 1\", on chart, \"Errors by API method\". Navigate this grid using arrow keys. Page Up and Page Down moves focus up and down by 10 rows. Home and End moves focus to the first and last cell in the current row. Ctrl+Home and Ctrl+End moves focus to the first and last cell of the grid. Audio":
+                                    - columnheader "Grid for data, \"Line 1\", on chart, \"Errors by API method\". Navigate this grid using arrow keys. Page Up and Page Down moves focus up and down by 10 rows. Home and End moves focus to the first and last cell in the current row. Ctrl+Home and Ctrl+End moves focus to the first and last cell of the grid.":
+                                      - generic [ref=e601]: Grid for data, "Line 1", on chart, "Errors by API method". Navigate this grid using arrow keys. Page Up and Page Down moves focus up and down by 10 rows. Home and End moves focus to the first and last cell in the current row. Ctrl+Home and Ctrl+End moves focus to the first and last cell of the grid.
+                                    - columnheader "Audio":
+                                      - generic [ref=e602]: Audio
+                                - rowgroup [ref=e603]:
+                                  - row "To save memory, this table is inactive by default. To populate this table, click the \"Populate data for table, \"Line 1\", on chart, \"Errors by API method\"\" button just prior to this table." [ref=e604]:
+                                    - gridcell "To save memory, this table is inactive by default. To populate this table, click the \"Populate data for table, \"Line 1\", on chart, \"Errors by API method\"\" button just prior to this table." [ref=e605]:
+                                      - generic [ref=e606]: To save memory, this table is inactive by default. To populate this table, click the "Populate data for table, "Line 1", on chart, "Errors by API method"" button just prior to this table.
+                              - paragraph [ref=e607]: If subsequent columns are omitted, activating a column header will reveal all subsequent columns up to the next revealed column.
+                              - paragraph [ref=e608]: If subsequent rows are omitted, activating a row header will reveal all subsequent rows up to the next revealed row.
+                              - paragraph [ref=e609]: Activating a grid cell will open the tooltip at this data point.
+                              - status [ref=e610]
+                      - generic [ref=e613]:
+                        - generic:
+                          - list "Legend for nearby chart"
+                          - paragraph [ref=e614]: Name and value for each data series. Values listed are usually the most recent values for the data series. When using keyboard navigation on the chart, values listed are the values as of the focused time.
+                  - generic [ref=e616]:
+                    - generic [ref=e620]:
+                      - heading "Overall latency" [level=3] [ref=e623]:
+                        - generic [ref=e624]: Overall latency
+                      - generic [ref=e627]:
+                        - button "Collapse chart legend for chart titled Overall latency" [ref=e628] [cursor=pointer]:
+                          - img [ref=e630]:
+                            - img [ref=e631]
+                        - button "Explore data for chart titled Overall latency" [ref=e633] [cursor=pointer]:
+                          - img [ref=e635]
+                        - button "More options for chart titled Overall latency" [ref=e638] [cursor=pointer]:
+                          - img [ref=e640]:
+                            - img [ref=e641]
+                    - generic [ref=e643]:
+                      - generic [ref=e645]:
+                        - figure "Overall latency":
+                          - paragraph [ref=e647]: Overall latency
+                          - paragraph [ref=e649]: This chart is described by one or more grids. A grid row represents a time series. A grid column corresponds to a timestamp. By default, charts hide most columns. To display the hidden columns next to the activated column, use the Read previous item (up arrow) key until you access the column header, and then use the Activate button (enter) key.
+                          - generic:
+                            - paragraph [ref=e655]
+                            - generic [ref=e656]:
+                              - paragraph [ref=e660]: Data in this chart spans a time range from Sunday, March 8, 2026 at 11:05:15 PM UTC-4 to Tuesday, April 7, 2026 at 11:05:15 PM UTC-4.
+                              - paragraph [ref=e661]: Unpinning the X axis cursor allows the cursor to follow the mouse while hovering over the chart. The X axis cursor will always be pinned while using keyboard navigation to indicate that the values reflected in the tooltip or the legend are associated with the position of the X axis cursor.
+                            - generic [ref=e667]:
+                              - button "Populate data for table, \"Line 1\", on chart, \"Overall latency\"" [ref=e668]
+                              - grid "No data available for table, Line 1, on chart, Overall latency" [ref=e669]:
+                                - rowgroup:
+                                  - row "Grid for data, \"Line 1\", on chart, \"Overall latency\". Navigate this grid using arrow keys. Page Up and Page Down moves focus up and down by 10 rows. Home and End moves focus to the first and last cell in the current row. Ctrl+Home and Ctrl+End moves focus to the first and last cell of the grid. Audio":
+                                    - columnheader "Grid for data, \"Line 1\", on chart, \"Overall latency\". Navigate this grid using arrow keys. Page Up and Page Down moves focus up and down by 10 rows. Home and End moves focus to the first and last cell in the current row. Ctrl+Home and Ctrl+End moves focus to the first and last cell of the grid.":
+                                      - generic [ref=e670]: Grid for data, "Line 1", on chart, "Overall latency". Navigate this grid using arrow keys. Page Up and Page Down moves focus up and down by 10 rows. Home and End moves focus to the first and last cell in the current row. Ctrl+Home and Ctrl+End moves focus to the first and last cell of the grid.
+                                    - columnheader "Audio":
+                                      - generic [ref=e671]: Audio
+                                - rowgroup [ref=e672]:
+                                  - row "To save memory, this table is inactive by default. To populate this table, click the \"Populate data for table, \"Line 1\", on chart, \"Overall latency\"\" button just prior to this table." [ref=e673]:
+                                    - gridcell "To save memory, this table is inactive by default. To populate this table, click the \"Populate data for table, \"Line 1\", on chart, \"Overall latency\"\" button just prior to this table." [ref=e674]:
+                                      - generic [ref=e675]: To save memory, this table is inactive by default. To populate this table, click the "Populate data for table, "Line 1", on chart, "Overall latency"" button just prior to this table.
+                              - paragraph [ref=e676]: If subsequent columns are omitted, activating a column header will reveal all subsequent columns up to the next revealed column.
+                              - paragraph [ref=e677]: If subsequent rows are omitted, activating a row header will reveal all subsequent rows up to the next revealed row.
+                              - paragraph [ref=e678]: Activating a grid cell will open the tooltip at this data point.
+                              - status [ref=e679]
+                            - generic [ref=e685]:
+                              - button "Populate data for table, \"Line 2\", on chart, \"Overall latency\"" [ref=e686]
+                              - grid "No data available for table, Line 2, on chart, Overall latency" [ref=e687]:
+                                - rowgroup:
+                                  - row "Grid for data, \"Line 2\", on chart, \"Overall latency\". Navigate this grid using arrow keys. Page Up and Page Down moves focus up and down by 10 rows. Home and End moves focus to the first and last cell in the current row. Ctrl+Home and Ctrl+End moves focus to the first and last cell of the grid. Audio":
+                                    - columnheader "Grid for data, \"Line 2\", on chart, \"Overall latency\". Navigate this grid using arrow keys. Page Up and Page Down moves focus up and down by 10 rows. Home and End moves focus to the first and last cell in the current row. Ctrl+Home and Ctrl+End moves focus to the first and last cell of the grid.":
+                                      - generic [ref=e688]: Grid for data, "Line 2", on chart, "Overall latency". Navigate this grid using arrow keys. Page Up and Page Down moves focus up and down by 10 rows. Home and End moves focus to the first and last cell in the current row. Ctrl+Home and Ctrl+End moves focus to the first and last cell of the grid.
+                                    - columnheader "Audio":
+                                      - generic [ref=e689]: Audio
+                                - rowgroup [ref=e690]:
+                                  - row "To save memory, this table is inactive by default. To populate this table, click the \"Populate data for table, \"Line 2\", on chart, \"Overall latency\"\" button just prior to this table." [ref=e691]:
+                                    - gridcell "To save memory, this table is inactive by default. To populate this table, click the \"Populate data for table, \"Line 2\", on chart, \"Overall latency\"\" button just prior to this table." [ref=e692]:
+                                      - generic [ref=e693]: To save memory, this table is inactive by default. To populate this table, click the "Populate data for table, "Line 2", on chart, "Overall latency"" button just prior to this table.
+                              - paragraph [ref=e694]: If subsequent columns are omitted, activating a column header will reveal all subsequent columns up to the next revealed column.
+                              - paragraph [ref=e695]: If subsequent rows are omitted, activating a row header will reveal all subsequent rows up to the next revealed row.
+                              - paragraph [ref=e696]: Activating a grid cell will open the tooltip at this data point.
+                              - status [ref=e697]
+                            - generic [ref=e703]:
+                              - button "Populate data for table, \"Line 3\", on chart, \"Overall latency\"" [ref=e704]
+                              - grid "No data available for table, Line 3, on chart, Overall latency" [ref=e705]:
+                                - rowgroup:
+                                  - row "Grid for data, \"Line 3\", on chart, \"Overall latency\". Navigate this grid using arrow keys. Page Up and Page Down moves focus up and down by 10 rows. Home and End moves focus to the first and last cell in the current row. Ctrl+Home and Ctrl+End moves focus to the first and last cell of the grid. Audio":
+                                    - columnheader "Grid for data, \"Line 3\", on chart, \"Overall latency\". Navigate this grid using arrow keys. Page Up and Page Down moves focus up and down by 10 rows. Home and End moves focus to the first and last cell in the current row. Ctrl+Home and Ctrl+End moves focus to the first and last cell of the grid.":
+                                      - generic [ref=e706]: Grid for data, "Line 3", on chart, "Overall latency". Navigate this grid using arrow keys. Page Up and Page Down moves focus up and down by 10 rows. Home and End moves focus to the first and last cell in the current row. Ctrl+Home and Ctrl+End moves focus to the first and last cell of the grid.
+                                    - columnheader "Audio":
+                                      - generic [ref=e707]: Audio
+                                - rowgroup [ref=e708]:
+                                  - row "To save memory, this table is inactive by default. To populate this table, click the \"Populate data for table, \"Line 3\", on chart, \"Overall latency\"\" button just prior to this table." [ref=e709]:
+                                    - gridcell "To save memory, this table is inactive by default. To populate this table, click the \"Populate data for table, \"Line 3\", on chart, \"Overall latency\"\" button just prior to this table." [ref=e710]:
+                                      - generic [ref=e711]: To save memory, this table is inactive by default. To populate this table, click the "Populate data for table, "Line 3", on chart, "Overall latency"" button just prior to this table.
+                              - paragraph [ref=e712]: If subsequent columns are omitted, activating a column header will reveal all subsequent columns up to the next revealed column.
+                              - paragraph [ref=e713]: If subsequent rows are omitted, activating a row header will reveal all subsequent rows up to the next revealed row.
+                              - paragraph [ref=e714]: Activating a grid cell will open the tooltip at this data point.
+                              - status [ref=e715]
+                      - generic [ref=e718]:
+                        - generic:
+                          - list "Legend for nearby chart"
+                          - paragraph [ref=e719]: Name and value for each data series. Values listed are usually the most recent values for the data series. When using keyboard navigation on the chart, values listed are the values as of the focused time.
+                  - generic [ref=e721]:
+                    - generic [ref=e725]:
+                      - heading "Latency by API method (median)" [level=3] [ref=e728]:
+                        - generic [ref=e729]: Latency by API method (median)
+                      - generic [ref=e732]:
+                        - button "Collapse chart legend for chart titled Latency by API method (median)" [ref=e733] [cursor=pointer]:
+                          - img [ref=e735]:
+                            - img [ref=e736]
+                        - button "Explore data for chart titled Latency by API method (median)" [ref=e738] [cursor=pointer]:
+                          - img [ref=e740]
+                        - button "More options for chart titled Latency by API method (median)" [ref=e743] [cursor=pointer]:
+                          - img [ref=e745]:
+                            - img [ref=e746]
+                    - generic [ref=e748]:
+                      - generic [ref=e750]:
+                        - figure "Latency by API method (median)":
+                          - paragraph [ref=e752]: Latency by API method (median)
+                          - paragraph [ref=e754]: This chart is described by one or more grids. A grid row represents a time series. A grid column corresponds to a timestamp. By default, charts hide most columns. To display the hidden columns next to the activated column, use the Read previous item (up arrow) key until you access the column header, and then use the Activate button (enter) key.
+                          - generic:
+                            - paragraph [ref=e760]
+                            - generic [ref=e761]:
+                              - paragraph [ref=e765]: Data in this chart spans a time range from Sunday, March 8, 2026 at 11:05:15 PM UTC-4 to Tuesday, April 7, 2026 at 11:05:15 PM UTC-4.
+                              - paragraph [ref=e766]: Unpinning the X axis cursor allows the cursor to follow the mouse while hovering over the chart. The X axis cursor will always be pinned while using keyboard navigation to indicate that the values reflected in the tooltip or the legend are associated with the position of the X axis cursor.
+                            - generic [ref=e772]:
+                              - button "Populate data for table, \"Line 1\", on chart, \"Latency by API method (median)\"" [ref=e773]
+                              - grid "No data available for table, Line 1, on chart, Latency by API method (median)" [ref=e774]:
+                                - rowgroup:
+                                  - row "Grid for data, \"Line 1\", on chart, \"Latency by API method (median)\". Navigate this grid using arrow keys. Page Up and Page Down moves focus up and down by 10 rows. Home and End moves focus to the first and last cell in the current row. Ctrl+Home and Ctrl+End moves focus to the first and last cell of the grid. Audio":
+                                    - columnheader "Grid for data, \"Line 1\", on chart, \"Latency by API method (median)\". Navigate this grid using arrow keys. Page Up and Page Down moves focus up and down by 10 rows. Home and End moves focus to the first and last cell in the current row. Ctrl+Home and Ctrl+End moves focus to the first and last cell of the grid.":
+                                      - generic [ref=e775]: Grid for data, "Line 1", on chart, "Latency by API method (median)". Navigate this grid using arrow keys. Page Up and Page Down moves focus up and down by 10 rows. Home and End moves focus to the first and last cell in the current row. Ctrl+Home and Ctrl+End moves focus to the first and last cell of the grid.
+                                    - columnheader "Audio":
+                                      - generic [ref=e776]: Audio
+                                - rowgroup [ref=e777]:
+                                  - row "To save memory, this table is inactive by default. To populate this table, click the \"Populate data for table, \"Line 1\", on chart, \"Latency by API method (median)\"\" button just prior to this table." [ref=e778]:
+                                    - gridcell "To save memory, this table is inactive by default. To populate this table, click the \"Populate data for table, \"Line 1\", on chart, \"Latency by API method (median)\"\" button just prior to this table." [ref=e779]:
+                                      - generic [ref=e780]: To save memory, this table is inactive by default. To populate this table, click the "Populate data for table, "Line 1", on chart, "Latency by API method (median)"" button just prior to this table.
+                              - paragraph [ref=e781]: If subsequent columns are omitted, activating a column header will reveal all subsequent columns up to the next revealed column.
+                              - paragraph [ref=e782]: If subsequent rows are omitted, activating a row header will reveal all subsequent rows up to the next revealed row.
+                              - paragraph [ref=e783]: Activating a grid cell will open the tooltip at this data point.
+                              - status [ref=e784]
+                      - generic [ref=e787]:
+                        - generic:
+                          - list "Legend for nearby chart"
+                          - paragraph [ref=e788]: Name and value for each data series. Values listed are usually the most recent values for the data series. When using keyboard navigation on the chart, values listed are the values as of the focused time.
+                - heading "Tables" [level=2] [ref=e789]
+                - generic [ref=e791]:
+                  - heading "Methods" [level=3] [ref=e792]
+                  - grid "Label for metrics table , Navigate table with arrow keys. Enter key to interact with cell. Tab to navigate inside cell. Escape to exit cell." [ref=e798]:
+                    - rowgroup [ref=e805]:
+                      - row "Method Requests Errors Avg latency 99th percentile latency" [ref=e806]:
+                        - columnheader "Method" [ref=e807]:
+                          - generic [ref=e809] [cursor=pointer]:
+                            - generic [ref=e810]: Method
+                            - button "Sort by Method" [ref=e811]:
+                              - img [ref=e813]
+                        - columnheader "Requests" [ref=e815]:
+                          - generic [ref=e817] [cursor=pointer]:
+                            - generic [ref=e818]: Requests
+                            - button "Sort by Requests" [ref=e819]:
+                              - img [ref=e821]
+                        - columnheader "Errors" [ref=e823]:
+                          - generic [ref=e825] [cursor=pointer]:
+                            - generic [ref=e826]: Errors
+                            - button "Sort by Errors" [ref=e827]:
+                              - img [ref=e829]
+                        - columnheader "Avg latency" [ref=e831]:
+                          - generic [ref=e833] [cursor=pointer]:
+                            - generic [ref=e834]: Avg latency
+                            - button "Sort by Avg latency" [ref=e835]:
+                              - img [ref=e837]
+                        - columnheader "99th percentile latency" [ref=e839]:
+                          - generic [ref=e841] [cursor=pointer]:
+                            - generic [ref=e842]:
+                              - text: 99th percentile latency
+                              - button "Help with metrics table" [ref=e844]:
+                                - img [ref=e846]
+                            - button "Sort by 99th percentile latency" [ref=e848]:
+                              - img [ref=e850]
+                    - rowgroup [ref=e852]:
+                      - row "google.customsearch.v1.CustomSearchService.List 1 100% 0.011 seconds 0.016 seconds" [ref=e853]:
+                        - gridcell "google.customsearch.v1.CustomSearchService.List" [ref=e854]
+                        - gridcell "1" [ref=e855]
+                        - gridcell "100%" [ref=e856]
+                        - gridcell "0.011 seconds" [ref=e857]
+                        - gridcell "0.016 seconds" [ref=e858]
+  - iframe [ref=e227]:
+    
+  - iframe [ref=e229]:
+    
+  - dialog "Dark Mode applied based on your operating system preference" [ref=e862]:
+    - generic [ref=e863]:
+      - generic [ref=e864]:
+        - heading "Dark Mode applied based on your operating system preference" [level=2] [ref=e867]:
+          - generic [ref=e868]: Dark Mode applied based on your operating system preference
+        - paragraph [ref=e869]: To change it, open Settings, select Appearance, and choose a color theme
+      - button "Close callout" [ref=e870] [cursor=pointer]:
+        - img [ref=e872]:
+          - img [ref=e873]

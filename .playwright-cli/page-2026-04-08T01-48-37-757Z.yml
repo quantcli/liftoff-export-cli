@@ -1,0 +1,175 @@
+- generic [ref=e1]:
+  - banner [ref=e2]:
+    - generic [ref=e3]:
+      - link "Alerts" [ref=e7] [cursor=pointer]:
+        - /url: https://www.google.com/alerts?hl=en&tab=33&authuser=0
+      - generic [ref=e10]:
+        - button "Google apps" [ref=e14] [cursor=pointer]:
+          - img [ref=e15]
+        - 'button "Google Account: Darrell Turner (terastar@gmail.com)" [ref=e20] [cursor=pointer]':
+          - img [ref=e22]
+  - generic [ref=e23]:
+    - generic [ref=e25]:
+      - heading "Alerts" [level=1] [ref=e26]
+      - generic [ref=e27]: Monitor the web for interesting new content
+    - generic [ref=e28]:
+      - generic [ref=e31]:
+        - generic [ref=e33]:
+          - textbox "Create an alert about..." [active] [ref=e34]: liftoff-export-cli
+          - button "Cancel" [ref=e117]
+        - generic [ref=e118]:
+          - generic [ref=e119]: This will create an email alert for Terastar@gmail.com.
+          - generic [ref=e121]:
+            - button "Create Alert" [ref=e122]
+            - button "Show options" [ref=e123] [cursor=pointer]
+      - generic [ref=e124]:
+        - heading "Alert preview" [level=2] [ref=e125]
+        - generic [ref=e126]: There are no recent results for your search query. Below are existing results that match your search query.
+        - list [ref=e127]:
+          - listitem [ref=e128]:
+            - heading "NEWS" [level=3] [ref=e129]
+            - list [ref=e130]:
+              - listitem [ref=e131]:
+                - heading "3 Stocks to Avoid as Software Sector Stumbles - MarketBeat MarketBeat" [level=4] [ref=e132]:
+                  - link "3 Stocks to Avoid as Software Sector Stumbles - MarketBeat" [ref=e133] [cursor=pointer]:
+                    - /url: https://www.google.com/url?rct=j&sa=t&url=https://www.marketbeat.com/originals/3-stocks-to-avoid-as-software-sector-stumbles/&ct=ga&cd=CAAYADIaZGI0MWU0OGM3M2U5MTg2Yzpjb206ZW46VVM&usg=AOvVaw1r3j2VZ1Ed7fqgVTJotUAw
+                  - generic [ref=e134]: MarketBeat
+                - generic [ref=e136]: Unlike early AI agents that wrote snippets of code for specific tasks (i.e., bug fixing), Claude Code offers a fully autonomous command-line system.
+              - listitem [ref=e137]:
+                - 'heading "Attack of the clones: Getting RCE in Chrome''s renderer with duplicate object properties The GitHub Blog" [level=4] [ref=e138]':
+                  - 'link "Attack of the clones: Getting RCE in Chrome''s renderer with duplicate object properties" [ref=e139] [cursor=pointer]':
+                    - /url: https://www.google.com/url?rct=j&sa=t&url=https://github.blog/security/vulnerability-research/attack-of-the-clones-getting-rce-in-chromes-renderer-with-duplicate-object-properties/&ct=ga&cd=CAAYATIaZGI0MWU0OGM3M2U5MTg2Yzpjb206ZW46VVM&usg=AOvVaw1csjFoFUzfl-kELVGDbhA2
+                  - generic [ref=e140]: The GitHub Blog
+                - generic [ref=e142]: ... export "exported_func") i32.const 42 call $i ) ... As the compiled wrapper code is stored in the same rx region where other WebAssembly code compiled by ...
+                - generic [ref=e143]:
+                  - generic [ref=e144]:
+                    - link "An Introduction to Chrome Exploitation - WebAssembly Edition - SSD Secure Disclosure" [ref=e145] [cursor=pointer]:
+                      - /url: https://www.google.com/url?rct=j&sa=t&url=https://ssd-disclosure.com/an-introduction-to-chrome-exploitation-webassembly-edition/&ct=ga&cd=CAAYATIaZGI0MWU0OGM3M2U5MTg2Yzpjb206ZW46VVM&usg=AOvVaw2EhAIcgDPY5CszQEIMzsGd
+                    - text: "- SSD Secure Disclosure"
+                  - link "Full Coverage" [ref=e147] [cursor=pointer]:
+                    - /url: http://news.google.com/news/story?ncl=https://github.blog/security/vulnerability-research/attack-of-the-clones-getting-rce-in-chromes-renderer-with-duplicate-object-properties/&hl=en&geo=US
+              - listitem [ref=e148]:
+                - heading "Launching an edge node for Amazon EMR to run RStudio | AWS Big Data Blog AWS - Amazon.com" [level=4] [ref=e149]:
+                  - link "Launching an edge node for Amazon EMR to run RStudio | AWS Big Data Blog" [ref=e150] [cursor=pointer]:
+                    - /url: https://www.google.com/url?rct=j&sa=t&url=https://aws.amazon.com/blogs/big-data/launching-an-edge-node-for-amazon-emr-to-run-rstudio/&ct=ga&cd=CAAYAjIaZGI0MWU0OGM3M2U5MTg2Yzpjb206ZW46VVM&usg=AOvVaw29frGWpdb3ag3xDZQ55aTN
+                  - generic [ref=e151]: AWS - Amazon.com
+                - generic [ref=e153]: Use the AWS CloudFormation console or AWS CLI to delete the stack named Blog-EMR-Edge-Node-With-RStudio. Summary. In this post, I show you how to ...
+              - listitem [ref=e154]:
+                - heading "Extensible and Customisable Vertex AI MLOps Platform - Towards Data Science Towards Data Science" [level=4] [ref=e155]:
+                  - link "Extensible and Customisable Vertex AI MLOps Platform - Towards Data Science" [ref=e156] [cursor=pointer]:
+                    - /url: https://www.google.com/url?rct=j&sa=t&url=https://towardsdatascience.com/extensible-and-customisable-vertex-ai-mlops-platform-a2c146d13186/&ct=ga&cd=CAAYAzIaZGI0MWU0OGM3M2U5MTg2Yzpjb206ZW46VVM&usg=AOvVaw3ZDTVlOuXTkNIrM9dApsDO
+                  - generic [ref=e157]: Towards Data Science
+                - generic [ref=e159]: "Use BuildX: Buildx is a Docker CLI plugin that allows building a ... export DOCKER_DEFAULT_PLATFORM=linux/amd64 # save and close file then ..."
+              - listitem [ref=e160]:
+                - heading "KUWAIT STRENGTHENS TIES WITH E.U. AMID REGIONAL TENSIONS - Arab Times Arab Times" [level=4] [ref=e161]:
+                  - link "KUWAIT STRENGTHENS TIES WITH E.U. AMID REGIONAL TENSIONS - Arab Times" [ref=e162] [cursor=pointer]:
+                    - /url: https://www.google.com/url?rct=j&sa=t&url=https://www.arabtimesonline.com/arabtimes/uploads/images/2026/03/29/119795.pdf&ct=ga&cd=CAAYBDIaZGI0MWU0OGM3M2U5MTg2Yzpjb206ZW46VVM&usg=AOvVaw1EA5tt5asIt1m-4WE8aBKm
+                  - generic [ref=e163]: Arab Times
+                - generic [ref=e165]: liftoff more difficult. The country's old- er liquid-fuel missiles must ... UnitedHealthcare commercial cli- ents with a doula benefit, on ...
+              - listitem [ref=e166]:
+                - heading "A draft human pangenome reference | Nature Nature" [level=4] [ref=e167]:
+                  - link "A draft human pangenome reference | Nature" [ref=e168] [cursor=pointer]:
+                    - /url: https://www.google.com/url?rct=j&sa=t&url=https://www.nature.com/articles/s41586-023-05896-x&ct=ga&cd=CAAYBTIaZGI0MWU0OGM3M2U5MTg2Yzpjb206ZW46VVM&usg=AOvVaw38KILroONNU2fgOWGSzani
+                  - generic [ref=e169]: Nature
+                - generic [ref=e171]: Gene duplication analysis. Duplicated genes were detected as multi-mapped coding sequences using Liftoff supplemented by a complementary approach (gb- ...
+              - listitem [ref=e172]:
+                - 'heading "My Winter Of ''99: The Year Of The Linux Desktop Is Always Next Year | Hackaday Hackaday" [level=4] [ref=e173]':
+                  - 'link "My Winter Of ''99: The Year Of The Linux Desktop Is Always Next Year | Hackaday" [ref=e174] [cursor=pointer]':
+                    - /url: https://www.google.com/url?rct=j&sa=t&url=https://hackaday.com/2025/06/03/my-winter-of-99-the-year-of-the-linux-desktop-is-always-next-year/&ct=ga&cd=CAAYBjIaZGI0MWU0OGM3M2U5MTg2Yzpjb206ZW46VVM&usg=AOvVaw13TjOVrdToyv_BEvRYAdqd
+                  - generic [ref=e175]: Hackaday
+                - generic [ref=e177]: ... export of a spreadsheet using Chinese characters in .csv format. So don ... Liftoff FPV sim, countless others work with minimal issues. So ...
+              - listitem [ref=e178]:
+                - heading "HM King returns after successful UAE visit - News of Bahrain News of Bahrain" [level=4] [ref=e179]:
+                  - link "HM King returns after successful UAE visit - News of Bahrain" [ref=e180] [cursor=pointer]:
+                    - /url: https://www.google.com/url?rct=j&sa=t&url=https://www.newsofbahrain.com/epaper/27-07-2024/PDF_27-07-2024_1722057682_5sNjx0WzVo_27-07-2024.pdf&ct=ga&cd=CAAYBzIaZGI0MWU0OGM3M2U5MTg2Yzpjb206ZW46VVM&usg=AOvVaw1i7h54E-HVwZ63TUYAEAfK
+                  - generic [ref=e181]: News of Bahrain
+                - generic [ref=e183]: "This aligns with India's broad- er global export profile, which reached ... board must wake up and step up their #Cli-. mateAction. That means."
+              - listitem [ref=e184]:
+                - heading "God Help Us, Let's Try To Understand AI Monosemanticity - Astral Codex Ten Astral Codex Ten" [level=4] [ref=e185]:
+                  - link "God Help Us, Let's Try To Understand AI Monosemanticity - Astral Codex Ten" [ref=e186] [cursor=pointer]:
+                    - /url: https://www.google.com/url?rct=j&sa=t&url=https://www.astralcodexten.com/p/god-help-us-lets-try-to-understand&ct=ga&cd=CAAYCDIaZGI0MWU0OGM3M2U5MTg2Yzpjb206ZW46VVM&usg=AOvVaw36cEPLAFQ7468n14UcAoi6
+                  - generic [ref=e187]: Astral Codex Ten
+                - generic [ref=e189]: ... liftoff. I expect we can create it in AI if we want, by the same ... export the data for whatever research you'd like to do). We also ...
+              - listitem [ref=e190]:
+                - 'heading "Patented: Synergen Technology Labs'' Baby Monitor That Responds to Infant ... - Dallas Innovates Dallas Innovates" [level=4] [ref=e191]':
+                  - 'link "Patented: Synergen Technology Labs'' Baby Monitor That Responds to Infant ... - Dallas Innovates" [ref=e192] [cursor=pointer]':
+                    - /url: https://www.google.com/url?rct=j&sa=t&url=https://dallasinnovates.com/patented-synergon-technology-labs-baby-monitor-that-responds-to-infant-vitals-with-sound-and-light-plus-more-north-texas-inventive-activity/&ct=ga&cd=CAAYCTIaZGI0MWU0OGM3M2U5MTg2Yzpjb206ZW46VVM&usg=AOvVaw3JwW0z9xhogFkgiYdgJLc9
+                  - generic [ref=e193]: Dallas Innovates
+                - generic [ref=e195]: ... commands. The radio controlled model vehicle may include a ... Export, Plus More North Texas Inventive Activity · MORE▻. Trending. A New ...
+          - listitem [ref=e196]:
+            - heading "WEB" [level=3] [ref=e197]
+            - list [ref=e198]:
+              - listitem [ref=e199]:
+                - 'heading "liftoff/GateOne: Gate One is an HTML5-powered terminal emulator and SSH client - GitHub GitHub" [level=4] [ref=e200]':
+                  - 'link "liftoff/GateOne: Gate One is an HTML5-powered terminal emulator and SSH client - GitHub" [ref=e201] [cursor=pointer]':
+                    - /url: https://www.google.com/url?rct=j&sa=t&url=https://github.com/liftoff/GateOne&ct=ga&cd=CAAYADIaZGI0MWU0OGM3M2U5MTg2Yzpjb206ZW46VVM&usg=AOvVaw2CXwci1J5ogKqDXHkdlQFv
+                  - generic [ref=e202]: GitHub
+                - generic [ref=e204]: The Logging plugin includes a Log Viewer that allows users to sort, view, and even export recordings of their terminal sessions to self-contained ...
+              - listitem [ref=e205]:
+                - 'heading "Cannot run grunt command because of error: cannot find module ''liftoff'' - Stack Overflow Stack Overflow" [level=4] [ref=e206]':
+                  - 'link "Cannot run grunt command because of error: cannot find module ''liftoff'' - Stack Overflow" [ref=e207] [cursor=pointer]':
+                    - /url: https://www.google.com/url?rct=j&sa=t&url=https://stackoverflow.com/questions/53408846/cannot-run-grunt-command-because-of-error-cannot-find-module-liftoff&ct=ga&cd=CAAYATIaZGI0MWU0OGM3M2U5MTg2Yzpjb206ZW46VVM&usg=AOvVaw0F0bW4FFYOLw-Fcq_rTrxy
+                  - generic [ref=e208]: Stack Overflow
+                - generic [ref=e210]: "... cli\\bin\\grunt:7:15) at Module._compile (internal/modules/cjs/loader.js ... exports = function(grunt) { 'use strict'; grunt.initConfig({ watch ..."
+              - listitem [ref=e211]:
+                - heading "Cannot find module 'liftoff' - openrouteservice openrouteservice" [level=4] [ref=e212]:
+                  - link "Cannot find module 'liftoff' - openrouteservice" [ref=e213] [cursor=pointer]:
+                    - /url: https://www.google.com/url?rct=j&sa=t&url=https://ask.openrouteservice.org/t/cannot-find-module-liftoff/1718&ct=ga&cd=CAAYAjIaZGI0MWU0OGM3M2U5MTg2Yzpjb206ZW46VVM&usg=AOvVaw0kPhaenksOa5Iy2weGTYIF
+                  - generic [ref=e214]: openrouteservice
+                - generic [ref=e216]: "js. module.exports = function(grunt) { require(\"time-grunt\")(grunt); require(\"load-grunt-tasks\")(grunt, { pattern: [\"grunt-*\", \"!grunt-cli ..."
+              - listitem [ref=e217]:
+                - 'heading "Galactic Weekly: Week 6, 2026 | Galaxy Hub Galaxy Project" [level=4] [ref=e218]':
+                  - 'link "Galactic Weekly: Week 6, 2026 | Galaxy Hub" [ref=e219] [cursor=pointer]':
+                    - /url: https://www.google.com/url?rct=j&sa=t&url=https://galaxyproject.org/news/2026-02-08-galactic-weekly/&ct=ga&cd=CAAYAzIaZGI0MWU0OGM3M2U5MTg2Yzpjb206ZW46VVM&usg=AOvVaw3OF2tSYv0oWOwmoD9f74lh
+                  - generic [ref=e220]: Galaxy Project
+                - generic [ref=e222]: The tools repository added new bioinformatics tools including vConTACT2 and Liftoff, updated several existing tools, and resolved various ...
+              - listitem [ref=e223]:
+                - heading "SKAdNetwork Reporting API - Help Center Help Center" [level=4] [ref=e224]:
+                  - link "SKAdNetwork Reporting API - Help Center" [ref=e225] [cursor=pointer]:
+                    - /url: https://www.google.com/url?rct=j&sa=t&url=https://support.vungle.com/hc/en-us/articles/360050450451-SKAdNetwork-Reporting-API&ct=ga&cd=CAAYBDIaZGI0MWU0OGM3M2U5MTg2Yzpjb206ZW46VVM&usg=AOvVaw07pQWPE74ALW7KPy9UDKHy
+                  - generic [ref=e226]: Help Center
+                - generic [ref=e228]: This new API method enables advertisers to call the Liftoff Direct API and fetch a complete record of all of the Apple SKAdNetwork conversion ...
+              - listitem [ref=e229]:
+                - heading "Analytics Data Manager | Export Data mparticle.com" [level=4] [ref=e230]:
+                  - link "Analytics Data Manager | Export Data" [ref=e231] [cursor=pointer]:
+                    - /url: https://www.google.com/url?rct=j&sa=t&url=https://docs.mparticle.com/guides/analytics/data-manager/export-results/&ct=ga&cd=CAAYBTIaZGI0MWU0OGM3M2U5MTg2Yzpjb206ZW46VVM&usg=AOvVaw0dS9CJ7aLLeeZNxXcn3ruD
+                  - generic [ref=e232]: mparticle.com
+                - generic [ref=e234]: Query results from Segmentation, Funnel, and Cohort; User lists from Users. Export Query Results. To download your results as a CSV file ...
+              - listitem [ref=e235]:
+                - 'heading "Pathways to Commercial Liftoff: Decarbonizing Chemicals & Refining - Climate Program Portal Climate Program Portal" [level=4] [ref=e236]':
+                  - 'link "Pathways to Commercial Liftoff: Decarbonizing Chemicals & Refining - Climate Program Portal" [ref=e237] [cursor=pointer]':
+                    - /url: https://www.google.com/url?rct=j&sa=t&url=https://climateprogramportal.org/wp-content/uploads/2025/02/20230921-Pathways-to-Commercial-Liftoff-Chemicals-Refining.pdf&ct=ga&cd=CAAYBjIaZGI0MWU0OGM3M2U5MTg2Yzpjb206ZW46VVM&usg=AOvVaw3XAHxQTyRGVaN5QKON525L
+                  - generic [ref=e238]: Climate Program Portal
+                - generic [ref=e240]: major U.S. export commodities. In 2022, the United States was both the ... cli. Industry interviews clii. Rosenboom, J.-G., Langer, R ...
+              - listitem [ref=e241]:
+                - 'heading "Example: Configuring a Routing Policy for AS Path Prepending | Junos OS Juniper Networks" [level=4] [ref=e242]':
+                  - 'link "Example: Configuring a Routing Policy for AS Path Prepending | Junos OS" [ref=e243] [cursor=pointer]':
+                    - /url: https://www.google.com/url?rct=j&sa=t&url=https://www.juniper.net/documentation/us/en/software/junos/routing-policy/topics/example/routing-policy-security-routing-policy-to-prepend-to-as-path-configuring.html&ct=ga&cd=CAAYBzIaZGI0MWU0OGM3M2U5MTg2Yzpjb206ZW46VVM&usg=AOvVaw1t2Y_oIYplkWkT3241DJs0
+                  - generic [ref=e244]: Juniper Networks
+                - generic [ref=e246]: ... commands into the CLI at the [edit] hierarchy level. In this example we ... export prependpolicy1 set protocols bgp group ebgp peer-as 65000 ...
+              - listitem [ref=e247]:
+                - link [ref=e250] [cursor=pointer]:
+                  - /url: https://www.google.com/url?rct=j&sa=t&url=https://www.exoscale.com/blog/vmware-exoscale/&ct=ga&cd=CAAYCDIaZGI0MWU0OGM3M2U5MTg2Yzpjb206ZW46VVM&usg=AOvVaw1qh-iH-vdtQtrd4PLoQ7W5
+                  - img [ref=e251]
+                - heading "How to migrate a virtual Instance from VMware vSphere to Exoscale Exoscale" [level=4] [ref=e252]:
+                  - link "How to migrate a virtual Instance from VMware vSphere to Exoscale" [ref=e253] [cursor=pointer]:
+                    - /url: https://www.google.com/url?rct=j&sa=t&url=https://www.exoscale.com/blog/vmware-exoscale/&ct=ga&cd=CAAYCDIaZGI0MWU0OGM3M2U5MTg2Yzpjb206ZW46VVM&usg=AOvVaw1qh-iH-vdtQtrd4PLoQ7W5
+                  - generic [ref=e254]: Exoscale
+                - generic [ref=e256]: Exporting a snapshot from Exoscale and registering it as a Custom Template ... Create an Exoscale IAM Key for Exoscale CLI and Template registration.
+              - listitem [ref=e257]:
+                - 'heading "Lab 01: Getting Started with LiteX — MIC-SEC-2022 documentation - SourceSup SourceSup" [level=4] [ref=e258]':
+                  - 'link "Lab 01: Getting Started with LiteX — MIC-SEC-2022 documentation - SourceSup" [ref=e259] [cursor=pointer]':
+                    - /url: https://www.google.com/url?rct=j&sa=t&url=https://sourcesup.renater.fr/www/mic-sec-2022/labs/getting-started-with-litex.html&ct=ga&cd=CAAYCTIaZGI0MWU0OGM3M2U5MTg2Yzpjb206ZW46VVM&usg=AOvVaw36aBU44VVGepNd2lJBBUYf
+                  - generic [ref=e260]: SourceSup
+                - generic [ref=e262]: "... Liftoff! ===============-- LiteX minimal demo app built Dec 5 2022 23:34:50 Available commands: help - Show this command reboot - Reboot CPU donut ..."
+    - list [ref=e109]:
+      - listitem [ref=e110] [cursor=pointer]:
+        - link "Help center" [ref=e111]:
+          - /url: //www.google.com/support/alerts/bin/static.py?page=faq.html&hl=en
+      - button "Send Feedback" [ref=e112] [cursor=pointer]
+      - listitem [ref=e113] [cursor=pointer]:
+        - link "Terms of service" [ref=e114]:
+          - /url: //www.google.com/accounts/TOS
+      - listitem [ref=e115] [cursor=pointer]:
+        - link "Privacy Policy" [ref=e116]:
+          - /url: //www.google.com/intl/en/privacy.html

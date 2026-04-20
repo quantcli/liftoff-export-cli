@@ -1,0 +1,321 @@
+- generic [active] [ref=e1]:
+  - banner [ref=e2]:
+    - generic [ref=e3]:
+      - generic [ref=e4]:
+        - button "Main menu" [ref=e5] [cursor=pointer]:
+          - img [ref=e6]
+        - heading "Programmable Search Engine" [level=1] [ref=e9]
+      - generic [ref=e11]:
+        - button "Google apps" [ref=e15] [cursor=pointer]:
+          - img [ref=e16]
+        - 'button "Google Account: Darrell Turner (terastar@gmail.com)" [ref=e21] [cursor=pointer]':
+          - img [ref=e23]
+  - generic [ref=e182]:
+    - dialog "navigational drawer" [ref=e185]:
+      - navigation [ref=e190]:
+        - generic [ref=e191]: liftoff-export-cli SEO tracker
+        - link "Back to all engines" [ref=e192] [cursor=pointer]:
+          - /url: controlpanel/all
+          - generic [ref=e193]: arrow_back
+          - generic [ref=e194]: Back to all engines
+        - option "Overview" [selected] [ref=e196] [cursor=pointer]:
+          - generic [ref=e197]: Overview
+        - option "Basic" [ref=e198] [cursor=pointer]
+        - option "Search Features" [ref=e199] [cursor=pointer]
+        - option "Look and Feel" [ref=e200] [cursor=pointer]
+        - option "Members" [ref=e201] [cursor=pointer]
+        - option "Ads" [ref=e203] [cursor=pointer]
+        - option "Search Features" [ref=e204] [cursor=pointer]:
+          - generic [ref=e205]: Search Features
+        - option "Look and Feel" [ref=e206] [cursor=pointer]:
+          - generic [ref=e207]: Look and Feel
+        - link "Statistics" [ref=e208] [cursor=pointer]:
+          - /url: controlpanel/stats?cx=b716eccddff224eed
+          - generic [ref=e209]: Statistics
+        - link "Help Center" [ref=e211] [cursor=pointer]:
+          - /url: //support.google.com/programmable-search/
+          - generic [ref=e212]: Help Center
+        - link "Help Forum" [ref=e213] [cursor=pointer]:
+          - /url: //support.google.com/programmable-search/community
+          - generic [ref=e214]: Help Forum
+        - link "Blog" [ref=e215] [cursor=pointer]:
+          - /url: //googlecustomsearch.blogspot.com/
+          - generic [ref=e216]: Blog
+        - generic [ref=e218] [cursor=pointer]: Send feedback
+    - generic [ref=e219]:
+      - heading "Overview" [level=2] [ref=e220]
+      - generic [ref=e221]:
+        - generic [ref=e223]:
+          - heading "Basic" [level=3] [ref=e224]
+          - generic [ref=e226]:
+            - button "Search engine name liftoff-export-cli SEO tracker" [ref=e228] [cursor=pointer]:
+              - generic [ref=e229]:
+                - generic [ref=e230]: Search engine name
+                - generic [ref=e231]:
+                  - generic [ref=e232]: liftoff-export-cli SEO tracker
+                  - generic [ref=e234]: edit
+            - button "Description Add description" [ref=e237] [cursor=pointer]:
+              - generic [ref=e238]:
+                - generic [ref=e239]: Description
+                - generic [ref=e241]: Add description
+            - generic [ref=e244]:
+              - generic [ref=e245]: Code
+              - generic [ref=e246]: Get code
+            - generic [ref=e249]:
+              - generic [ref=e250]: Search engine ID
+              - generic [ref=e251]:
+                - generic "b716eccddff224eed" [ref=e252]
+                - generic [ref=e254]:
+                  - button "Content copy" [ref=e255] [cursor=pointer]:
+                    - generic [ref=e256]: content_copy
+                  - tooltip [ref=e257]: Copy
+            - generic [ref=e260]:
+              - generic [ref=e261]: Public URL
+              - link "https://cse.google.com/cse?cx=b716eccddff224eed" [ref=e263] [cursor=pointer]:
+                - /url: https://cse.google.com/cse?cx=b716eccddff224eed
+        - generic [ref=e264]:
+          - generic [ref=e265]:
+            - heading "Search Features" [level=3] [ref=e266]
+            - generic [ref=e269]:
+              - generic [ref=e271]: open_in_new
+              - generic [ref=e272]: All Search Features settings
+              - link "Go to search features" [ref=e273] [cursor=pointer]:
+                - /url: controlpanel/searchfeatures?cx=b716eccddff224eed
+          - generic [ref=e274]:
+            - generic [ref=e275]:
+              - generic [ref=e277]:
+                - generic [ref=e278]:
+                  - generic [ref=e279]: Search settings
+                  - button "button" [ref=e281] [cursor=pointer]:
+                    - generic [ref=e282]: info_outline
+                - generic [ref=e283]:
+                  - generic [ref=e284]:
+                    - switch "Enable image search" [ref=e286] [cursor=pointer]:
+                      - generic [ref=e291]:
+                        - img [ref=e292]
+                        - img [ref=e294]
+                    - generic [ref=e299]: Image search
+                  - generic [ref=e300]:
+                    - switch "Enable SafeSearch" [ref=e302] [cursor=pointer]:
+                      - generic [ref=e307]:
+                        - img [ref=e308]
+                        - img [ref=e310]
+                    - generic [ref=e315]: SafeSearch
+              - generic [ref=e316]:
+                - generic [ref=e317]:
+                  - generic [ref=e318]: Augment results
+                  - button "Info" [ref=e320] [cursor=pointer]:
+                    - generic [ref=e321]: info_outline
+                - generic [ref=e323]:
+                  - generic [ref=e324]:
+                    - switch "Search the entire web" [disabled]:
+                      - generic [ref=e327]:
+                        - img [ref=e328]
+                        - img [ref=e330]
+                  - generic [ref=e334]: Search the entire web
+              - generic [ref=e336]:
+                - generic [ref=e337]:
+                  - generic [ref=e338]:
+                    - generic [ref=e339]: Region
+                    - button "Info" [ref=e341] [cursor=pointer]:
+                      - generic [ref=e342]: info_outline
+                  - combobox "All regions" [ref=e346] [cursor=pointer]:
+                    - generic:
+                      - generic: All regions
+                    - generic:
+                      - img
+                - generic [ref=e348]:
+                  - generic [ref=e349]:
+                    - generic [ref=e350]: Region restricted results
+                    - button "Info" [disabled] [ref=e352]:
+                      - generic [ref=e354]: info_outline
+                  - generic [ref=e355]:
+                    - switch "Enable restrict search results to region" [disabled]:
+                      - generic [ref=e358]:
+                        - img [ref=e359]
+                        - img [ref=e361]
+              - generic [ref=e365]:
+                - generic [ref=e366]:
+                  - generic [ref=e367]: Sites to search
+                  - generic [ref=e368]:
+                    - generic [ref=e370]:
+                      - button "Delete" [disabled]:
+                        - generic: Delete
+                    - button "Add" [ref=e373]:
+                      - generic [ref=e376]: Add
+                - generic [ref=e378]:
+                  - generic [ref=e380]:
+                    - generic [ref=e383]:
+                      - generic:
+                        - generic:
+                          - generic: URL contains
+                      - textbox "URL contains" [ref=e384]
+                    - generic [ref=e385]:
+                      - generic [ref=e387]:
+                        - button "Clear filter" [disabled]:
+                          - generic:
+                            - generic:
+                              - generic:
+                                - generic:
+                                  - generic: Clear filter
+                                  - progressbar:
+                                    - generic:
+                                      - img
+                                    - generic:
+                                      - generic:
+                                        - generic:
+                                          - img
+                                        - generic:
+                                          - img
+                                        - generic:
+                                          - img
+                              - generic: Clear filter
+                      - generic [ref=e389]:
+                        - button "Apply filter" [disabled]:
+                          - generic:
+                            - generic:
+                              - generic:
+                                - generic:
+                                  - generic: Apply filter
+                                  - progressbar:
+                                    - generic:
+                                      - img
+                                    - generic:
+                                      - generic:
+                                        - generic:
+                                          - img
+                                        - generic:
+                                          - img
+                                        - generic:
+                                          - img
+                              - generic: Apply filter
+                  - generic [ref=e391]:
+                    - table "Sites to search" [ref=e393]:
+                      - rowgroup [ref=e394]:
+                        - row "Toggle all rows Site Last updated time" [ref=e395]:
+                          - columnheader "Toggle all rows" [ref=e396]:
+                            - generic [ref=e398] [cursor=pointer]:
+                              - checkbox "Toggle all rows" [ref=e399]
+                              - generic:
+                                - img
+                          - columnheader "Site" [ref=e400]
+                          - columnheader "Last updated time" [ref=e401]
+                      - rowgroup [ref=e402]:
+                        - row "Select row URL pattern Apr 7, 2026, 10:04 PM" [ref=e403]:
+                          - cell "Select row" [ref=e404]:
+                            - generic [ref=e406] [cursor=pointer]:
+                              - checkbox "Select row" [ref=e407]
+                              - generic:
+                                - img
+                          - rowheader "URL pattern" [ref=e408]:
+                            - button "URL pattern" [ref=e411]:
+                              - generic [ref=e414]: www.google.com/*
+                          - cell "Apr 7, 2026, 10:04 PM" [ref=e415]
+                    - generic [ref=e417]:
+                      - generic [ref=e418]:
+                        - generic [ref=e419]: Rows per page
+                        - combobox "Rows per page 5" [ref=e422] [cursor=pointer]:
+                          - generic:
+                            - generic: "5"
+                          - generic:
+                            - img
+                      - generic [ref=e424]:
+                        - status [ref=e425]:
+                          - generic [ref=e426]: Showing 1 to 1 of 1 rows
+                          - generic [ref=e427]: 1‑1 of 1
+                        - button "Go to previous page" [disabled]:
+                          - generic: chevron_left
+                        - button "Go to next page" [disabled]:
+                          - generic: chevron_right
+              - generic [ref=e430]:
+                - generic [ref=e431]:
+                  - generic [ref=e432]: Sites to exclude
+                  - generic [ref=e433]:
+                    - generic [ref=e435]:
+                      - button "Delete" [disabled]:
+                        - generic: Delete
+                    - button "Add" [ref=e438]:
+                      - generic [ref=e441]: Add
+                - generic [ref=e443]: You do not have excluded sites.
+            - group [ref=e447]:
+              - button "Upload/Download Annotations in XML files" [ref=e448] [cursor=pointer]:
+                - generic [ref=e449]: Upload/Download Annotations in XML files
+                - img [ref=e452]
+            - group [ref=e457]:
+              - button "Upload/Download Search Engine context in XML files" [ref=e458] [cursor=pointer]:
+                - generic [ref=e459]: Upload/Download Search Engine context in XML files
+                - img [ref=e462]
+        - generic [ref=e464]:
+          - generic [ref=e465]:
+            - heading "Look and Feel" [level=3] [ref=e466]
+            - generic [ref=e469]:
+              - generic [ref=e471]: open_in_new
+              - generic [ref=e472]: All Look and Feel settings
+              - link "All look and feel settings" [ref=e473] [cursor=pointer]:
+                - /url: controlpanel/lookandfeel?cx=b716eccddff224eed
+          - generic [ref=e475]:
+            - generic [ref=e477]:
+              - generic [ref=e478]:
+                - generic [ref=e479]: Language
+                - button "Language Info" [ref=e481] [cursor=pointer]:
+                  - generic [ref=e482]: info_outline
+              - combobox "All languages" [ref=e486] [cursor=pointer]:
+                - generic:
+                  - generic: All languages
+                - generic:
+                  - img
+            - generic [ref=e490]:
+              - generic [ref=e491]:
+                - generic [ref=e492]: Layout
+                - button "Layout Info" [ref=e494] [cursor=pointer]:
+                  - generic [ref=e495]: info_outline
+              - generic [ref=e496]: Overlay
+            - generic [ref=e499]:
+              - generic [ref=e500]:
+                - generic [ref=e501]: Theme
+                - button "Theme Info" [ref=e503] [cursor=pointer]:
+                  - generic [ref=e504]: info_outline
+              - generic [ref=e505]: Default
+        - generic [ref=e508]:
+          - generic [ref=e509]:
+            - heading "Members" [level=3] [ref=e510]
+            - generic [ref=e511]:
+              - generic [ref=e513]:
+                - button "Delete" [disabled]:
+                  - generic: Delete
+              - button "Add" [ref=e516]:
+                - generic [ref=e519]: Add
+          - generic [ref=e521]:
+            - table "Members" [ref=e523]:
+              - rowgroup [ref=e524]:
+                - row "Member Role Verified" [ref=e525]:
+                  - columnheader [ref=e526]
+                  - columnheader "Member" [ref=e527]
+                  - columnheader "Role" [ref=e528]
+                  - columnheader "Verified" [ref=e529]
+              - rowgroup [ref=e530]:
+                - row "Select row terastar@gmail.com (me) Owner Yes" [ref=e531]:
+                  - cell "Select row" [ref=e532]:
+                    - generic [ref=e533]:
+                      - generic:
+                        - checkbox "Select row" [disabled]
+                        - generic:
+                          - img
+                  - rowheader "terastar@gmail.com (me)" [ref=e534]
+                  - cell "Owner" [ref=e535]
+                  - cell "Yes" [ref=e536]
+            - generic [ref=e539]:
+              - status [ref=e540]:
+                - generic [ref=e541]: Showing 1 to 1 of 1 rows
+                - generic [ref=e542]: 1‑1 of 1
+              - button "Go to previous page" [disabled]:
+                - generic: chevron_left
+              - button "Go to next page" [disabled]:
+                - generic: chevron_right
+        - generic [ref=e544]:
+          - heading "Ads" [level=3] [ref=e546]
+          - generic [ref=e550]:
+            - text: Nonprofit organizations, accredited educational institutions, and government agencies may qualify for a free version of Programmable Search Engine without ads.
+            - link "Learn more" [ref=e551] [cursor=pointer]:
+              - /url: https://support.google.com/programmable-search/answer/12423873
+  - generic [ref=e552]: Programmable Search - Overview

@@ -1,0 +1,253 @@
+- generic [ref=e1]:
+  - link "Skip to main content" [ref=e2] [cursor=pointer]:
+    - /url: "#main-content"
+    - generic [ref=e4]: Skip to main content
+  - generic [ref=e6]:
+    - generic:
+      - generic [ref=e7]:
+        - generic: Submit to r/QuantifiedSelf
+      - banner [ref=e10]:
+        - navigation [ref=e11]:
+          - generic [ref=e12]:
+            - button "Open menu" [ref=e16] [cursor=pointer]:
+              - img [ref=e19]
+              - generic [ref=e21]:
+                - generic: Open menu
+            - link "Home" [ref=e26] [cursor=pointer]:
+              - /url: /
+              - img [ref=e28]
+          - search [ref=e45]:
+            - generic [ref=e47]:
+              - img [ref=e50]
+              - generic "Remove r/QuantifiedSelf filter and expand search to all of Reddit" [ref=e53] [cursor=pointer]:
+                - button [pressed] [ref=e54]:
+                  - img [ref=e56]
+                  - generic [ref=e59]: r/QuantifiedSelf
+                - img [ref=e61]
+              - textbox "Remove r/QuantifiedSelf filter and expand search to all of Reddit" [ref=e64]:
+                - /placeholder: Search in r/QuantifiedSelf
+          - generic [ref=e65]:
+            - generic [ref=e66]:
+              - button "Open chat" [ref=e72] [cursor=pointer]:
+                - img [ref=e75]
+                - generic [ref=e77]:
+                  - generic: Open chat
+              - link "Create post" [ref=e82] [cursor=pointer]:
+                - /url: /r/QuantifiedSelf/submit/
+                - generic [ref=e83]:
+                  - img [ref=e85]
+                  - generic [ref=e87]: Create
+                - generic [ref=e88]:
+                  - generic: Create post
+              - generic [ref=e90]:
+                - link "Open inbox" [ref=e93] [cursor=pointer]:
+                  - /url: /notifications
+                  - img [ref=e96]
+                  - generic [ref=e98]:
+                    - generic: Open inbox
+                - generic:
+                  - generic:
+                    - generic:
+                      - generic: "3"
+            - button "User Avatar Expand user menu" [ref=e103] [cursor=pointer]:
+              - img "User Avatar" [ref=e111]
+              - generic [ref=e113]:
+                - generic: Expand user menu
+      - generic [ref=e117]:
+        - main [ref=e118]:
+          - generic "Submit to r/QuantifiedSelf"
+          - generic [ref=e119]:
+            - heading "Create post" [level=1] [ref=e120]
+            - button "Drafts" [ref=e123] [cursor=pointer]:
+              - generic [ref=e125]: Drafts
+          - generic [ref=e126]:
+            - generic:
+              - button "r/QuantifiedSelf" [ref=e130] [cursor=pointer]:
+                - generic [ref=e131]:
+                  - img [ref=e136]
+                  - generic [ref=e138]: r/QuantifiedSelf
+                - img [ref=e140]
+              - tablist [ref=e143]:
+                - tab "Text" [selected] [ref=e145] [cursor=pointer]:
+                  - generic [ref=e151]: Text
+                - tab "Images & Video" [ref=e153] [cursor=pointer]:
+                  - generic [ref=e159]: Images & Video
+                - tab "Link" [ref=e161] [cursor=pointer]:
+                  - generic [ref=e167]: Link
+                - tab "Poll" [ref=e169] [cursor=pointer]:
+                  - generic [ref=e175]: Poll
+                - tab "AMA" [ref=e177] [cursor=pointer]:
+                  - generic [ref=e183]: AMA
+              - generic [ref=e184]:
+                - group [ref=e186]:
+                  - generic [ref=e187]:
+                    - generic [ref=e191]:
+                      - generic [ref=e192]:
+                        - generic:
+                          - generic: Title
+                          - text: "*"
+                        - textbox "Title" [ref=e194]: I built a CLI to export and analyze my Liftoff gym data
+                      - img [ref=e520]
+                    - generic [ref=e199]: 55/300
+                  - button "Not available for this community" [ref=e203] [cursor=pointer]:
+                    - generic [ref=e205]:
+                      - generic: Add tags
+                - group [ref=e207]:
+                  - generic [ref=e210]:
+                    - textbox "Post body text field" [active] [ref=e214]:
+                      - paragraph [ref=e215]: "I use Liftoff for tracking my lifts and wanted a way to back up my data and analyze it outside the app. So I built a command-line tool that lets me:"
+                      - paragraph [ref=e522]
+                    - toolbar "text formatting toolbar" [ref=e216]:
+                      - generic [ref=e219]:
+                        - generic [ref=e220]:
+                          - button "Bold" [ref=e223] [cursor=pointer]:
+                            - img [ref=e226]
+                            - generic [ref=e228]:
+                              - generic: Bold
+                          - button "Italic" [ref=e231] [cursor=pointer]:
+                            - img [ref=e234]
+                            - generic [ref=e236]:
+                              - generic: Italic
+                          - button "Strikethrough" [ref=e239] [cursor=pointer]:
+                            - img [ref=e242]
+                            - generic [ref=e244]:
+                              - generic: Strikethrough
+                          - button "Superscript" [ref=e247] [cursor=pointer]:
+                            - img [ref=e250]
+                            - generic [ref=e252]:
+                              - generic: Superscript
+                          - button "Heading" [ref=e255] [cursor=pointer]:
+                            - img [ref=e258]
+                            - generic [ref=e260]:
+                              - generic: Heading
+                          - button "Link" [ref=e263] [cursor=pointer]:
+                            - img [ref=e266]
+                            - generic [ref=e268]:
+                              - generic: Link
+                          - generic:
+                            - generic:
+                              - button "Image" [ref=e271] [cursor=pointer]:
+                                - img [ref=e274]
+                                - generic [ref=e276]:
+                                  - generic: Image
+                              - button "Video" [ref=e279] [cursor=pointer]:
+                                - img [ref=e282]
+                                - generic [ref=e284]:
+                                  - generic: Video
+                          - button "Bullet List" [ref=e287] [cursor=pointer]:
+                            - img [ref=e290]
+                            - generic [ref=e292]:
+                              - generic: Bullet List
+                          - button "Number List" [ref=e295] [cursor=pointer]:
+                            - img [ref=e298]
+                            - generic [ref=e300]:
+                              - generic: Number List
+                          - button "Spoiler" [ref=e303] [cursor=pointer]:
+                            - img [ref=e306]
+                            - generic [ref=e308]:
+                              - generic: Spoiler
+                          - button "Quote Block" [ref=e311] [cursor=pointer]:
+                            - img [ref=e314]
+                            - generic [ref=e316]:
+                              - generic: Quote Block
+                          - button "Code" [ref=e319] [cursor=pointer]:
+                            - img [ref=e322]
+                            - generic [ref=e325]:
+                              - generic: Code
+                          - button "Code Block" [ref=e328] [cursor=pointer]:
+                            - img [ref=e331]
+                            - generic [ref=e333]:
+                              - generic: Code Block
+                          - button "Table" [ref=e336] [cursor=pointer]:
+                            - img [ref=e339]
+                            - generic [ref=e341]:
+                              - generic: Table
+                        - generic [ref=e342]:
+                          - generic:
+                            - button "More options" [ref=e343] [cursor=pointer]:
+                              - img [ref=e346]
+                            - generic:
+                              - generic:
+                                - generic:
+                                  - generic: Switch to Markdown
+                - generic [ref=e350]:
+                  - generic [ref=e351]:
+                    - button "Post" [ref=e512] [cursor=pointer]:
+                      - generic [ref=e514]: Post
+                    - button "Save Draft" [ref=e515] [cursor=pointer]:
+                      - generic [ref=e517]: Save Draft
+                  - list
+        - generic [ref=e357]:
+          - heading "r/QuantifiedSelf Rules" [level=2] [ref=e359]:
+            - generic [ref=e360]: r/QuantifiedSelf Rules
+          - generic [ref=e361]:
+            - group [ref=e363]:
+              - generic "1 No App or Product Promotion Outside the Weekly Megathread" [ref=e364] [cursor=pointer]:
+                - generic [ref=e366]:
+                  - generic [ref=e367]:
+                    - generic [ref=e369]: "1"
+                    - heading "No App or Product Promotion Outside the Weekly Megathread" [level=2] [ref=e373]
+                  - img [ref=e376]
+            - group [ref=e379]:
+              - generic "2 No Self-Promotion Spam" [ref=e380] [cursor=pointer]:
+                - generic [ref=e382]:
+                  - generic [ref=e383]:
+                    - generic [ref=e385]: "2"
+                    - heading "No Self-Promotion Spam" [level=2] [ref=e389]
+                  - img [ref=e392]
+            - group [ref=e395]:
+              - generic "3 Posts Must Be Substantive" [ref=e396] [cursor=pointer]:
+                - generic [ref=e398]:
+                  - generic [ref=e399]:
+                    - generic [ref=e401]: "3"
+                    - heading "Posts Must Be Substantive" [level=2] [ref=e405]
+                  - img [ref=e408]
+            - group [ref=e411]:
+              - generic "4 Show Your Work" [ref=e412] [cursor=pointer]:
+                - generic [ref=e414]:
+                  - generic [ref=e415]:
+                    - generic [ref=e417]: "4"
+                    - heading "Show Your Work" [level=2] [ref=e421]
+                  - img [ref=e424]
+            - group [ref=e427]:
+              - generic "5 No Medical Advice" [ref=e428] [cursor=pointer]:
+                - generic [ref=e430]:
+                  - generic [ref=e431]:
+                    - generic [ref=e433]: "5"
+                    - heading "No Medical Advice" [level=2] [ref=e437]
+                  - img [ref=e440]
+            - group [ref=e443]:
+              - generic "6 No AI-Generated Slop" [ref=e444] [cursor=pointer]:
+                - generic [ref=e446]:
+                  - generic [ref=e447]:
+                    - generic [ref=e449]: "6"
+                    - heading "No AI-Generated Slop" [level=2] [ref=e453]
+                  - img [ref=e456]
+            - group [ref=e459]:
+              - generic "7 No Doxxing" [ref=e460] [cursor=pointer]:
+                - generic [ref=e462]:
+                  - generic [ref=e463]:
+                    - generic [ref=e465]: "7"
+                    - heading "No Doxxing" [level=2] [ref=e469]
+                  - img [ref=e472]
+            - group [ref=e475]:
+              - generic "8 Follow Reddit's Content Policy" [ref=e476] [cursor=pointer]:
+                - generic [ref=e478]:
+                  - generic [ref=e479]:
+                    - generic [ref=e481]: "8"
+                    - heading "Follow Reddit's Content Policy" [level=2] [ref=e485]
+                  - img [ref=e488]
+        - generic [ref=e491]:
+          - link "Reddit Rules" [ref=e494] [cursor=pointer]:
+            - /url: https://www.redditinc.com/policies/content-policy
+          - link "Privacy Policy" [ref=e497] [cursor=pointer]:
+            - /url: https://www.reddit.com/policies/privacy-policy
+          - link "User Agreement" [ref=e500] [cursor=pointer]:
+            - /url: https://www.redditinc.com/policies/user-agreement
+          - link "Your Privacy Choices" [ref=e503] [cursor=pointer]:
+            - /url: https://support.reddithelp.com/hc/articles/43980704794004
+          - link "Accessibility" [ref=e506] [cursor=pointer]:
+            - /url: https://support.reddithelp.com/hc/sections/38303584022676-Accessibility
+          - generic [ref=e507]: •
+          - link "Reddit, Inc. © 2026. All rights reserved." [ref=e509] [cursor=pointer]:
+            - /url: https://redditinc.com

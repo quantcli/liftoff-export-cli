@@ -1,0 +1,83 @@
+- generic [active] [ref=e1]:
+  - generic [ref=e3]:
+    - generic [ref=e4]:
+      - complementary "Skip links" [ref=e5]:
+        - link "Skip to main content" [ref=e6] [cursor=pointer]:
+          - /url: /
+          - generic [ref=e7]: Skip to main content
+        - button "Keyboard shortcuts" [ref=e8]:
+          - generic [ref=e9]: Keyboard shortcuts
+        - link "Accessibility Help external, opens new window" [ref=e10] [cursor=pointer]:
+          - /url: https://cloud.google.com/docs/accessibility?hl=en_US
+          - generic [ref=e11]:
+            - text: Accessibility Help
+            - generic "external, opens new window" [ref=e12]:
+              - img "external, opens new window" [ref=e13]:
+                - img [ref=e14]
+        - link "Accessibility Feedback external, opens new window" [ref=e16] [cursor=pointer]:
+          - /url: https://support.google.com/accessibility/contact/feedback?hl=en_US
+          - generic [ref=e17]:
+            - text: Accessibility Feedback
+            - generic "external, opens new window" [ref=e18]:
+              - img "external, opens new window" [ref=e19]:
+                - img [ref=e20]
+      - banner [ref=e23]:
+        - generic [ref=e24]:
+          - navigation [ref=e27]:
+            - button "Navigation menu (.)" [ref=e28] [cursor=pointer]:
+              - img [ref=e30]
+          - link "Google Cloud Platform Home" [ref=e32] [cursor=pointer]:
+            - /url: /
+            - generic:
+              - img
+          - button "You're currently working in My First Project. Hit enter to switch projects, folders, or organizations" [ref=e119]:
+            - generic [ref=e120]:
+              - img [ref=e122]
+              - generic [ref=e125]: My First Project
+        - search "Google Cloud Platform" [ref=e46]:
+          - combobox [ref=e47]:
+            - searchbox "Enter query to search for resources, docs, products, and more" [ref=e48]
+          - button "See all search results" [disabled]:
+            - generic:
+              - img
+            - generic: Search
+        - generic [ref=e49]:
+          - generic [ref=e50]:
+            - button "Open or close Gemini Cloud Assist chat (Option G)" [ref=e129] [cursor=pointer]:
+              - img [ref=e131]
+            - button "Free trial status" [ref=e136] [cursor=pointer]:
+              - img [ref=e138]
+            - button "Activate Cloud Shell (G then S)" [ref=e140] [cursor=pointer]:
+              - img [ref=e142]
+            - button "1 unread notifications. Open notifications" [ref=e144] [cursor=pointer]:
+              - generic [ref=e147]: "1"
+            - button "Settings and utilities" [ref=e65] [cursor=pointer]:
+              - img [ref=e67]
+          - 'button "Account: Darrell Turner (terastar@gmail.com)" [ref=e150]':
+            - img [ref=e151]
+    - generic [ref=e80]:
+      - navigation "Breadcrumb" [ref=e156]:
+        - link "Billing" [ref=e159] [cursor=pointer]:
+          - /url: /billing?project=crypto-iris-485515-v4
+          - img [ref=e162]
+          - generic [ref=e171]: Billing
+        - list [ref=e172]:
+          - listitem [ref=e173]:
+            - generic [ref=e174]: /
+            - link "Linked account" [ref=e177] [cursor=pointer]:
+              - /url: /billing/linkedaccount?project=crypto-iris-485515-v4
+              - generic [ref=e179]: Linked account
+      - main [ref=e92]:
+        - generic [ref=e188]:
+          - generic [ref=e189]: Billing
+          - generic [ref=e190]: This project has no billing account
+          - generic [ref=e191]: This project is not linked to a billing account
+          - generic [ref=e192]:
+            - generic [ref=e194]: Link a billing account
+            - link "Manage billing accounts" [ref=e195] [cursor=pointer]:
+              - /url: /billing
+              - generic [ref=e196]: Manage billing accounts
+  - iframe [ref=e116]:
+    
+  - iframe [ref=e118]:
+    

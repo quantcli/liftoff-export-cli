@@ -1,0 +1,240 @@
+- generic [ref=e1]:
+  - link "DEV Community Home" [ref=e2] [cursor=pointer]:
+    - /url: /
+    - img "DEV Community" [ref=e3]
+  - generic [ref=e5]:
+    - generic [ref=e6]: New Post - DEV Community
+    - main [ref=e7]:
+      - form "Edit post" [ref=e8]:
+        - generic [ref=e9]:
+          - link "DEV Community Home" [ref=e11] [cursor=pointer]:
+            - /url: /
+            - img "DEV Community" [ref=e12]
+          - generic [ref=e14]: Create Post
+          - navigation "View post modes" [ref=e15]:
+            - list [ref=e16]:
+              - listitem [ref=e17]:
+                - button "Edit" [ref=e18] [cursor=pointer]
+              - listitem [ref=e19]:
+                - button "Preview" [ref=e20] [cursor=pointer]
+          - button "Close the editor" [ref=e22] [cursor=pointer]:
+            - img
+        - generic [ref=e893]:
+          - generic [ref=e894]:
+            - generic [ref=e895]:
+              - generic [ref=e896] [cursor=pointer]:
+                - text: Upload Cover Image
+                - button "Upload Cover Image Use a ratio of 1000:420 for best results."
+                - generic: Use a ratio of 1000:420 for best results.
+              - button "🍌 Generate Image" [ref=e897] [cursor=pointer]
+              - button "Cover Video Link" [ref=e898] [cursor=pointer]
+            - textbox "Post Title" [ref=e900]:
+              - /placeholder: New post title here...
+              - text: I pointed Claude at mitmproxy and it reverse-engineered my gym app's API
+            - generic: programming
+            - generic [ref=e901]: Add up to 4 tags
+            - generic [ref=e902]: Maximum 4 selections
+            - generic [ref=e903]:
+              - paragraph [ref=e904]: "Selected items:"
+              - list [ref=e905]:
+                - listitem [ref=e1538]: ai
+                - listitem [ref=e1643]: go
+                - listitem [ref=e2825]: fitness
+            - combobox [expanded] [ref=e907]:
+              - list [ref=e908]:
+                - listitem [ref=e1539]:
+                  - group "ai" [ref=e1540]:
+                    - button "Edit ai" [ref=e1541]: "# ai"
+                    - button "Remove ai" [ref=e1542] [cursor=pointer]:
+                      - img
+                - listitem [ref=e1644]:
+                  - group "go" [ref=e1645]:
+                    - button "Edit go" [ref=e1646]: "# go"
+                    - button "Remove go" [ref=e1647] [cursor=pointer]:
+                      - img
+                - listitem [ref=e2827]:
+                  - group "fitness" [ref=e2828]:
+                    - button "Edit fitness" [ref=e2829]: "# fitness"
+                    - button "Remove fitness" [ref=e2830] [cursor=pointer]:
+                      - img
+                - listitem [ref=e913]:
+                  - textbox "Add up to 4 tags" [active] [ref=e914]:
+                    - /placeholder: ""
+                    - text: programming
+              - listbox "Add up to 4 tags" [ref=e2835]:
+                - option "# programming The magic behind computers. 💻 🪄" [ref=e2956] [cursor=pointer]:
+                  - generic [ref=e2957]:
+                    - generic [ref=e2958]:
+                      - generic [ref=e2959]: "#"
+                      - generic [ref=e2960]: programming
+                    - generic [ref=e2961]: The magic behind computers. 💻 🪄
+                - option "# oop \"...because thinking inside the box is okay, as long as it's a black box.\"" [ref=e2962] [cursor=pointer]:
+                  - generic [ref=e2963]:
+                    - generic [ref=e2964]:
+                      - generic [ref=e2965]: "#"
+                      - generic [ref=e2966]: oop
+                    - generic [ref=e2967]: "\"...because thinking inside the box is okay, as long as it's a black box.\""
+                - option "# crystal This tag is for anything related to the Crystal programming language, its ecosystem, and related tooling. Development, usage, apps, shards, tips, and requests for help." [ref=e2968] [cursor=pointer]:
+                  - generic [ref=e2969]:
+                    - generic [ref=e2970]:
+                      - generic [ref=e2971]: "#"
+                      - generic [ref=e2972]: crystal
+                    - generic [ref=e2973]: This tag is for anything related to the Crystal programming language, its ecosystem, and related tooling. Development, usage, apps, shards, tips, and requests for help.
+                - option "# solidity For the Solidity programming language used on EVM chains." [ref=e2974] [cursor=pointer]:
+                  - generic [ref=e2975]:
+                    - generic [ref=e2976]:
+                      - generic [ref=e2977]: "#"
+                      - generic [ref=e2978]: solidity
+                    - generic [ref=e2979]: For the Solidity programming language used on EVM chains.
+                - option "# api Application Programming Interface" [ref=e2980] [cursor=pointer]:
+                  - generic [ref=e2981]:
+                    - generic [ref=e2982]:
+                      - generic [ref=e2983]: "#"
+                      - generic [ref=e2984]: api
+                    - generic [ref=e2985]: Application Programming Interface
+                - option "# swift a programming language created by Apple for building iOS and Mac apps" [ref=e2986] [cursor=pointer]:
+                  - generic [ref=e2987]:
+                    - generic [ref=e2988]:
+                      - generic [ref=e2989]: "#"
+                      - generic [ref=e2990]: swift
+                    - generic [ref=e2991]: a programming language created by Apple for building iOS and Mac apps
+                - option "# csharp Official tag for the C# programming language." [ref=e2992] [cursor=pointer]:
+                  - generic [ref=e2993]:
+                    - generic [ref=e2994]:
+                      - generic [ref=e2995]: "#"
+                      - generic [ref=e2996]: csharp
+                    - generic [ref=e2997]: Official tag for the C# programming language.
+                - option "# cpp Official tag for the C++ programming language." [ref=e2998] [cursor=pointer]:
+                  - generic [ref=e2999]:
+                    - generic [ref=e3000]:
+                      - generic [ref=e3001]: "#"
+                      - generic [ref=e3002]: cpp
+                    - generic [ref=e3003]: Official tag for the C++ programming language.
+                - option "# c Official tag for the C programming language." [ref=e3004] [cursor=pointer]:
+                  - generic [ref=e3005]:
+                    - generic [ref=e3006]:
+                      - generic [ref=e3007]: "#"
+                      - generic [ref=e3008]: c
+                    - generic [ref=e3009]: Official tag for the C programming language.
+                - option "# assembly Assembly is a low-level programming language that uses mnemonics to represent machine instructions." [ref=e3010] [cursor=pointer]:
+                  - generic [ref=e3011]:
+                    - generic [ref=e3012]:
+                      - generic [ref=e3013]: "#"
+                      - generic [ref=e3014]: assembly
+                    - generic [ref=e3015]: Assembly is a low-level programming language that uses mnemonics to represent machine instructions.
+                - option "# perl Perl is a high-level dynamic programming language with some extraordinary features that make using it fun and that make the users productive. As the saying goes, TMTOWTDI — \"There's more than one way to do it.\"" [ref=e3016] [cursor=pointer]:
+                  - generic [ref=e3017]:
+                    - generic [ref=e3018]:
+                      - generic [ref=e3019]: "#"
+                      - generic [ref=e3020]: perl
+                    - generic [ref=e3021]: Perl is a high-level dynamic programming language with some extraordinary features that make using it fun and that make the users productive. As the saying goes, TMTOWTDI — "There's more than one way to do it."
+                - option "# scala Scala combines object-oriented and functional programming in one concise, high-level language. Scala's static types help avoid bugs in complex applications, and its JVM and JavaScript runtimes let you build high-performance systems with easy access to huge ecosystems of libraries." [ref=e3022] [cursor=pointer]:
+                  - generic [ref=e3023]:
+                    - generic [ref=e3024]:
+                      - generic [ref=e3025]: "#"
+                      - generic [ref=e3026]: scala
+                    - generic [ref=e3027]: Scala combines object-oriented and functional programming in one concise, high-level language. Scala's static types help avoid bugs in complex applications, and its JVM and JavaScript runtimes let you build high-performance systems with easy access to huge ecosystems of libraries.
+                - option "# zig Official tag for the Zig programming language and toolchains." [ref=e3028] [cursor=pointer]:
+                  - generic [ref=e3029]:
+                    - generic [ref=e3030]:
+                      - generic [ref=e3031]: "#"
+                      - generic [ref=e3032]: zig
+                    - generic [ref=e3033]: Official tag for the Zig programming language and toolchains.
+                - option "# kotlin a cross-platform, statically typed, general-purpose programming language with type inference" [ref=e3034] [cursor=pointer]:
+                  - generic [ref=e3035]:
+                    - generic [ref=e3036]:
+                      - generic [ref=e3037]: "#"
+                      - generic [ref=e3038]: kotlin
+                    - generic [ref=e3039]: a cross-platform, statically typed, general-purpose programming language with type inference
+                - option "# rust This tag is for posts related to the Rust programming language, including its libraries." [ref=e3040] [cursor=pointer]:
+                  - generic [ref=e3041]:
+                    - generic [ref=e3042]:
+                      - generic [ref=e3043]: "#"
+                      - generic [ref=e3044]: rust
+                    - generic [ref=e3045]: This tag is for posts related to the Rust programming language, including its libraries.
+                - option "# mojolicious Mojolicious is a popular real-time web framework for the Perl programming language." [ref=e3046] [cursor=pointer]:
+                  - generic [ref=e3047]:
+                    - generic [ref=e3048]:
+                      - generic [ref=e3049]: "#"
+                      - generic [ref=e3050]: mojolicious
+                    - generic [ref=e3051]: Mojolicious is a popular real-time web framework for the Perl programming language.
+                - option "# basic Beginners' All-purpose Symbolic Instruction Code (BASIC) - a family of general purpose programming languages" [ref=e3052] [cursor=pointer]:
+                  - generic [ref=e3053]:
+                    - generic [ref=e3054]:
+                      - generic [ref=e3055]: "#"
+                      - generic [ref=e3056]: basic
+                    - generic [ref=e3057]: Beginners' All-purpose Symbolic Instruction Code (BASIC) - a family of general purpose programming languages
+                - option "# java More than just a cup of coffee, Java is a high-level, class-based, object-oriented programming language that is designed to have as few implementation dependencies as possible." [ref=e3058] [cursor=pointer]:
+                  - generic [ref=e3059]:
+                    - generic [ref=e3060]:
+                      - generic [ref=e3061]: "#"
+                      - generic [ref=e3062]: java
+                    - generic [ref=e3063]: More than just a cup of coffee, Java is a high-level, class-based, object-oriented programming language that is designed to have as few implementation dependencies as possible.
+                - option "# python import antigravity" [ref=e3064] [cursor=pointer]:
+                  - generic [ref=e3065]:
+                    - generic [ref=e3066]:
+                      - generic [ref=e3067]: "#"
+                      - generic [ref=e3068]: python
+                    - generic [ref=e3069]: import antigravity
+          - generic [ref=e915]:
+            - toolbar "Markdown formatting toolbar" [ref=e917]:
+              - button "Bold" [ref=e918] [cursor=pointer]:
+                - img
+                - generic:
+                  - generic: Bold CMD + B
+              - button "Italic" [ref=e919] [cursor=pointer]:
+                - img
+                - generic:
+                  - generic: Italic CMD + I
+              - button "Link" [ref=e920] [cursor=pointer]:
+                - img
+                - generic:
+                  - generic: Link CMD + K
+              - button "Ordered list" [ref=e921] [cursor=pointer]:
+                - img
+                - generic: Ordered list
+              - button "Unordered list" [ref=e922] [cursor=pointer]:
+                - img
+                - generic: Unordered list
+              - button "Heading" [ref=e923] [cursor=pointer]:
+                - img
+                - generic: Heading
+              - button "Quote" [ref=e924] [cursor=pointer]:
+                - img
+                - generic: Quote
+              - button "Code" [ref=e925] [cursor=pointer]:
+                - img
+                - generic: Code
+              - button "Code block" [ref=e926] [cursor=pointer]:
+                - img
+                - generic: Code block
+              - button "Embed" [ref=e927] [cursor=pointer]:
+                - img
+                - generic:
+                  - generic: Embed CMD + SHIFT + K
+              - button "Upload image" [ref=e929]
+              - button "Upload image" [ref=e930] [cursor=pointer]:
+                - img
+                - generic: Upload image
+              - link "Upload Agent Session" [ref=e931] [cursor=pointer]:
+                - /url: /agent_sessions/new
+                - img [ref=e932]
+              - button "More options" [ref=e935] [cursor=pointer]:
+                - img
+            - textbox "Post Content" [ref=e938]:
+              - /placeholder: Write your post content here...
+              - text: "I track my workouts in Liftoff, a gym tracking app. The app is great for logging sets and reps, but I wanted Claude to help me analyze my training — suggest programming changes, spot plateaus, flag imbalances. The problem: there's no export button. My data was locked inside the app. So I asked Claude to figure it out. ## Claude runs mitmproxy I told Claude I wanted to intercept my Liftoff app's traffic. It walked me through every step — installing mitmproxy, configuring my iPhone's proxy settings, installing the CA certificate for HTTPS decryption. All I did was follow instructions and tap through screens on my phone. Then Claude ran mitmdump, told me to open Liftoff and scroll through my workouts, and read the captured traffic itself. ## Claude reverse-engineers the API From the mitmdump output, Claude figured out that Liftoff uses tRPC — a TypeScript RPC framework that batches requests into a specific envelope format. The API lives at a versioned subdomain (`v2-12-2.api.getgymbros.com`) and expects an iOS user-agent string. Claude mapped out the entire API: - **Authentication flow** — a `user.signIn` endpoint that returns access and refresh tokens, with a `user.refreshToken` endpoint for renewal - **The workout endpoint** — `post.getMyPosts` returns every workout you've ever logged - **Exercise type codes** — `WR` for weight/reps, `AB` for assisted bodyweight, `BR` for bodyweight plus resistance, `DD` for distance/duration - **Set data structure** — each set has a type (warmup vs working), and two inputs whose meaning changes based on exercise type I didn't read a single packet. Claude did all of it. ## Claude builds the CLI Once Claude understood the API, it wrote a Go CLI using Cobra. It handled auth token storage, automatic token refresh, and the tRPC request format. The tool grew from there: - `workouts list` — export workouts in fitdown or JSON, filter by date or exercise - `workouts stats` — per-exercise volume summaries with monthly ASCII bar charts - `bodyweights stats` — trend analysis with plateau detection I set up goreleaser for multi-platform builds and a Homebrew tap for easy installation: ```sh brew tap DTTerastar/tap brew install liftoff-export ``` ## The full circle Here's the part I like most: the whole reason I built this was to pipe my workout data back to Claude. Now I can run `liftoff-export workouts list --since 6m --json` and hand Claude six months of structured training data. It can see my actual sets, reps, and weights across every exercise. From there it helps me with programming — what to change, where I'm stalling, what's working. Claude reverse-engineered the API, built the tool to extract my data, and now uses that data to coach my training. The AI closed its own loop. ## Links - GitHub: [DTTerastar/liftoff-export-cli](https://github.com/DTTerastar/liftoff-export-cli) - Liftoff app: [getgymbros.com](https://getgymbros.com)"
+        - generic [ref=e1532]:
+          - heading "Tagging Guidelines" [level=4] [ref=e1533]
+          - list [ref=e1534]:
+            - listitem [ref=e1535]: Tags help people find your post - think of them as the topics or categories that best describe your post.
+            - listitem [ref=e1536]: Add up to four comma-separated tags per post. Use existing tags whenever possible.
+            - listitem [ref=e1537]: Some tags have special posting guidelines - double check to make sure your post complies with them.
+        - generic [ref=e74]:
+          - button "Publish" [ref=e75] [cursor=pointer]
+          - button "Save draft" [ref=e76] [cursor=pointer]
+          - button "Advanced Post options" [ref=e77] [cursor=pointer]:
+            - img
+          - button "Revert new changes" [ref=e79] [cursor=pointer]
+    - button "Toggle AI Editor Helper" [ref=e78] [cursor=pointer]:
+      - generic: 🤖

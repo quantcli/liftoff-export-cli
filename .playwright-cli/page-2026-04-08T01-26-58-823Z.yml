@@ -1,0 +1,475 @@
+- generic [ref=e1]:
+  - link "Skip to main content" [ref=e2] [cursor=pointer]:
+    - /url: "#main-content"
+    - generic [ref=e4]: Skip to main content
+  - generic [ref=e6]:
+    - generic:
+      - generic [ref=e2651]:
+        - generic: "Weekly Lifestyle Data and Analytics App Thread : r/QuantifiedSelf"
+      - banner [ref=e2654]:
+        - navigation [ref=e2655]:
+          - generic [ref=e2656]:
+            - button "Open menu" [ref=e2660] [cursor=pointer]:
+              - img [ref=e2663]
+              - generic [ref=e2665]:
+                - generic: Open menu
+            - link "Home" [ref=e2670] [cursor=pointer]:
+              - /url: /
+              - img [ref=e2672]
+          - search [ref=e2689]:
+            - generic [ref=e2691]:
+              - img [ref=e2694]
+              - generic "Remove r/QuantifiedSelf filter and expand search to all of Reddit" [ref=e2697] [cursor=pointer]:
+                - button [pressed] [ref=e2698]:
+                  - img [ref=e2700]
+                  - generic [ref=e2703]: r/QuantifiedSelf
+                - img [ref=e2705]
+              - textbox "Remove r/QuantifiedSelf filter and expand search to all of Reddit" [ref=e2708]:
+                - /placeholder: Search in r/QuantifiedSelf
+          - generic [ref=e2709]:
+            - generic [ref=e2710]:
+              - button "Open chat" [ref=e2716] [cursor=pointer]:
+                - img [ref=e2719]
+                - generic [ref=e2721]:
+                  - generic: Open chat
+              - link "Create post" [ref=e2726] [cursor=pointer]:
+                - /url: /r/QuantifiedSelf/submit/
+                - generic [ref=e2727]:
+                  - img [ref=e2729]
+                  - generic [ref=e2731]: Create
+                - generic [ref=e2732]:
+                  - generic: Create post
+              - generic [ref=e2734]:
+                - link "Open inbox" [ref=e2737] [cursor=pointer]:
+                  - /url: /notifications
+                  - img [ref=e2740]
+                  - generic [ref=e2742]:
+                    - generic: Open inbox
+                - generic:
+                  - generic:
+                    - generic:
+                      - generic: "3"
+            - button "User Avatar Expand user menu" [ref=e2747] [cursor=pointer]:
+              - img "User Avatar" [ref=e2753]
+              - generic [ref=e2755]:
+                - generic: Expand user menu
+      - generic [ref=e2759]:
+        - main [ref=e2760]:
+          - 'generic "Weekly Lifestyle Data and Analytics App Thread : r/QuantifiedSelf"'
+          - generic [ref=e2762]:
+            - generic [ref=e2763]:
+              - generic [ref=e2764]:
+                - button "Back" [ref=e2766] [cursor=pointer]:
+                  - img [ref=e2769]
+                  - generic [ref=e2771]:
+                    - generic: Back
+                - link "Go to QuantifiedSelf" [ref=e2774] [cursor=pointer]:
+                  - /url: /r/QuantifiedSelf/
+                  - img [ref=e2778]
+                  - generic [ref=e2780]:
+                    - generic: Go to QuantifiedSelf
+                - group [ref=e2781]:
+                  - generic [ref=e2782]:
+                    - link "r/QuantifiedSelf" [ref=e2786] [cursor=pointer]:
+                      - /url: /r/QuantifiedSelf/
+                    - generic [ref=e2787]: •
+                    - time [ref=e2788]: 20h ago
+                  - 'link "Author: AutoModerator" [ref=e2794] [cursor=pointer]':
+                    - /url: /user/AutoModerator/
+                    - text: AutoModerator
+                    - generic "This is a bot account" [ref=e2795]:
+                      - img [ref=e2797]
+              - generic [ref=e2800]:
+                - img "Stickied post" [ref=e2804]
+                - button "Open user actions" [ref=e2808] [cursor=pointer]:
+                  - img [ref=e2811]
+            - 'heading "Post Title: Weekly Lifestyle Data and Analytics App Thread" [level=1] [ref=e2815]': Weekly Lifestyle Data and Analytics App Thread
+            - paragraph [ref=e2820]: Post your apps here, and please support people bringing unique ideas to this space.
+            - generic "Actions available for this post" [ref=e2821]:
+              - generic [ref=e2824]:
+                - button "Upvote" [ref=e2825] [cursor=pointer]:
+                  - img [ref=e2827]
+                  - generic [ref=e2829]:
+                    - generic: Upvote
+                - generic [ref=e2831]: "8"
+                - button "Downvote" [ref=e2832] [cursor=pointer]:
+                  - img [ref=e2834]
+                  - generic [ref=e2836]:
+                    - generic: Downvote
+              - button "11 Go to comments" [ref=e2837] [cursor=pointer]:
+                - generic [ref=e2838]:
+                  - img [ref=e2840]
+                  - generic [ref=e2843]: "11"
+                - generic [ref=e2844]:
+                  - generic: Go to comments
+              - button "Give award" [ref=e2846] [cursor=pointer]:
+                - img [ref=e2849]
+              - button "Share" [ref=e2854] [cursor=pointer]:
+                - generic [ref=e2855]:
+                  - img [ref=e2857]
+                  - generic [ref=e2859]: Share
+          - generic [ref=e2861]:
+            - generic:
+              - generic [ref=e3493]:
+                - generic [ref=e3494]:
+                  - paragraph [ref=e3495]:
+                    - generic [ref=e3496]: Join the conversation
+                  - textbox [active] [ref=e3497]:
+                    - paragraph [ref=e3498]
+                - generic [ref=e3501]:
+                  - generic [ref=e3503]:
+                    - button "Comment" [ref=e3504] [cursor=pointer]:
+                      - generic [ref=e3507]: Comment
+                    - button "Cancel" [ref=e3508] [cursor=pointer]:
+                      - generic [ref=e3510]: Cancel
+                  - generic [ref=e3512]:
+                    - generic:
+                      - button "More options" [ref=e3513] [cursor=pointer]:
+                        - img [ref=e3516]
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: Show formatting options
+              - generic [ref=e2877]:
+                - generic [ref=e2879]:
+                  - generic [ref=e2880]: "Sort by:"
+                  - button "Sort by New (Default)" [ref=e2885] [cursor=pointer]:
+                    - generic [ref=e2887]: New (Default)
+                - button "Search Comments Expand comment search" [ref=e2894] [cursor=pointer]:
+                  - generic [ref=e2895]:
+                    - img [ref=e2898]
+                    - generic [ref=e2901]: Search Comments
+                  - generic [ref=e2902]:
+                    - generic: Expand comment search
+          - region "Comments" [ref=e2906]:
+            - heading "Comments Section" [level=1] [ref=e2907]
+            - article "Comment from Beautiful_Big9907 1 hour ago" [ref=e2909]:
+              - generic "Metadata for Beautiful_Big9907's comment" [ref=e2910]:
+                - link "Beautiful_Big9907's profile --- avatar" [ref=e2916] [cursor=pointer]:
+                  - /url: /user/Beautiful_Big9907/
+                  - img "u/Beautiful_Big9907 avatar" [ref=e2919]
+                - generic [ref=e2924]:
+                  - link "Beautiful_Big9907's profile" [ref=e2928] [cursor=pointer]:
+                    - /url: /user/Beautiful_Big9907/
+                    - text: Beautiful_Big9907
+                  - generic [ref=e2929]: •
+                  - link "1h ago" [ref=e2930] [cursor=pointer]:
+                    - /url: /r/QuantifiedSelf/comments/1semhow/comment/oewivo2/
+                    - time [ref=e2931]: 1h ago
+              - generic [ref=e2933]:
+                - paragraph [ref=e2940]: Been tracking all sorts of data for years, and macromascot actually pulled everything together nicely. The correlation features between different metrics saved me from juggling five different apps.
+                - generic [ref=e2948]:
+                  - generic [ref=e2950]:
+                    - button "Upvote" [ref=e2951] [cursor=pointer]:
+                      - img [ref=e2953]
+                      - generic [ref=e2955]:
+                        - generic: Upvote
+                    - generic [ref=e2957]: "1"
+                    - button "Downvote" [ref=e2958] [cursor=pointer]:
+                      - img [ref=e2960]
+                      - generic [ref=e2962]:
+                        - generic: Downvote
+                  - button "Reply" [ref=e2964] [cursor=pointer]:
+                    - generic [ref=e2965]:
+                      - img [ref=e2967]
+                      - generic [ref=e2969]: Reply
+                  - button "Give award" [ref=e2971] [cursor=pointer]:
+                    - generic [ref=e2972]:
+                      - img [ref=e2974]
+                      - generic [ref=e2977]: Award
+                  - button "Share" [ref=e2980] [cursor=pointer]:
+                    - generic [ref=e2981]:
+                      - img [ref=e2983]
+                      - generic [ref=e2985]: Share
+                  - button "Open user actions" [ref=e2990] [cursor=pointer]:
+                    - img [ref=e2993]
+            - article "Comment from Careless_Victory8122 9 hours ago" [ref=e2996]:
+              - generic "Metadata for Careless_Victory8122's comment" [ref=e2997]:
+                - link "Careless_Victory8122's profile --- avatar" [ref=e3003] [cursor=pointer]:
+                  - /url: /user/Careless_Victory8122/
+                  - img "u/Careless_Victory8122 avatar" [ref=e3006]
+                - generic [ref=e3011]:
+                  - link "Careless_Victory8122's profile" [ref=e3015] [cursor=pointer]:
+                    - /url: /user/Careless_Victory8122/
+                    - text: Careless_Victory8122
+                  - generic [ref=e3016]: •
+                  - link "9h ago" [ref=e3017] [cursor=pointer]:
+                    - /url: /r/QuantifiedSelf/comments/1semhow/comment/oetu9r9/
+                    - time [ref=e3018]: 9h ago
+              - generic [ref=e3020]:
+                - generic [ref=e3026]:
+                  - paragraph [ref=e3027]:
+                    - text: We’re a small team of developers and recently launched
+                    - strong [ref=e3028]: Dreamside
+                    - text: ", an iPhone dream journal that can connect entries to Apple Watch sleep data through HealthKit."
+                  - paragraph [ref=e3029]: The part we thought might be interesting to this community is the pattern-tracking side, being able to look at dream recall alongside the kind of night you had, instead of keeping dream journaling completely separate from sleep data.
+                  - paragraph [ref=e3030]: It also works fine as a regular dream / sleep journal if you don’t use an Apple Watch.
+                  - paragraph [ref=e3031]:
+                    - strong [ref=e3032]: "Price:"
+                    - text: Free, including all the useful core features
+                    - strong [ref=e3033]: "IAP:"
+                    - text: Optional subscriptions for a few expanded features that cost us money to run
+                  - paragraph [ref=e3034]:
+                    - text: "Would genuinely love feedback from people who care about tracking, correlation, and signal vs noise:"
+                    - link "https://apps.apple.com/app/dreamside/id6760677300" [ref=e3035] [cursor=pointer]:
+                      - /url: https://apps.apple.com/app/dreamside/id6760677300
+                - generic [ref=e3521]:
+                  - generic [ref=e3523]:
+                    - button "Upvote" [ref=e3524] [cursor=pointer]:
+                      - img [ref=e3526]
+                      - generic [ref=e3528]:
+                        - generic: Upvote
+                    - generic [ref=e3530]: "1"
+                    - button "Downvote" [ref=e3531] [cursor=pointer]:
+                      - img [ref=e3533]
+                      - generic [ref=e3535]:
+                        - generic: Downvote
+                  - button "Reply" [ref=e3537] [cursor=pointer]:
+                    - generic [ref=e3538]:
+                      - img [ref=e3540]
+                      - generic [ref=e3542]: Reply
+                  - button "Give award" [ref=e3544] [cursor=pointer]:
+                    - generic [ref=e3545]:
+                      - img [ref=e3547]
+                      - generic [ref=e3550]: Award
+                  - button "Share" [ref=e3553] [cursor=pointer]:
+                    - generic [ref=e3554]:
+                      - img [ref=e3556]
+                      - generic [ref=e3558]: Share
+                  - button "Open user actions" [ref=e3562] [cursor=pointer]:
+                    - img [ref=e3565]
+            - article "Comment from ultraHQ 11 hours ago" [ref=e3041]:
+              - generic "Metadata for ultraHQ's comment" [ref=e3042]:
+                - link "ultraHQ's profile --- avatar" [ref=e3048] [cursor=pointer]:
+                  - /url: /user/ultraHQ/
+                  - img [ref=e3053]
+                - generic [ref=e3059]:
+                  - link "ultraHQ's profile" [ref=e3063] [cursor=pointer]:
+                    - /url: /user/ultraHQ/
+                    - text: ultraHQ
+                  - generic [ref=e3064]: •
+                  - link "11h ago" [ref=e3065] [cursor=pointer]:
+                    - /url: /r/QuantifiedSelf/comments/1semhow/comment/oet5wag/
+                    - time [ref=e3066]: 11h ago
+              - generic [ref=e3074]:
+                - paragraph [ref=e3075]: All in one health intelligence, correlations between nutrition, bloodwork, wearable data, scale data, cgm, adaptive training, ai chat with a corpus of 11,000 peer-reviewed papers
+                - paragraph [ref=e3076]: Newest feature is a caloric response model - we learn your input vs weight output to gauge calorie targets based on your goals
+                - paragraph [ref=e3077]:
+                  - text: Subreddit
+                  - link "r/OmnioHealth" [ref=e3078] [cursor=pointer]:
+                    - /url: /r/OmnioHealth/
+                  - text: link
+                  - link "https://getomn.io" [ref=e3079] [cursor=pointer]:
+                    - /url: https://getomn.io
+            - article "Comment from JaumeOrejuela 13 hours ago" [ref=e3085]:
+              - generic "Metadata for JaumeOrejuela's comment" [ref=e3086]:
+                - link "JaumeOrejuela's profile --- avatar" [ref=e3092] [cursor=pointer]:
+                  - /url: /user/JaumeOrejuela/
+                  - img [ref=e3097]
+                - generic [ref=e3103]:
+                  - link "JaumeOrejuela's profile" [ref=e3107] [cursor=pointer]:
+                    - /url: /user/JaumeOrejuela/
+                    - text: JaumeOrejuela
+                  - generic [ref=e3108]: •
+                  - link "13h ago" [ref=e3109] [cursor=pointer]:
+                    - /url: /r/QuantifiedSelf/comments/1semhow/comment/oesde6c/
+                    - time [ref=e3110]: 13h ago
+                  - generic [ref=e3111]: •
+                  - generic [ref=e3112]:
+                    - text: Edited
+                    - time [ref=e3113]: 13h ago
+              - paragraph [ref=e3122]:
+                - text: I’m a visual artist from Mallorca. I built an app that turns your Apple health data into something you’ve never seen before. Or rather, never heard. Every single output is unique to you and will never exist again.
+                - link "F183" [ref=e3123] [cursor=pointer]:
+                  - /url: https://apps.apple.com/app/f183-ai-health-radio/id6759447754
+            - article "Comment from rjozefowicz 18 hours ago" [ref=e3129]:
+              - generic "Metadata for rjozefowicz's comment" [ref=e3130]:
+                - link "rjozefowicz's profile --- avatar" [ref=e3136] [cursor=pointer]:
+                  - /url: /user/rjozefowicz/
+                  - img "u/rjozefowicz avatar" [ref=e3139]
+                - generic [ref=e3144]:
+                  - link "rjozefowicz's profile" [ref=e3148] [cursor=pointer]:
+                    - /url: /user/rjozefowicz/
+                    - text: rjozefowicz
+                  - generic [ref=e3149]: •
+                  - link "18h ago" [ref=e3150] [cursor=pointer]:
+                    - /url: /r/QuantifiedSelf/comments/1semhow/comment/oerbweb/
+                    - time [ref=e3151]: 18h ago
+              - generic [ref=e3159]:
+                - paragraph [ref=e3160]: This week I launched two products that I mostly built for myself. I’ve been deep into biohacking and productivity optimization recently, so I ended up building two apps around problems I personally wanted to solve. Both are privacy-first, because I think health and performance data should stay under your control.
+                - paragraph [ref=e3161]:
+                  - text: Metrya.app (
+                  - link "https://apps.apple.com/us/app/metrya-health-app/id6760779874" [ref=e3162] [cursor=pointer]:
+                    - /url: https://apps.apple.com/us/app/metrya-health-app/id6760779874
+                  - text: ) is my health dashboard and AI advisor built around Apple Health data. The key idea is BYOK, so you can use your own AI key instead of paying for another expensive subscription just to analyze your own health data. That gives users more privacy, more control, and a much more sensible cost model.
+                - paragraph [ref=e3163]:
+                  - text: Capacity Gauge (
+                  - link "https://apps.apple.com/us/app/capacity-gauge/id6761138778" [ref=e3164] [cursor=pointer]:
+                    - /url: https://apps.apple.com/us/app/capacity-gauge/id6761138778
+                  - text: ) is a lightweight app that helps estimate your daily work capacity based on sleep and recovery. I built it to make productivity feel more grounded in real physiology rather than generic motivation. It is also designed with privacy in mind, with your personal data staying central to the product instead of being the product.
+                - paragraph [ref=e3165]: I'd really appreciate any feedback, bug reports or feature requests! Thanks for reading. 🙏
+            - article "Comment from mrblonde01 19 hours ago" [ref=e3171]:
+              - generic "Metadata for mrblonde01's comment" [ref=e3172]:
+                - link "mrblonde01's profile --- avatar" [ref=e3178] [cursor=pointer]:
+                  - /url: /user/mrblonde01/
+                  - img "u/mrblonde01 avatar" [ref=e3181]
+                - generic [ref=e3186]:
+                  - link "mrblonde01's profile" [ref=e3190] [cursor=pointer]:
+                    - /url: /user/mrblonde01/
+                    - text: mrblonde01
+                  - generic [ref=e3191]: •
+                  - link "19h ago" [ref=e3192] [cursor=pointer]:
+                    - /url: /r/QuantifiedSelf/comments/1semhow/comment/oer7k3n/
+                    - time [ref=e3193]: 19h ago
+              - generic [ref=e3201]:
+                - paragraph [ref=e3202]: I originally built LabTracker for myself because my lab PDFs, notes, and supplement logs were all over the place.
+                - paragraph [ref=e3203]: Now it lets you connect the biomarkers in your lab results with supplements, wellbeing check-ins, and protocol changes, so you can actually see what impacts your health over time.
+                - paragraph [ref=e3204]: It’s still early, but it’s already made tracking so much simpler for me.
+                - paragraph [ref=e3205]:
+                  - link "LabTracker.app" [ref=e3206] [cursor=pointer]:
+                    - /url: http://www.labtracker.app
+            - article "Comment from ViratioApp 20 hours ago" [ref=e3212]:
+              - generic "Metadata for ViratioApp's comment" [ref=e3213]:
+                - link "ViratioApp's profile --- avatar" [ref=e3219] [cursor=pointer]:
+                  - /url: /user/ViratioApp/
+                  - img "u/ViratioApp avatar" [ref=e3222]
+                - generic [ref=e3227]:
+                  - link "ViratioApp's profile" [ref=e3231] [cursor=pointer]:
+                    - /url: /user/ViratioApp/
+                    - text: ViratioApp
+                  - generic [ref=e3232]: •
+                  - link "20h ago" [ref=e3233] [cursor=pointer]:
+                    - /url: /r/QuantifiedSelf/comments/1semhow/comment/oer05fv/
+                    - time [ref=e3234]: 20h ago
+              - paragraph [ref=e3243]:
+                - text: Viratio - a workout logger designed for a user friendly environment, start logging your workouts without an account, compare weight to your best / latest workouts, get insight from graphs with parameters such as strength and stamina. Export all data as a CSV file.
+                - link "Viratio" [ref=e3244] [cursor=pointer]:
+                  - /url: https://apps.apple.com/us/app/viratio/id6760314851
+        - generic [ref=e3249]:
+          - complementary "Community information" [ref=e3254]:
+            - generic [ref=e3255]:
+              - generic [ref=e3257]:
+                - heading "Community Info Section" [level=1] [ref=e3258]
+                - generic [ref=e3259]:
+                  - link "r/QuantifiedSelf" [ref=e3261] [cursor=pointer]:
+                    - /url: /r/QuantifiedSelf/
+                    - generic [ref=e3262]: r/QuantifiedSelf
+                  - button "Join" [ref=e3266] [cursor=pointer]
+                - generic [ref=e3267]:
+                  - generic [ref=e3268]: Quantified Self
+                  - generic [ref=e3269]:
+                    - generic [ref=e3271]:
+                      - img [ref=e3272]
+                      - text: Created May 28, 2011
+                    - generic [ref=e3275]:
+                      - img [ref=e3276]
+                      - text: Public
+                - generic [ref=e3278]:
+                  - generic [ref=e3279]:
+                    - strong [ref=e3281]:
+                      - generic: 6.1K
+                    - generic [ref=e3282]: Weekly visitors
+                  - generic [ref=e3283]:
+                    - strong [ref=e3285]:
+                      - generic: "227"
+                    - generic [ref=e3286]: Weekly contributions
+              - separator [ref=e3287]
+              - generic [ref=e3288]:
+                - heading "r/QuantifiedSelf Rules" [level=2] [ref=e3290]:
+                  - generic [ref=e3291]: r/QuantifiedSelf Rules
+                - generic [ref=e3292]:
+                  - group [ref=e3294]:
+                    - generic "1 No App or Product Promotion Outside the Weekly Megathread" [ref=e3295] [cursor=pointer]:
+                      - generic [ref=e3297]:
+                        - generic [ref=e3298]:
+                          - generic [ref=e3300]: "1"
+                          - heading "No App or Product Promotion Outside the Weekly Megathread" [level=2] [ref=e3304]
+                        - img [ref=e3307]
+                  - group [ref=e3310]:
+                    - generic "2 No Self-Promotion Spam" [ref=e3311] [cursor=pointer]:
+                      - generic [ref=e3313]:
+                        - generic [ref=e3314]:
+                          - generic [ref=e3316]: "2"
+                          - heading "No Self-Promotion Spam" [level=2] [ref=e3320]
+                        - img [ref=e3323]
+                  - group [ref=e3326]:
+                    - generic "3 Posts Must Be Substantive" [ref=e3327] [cursor=pointer]:
+                      - generic [ref=e3329]:
+                        - generic [ref=e3330]:
+                          - generic [ref=e3332]: "3"
+                          - heading "Posts Must Be Substantive" [level=2] [ref=e3336]
+                        - img [ref=e3339]
+                  - group [ref=e3342]:
+                    - generic "4 Show Your Work" [ref=e3343] [cursor=pointer]:
+                      - generic [ref=e3345]:
+                        - generic [ref=e3346]:
+                          - generic [ref=e3348]: "4"
+                          - heading "Show Your Work" [level=2] [ref=e3352]
+                        - img [ref=e3355]
+                  - group [ref=e3358]:
+                    - generic "5 No Medical Advice" [ref=e3359] [cursor=pointer]:
+                      - generic [ref=e3361]:
+                        - generic [ref=e3362]:
+                          - generic [ref=e3364]: "5"
+                          - heading "No Medical Advice" [level=2] [ref=e3368]
+                        - img [ref=e3371]
+                  - group [ref=e3374]:
+                    - generic "6 No AI-Generated Slop" [ref=e3375] [cursor=pointer]:
+                      - generic [ref=e3377]:
+                        - generic [ref=e3378]:
+                          - generic [ref=e3380]: "6"
+                          - heading "No AI-Generated Slop" [level=2] [ref=e3384]
+                        - img [ref=e3387]
+                  - group [ref=e3390]:
+                    - generic "7 No Doxxing" [ref=e3391] [cursor=pointer]:
+                      - generic [ref=e3393]:
+                        - generic [ref=e3394]:
+                          - generic [ref=e3396]: "7"
+                          - heading "No Doxxing" [level=2] [ref=e3400]
+                        - img [ref=e3403]
+                  - group [ref=e3406]:
+                    - generic "8 Follow Reddit's Content Policy" [ref=e3407] [cursor=pointer]:
+                      - generic [ref=e3409]:
+                        - generic [ref=e3410]:
+                          - generic [ref=e3412]: "8"
+                          - heading "Follow Reddit's Content Policy" [level=2] [ref=e3416]
+                        - img [ref=e3419]
+              - separator [ref=e3421]
+              - generic [ref=e3422]:
+                - heading "Moderators" [level=2] [ref=e3424]:
+                  - generic [ref=e3425]: Moderators
+                - link "Message Mods" [ref=e3427] [cursor=pointer]:
+                  - /url: https://www.reddit.com/message/compose?to=r/QuantifiedSelf
+                  - generic [ref=e3428]:
+                    - img [ref=e3430]
+                    - generic [ref=e3432]: Message Mods
+                - generic [ref=e3434]:
+                  - img "u/gallegos avatar" [ref=e3439]
+                  - link "u/gallegos" [ref=e3443] [cursor=pointer]:
+                    - /url: /user/gallegos/
+                - generic [ref=e3445]:
+                  - img "u/Mescallan avatar" [ref=e3450]
+                  - generic [ref=e3451]:
+                    - link "u/Mescallan" [ref=e3454] [cursor=pointer]:
+                      - /url: /user/Mescallan/
+                    - generic [ref=e3456]: "@_Stition"
+                - generic [ref=e3458]:
+                  - img "u/AutoModerator avatar" [ref=e3463]
+                  - link "u/AutoModerator" [ref=e3467] [cursor=pointer]:
+                    - /url: /user/AutoModerator/
+                - link "View all moderators" [ref=e3468] [cursor=pointer]:
+                  - /url: /mod/QuantifiedSelf/moderators/
+                  - generic [ref=e3470]: View all moderators
+          - generic [ref=e3472]:
+            - link "Reddit Rules" [ref=e3475] [cursor=pointer]:
+              - /url: https://www.redditinc.com/policies/content-policy
+            - link "Privacy Policy" [ref=e3478] [cursor=pointer]:
+              - /url: https://www.reddit.com/policies/privacy-policy
+            - link "User Agreement" [ref=e3481] [cursor=pointer]:
+              - /url: https://www.redditinc.com/policies/user-agreement
+            - link "Your Privacy Choices" [ref=e3484] [cursor=pointer]:
+              - /url: https://support.reddithelp.com/hc/articles/43980704794004
+            - link "Accessibility" [ref=e3487] [cursor=pointer]:
+              - /url: https://support.reddithelp.com/hc/sections/38303584022676-Accessibility
+            - link "Reddit, Inc. © 2026. All rights reserved." [ref=e3489] [cursor=pointer]:
+              - /url: https://redditinc.com

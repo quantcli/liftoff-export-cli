@@ -1,0 +1,124 @@
+- generic [ref=e1]:
+  - link "DEV Community Home" [ref=e2] [cursor=pointer]:
+    - /url: /
+    - img "DEV Community" [ref=e3]
+  - generic [ref=e5]:
+    - generic [ref=e6]: New Post - DEV Community
+    - main [ref=e7]:
+      - form "Edit post" [ref=e8]:
+        - generic [ref=e9]:
+          - link "DEV Community Home" [ref=e11] [cursor=pointer]:
+            - /url: /
+            - img "DEV Community" [ref=e12]
+          - generic [ref=e14]: Create Post
+          - navigation "View post modes" [ref=e15]:
+            - list [ref=e16]:
+              - listitem [ref=e17]:
+                - button "Edit" [ref=e18] [cursor=pointer]
+              - listitem [ref=e19]:
+                - button "Preview" [active] [ref=e20] [cursor=pointer]
+          - button "Close the editor" [ref=e22] [cursor=pointer]:
+            - img
+        - generic [ref=e23]: Preview loaded
+        - article [ref=e833]:
+          - generic [ref=e835]:
+            - heading "I pointed Claude at mitmproxy and it reverse-engineered my gym app's API" [level=1] [ref=e836]
+            - link "# aigoclifitness" [ref=e838] [cursor=pointer]:
+              - /url: /t/aigoclifitness
+              - generic [ref=e839]: "#"
+              - text: aigoclifitness
+          - generic [ref=e841]:
+            - paragraph [ref=e842]: "I track my workouts in Liftoff, a gym tracking app. The app is great for logging sets and reps, but I wanted Claude to help me analyze my training — suggest programming changes, spot plateaus, flag imbalances. The problem: there's no export button. My data was locked inside the app."
+            - paragraph [ref=e843]: So I asked Claude to figure it out.
+            - heading "Claude runs mitmproxy" [level=2] [ref=e844]:
+              - link:
+                - /url: "#claude-runs-mitmproxy"
+              - text: Claude runs mitmproxy
+            - paragraph [ref=e845]: I told Claude I wanted to intercept my Liftoff app's traffic. It walked me through every step — installing mitmproxy, configuring my iPhone's proxy settings, installing the CA certificate for HTTPS decryption. All I did was follow instructions and tap through screens on my phone.
+            - paragraph [ref=e846]: Then Claude ran mitmdump, told me to open Liftoff and scroll through my workouts, and read the captured traffic itself.
+            - heading "Claude reverse-engineers the API" [level=2] [ref=e847]:
+              - link:
+                - /url: "#claude-reverseengineers-the-api"
+              - text: Claude reverse-engineers the API
+            - paragraph [ref=e848]:
+              - text: From the mitmdump output, Claude figured out that Liftoff uses tRPC — a TypeScript RPC framework that batches requests into a specific envelope format. The API lives at a versioned subdomain (
+              - code [ref=e849]: v2-12-2.api.getgymbros.com
+              - text: ) and expects an iOS user-agent string.
+            - paragraph [ref=e850]: "Claude mapped out the entire API:"
+            - list [ref=e851]:
+              - listitem [ref=e852]:
+                - strong [ref=e853]: Authentication flow
+                - text: — a
+                - code [ref=e854]: user.signIn
+                - text: endpoint that returns access and refresh tokens, with a
+                - code [ref=e855]: user.refreshToken
+                - text: endpoint for renewal
+              - listitem [ref=e856]:
+                - strong [ref=e857]: The workout endpoint
+                - text: —
+                - code [ref=e858]: post.getMyPosts
+                - text: returns every workout you've ever logged
+              - listitem [ref=e859]:
+                - strong [ref=e860]: Exercise type codes
+                - text: —
+                - code [ref=e861]: WR
+                - text: for weight/reps,
+                - code [ref=e862]: AB
+                - text: for assisted bodyweight,
+                - code [ref=e863]: BR
+                - text: for bodyweight plus resistance,
+                - code [ref=e864]: DD
+                - text: for distance/duration
+              - listitem [ref=e865]:
+                - strong [ref=e866]: Set data structure
+                - text: — each set has a type (warmup vs working), and two inputs whose meaning changes based on exercise type
+            - paragraph [ref=e867]: I didn't read a single packet. Claude did all of it.
+            - heading "Claude builds the CLI" [level=2] [ref=e868]:
+              - link:
+                - /url: "#claude-builds-the-cli"
+              - text: Claude builds the CLI
+            - paragraph [ref=e869]: Once Claude understood the API, it wrote a Go CLI using Cobra. It handled auth token storage, automatic token refresh, and the tRPC request format.
+            - paragraph [ref=e870]: "The tool grew from there:"
+            - list [ref=e871]:
+              - listitem [ref=e872]:
+                - code [ref=e873]: workouts list
+                - text: — export workouts in fitdown or JSON, filter by date or exercise
+              - listitem [ref=e874]:
+                - code [ref=e875]: workouts stats
+                - text: — per-exercise volume summaries with monthly ASCII bar charts
+              - listitem [ref=e876]:
+                - code [ref=e877]: bodyweights stats
+                - text: — trend analysis with plateau detection
+            - paragraph [ref=e878]: "I set up goreleaser for multi-platform builds and a Homebrew tap for easy installation:"
+            - code [ref=e881]: brew tap DTTerastar/tap brew install liftoff-export
+            - heading "The full circle" [level=2] [ref=e882]:
+              - link:
+                - /url: "#the-full-circle"
+              - text: The full circle
+            - paragraph [ref=e883]: "Here's the part I like most: the whole reason I built this was to pipe my workout data back to Claude."
+            - paragraph [ref=e884]:
+              - text: Now I can run
+              - code [ref=e885]: liftoff-export workouts list --since 6m --json
+              - text: and hand Claude six months of structured training data. It can see my actual sets, reps, and weights across every exercise. From there it helps me with programming — what to change, where I'm stalling, what's working.
+            - paragraph [ref=e886]: Claude reverse-engineered the API, built the tool to extract my data, and now uses that data to coach my training. The AI closed its own loop.
+            - heading "Links" [level=2] [ref=e887]:
+              - link:
+                - /url: "#links"
+              - text: Links
+            - list [ref=e888]:
+              - listitem [ref=e889]:
+                - text: "GitHub:"
+                - link "DTTerastar/liftoff-export-cli" [ref=e890] [cursor=pointer]:
+                  - /url: https://github.com/DTTerastar/liftoff-export-cli
+              - listitem [ref=e891]:
+                - text: "Liftoff app:"
+                - link "getgymbros.com" [ref=e892] [cursor=pointer]:
+                  - /url: https://getgymbros.com
+        - generic [ref=e74]:
+          - button "Publish" [ref=e75] [cursor=pointer]
+          - button "Save draft" [ref=e76] [cursor=pointer]
+          - button "Advanced Post options" [ref=e77] [cursor=pointer]:
+            - img
+          - button "Revert new changes" [ref=e79] [cursor=pointer]
+    - button "Toggle AI Editor Helper" [ref=e78] [cursor=pointer]:
+      - generic: 🤖

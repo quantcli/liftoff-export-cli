@@ -1,0 +1,285 @@
+- generic [ref=e1]:
+  - generic [ref=e3]:
+    - generic [ref=e4]:
+      - complementary "Skip links" [ref=e607]:
+        - link "Skip to main content" [ref=e608] [cursor=pointer]:
+          - /url: /
+          - generic [ref=e7]: Skip to main content
+        - button "Keyboard shortcuts" [ref=e609]:
+          - generic [ref=e9]: Keyboard shortcuts
+        - link "Accessibility Help external, opens new window" [ref=e610] [cursor=pointer]:
+          - /url: https://cloud.google.com/docs/accessibility?hl=en_US
+          - generic [ref=e11]:
+            - text: Accessibility Help
+            - generic "external, opens new window" [ref=e611]:
+              - img "external, opens new window" [ref=e612]:
+                - img [ref=e14]
+        - link "Accessibility Feedback external, opens new window" [ref=e613] [cursor=pointer]:
+          - /url: https://support.google.com/accessibility/contact/feedback?hl=en_US
+          - generic [ref=e17]:
+            - text: Accessibility Feedback
+            - generic "external, opens new window" [ref=e614]:
+              - img "external, opens new window" [ref=e615]:
+                - img [ref=e20]
+      - banner [ref=e23]:
+        - generic [ref=e24]:
+          - navigation [ref=e27]:
+            - button "Navigation menu (.)" [ref=e616] [cursor=pointer]:
+              - img [ref=e30]
+          - link "Google Cloud Platform Home" [ref=e617] [cursor=pointer]:
+            - /url: /
+            - generic:
+              - img
+          - button "You're currently working in My First Project. Hit enter to switch projects, folders, or organizations" [ref=e618]:
+            - generic [ref=e41]:
+              - img [ref=e142]
+              - generic [ref=e43]: My First Project
+        - button "Open search" [ref=e619] [cursor=pointer]:
+          - img [ref=e147]
+        - generic [ref=e52]:
+          - generic [ref=e53]:
+            - button "Open or close Gemini Cloud Assist chat (Option G)" [ref=e620] [cursor=pointer]:
+              - img [ref=e59]
+            - button "Free trial status" [ref=e621] [cursor=pointer]:
+              - img [ref=e155]
+            - button "Activate Cloud Shell (G then S)" [ref=e622] [cursor=pointer]:
+              - img [ref=e159]
+            - button "Task in progress. Open notifications" [ref=e623] [cursor=pointer]:
+              - generic:
+                - progressbar:
+                  - generic:
+                    - img
+                  - generic:
+                    - generic:
+                      - generic:
+                        - img
+                      - generic:
+                        - img
+                      - generic:
+                        - img
+                - generic:
+                  - generic:
+                    - img
+            - button "Settings and utilities" [ref=e624] [cursor=pointer]:
+              - img [ref=e77]
+          - 'button "Account: Darrell Turner (terastar@gmail.com)" [ref=e625]':
+            - img [ref=e166]
+    - main [ref=e102]:
+      - generic [ref=e179]:
+        - generic [ref=e182]:
+          - button "Back to previous page" [ref=e626] [cursor=pointer]:
+            - img [ref=e188]
+          - heading "Product details" [level=1] [ref=e627]:
+            - generic [ref=e193]: Product details
+        - generic [ref=e197]:
+          - generic [ref=e202]:
+            - img [ref=e205]
+            - generic [ref=e206]:
+              - heading "Custom Search API" [level=1] [ref=e628]
+              - paragraph [ref=e208]:
+                - link "Google" [ref=e629] [cursor=pointer]:
+                  - /url: /marketplace/browse?filter=partner:Google&project=crypto-iris-485515-v4
+              - paragraph [ref=e211]: Retrieve and display search results from Google Custom Search programmatically.
+              - generic [ref=e214]:
+                - progressbar "Loading" [active] [ref=e630]:
+                  - generic [ref=e631]:
+                    - img [ref=e632]:
+                      - img [ref=e634]
+                      - generic [ref=e637]:
+                        - img [ref=e639]
+                        - img [ref=e642]
+                        - img [ref=e645]
+                    - generic [ref=e647]: Loading
+                - link "try this API, with an external link" [ref=e648]:
+                  - generic [ref=e224]:
+                    - text: Try this API
+                    - img "external" [ref=e649]:
+                      - img [ref=e226]:
+                        - img [ref=e227]
+          - navigation "Product Information" [ref=e650]:
+            - generic [ref=e230]:
+              - tablist [ref=e231]:
+                - generic [ref=e234]:
+                  - tab "Overview" [selected] [ref=e651] [cursor=pointer]:
+                    - generic [ref=e237]: Overview
+                  - tab "Pricing" [ref=e652] [cursor=pointer]:
+                    - generic [ref=e240]: Pricing
+                  - tab "Documentation" [ref=e653] [cursor=pointer]:
+                    - generic [ref=e243]: Documentation
+                  - tab "Support" [ref=e654] [cursor=pointer]:
+                    - generic [ref=e246]: Support
+                  - tab "Related Products" [ref=e655] [cursor=pointer]:
+                    - generic [ref=e249]: Related Products
+              - tabpanel "Overview"
+          - generic [ref=e250]:
+            - generic [ref=e251]:
+              - heading "Overview" [level=2] [ref=e656]
+              - generic [ref=e253]:
+                - generic [ref=e256]:
+                  - generic [ref=e257]: The JSON Custom Search API lets you develop websites and applications to retrieve and display search results from Google Custom Search programmatically. With this API, you can use RESTful requests to get either web search or image search results in JSON format.
+                  - generic [ref=e258]:
+                    - heading "About Google" [level=3] [ref=e657]
+                    - generic [ref=e260]: Google's mission is to organize the world's information and make it universally accessible and useful. Through products and platforms like Search, Maps, Gmail, Android, Google Play, Chrome and YouTube, Google plays a meaningful role in the daily lives of billions of people.
+                - generic [ref=e262]:
+                  - heading "Additional details" [level=3] [ref=e658]
+                  - list [ref=e264]:
+                    - listitem [ref=e265]:
+                      - generic [ref=e266]:
+                        - generic [ref=e267]: "Type:"
+                        - link "Browse all SaaS & APIs products" [ref=e659] [cursor=pointer]:
+                          - /url: /apis/library/browse?filter=solution-type:saas&project=crypto-iris-485515-v4
+                          - text: SaaS & APIs
+                    - listitem [ref=e270]:
+                      - generic [ref=e271]:
+                        - generic [ref=e272]: "Last product update:"
+                        - text: 7/21/21
+                    - listitem [ref=e273]:
+                      - generic [ref=e274]:
+                        - generic [ref=e275]: "Category:"
+                        - link "Browse all DevOps products" [ref=e660] [cursor=pointer]:
+                          - /url: /apis/library/browse?filter=category:developer-tools&project=crypto-iris-485515-v4
+                          - text: DevOps
+                    - listitem [ref=e278]:
+                      - generic [ref=e279]:
+                        - generic [ref=e280]: "Service name:"
+                        - generic [ref=e281]: customsearch.googleapis.com
+                    - listitem [ref=e282]
+            - generic [ref=e284]:
+              - heading "Pricing" [level=3] [ref=e661]
+              - generic [ref=e287]:
+                - generic [ref=e293]:
+                  - group [ref=e295]:
+                    - button "Queries" [ref=e662] [cursor=pointer]:
+                      - generic [ref=e298]:
+                        - generic [ref=e299]: Queries
+                        - img [ref=e301]:
+                          - img [ref=e302]
+                  - generic [ref=e304]:
+                    - generic [ref=e306]:
+                      - paragraph [ref=e307]: FREE
+                      - generic [ref=e308]: USD 0.00
+                      - generic [ref=e309]: /count
+                      - generic [ref=e310]:
+                        - generic [ref=e311]: "Starting after: 0"
+                        - generic [ref=e312]: count/day
+                    - generic [ref=e314]:
+                      - paragraph [ref=e315]: TIER 1
+                      - generic [ref=e316]: USD 0.005
+                      - generic [ref=e317]: /count
+                      - generic [ref=e318]:
+                        - generic [ref=e319]: "Starting after: 100"
+                        - generic [ref=e320]: count/day
+                - paragraph [ref=e322]:
+                  - generic [ref=e323]:
+                    - text: "Note: Additional charges may also apply from infrastructure you use to call the API."
+                    - generic [ref=e324]:
+                      - text: If you pay in a currency other than USD, the prices listed in your currency on
+                      - link "Google Cloud SKUs external, opens new window" [ref=e663] [cursor=pointer]:
+                        - /url: https://cloud.google.com/skus/
+                        - text: Google Cloud SKUs
+                        - img "external, opens new window" [ref=e664]:
+                          - img [ref=e327]
+                      - text: apply. Please refer to
+                      - link "Google Cloud Price List external, opens new window" [ref=e665] [cursor=pointer]:
+                        - /url: https://cloud.google.com/pricing/list
+                        - text: Google Cloud Price List
+                        - img "external, opens new window" [ref=e666]:
+                          - img [ref=e331]
+                      - text: for the latest pricing.
+                - paragraph [ref=e334]: We’re currently using USD to calculate costs, which can be changed in the billing setup. Final prices in your bill will be set in accordance with your billing setup, and might be subject to exchange rates.
+            - generic [ref=e336]:
+              - heading "Tutorials and documentation" [level=3] [ref=e667]
+              - link "Learn more external, opens new window" [ref=e668] [cursor=pointer]:
+                - /url: https://developers.google.com/custom-search/json-api/v1/overview?hl=en_US
+                - generic [ref=e341]: Learn more
+                - img "external, opens new window" [ref=e669]:
+                  - img [ref=e343]
+            - generic [ref=e346]:
+              - heading "Support" [level=3] [ref=e670]
+              - link "Learn more about support for Custom Search API external, opens new window" [ref=e671] [cursor=pointer]:
+                - /url: https://developers.google.com/custom-search/json-api/v1/overview?hl=en_US
+                - generic [ref=e350]: Learn more
+                - img "external, opens new window" [ref=e672]:
+                  - img [ref=e352]
+            - generic [ref=e355]:
+              - heading "Terms of Service" [level=3] [ref=e673]
+              - paragraph [ref=e358]:
+                - text: "By using this product you agree to the terms and conditions of the following licenses:"
+                - generic [ref=e359]:
+                  - link "Google APIs Terms of Service" [ref=e674] [cursor=pointer]:
+                    - /url: /tos?id=universal
+                  - text: ","
+                - generic [ref=e361]:
+                  - link "Custom Search API" [ref=e675] [cursor=pointer]:
+                    - /url: /tos?id=customsearch
+                  - text: .
+            - generic [ref=e365]:
+              - heading "Related Products" [level=2] [ref=e676]
+              - heading "Customers who use this product also use the following products" [level=2] [ref=e677]
+              - region [ref=e370]:
+                - list [ref=e371]:
+                  - listitem [ref=e372]:
+                    - 'link "Gemini API: Build with latest models from Google Deepmind using the Gemini API for Developers" [ref=e678] [cursor=pointer]':
+                      - /url: /apis/library/generativelanguage.googleapis.com?project=crypto-iris-485515-v4
+                      - generic [ref=e374]:
+                        - img [ref=e376]
+                        - heading "Gemini API" [level=2] [ref=e679]
+                        - generic [ref=e378]: Google
+                        - paragraph [ref=e379]: Build with latest models from Google Deepmind using the Gemini API for Developers
+                  - listitem [ref=e380]:
+                    - 'link "Gmail API: View and manage Gmail mailbox data." [ref=e680] [cursor=pointer]':
+                      - /url: /apis/library/gmail.googleapis.com?project=crypto-iris-485515-v4
+                      - generic [ref=e382]:
+                        - img [ref=e384]
+                        - heading "Gmail API" [level=2] [ref=e681]
+                        - generic [ref=e386]:
+                          - text: Google Enterprise API
+                          - button "Help popup" [ref=e682]:
+                            - img [ref=e390]
+                        - paragraph [ref=e392]: View and manage Gmail mailbox data.
+                  - listitem [ref=e393]:
+                    - 'link "Google Drive API: Create and manage resources in Google Drive." [ref=e683] [cursor=pointer]':
+                      - /url: /apis/library/drive.googleapis.com?project=crypto-iris-485515-v4
+                      - generic [ref=e395]:
+                        - img [ref=e397]
+                        - heading "Google Drive API" [level=2] [ref=e684]
+                        - generic [ref=e399]:
+                          - text: Google Enterprise API
+                          - button "Help popup" [ref=e685]:
+                            - img [ref=e403]
+                        - paragraph [ref=e405]: Create and manage resources in Google Drive.
+                  - listitem [ref=e406]:
+                    - 'link "Google Calendar API: Manage calendars and events in Google Calendar." [ref=e686] [cursor=pointer]':
+                      - /url: /apis/library/calendar-json.googleapis.com?project=crypto-iris-485515-v4
+                      - generic [ref=e408]:
+                        - img [ref=e410]
+                        - heading "Google Calendar API" [level=2] [ref=e687]
+                        - generic [ref=e412]:
+                          - text: Google Enterprise API
+                          - button "Help popup" [ref=e688]:
+                            - img [ref=e416]
+                        - paragraph [ref=e418]: Manage calendars and events in Google Calendar.
+                  - listitem [ref=e419]:
+                    - 'link "Google Sheets API: Read and write Google Sheets data" [ref=e689] [cursor=pointer]':
+                      - /url: /apis/library/sheets.googleapis.com?project=crypto-iris-485515-v4
+                      - generic [ref=e421]:
+                        - img [ref=e423]
+                        - heading "Google Sheets API" [level=2] [ref=e690]
+                        - generic [ref=e425]:
+                          - text: Google Enterprise API
+                          - button "Help popup" [ref=e691]:
+                            - img [ref=e429]
+                        - paragraph [ref=e431]: Read and write Google Sheets data
+                  - listitem [ref=e432]:
+                    - 'link "YouTube Data API v3: The YouTube Data API v3 is an API that provides access to YouTube data, such as videos, playlists,…" [ref=e692] [cursor=pointer]':
+                      - /url: /apis/library/youtube.googleapis.com?project=crypto-iris-485515-v4
+                      - generic [ref=e434]:
+                        - img [ref=e436]
+                        - heading "YouTube Data API v3" [level=2] [ref=e693]
+                        - generic [ref=e438]: Google
+                        - paragraph [ref=e439]: The YouTube Data API v3 is an API that provides access to YouTube data, such as videos, playlists,…
+  - iframe [ref=e127]:
+    
+  - iframe [ref=e128]:
+    
+  - paragraph [ref=e694]: Loading
