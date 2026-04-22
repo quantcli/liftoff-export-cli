@@ -105,6 +105,7 @@ func loadBodyweightEntries(sinceFlag string) ([]bodyweightEntry, error) {
 		if err != nil {
 			continue
 		}
+		date = date.Local()
 		if !since.IsZero() && date.Before(since) {
 			continue
 		}

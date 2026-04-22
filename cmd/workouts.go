@@ -87,7 +87,7 @@ var listCmd = &cobra.Command{
 
 func parseSince(s string) (time.Time, error) {
 	// Try absolute date first
-	if t, err := time.Parse("2006-01-02", s); err == nil {
+	if t, err := time.ParseInLocation("2006-01-02", s, time.Local); err == nil {
 		return t, nil
 	}
 	// Try relative: e.g. 30d, 4w, 6m, 1y
@@ -137,7 +137,7 @@ var showCmd = &cobra.Command{
 			if err != nil {
 				continue
 			}
-			if t.Format("2006-01-02") == target.Format("2006-01-02") {
+			if t.Local().Format("2006-01-02") == target.Format("2006-01-02") {
 				matched = append(matched, p)
 			}
 		}
@@ -162,7 +162,7 @@ func parseDate(s string) (time.Time, error) {
 	case "yesterday":
 		return now.AddDate(0, 0, -1), nil
 	}
-	if t, err := time.Parse("2006-01-02", s); err == nil {
+	if t, err := time.ParseInLocation("2006-01-02", s, time.Local); err == nil {
 		return t, nil
 	}
 	return time.Time{}, fmt.Errorf("invalid date: %q (use YYYY-MM-DD, today, or yesterday)", s)
@@ -223,7 +223,7 @@ func printFitdown(posts []Post) error {
 		if err != nil {
 			fmt.Printf("Workout %s\n", post.StartedAt)
 		} else {
-			fmt.Printf("Workout %s\n", t.Format("January 2, 2006"))
+			fmt.Printf("Workout %s\n", t.Local().Format("January 2, 2006"))
 		}
 
 		if post.SessionNotes != "" {

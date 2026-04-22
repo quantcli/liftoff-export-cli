@@ -103,7 +103,7 @@ func buildSummaries(posts []Post) []ExerciseSummary {
 	for _, p := range posts {
 		bw, _ := strconv.ParseFloat(strings.TrimSpace(p.Bodyweight), 64)
 		t, _ := time.Parse(time.RFC3339Nano, p.StartedAt)
-		date := t.Format("2006-01-02")
+		date := t.Local().Format("2006-01-02")
 
 		for _, e := range p.ExerciseData {
 			ss := sessionStats(e, bw)
