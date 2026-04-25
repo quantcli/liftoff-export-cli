@@ -4,19 +4,57 @@ import (
 	"bytes"
 	"encoding/json"
 	"fmt"
+	"io"
 	"net/http"
 	"net/url"
 	"os"
 	"path/filepath"
 	"strings"
+	"sync"
 	"time"
 )
 
 const (
-	apiBase          = "https://v2-12-2.api.getgymbros.com"
+	defaultAPIBase   = "https://v2-12-3.api.getgymbros.com"
 	refreshProcedure = "user.refreshToken"
 	userAgent        = "Liftoff/528 CFNetwork/3860.400.51 Darwin/25.3.0"
 )
+
+const apiBaseEnvVar = "LIFTOFF_API_BASE"
+
+var (
+	resolveOnce sync.Once
+	resolved    string
+)
+
+// ResolveAPIBase returns the env override LIFTOFF_API_BASE if set, else the
+// compiled-in default. Liftoff mints version-pinned hosts (e.g. v2-13-0) and
+// retires older ones; the env var lets users dodge a deprecation without
+// waiting for a new release. Logged once when an override is in effect so
+// users can tell which endpoint is active when something breaks.
+func ResolveAPIBase() string {
+	resolveOnce.Do(func() {
+		if v := strings.TrimSpace(os.Getenv(apiBaseEnvVar)); v != "" {
+			resolved = strings.TrimRight(v, "/")
+			fmt.Fprintf(os.Stderr, "liftoff-export: using %s=%s\n", apiBaseEnvVar, resolved)
+		} else {
+			resolved = defaultAPIBase
+		}
+	})
+	return resolved
+}
+
+// deprecatedMarker is the substring the Liftoff backend returns when the
+// version-pinned host this binary targets has been retired.
+const deprecatedMarker = "server is deprecated"
+
+func DeprecatedError(action string) error {
+	return fmt.Errorf("%s: Liftoff retired the API version this binary targets (%s). "+
+		"Workarounds: (a) update to a newer liftoff-export release, or "+
+		"(b) set %s=https://vX-Y-Z.api.getgymbros.com to point at a current version. "+
+		"The Liftoff iOS/Android app shows its version under Settings → About; matching that is usually safe.",
+		action, ResolveAPIBase(), apiBaseEnvVar)
+}
 
 type TokenStore struct {
 	AccessToken  string    `json:"access_token"`
@@ -51,7 +89,7 @@ func Refresh(refreshToken string) (*TokenStore, error) {
 		"0": map[string]any{"json": refreshToken},
 	})
 	reqURL := fmt.Sprintf("%s/api/trpc/%s?batch=1&input=%s",
-		apiBase, refreshProcedure, url.QueryEscape(string(input)))
+		ResolveAPIBase(), refreshProcedure, url.QueryEscape(string(input)))
 
 	req, _ := http.NewRequest("GET", reqURL, nil)
 	req.Header.Set("Accept", "*/*")
@@ -62,6 +100,14 @@ func Refresh(refreshToken string) (*TokenStore, error) {
 		return nil, err
 	}
 	defer resp.Body.Close()
+
+	body, err := io.ReadAll(resp.Body)
+	if err != nil {
+		return nil, err
+	}
+	if strings.Contains(strings.ToLower(string(body)), deprecatedMarker) {
+		return nil, DeprecatedError("token refresh")
+	}
 
 	var batch []struct {
 		Result *struct {
@@ -76,8 +122,8 @@ func Refresh(refreshToken string) (*TokenStore, error) {
 			JSON struct{ Message string `json:"message"` } `json:"json"`
 		} `json:"error"`
 	}
-	if err := json.NewDecoder(resp.Body).Decode(&batch); err != nil {
-		return nil, err
+	if err := json.Unmarshal(body, &batch); err != nil {
+		return nil, fmt.Errorf("parse tRPC response: %w\nbody: %s", err, string(body))
 	}
 	if len(batch) == 0 || batch[0].Error != nil {
 		msg := "unknown error"
@@ -117,7 +163,7 @@ func Login(email, password string) error {
 			},
 		},
 	})
-	reqURL := fmt.Sprintf("%s/api/trpc/user.signIn?batch=1", apiBase)
+	reqURL := fmt.Sprintf("%s/api/trpc/user.signIn?batch=1", ResolveAPIBase())
 	req, _ := http.NewRequest("POST", reqURL, bytes.NewReader(input))
 	req.Header.Set("Content-Type", "application/json")
 	req.Header.Set("Accept", "*/*")
@@ -128,6 +174,14 @@ func Login(email, password string) error {
 		return err
 	}
 	defer resp.Body.Close()
+
+	body, err := io.ReadAll(resp.Body)
+	if err != nil {
+		return err
+	}
+	if strings.Contains(strings.ToLower(string(body)), deprecatedMarker) {
+		return DeprecatedError("login")
+	}
 
 	var batch []struct {
 		Result *struct {
@@ -143,8 +197,8 @@ func Login(email, password string) error {
 			JSON struct{ Message string `json:"message"` } `json:"json"`
 		} `json:"error"`
 	}
-	if err := json.NewDecoder(resp.Body).Decode(&batch); err != nil {
-		return err
+	if err := json.Unmarshal(body, &batch); err != nil {
+		return fmt.Errorf("parse tRPC response: %w\nbody: %s", err, string(body))
 	}
 	if len(batch) == 0 || batch[0].Result == nil {
 		msg := "unknown error"
