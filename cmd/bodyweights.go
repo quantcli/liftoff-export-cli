@@ -25,6 +25,7 @@ type monthAvg struct {
 var (
 	bodyweightsListSinceFlag  string
 	bodyweightsListUntilFlag  string
+	bodyweightsListFormatFlag string
 	bodyweightsStatsSinceFlag string
 	bodyweightsStatsUntilFlag string
 )
@@ -34,13 +35,34 @@ var bodyweightsCmd = &cobra.Command{
 	Short: "Bodyweight commands",
 }
 
+// bodyweightJSON is the on-the-wire shape for `bodyweights list --format json`.
+// Date is the local calendar day the post was logged; weight is in pounds.
+type bodyweightJSON struct {
+	Date   string  `json:"date"`
+	Weight float64 `json:"weight"`
+}
+
 var bodyweightsListCmd = &cobra.Command{
 	Use:   "list",
 	Short: "List recorded bodyweights",
 	RunE: func(cmd *cobra.Command, args []string) error {
+		format, err := validateFormat(bodyweightsListFormatFlag)
+		if err != nil {
+			return err
+		}
 		entries, err := loadBodyweightEntries(bodyweightsListSinceFlag, bodyweightsListUntilFlag)
 		if err != nil {
 			return err
+		}
+		if format == "json" {
+			rows := make([]bodyweightJSON, 0, len(entries))
+			for _, entry := range entries {
+				rows = append(rows, bodyweightJSON{
+					Date:   entry.date.Format("2006-01-02"),
+					Weight: entry.weight,
+				})
+			}
+			return printJSON(rows)
 		}
 		if len(entries) == 0 {
 			fmt.Println("No bodyweights found.")
@@ -78,6 +100,7 @@ func init() {
 
 	bodyweightsListCmd.Flags().StringVar(&bodyweightsListSinceFlag, "since", "", "Filter entries on or after date (today, yesterday, YYYY-MM-DD, or Nd/Nw/Nm/Ny)")
 	bodyweightsListCmd.Flags().StringVar(&bodyweightsListUntilFlag, "until", "", "Filter entries through date, inclusive (today, yesterday, YYYY-MM-DD, or Nd/Nw/Nm/Ny)")
+	bodyweightsListCmd.Flags().StringVar(&bodyweightsListFormatFlag, "format", "markdown", "Output format: markdown (default) or json")
 	bodyweightsStatsCmd.Flags().StringVar(&bodyweightsStatsSinceFlag, "since", "", "Filter entries on or after date (today, yesterday, YYYY-MM-DD, or Nd/Nw/Nm/Ny)")
 	bodyweightsStatsCmd.Flags().StringVar(&bodyweightsStatsUntilFlag, "until", "", "Filter entries through date, inclusive (today, yesterday, YYYY-MM-DD, or Nd/Nw/Nm/Ny)")
 }

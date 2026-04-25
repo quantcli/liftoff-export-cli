@@ -65,6 +65,9 @@ var statsCmd = &cobra.Command{
 			posts = filterExercises(posts, statsExerciseFlag)
 		}
 		if len(posts) == 0 {
+			if format == "json" {
+				return printJSON([]ExerciseSummary{})
+			}
 			fmt.Println("No workouts found.")
 			return nil
 		}
