@@ -15,7 +15,7 @@ var (
 	statsSinceFlag    string
 	statsUntilFlag    string
 	statsExerciseFlag string
-	statsJSONFlag     bool
+	statsFormatFlag   string
 	statsDetailFlag   bool
 )
 
@@ -43,6 +43,10 @@ var statsCmd = &cobra.Command{
 	Use:   "stats",
 	Short: "Show per-exercise statistics across workouts",
 	RunE: func(cmd *cobra.Command, args []string) error {
+		format, err := validateFormat(statsFormatFlag)
+		if err != nil {
+			return err
+		}
 		c := client.New()
 		var posts []Post
 		if err := c.Query("post.getMyPosts", nil, &posts); err != nil {
@@ -71,7 +75,7 @@ var statsCmd = &cobra.Command{
 		})
 
 		summaries := buildSummaries(posts)
-		if statsJSONFlag {
+		if format == "json" {
 			return printJSON(summaries)
 		}
 		if statsDetailFlag {
@@ -88,7 +92,7 @@ func init() {
 	statsCmd.Flags().StringVar(&statsSinceFlag, "since", "", "Filter workouts on or after date (today, yesterday, YYYY-MM-DD, or Nd/Nw/Nm/Ny)")
 	statsCmd.Flags().StringVar(&statsUntilFlag, "until", "", "Filter workouts through date, inclusive (today, yesterday, YYYY-MM-DD, or Nd/Nw/Nm/Ny)")
 	statsCmd.Flags().StringVar(&statsExerciseFlag, "exercise", "", "Filter to exercises matching this name (word-prefix match)")
-	statsCmd.Flags().BoolVar(&statsJSONFlag, "json", false, "Output as JSON")
+	statsCmd.Flags().StringVar(&statsFormatFlag, "format", "markdown", "Output format: markdown (default) or json")
 	statsCmd.Flags().BoolVar(&statsDetailFlag, "detail", false, "Show per-session breakdown")
 }
 

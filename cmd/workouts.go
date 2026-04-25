@@ -47,7 +47,7 @@ type Post struct {
 	ExerciseData    []ExerciseData `json:"exerciseData"`
 }
 
-var listJSONFlag bool
+var listFormatFlag string
 var listSinceFlag string
 var listUntilFlag string
 var listExerciseFlag string
@@ -56,6 +56,10 @@ var listCmd = &cobra.Command{
 	Use:   "list",
 	Short: "List all your workouts",
 	RunE: func(cmd *cobra.Command, args []string) error {
+		format, err := validateFormat(listFormatFlag)
+		if err != nil {
+			return err
+		}
 		c := client.New()
 		var posts []Post
 		// post.getMyPosts returns all the user's own workouts (Memories view)
@@ -74,11 +78,26 @@ var listCmd = &cobra.Command{
 		if listExerciseFlag != "" {
 			posts = filterExercises(posts, listExerciseFlag)
 		}
-		if listJSONFlag {
+		if format == "json" {
 			return printJSON(posts)
 		}
 		return printFitdown(posts)
 	},
+}
+
+// validateFormat checks --format against the quantcli shared output set
+// (CONTRACT §4) and normalizes it to a canonical value. Liftoff currently
+// supports markdown (the default; fitdown-style) and json. "md" is accepted
+// as an alias.
+func validateFormat(format string) (string, error) {
+	switch format {
+	case "", "markdown", "md":
+		return "markdown", nil
+	case "json":
+		return "json", nil
+	default:
+		return "", fmt.Errorf("unknown --format %q (use markdown or json)", format)
+	}
 }
 
 // parseDateValue parses --since / --until / show argument values.
@@ -159,13 +178,17 @@ func filterByWindow(posts []Post, since, until time.Time) []Post {
 	return out
 }
 
-var showJSONFlag bool
+var showFormatFlag string
 
 var showCmd = &cobra.Command{
 	Use:   "show <date>",
 	Short: "Show workout(s) for a given date (e.g. 2025-03-08, today, yesterday)",
 	Args:  cobra.ExactArgs(1),
 	RunE: func(cmd *cobra.Command, args []string) error {
+		format, err := validateFormat(showFormatFlag)
+		if err != nil {
+			return err
+		}
 		target, err := parseDateValue(args[0])
 		if err != nil {
 			return err
@@ -196,7 +219,7 @@ var showCmd = &cobra.Command{
 			return nil
 		}
 
-		if showJSONFlag {
+		if format == "json" {
 			return printJSON(matched)
 		}
 		return printFitdown(matched)
@@ -206,8 +229,10 @@ var showCmd = &cobra.Command{
 func init() {
 	workoutsCmd.AddCommand(listCmd)
 	workoutsCmd.AddCommand(showCmd)
-	showCmd.Flags().BoolVar(&showJSONFlag, "json", false, "Output as JSON")
-	listCmd.Flags().BoolVar(&listJSONFlag, "json", false, "Output as JSON instead of fitdown")
+	showCmd.Flags().StringVar(&showFormatFlag, "format", "markdown",
+		"Output format: markdown (default, fitdown-style) or json")
+	listCmd.Flags().StringVar(&listFormatFlag, "format", "markdown",
+		"Output format: markdown (default, fitdown-style) or json")
 	listCmd.Flags().StringVar(&listSinceFlag, "since", "", "Filter workouts on or after date (today, yesterday, YYYY-MM-DD, or Nd/Nw/Nm/Ny)")
 	listCmd.Flags().StringVar(&listUntilFlag, "until", "", "Filter workouts through date, inclusive (today, yesterday, YYYY-MM-DD, or Nd/Nw/Nm/Ny)")
 	listCmd.Flags().StringVar(&listExerciseFlag, "exercise", "", "Filter to exercises matching this name (word-prefix match)")
