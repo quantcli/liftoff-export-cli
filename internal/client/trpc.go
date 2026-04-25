@@ -6,12 +6,10 @@ import (
 	"io"
 	"net/http"
 	"net/url"
+	"strings"
 
 	"github.com/quantcli/liftoff-export-cli/internal/auth"
 )
-
-// Base URL — versioned per Liftoff release. Update via: liftoff config set-url <url>
-const BaseURL = "https://v2-12-2.api.getgymbros.com"
 
 // UserAgent matches the iOS app so the server accepts our requests.
 const UserAgent = "Liftoff/528 CFNetwork/3860.400.51 Darwin/25.3.0"
@@ -24,7 +22,7 @@ type Client struct {
 func New() *Client {
 	return &Client{
 		http:    &http.Client{},
-		baseURL: BaseURL,
+		baseURL: auth.ResolveAPIBase(),
 	}
 }
 
@@ -74,6 +72,10 @@ func (c *Client) Query(procedure string, input any, out any) error {
 	body, err := io.ReadAll(resp.Body)
 	if err != nil {
 		return err
+	}
+
+	if strings.Contains(strings.ToLower(string(body)), "server is deprecated") {
+		return auth.DeprecatedError(fmt.Sprintf("tRPC %s", procedure))
 	}
 
 	if resp.StatusCode != 200 {
