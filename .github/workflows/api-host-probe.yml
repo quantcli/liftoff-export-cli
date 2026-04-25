@@ -1,0 +1,103 @@
+name: Probe Liftoff API host rotation
+
+on:
+  schedule:
+    - cron: '0 14 * * 1'   # Mondays 14:00 UTC (10am EDT / 9am EST)
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-go@v5
+        with:
+          go-version-file: go.mod
+
+      - name: Probe and bump
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          set -euo pipefail
+          file=internal/auth/auth.go
+          current=$(grep -oE 'https://v[0-9]+-[0-9]+-[0-9]+\.api\.getgymbros\.com' "$file" | head -1)
+          [ -n "$current" ] || { echo "::error::could not extract defaultAPIBase"; exit 1; }
+          echo "current=$current"
+
+          # 0 = live, 1 = deprecated, 2 = no/failed response
+          probe() {
+            local body
+            body=$(curl -sS -m 10 "${1}/api/trpc/user.refreshToken?batch=1&input=%7B%220%22%3A%7B%22json%22%3A%22invalid%22%7D%7D" 2>/dev/null) || return 2
+            [ -n "$body" ] || return 2
+            echo "$body" | grep -qi "server is deprecated" && return 1
+            return 0
+          }
+
+          set +e
+          probe "$current"
+          rc=$?
+          set -e
+          if [ $rc -eq 0 ]; then
+            echo "no-op: $current still live"
+            exit 0
+          fi
+          if [ $rc -eq 2 ]; then
+            echo "::warning::current host $current did not respond — leaving as-is"
+            exit 0
+          fi
+
+          echo "current host is deprecated, scanning candidates"
+          ver=$(echo "$current" | grep -oE 'v[0-9]+-[0-9]+-[0-9]+')
+          maj=${ver#v}; maj=${maj%%-*}
+          rest=${ver#v*-}; min=${rest%%-*}; patch=${rest#*-}
+
+          live=""
+          lver=""
+          for spec in \
+            "$maj $min $((patch+1))" "$maj $min $((patch+2))" "$maj $min $((patch+3))" \
+            "$maj $((min+1)) 0" "$maj $((min+1)) 1" "$maj $((min+1)) 2" "$maj $((min+1)) 3" \
+            "$maj $((min+2)) 0" "$maj $((min+2)) 1" "$((maj+1)) 0 0"; do
+            read M m p <<< "$spec"
+            host="https://v${M}-${m}-${p}.api.getgymbros.com"
+            set +e
+            probe "$host"
+            prc=$?
+            set -e
+            if [ $prc -eq 0 ]; then
+              live="$host"
+              lver="v${M}-${m}-${p}"
+              break
+            fi
+          done
+
+          if [ -z "$live" ]; then
+            echo "::error::no live host found in candidate window (looked at patch+1..3, minor+1, minor+2, major+1)"
+            exit 1
+          fi
+
+          echo "found live host: $live"
+
+          # Skip if a PR for this version already exists
+          if gh pr list --search "auto/bump-api-host-${lver} in:head state:open" --json number --jq 'length' | grep -qv '^0$'; then
+            echo "PR already open for ${lver}; skipping"
+            exit 0
+          fi
+
+          branch="auto/bump-api-host-${lver}"
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git checkout -b "$branch"
+          sed -i "s|$current|$live|" "$file"
+          go build ./...
+          go vet ./...
+          git add "$file"
+          git commit -m "fix(auth): bump default API host to ${lver} (auto)"
+          git push -u origin "$branch"
+
+          gh pr create --base main \
+            --title "fix(auth): bump default API host to ${lver}" \
+            --body "Automated probe found \`$current\` returns \"server is deprecated\". \`$live\` is currently live. Triggered by \`.github/workflows/api-host-probe.yml\`. Verify with \`LIFTOFF_API_BASE=$live liftoff-export auth refresh\` before merging."
