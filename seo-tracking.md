@@ -1,1 +1,324 @@
-IyBTRU8gJiBUcmFmZmljIFRyYWNraW5nIC0gbGlmdG9mZi1leHBvcnQtY2xpCgojIyAyMDI2LTA1LTIxCgojIyMgR2l0SHViIFRyYWZmaWMgKDE0LWRheSB3aW5kb3cpCkdJVEhVQl9UT0tFTiBub3QgY29uZmlndXJlZAoKIyMjIEdvb2dsZSBTZWFyY2ggUmFua2luZ3MKLSAibGlmdG9mZi1leHBvcnQtY2xpIjogQVBJIGVycm9yICg0MDMgLSBDdXN0b20gU2VhcmNoIEpTT04gQVBJIG5vdCBlbmFibGVkIGZvciBwcm9qZWN0KQotICJsaWZ0b2ZmIHdvcmtvdXQgZXhwb3J0IjogQVBJIGVycm9yICg0MDMgLSBDdXN0b20gU2VhcmNoIEpTT04gQVBJIG5vdCBlbmFibGVkIGZvciBwcm9qZWN0KQotICJsaWZ0b2ZmIGZpdG5lc3MgQ0xJIjogQVBJIGVycm9yICg0MDMgLSBDdXN0b20gU2VhcmNoIEpTT04gQVBJIG5vdCBlbmFibGVkIGZvciBwcm9qZWN0KQotICJleHBvcnQgZ3ltIGFwcCBkYXRhIjogQVBJIGVycm9yICg0MDMgLSBDdXN0b20gU2VhcmNoIEpTT04gQVBJIG5vdCBlbmFibGVkIGZvciBwcm9qZWN0KQoKIyMgMjAyNi0wNS0yMAoKIyMjIEdpdEh1YiBUcmFmZmljICgxNC1kYXkgd2luZG93KQpHSVRIVUJfVE9LRU4gbm90IGNvbmZpZ3VyZWQKCiMjIyBHb29nbGUgU2VhcmNoIFJhbmtpbmdzCi0gImxpZnRvZmYtZXhwb3J0LWNsaSI6IEFQSSBlcnJvciAoNDAzIC0gQ3VzdG9tIFNlYXJjaCBKU09OIEFQSSBub3QgZW5hYmxlZCBmb3IgcHJvamVjdCkKLSAibGlmdG9mZiB3b3Jrb3V0IGV4cG9ydCI6IEFQSSBlcnJvciAoNDAzIC0gQ3VzdG9tIFNlYXJjaCBKU09OIEFQSSBub3QgZW5hYmxlZCBmb3IgcHJvamVjdCkKLSAibGlmdG9mZiBmaXRuZXNzIENMSSI6IEFQSSBlcnJvciAoNDAzIC0gQ3VzdG9tIFNlYXJjaCBKU09OIEFQSSBub3QgZW5hYmxlZCBmb3IgcHJvamVjdCkKLSAiZXhwb3J0IGd5bSBhcHAgZGF0YSI6IEFQSSBlcnJvciAoNDAzIC0gQ3VzdG9tIFNlYXJjaCBKU09OIEFQSSBub3QgZW5hYmxlZCBmb3IgcHJvamVjdCkKCiMjIDIwMjYtMDUtMTkKCiMjIyBHaXRIdWIgVHJhZmZpYyAoMTQtZGF5IHdpbmRvdykKR0lUSFVCX1RPS0VOIG5vdCBjb25maWd1cmVkCgojIyMgR29vZ2xlIFNlYXJjaCBSYW5raW5ncwotICJsaWZ0b2ZmLWV4cG9ydC1jbGkiOiBBUEkgZXJyb3IgKDQwMyAtIEN1c3RvbSBTZWFyY2ggSlNPTiBBUEkgbm90IGVuYWJsZWQgZm9yIHByb2plY3QpCi0gImxpZnRvZmYgd29ya291dCBleHBvcnQiOiBBUEkgZXJyb3IgKDQwMyAtIEN1c3RvbSBTZWFyY2ggSlNPTiBBUEkgbm90IGVuYWJsZWQgZm9yIHByb2plY3QpCi0gImxpZnRvZmYgZml0bmVzcyBDTEkiOiBBUEkgZXJyb3IgKDQwMyAtIEN1c3RvbSBTZWFyY2ggSlNPTiBBUEkgbm90IGVuYWJsZWQgZm9yIHByb2plY3QpCi0gImV4cG9ydCBneW0gYXBwIGRhdGEiOiBBUEkgZXJyb3IgKDQwMyAtIEN1c3RvbSBTZWFyY2ggSlNPTiBBUEkgbm90IGVuYWJsZWQgZm9yIHByb2plY3QpCgojIyAyMDI2LTA1LTE4CgojIyMgR2l0SHViIFRyYWZmaWMgKDE0LWRheSB3aW5kb3cpCkdJVEhVQl9UT0tFTiBub3QgY29uZmlndXJlZAoKIyMjIEdvb2dsZSBTZWFyY2ggUmFua2luZ3MKLSAibGlmdG9mZi1leHBvcnQtY2xpIjogQVBJIGVycm9yICg0MDMgLSBDdXN0b20gU2VhcmNoIEpTT04gQVBJIG5vdCBlbmFibGVkIGZvciBwcm9qZWN0KQotICJsaWZ0b2ZmIHdvcmtvdXQgZXhwb3J0IjogQVBJIGVycm9yICg0MDMgLSBDdXN0b20gU2VhcmNoIEpTT04gQVBJIG5vdCBlbmFibGVkIGZvciBwcm9qZWN0KQotICJsaWZ0b2ZmIGZpdG5lc3MgQ0xJIjogQVBJIGVycm9yICg0MDMgLSBDdXN0b20gU2VhcmNoIEpTT04gQVBJIG5vdCBlbmFibGVkIGZvciBwcm9qZWN0KQotICJleHBvcnQgZ3ltIGFwcCBkYXRhIjogQVBJIGVycm9yICg0MDMgLSBDdXN0b20gU2VhcmNoIEpTT04gQVBJIG5vdCBlbmFibGVkIGZvciBwcm9qZWN0KQoKIyMgMjAyNi0wNS0xNwoKIyMjIEdpdEh1YiBUcmFmZmljICgxNC1kYXkgd2luZG93KQpHSVRIVUJfVE9LRU4gbm90IGNvbmZpZ3VyZWQKCiMjIyBHb29nbGUgU2VhcmNoIFJhbmtpbmdzCi0gImxpZnRvZmYtZXhwb3J0LWNsaSI6IEFQSSBlcnJvciAoNDAzIC0gQ3VzdG9tIFNlYXJjaCBKU09OIEFQSSBub3QgZW5hYmxlZCBmb3IgcHJvamVjdCkKLSAibGlmdG9mZiB3b3Jrb3V0IGV4cG9ydCI6IEFQSSBlcnJvciAoNDAzIC0gQ3VzdG9tIFNlYXJjaCBKU09OIEFQSSBub3QgZW5hYmxlZCBmb3IgcHJvamVjdCkKLSAibGlmdG9mZiBmaXRuZXNzIENMSSI6IEFQSSBlcnJvciAoNDAzIC0gQ3VzdG9tIFNlYXJjaCBKU09OIEFQSSBub3QgZW5hYmxlZCBmb3IgcHJvamVjdCkKLSAiZXhwb3J0IGd5bSBhcHAgZGF0YSI6IEFQSSBlcnJvciAoNDAzIC0gQ3VzdG9tIFNlYXJjaCBKU09OIEFQSSBub3QgZW5hYmxlZCBmb3IgcHJvamVjdCkKCiMjIDIwMjYtMDUtMTYKCiMjIyBHaXRIdWIgVHJhZmZpYyAoMTQtZGF5IHdpbmRvdykKR0lUSFVCX1RPS0VOIG5vdCBjb25maWd1cmVkCgojIyMgR29vZ2xlIFNlYXJjaCBSYW5raW5ncwotICJsaWZ0b2ZmLWV4cG9ydC1jbGkiOiBBUEkgZXJyb3IgKDQwMyAtIEN1c3RvbSBTZWFyY2ggSlNPTiBBUEkgbm90IGVuYWJsZWQgZm9yIHByb2plY3QpCi0gImxpZnRvZmYgd29ya291dCBleHBvcnQiOiBBUEkgZXJyb3IgKDQwMyAtIEN1c3RvbSBTZWFyY2ggSlNPTiBBUEkgbm90IGVuYWJsZWQgZm9yIHByb2plY3QpCi0gImxpZnRvZmYgZml0bmVzcyBDTEkiOiBBUEkgZXJyb3IgKDQwMyAtIEN1c3RvbSBTZWFyY2ggSlNPTiBBUEkgbm90IGVuYWJsZWQgZm9yIHByb2plY3QpCi0gImV4cG9ydCBneW0gYXBwIGRhdGEiOiBBUEkgZXJyb3IgKDQwMyAtIEN1c3RvbSBTZWFyY2ggSlNPTiBBUEkgbm90IGVuYWJsZWQgZm9yIHByb2plY3QpCgojIyAyMDI2LTA1LTE1CgojIyMgR2l0SHViIFRyYWZmaWMgKDE0LWRheSB3aW5kb3cpCkdJVEhVQl9UT0tFTiBub3QgY29uZmlndXJlZAoKIyMjIEdvb2dsZSBTZWFyY2ggUmFua2luZ3MKLSAibGlmdG9mZi1leHBvcnQtY2xpIjogQVBJIGVycm9yICg0MDMgLSBDdXN0b20gU2VhcmNoIEpTT04gQVBJIG5vdCBlbmFibGVkIGZvciBwcm9qZWN0KQotICJsaWZ0b2ZmIHdvcmtvdXQgZXhwb3J0IjogQVBJIGVycm9yICg0MDMgLSBDdXN0b20gU2VhcmNoIEpTT04gQVBJIG5vdCBlbmFibGVkIGZvciBwcm9qZWN0KQotICJsaWZ0b2ZmIGZpdG5lc3MgQ0xJIjogQVBJIGVycm9yICg0MDMgLSBDdXN0b20gU2VhcmNoIEpTT04gQVBJIG5vdCBlbmFibGVkIGZvciBwcm9qZWN0KQotICJleHBvcnQgZ3ltIGFwcCBkYXRhIjogQVBJIGVycm9yICg0MDMgLSBDdXN0b20gU2VhcmNoIEpTT04gQVBJIG5vdCBlbmFibGVkIGZvciBwcm9qZWN0KQoKIyMgMjAyNi0wNS0xNAoKIyMjIEdpdEh1YiBUcmFmZmljICgxNC1kYXkgd2luZG93KQpHSVRIVUJfVE9LRU4gbm90IGNvbmZpZ3VyZWQKCiMjIyBHb29nbGUgU2VhcmNoIFJhbmtpbmdzCi0gImxpZnRvZmYtZXhwb3J0LWNsaSI6IEFQSSBlcnJvciAoNDAzIC0gQ3VzdG9tIFNlYXJjaCBKU09OIEFQSSBub3QgZW5hYmxlZCBmb3IgcHJvamVjdCkKLSAibGlmdG9mZiB3b3Jrb3V0IGV4cG9ydCI6IEFQSSBlcnJvciAoNDAzIC0gQ3VzdG9tIFNlYXJjaCBKU09OIEFQSSBub3QgZW5hYmxlZCBmb3IgcHJvamVjdCkKLSAibGlmdG9mZiBmaXRuZXNzIENMSSI6IEFQSSBlcnJvciAoNDAzIC0gQ3VzdG9tIFNlYXJjaCBKU09OIEFQSSBub3QgZW5hYmxlZCBmb3IgcHJvamVjdCkKLSAiZXhwb3J0IGd5bSBhcHAgZGF0YSI6IEFQSSBlcnJvciAoNDAzIC0gQ3VzdG9tIFNlYXJjaCBKU09OIEFQSSBub3QgZW5hYmxlZCBmb3IgcHJvamVjdCkKCiMjIDIwMjYtMDUtMTMKCiMjIyBHaXRIdWIgVHJhZmZpYyAoMTQtZGF5IHdpbmRvdykKR0lUSFVCX1RPS0VOIG5vdCBjb25maWd1cmVkCgojIyMgR29vZ2xlIFNlYXJjaCBSYW5raW5ncwotICJsaWZ0b2ZmLWV4cG9ydC1jbGkiOiBBUEkgZXJyb3IgKDQwMyAtIEN1c3RvbSBTZWFyY2ggSlNPTiBBUEkgbm90IGVuYWJsZWQgZm9yIHByb2plY3QpCi0gImxpZnRvZmYgd29ya291dCBleHBvcnQiOiBBUEkgZXJyb3IgKDQwMyAtIEN1c3RvbSBTZWFyY2ggSlNPTiBBUEkgbm90IGVuYWJsZWQgZm9yIHByb2plY3QpCi0gImxpZnRvZmYgZml0bmVzcyBDTEkiOiBBUEkgZXJyb3IgKDQwMyAtIEN1c3RvbSBTZWFyY2ggSlNPTiBBUEkgbm90IGVuYWJsZWQgZm9yIHByb2plY3QpCi0gImV4cG9ydCBneW0gYXBwIGRhdGEiOiBBUEkgZXJyb3IgKDQwMyAtIEN1c3RvbSBTZWFyY2ggSlNPTiBBUEkgbm90IGVuYWJsZWQgZm9yIHByb2plY3QpCgojIyAyMDI2LTA1LTEwCgojIyMgR2l0SHViIFRyYWZmaWMgKDE0LWRheSB3aW5kb3cpCkdJVEhVQl9UT0tFTiBub3QgY29uZmlndXJlZAoKIyMjIEdvb2dsZSBTZWFyY2ggUmFua2luZ3MKLSAibGlmdG9mZi1leHBvcnQtY2xpIjogQVBJIGVycm9yICg0MDMgLSBDdXN0b20gU2VhcmNoIEpTT04gQVBJIG5vdCBlbmFibGVkIGZvciBwcm9qZWN0KQotICJsaWZ0b2ZmIHdvcmtvdXQgZXhwb3J0IjogQVBJIGVycm9yICg0MDMgLSBDdXN0b20gU2VhcmNoIEpTT04gQVBJIG5vdCBlbmFibGVkIGZvciBwcm9qZWN0KQotICJsaWZ0b2ZmIGZpdG5lc3MgQ0xJIjogQVBJIGVycm9yICg0MDMgLSBDdXN0b20gU2VhcmNoIEpTT04gQVBJIG5vdCBlbmFibGVkIGZvciBwcm9qZWN0KQotICJleHBvcnQgZ3ltIGFwcCBkYXRhIjogQVBJIGVycm9yICg0MDMgLSBDdXN0b20gU2VhcmNoIEpTT04gQVBJIG5vdCBlbmFibGVkIGZvciBwcm9qZWN0KQoKIyMgMjAyNi0wNS0wOAoKIyMjIEdpdEh1YiBUcmFmZmljICgxNC1kYXkgd2luZG93KQpHSVRIVUJfVE9LRU4gbm90IGNvbmZpZ3VyZWQKCiMjIyBHb29nbGUgU2VhcmNoIFJhbmtpbmdzCi0gImxpZnRvZmYtZXhwb3J0LWNsaSI6IEFQSSBlcnJvciAoNDAzIC0gQ3VzdG9tIFNlYXJjaCBKU09OIEFQSSBub3QgZW5hYmxlZCBmb3IgcHJvamVjdCkKLSAibGlmdG9mZiB3b3Jrb3V0IGV4cG9ydCI6IEFQSSBlcnJvciAoNDAzIC0gQ3VzdG9tIFNlYXJjaCBKU09OIEFQSSBub3QgZW5hYmxlZCBmb3IgcHJvamVjdCkKLSAibGlmdG9mZiBmaXRuZXNzIENMSSI6IEFQSSBlcnJvciAoNDAzIC0gQ3VzdG9tIFNlYXJjaCBKU09OIEFQSSBub3QgZW5hYmxlZCBmb3IgcHJvamVjdCkKLSAiZXhwb3J0IGd5bSBhcHAgZGF0YSI6IEFQSSBlcnJvciAoNDAzIC0gQ3VzdG9tIFNlYXJjaCBKU09OIEFQSSBub3QgZW5hYmxlZCBmb3IgcHJvamVjdCkKCiMjIDIwMjYtMDUtMDcKCiMjIyBHaXRIdWIgVHJhZmZpYyAoMTQtZGF5IHdpbmRvdykKR0lUSFVCX1RPS0VOIG5vdCBjb25maWd1cmVkCgojIyMgR29vZ2xlIFNlYXJjaCBSYW5raW5ncwotICJsaWZ0b2ZmLWV4cG9ydC1jbGkiOiBBUEkgZXJyb3IgKDQwMyAtIEN1c3RvbSBTZWFyY2ggSlNPTiBBUEkgbm90IGVuYWJsZWQgZm9yIHByb2plY3QpCi0gImxpZnRvZmYgd29ya291dCBleHBvcnQiOiBBUEkgZXJyb3IgKDQwMyAtIEN1c3RvbSBTZWFyY2ggSlNPTiBBUEkgbm90IGVuYWJsZWQgZm9yIHByb2plY3QpCi0gImxpZnRvZmYgZml0bmVzcyBDTEkiOiBBUEkgZXJyb3IgKDQwMyAtIEN1c3RvbSBTZWFyY2ggSlNPTiBBUEkgbm90IGVuYWJsZWQgZm9yIHByb2plY3QpCi0gImV4cG9ydCBneW0gYXBwIGRhdGEiOiBBUEkgZXJyb3IgKDQwMyAtIEN1c3RvbSBTZWFyY2ggSlNPTiBBUEkgbm90IGVuYWJsZWQgZm9yIHByb2plY3QpCgojIyAyMDI2LTA1LTA2CgojIyMgR2l0SHViIFRyYWZmaWMgKDE0LWRheSB3aW5kb3cpCkdJVEhVQl9UT0tFTiBub3QgY29uZmlndXJlZAoKIyMjIEdvb2dsZSBTZWFyY2ggUmFua2luZ3MKLSAibGlmdG9mZi1leHBvcnQtY2xpIjogQVBJIGVycm9yICg0MDMgLSBDdXN0b20gU2VhcmNoIEpTT04gQVBJIG5vdCBlbmFibGVkIGZvciBwcm9qZWN0KQotICJsaWZ0b2ZmIHdvcmtvdXQgZXhwb3J0IjogQVBJIGVycm9yICg0MDMgLSBDdXN0b20gU2VhcmNoIEpTT04gQVBJIG5vdCBlbmFibGVkIGZvciBwcm9qZWN0KQotICJsaWZ0b2ZmIGZpdG5lc3MgQ0xJIjogQVBJIGVycm9yICg0MDMgLSBDdXN0b20gU2VhcmNoIEpTT04gQVBJIG5vdCBlbmFibGVkIGZvciBwcm9qZWN0KQotICJleHBvcnQgZ3ltIGFwcCBkYXRhIjogQVBJIGVycm9yICg0MDMgLSBDdXN0b20gU2VhcmNoIEpTT04gQVBJIG5vdCBlbmFibGVkIGZvciBwcm9qZWN0KQoKIyMgMjAyNi0wNS0wMwoKIyMjIEdpdEh1YiBUcmFmZmljICgxNC1kYXkgd2luZG93KQpHSVRIVUJfVE9LRU4gbm90IGNvbmZpZ3VyZWQKCiMjIyBHb29nbGUgU2VhcmNoIFJhbmtpbmdzCi0gImxpZnRvZmYtZXhwb3J0LWNsaSI6IEFQSSBlcnJvciAoNDAzIC0gQ3VzdG9tIFNlYXJjaCBKU09OIEFQSSBub3QgZW5hYmxlZCBmb3IgcHJvamVjdCkKLSAibGlmdG9mZiB3b3Jrb3V0IGV4cG9ydCI6IEFQSSBlcnJvciAoNDAzIC0gQ3VzdG9tIFNlYXJjaCBKU09OIEFQSSBub3QgZW5hYmxlZCBmb3IgcHJvamVjdCkKLSAibGlmdG9mZiBmaXRuZXNzIENMSSI6IEFQSSBlcnJvciAoNDAzIC0gQ3VzdG9tIFNlYXJjaCBKU09OIEFQSSBub3QgZW5hYmxlZCBmb3IgcHJvamVjdCkKLSAiZXhwb3J0IGd5bSBhcHAgZGF0YSI6IEFQSSBlcnJvciAoNDAzIC0gQ3VzdG9tIFNlYXJjaCBKU09OIEFQSSBub3QgZW5hYmxlZCBmb3IgcHJvamVjdCkKCiMjIDIwMjYtMDUtMDIKCiMjIyBHaXRIdWIgVHJhZmZpYyAoMTQtZGF5IHdpbmRvdykKR0lUSFVCX1RPS0VOIG5vdCBjb25maWd1cmVkCgojIyMgR29vZ2xlIFNlYXJjaCBSYW5raW5ncwotICJsaWZ0b2ZmLWV4cG9ydC1jbGkiOiBBUEkgZXJyb3IgKDQwMyAtIEN1c3RvbSBTZWFyY2ggSlNPTiBBUEkgbm90IGVuYWJsZWQgZm9yIHByb2plY3QpCi0gImxpZnRvZmYgd29ya291dCBleHBvcnQiOiBBUEkgZXJyb3IgKDQwMyAtIEN1c3RvbSBTZWFyY2ggSlNPTiBBUEkgbm90IGVuYWJsZWQgZm9yIHByb2plY3QpCi0gImxpZnRvZmYgZml0bmVzcyBDTEkiOiBBUEkgZXJyb3IgKDQwMyAtIEN1c3RvbSBTZWFyY2ggSlNPTiBBUEkgbm90IGVuYWJsZWQgZm9yIHByb2plY3QpCi0gImV4cG9ydCBneW0gYXBwIGRhdGEiOiBBUEkgZXJyb3IgKDQwMyAtIEN1c3RvbSBTZWFyY2ggSlNPTiBBUEkgbm90IGVuYWJsZWQgZm9yIHByb2plY3QpCgojIyAyMDI2LTA0LTI5CgojIyMgR2l0SHViIFRyYWZmaWMgKDE0LWRheSB3aW5kb3cpCkdJVEhVQl9UT0tFTiBub3QgY29uZmlndXJlZAoKIyMjIEdvb2dsZSBTZWFyY2ggUmFua2luZ3MKLSAibGlmdG9mZi1leHBvcnQtY2xpIjogQVBJIGVycm9yICg0MDMgLSBDdXN0b20gU2VhcmNoIEpTT04gQVBJIG5vdCBlbmFibGVkIGZvciBwcm9qZWN0KQotICJsaWZ0b2ZmIHdvcmtvdXQgZXhwb3J0IjogQVBJIGVycm9yICg0MDMgLSBDdXN0b20gU2VhcmNoIEpTT04gQVBJIG5vdCBlbmFibGVkIGZvciBwcm9qZWN0KQotICJsaWZ0b2ZmIGZpdG5lc3MgQ0xJIjogQVBJIGVycm9yICg0MDMgLSBDdXN0b20gU2VhcmNoIEpTT04gQVBJIG5vdCBlbmFibGVkIGZvciBwcm9qZWN0KQotICJleHBvcnQgZ3ltIGFwcCBkYXRhIjogQVBJIGVycm9yICg0MDMgLSBDdXN0b20gU2VhcmNoIEpTT04gQVBJIG5vdCBlbmFibGVkIGZvciBwcm9qZWN0KQoKIyMgMjAyNi0wNC0yNwoKIyMjIEdpdEh1YiBUcmFmZmljICgxNC1kYXkgd2luZG93KQpHSVRIVUJfVE9LRU4gbm90IGNvbmZpZ3VyZWQKCiMjIyBHb29nbGUgU2VhcmNoIFJhbmtpbmdzCi0gImxpZnRvZmYtZXhwb3J0LWNsaSI6IEFQSSBlcnJvciAoNDAzIC0gQ3VzdG9tIFNlYXJjaCBKU09OIEFQSSBub3QgZW5hYmxlZCBmb3IgcHJvamVjdCkKLSAibGlmdG9mZiB3b3Jrb3V0IGV4cG9ydCI6IEFQSSBlcnJvciAoNDAzIC0gQ3VzdG9tIFNlYXJjaCBKU09OIEFQSSBub3QgZW5hYmxlZCBmb3IgcHJvamVjdCkKLSAibGlmdG9mZiBmaXRuZXNzIENMSSI6IEFQSSBlcnJvciAoNDAzIC0gQ3VzdG9tIFNlYXJjaCBKU09OIEFQSSBub3QgZW5hYmxlZCBmb3IgcHJvamVjdCkKLSAiZXhwb3J0IGd5bSBhcHAgZGF0YSI6IEFQSSBlcnJvciAoNDAzIC0gQ3VzdG9tIFNlYXJjaCBKU09OIEFQSSBub3QgZW5hYmxlZCBmb3IgcHJvamVjdCkKCiMjIDIwMjYtMDQtMTkKCiMjIyBHaXRIdWIgVHJhZmZpYyAoMTQtZGF5IHdpbmRvdykKR0lUSFVCX1RPS0VOIG5vdCBjb25maWd1cmVkCgojIyMgR29vZ2xlIFNlYXJjaCBSYW5raW5ncwotICJsaWZ0b2ZmLWV4cG9ydC1jbGkiOiBBUEkgZXJyb3IgKDQwMyAtIEN1c3RvbSBTZWFyY2ggSlNPTiBBUEkgbm90IGVuYWJsZWQgZm9yIHByb2plY3QpCi0gImxpZnRvZmYgd29ya291dCBleHBvcnQiOiBBUEkgZXJyb3IgKDQwMyAtIEN1c3RvbSBTZWFyY2ggSlNPTiBBUEkgbm90IGVuYWJsZWQgZm9yIHByb2plY3QpCi0gImxpZnRvZmYgZml0bmVzcyBDTEkiOiBBUEkgZXJyb3IgKDQwMyAtIEN1c3RvbSBTZWFyY2ggSlNPTiBBUEkgbm90IGVuYWJsZWQgZm9yIHByb2plY3QpCi0gImV4cG9ydCBneW0gYXBwIGRhdGEiOiBBUEkgZXJyb3IgKDQwMyAtIEN1c3RvbSBTZWFyY2ggSlNPTiBBUEkgbm90IGVuYWJsZWQgZm9yIHByb2plY3QpCgojIyAyMDI2LTA0LTE3CgojIyMgR2l0SHViIFRyYWZmaWMgKDE0LWRheSB3aW5kb3cpCkdJVEhVQl9UT0tFTiBub3QgY29uZmlndXJlZAoKIyMjIEdvb2dsZSBTZWFyY2ggUmFua2luZ3MKLSAibGlmdG9mZi1leHBvcnQtY2xpIjogQVBJIGVycm9yIChETlMgY2FjaGUgb3ZlcmZsb3cpCi0gImxpZnRvZmYgd29ya291dCBleHBvcnQiOiBBUEkgZXJyb3IgKEROUyBjYWNoZSBvdmVyZmxvdykKLSAibGlmdG9mZiBmaXRuZXNzIENMSSI6IEFQSSBlcnJvciAoNDAzIC0gQ3VzdG9tIFNlYXJjaCBKU09OIEFQSSBub3QgZW5hYmxlZCBmb3IgcHJvamVjdCkKLSAiZXhwb3J0IGd5bSBhcHAgZGF0YSI6IEFQSSBlcnJvciAoNDAzIC0gQ3VzdG9tIFNlYXJjaCBKU09OIEFQSSBub3QgZW5hYmxlZCBmb3IgcHJvamVjdCkKCiMjIDIwMjYtMDQtMTYKCiMjIyBHaXRIdWIgVHJhZmZpYyAoMTQtZGF5IHdpbmRvdykKR0lUSFVCX1RPS0VOIG5vdCBjb25maWd1cmVkCgojIyMgR29vZ2xlIFNlYXJjaCBSYW5raW5ncwotICJsaWZ0b2ZmLWV4cG9ydC1jbGkiOiBBUEkgZXJyb3IgKDQwMyBGb3JiaWRkZW4gLSBDdXN0b20gU2VhcmNoIEFQSSBub3QgZW5hYmxlZCBmb3IgdGhpcyBwcm9qZWN0KQotICJsaWZ0b2ZmIHdvcmtvdXQgZXhwb3J0IjogQVBJIGVycm9yICg0MDMgRm9yYmlkZGVuIC0gQ3VzdG9tIFNlYXJjaCBBUEkgbm90IGVuYWJsZWQgZm9yIHRoaXMgcHJvamVjdCkKLSAibGlmdG9mZiBmaXRuZXNzIENMSSI6IEFQSSBlcnJvciAoNDAzIEZvcmJpZGRlbiAtIEN1c3RvbSBTZWFyY2ggQVBJIG5vdCBlbmFibGVkIGZvciB0aGlzIHByb2plY3QpCi0gImV4cG9ydCBneW0gYXBwIGRhdGEiOiBBUEkgZXJyb3IgKDQwMyBGb3JiaWRkZW4gLSBDdXN0b20gU2VhcmNoIEFQSSBub3QgZW5hYmxlZCBmb3IgdGhpcyBwcm9qZWN0KQoKIyMgMjAyNi0wNC0xNQoKIyMjIEdpdEh1YiBUcmFmZmljICgxNC1kYXkgd2luZG93KQpHSVRIVUJfVE9LRU4gbm90IGNvbmZpZ3VyZWQKCiMjIyBHb29nbGUgU2VhcmNoIFJhbmtpbmdzCi0gImxpZnRvZmYtZXhwb3J0LWNsaSI6IEFQSSBlcnJvciAoNDAzIEZvcmJpZGRlbiAtIEN1c3RvbSBTZWFyY2ggQVBJIG5vdCBlbmFibGVkIGZvciB0aGlzIHByb2plY3QpCi0gImxpZnRvZmYgd29ya291dCBleHBvcnQiOiBBUEkgZXJyb3IgKDQwMyBGb3JiaWRkZW4gLSBDdXN0b20gU2VhcmNoIEFQSSBub3QgZW5hYmxlZCBmb3IgdGhpcyBwcm9qZWN0KQotICJsaWZ0b2ZmIGZpdG5lc3MgQ0xJIjogQVBJIGVycm9yICg0MDMgRm9yYmlkZGVuIC0gQ3VzdG9tIFNlYXJjaCBBUEkgbm90IGVuYWJsZWQgZm9yIHRoaXMgcHJvamVjdCkKLSAiZXhwb3J0IGd5bSBhcHAgZGF0YSI6IEFQSSBlcnJvciAoNDAzIEZvcmJpZGRlbiAtIEN1c3RvbSBTZWFyY2ggQVBJIG5vdCBlbmFibGVkIGZvciB0aGlzIHByb2plY3QpCgojIyAyMDI2LTA0LTE0CgojIyMgR2l0SHViIFRyYWZmaWMgKDE0LWRheSB3aW5kb3cpCkdJVEhVQl9UT0tFTiBub3QgY29uZmlndXJlZAoKIyMjIEdvb2dsZSBTZWFyY2ggUmFua2luZ3MKLSAibGlmdG9mZi1leHBvcnQtY2xpIjogQVBJIGVycm9yICg0MDMgRm9yYmlkZGVuIC0gaW52YWxpZCBrZXkgb3IgU2VhcmNoIEVuZ2luZSBJRCkKLSAibGlmdG9mZiB3b3Jrb3V0IGV4cG9ydCI6IEFQSSBlcnJvciAoNDAzIEZvcmJpZGRlbiAtIGludmFsaWQga2V5IG9yIFNlYXJjaCBFbmdpbmUgSUQpCi0gImxpZnRvZmYgZml0bmVzcyBDTEkiOiBBUEkgZXJyb3IgKDQwMyBGb3JiaWRkZW4gLSBpbnZhbGlkIGtleSBvciBTZWFyY2ggRW5naW5lIElEKQotICJleHBvcnQgZ3ltIGFwcCBkYXRhIjogQVBJIGVycm9yICg0MDMgRm9yYmlkZGVuIC0gaW52YWxpZCBrZXkgb3IgU2VhcmNoIEVuZ2luZSBJRCkKCiMjIDIwMjYtMDQtMTMKCiMjIyBHaXRIdWIgVHJhZmZpYyAoMTQtZGF5IHdpbmRvdykKR0lUSFVCX1RPS0VOIG5vdCBjb25maWd1cmVkCgojIyMgR29vZ2xlIFNlYXJjaCBSYW5raW5ncwotICJsaWZ0b2ZmLWV4cG9ydC1jbGkiOiBBUEkgZXJyb3IgKDQwMyBGb3JiaWRkZW4gLSBrZXkgbm90IGF1dGhvcml6ZWQpCi0gImxpZnRvZmYgd29ya291dCBleHBvcnQiOiBBUEkgZXJyb3IgKDQwMyBGb3JiaWRkZW4gLSBrZXkgbm90IGF1dGhvcml6ZWQpCi0gImxpZnRvZmYgZml0bmVzcyBDTEkiOiBBUEkgZXJyb3IgKDQwMyBGb3JiaWRkZW4gLSBrZXkgbm90IGF1dGhvcml6ZWQpCi0gImV4cG9ydCBneW0gYXBwIGRhdGEiOiBBUEkgZXJyb3IgKDQwMyBGb3JiaWRkZW4gLSBrZXkgbm90IGF1dGhvcml6ZWQpCgojIyAyMDI2LTA0LTEyCgojIyMgR2l0SHViIFRyYWZmaWMgKDE0LWRheSB3aW5kb3cpCkdJVEhVQl9UT0tFTiBub3QgY29uZmlndXJlZAoKIyMjIEdvb2dsZSBTZWFyY2ggUmFua2luZ3MKLSAibGlmdG9mZi1leHBvcnQtY2xpIjogQVBJIGVycm9yICg0MDMgRm9yYmlkZGVuIC0ga2V5IG5vdCBhdXRob3JpemVkKQotICJsaWZ0b2ZmIHdvcmtvdXQgZXhwb3J0IjogQVBJIGVycm9yICg0MDMgRm9yYmlkZGVuIC0ga2V5IG5vdCBhdXRob3JpemVkKQotICJsaWZ0b2ZmIGZpdG5lc3MgQ0xJIjogQVBJIGVycm9yICg0MDMgRm9yYmlkZGVuIC0ga2V5IG5vdCBhdXRob3JpemVkKQotICJleHBvcnQgZ3ltIGFwcCBkYXRhIjogQVBJIGVycm9yICg0MDMgRm9yYmlkZGVuIC0ga2V5IG5vdCBhdXRob3JpemVkKQoKIyMgMjAyNi0wNC0xMQoKIyMjIEdpdEh1YiBUcmFmZmljICgxNC1kYXkgd2luZG93KQpHSVRIVUJfVE9LRU4gbm90IGNvbmZpZ3VyZWQKCiMjIyBHb29nbGUgU2VhcmNoIFJhbmtpbmdzCi0gImxpZnRvZmYtZXhwb3J0LWNsaSI6IEFQSSBlcnJvciAoNDAzIEZvcmJpZGRlbiAtIGtleSBub3QgYXV0aG9yaXplZCkKLSAibGlmdG9mZiB3b3Jrb3V0IGV4cG9ydCI6IEFQSSBlcnJvciAoNDAzIEZvcmJpZGRlbiAtIGtleSBub3QgYXV0aG9yaXplZCkKLSAibGlmdG9mZiBmaXRuZXNzIENMSSI6IEFQSSBlcnJvciAoNDAzIEZvcmJpZGRlbiAtIGtleSBub3QgYXV0aG9yaXplZCkKLSAiZXhwb3J0IGd5bSBhcHAgZGF0YSI6IEFQSSBlcnJvciAoNDAzIEZvcmJpZGRlbiAtIGtleSBub3QgYXV0aG9yaXplZCkKCiMjIDIwMjYtMDQtMTAKCiMjIyBHaXRIdWIgVHJhZmZpYyAoMTQtZGF5IHdpbmRvdykKLSBHSVRIVUJfVE9LRU4gbm90IGNvbmZpZ3VyZWQKCiMjIyBHb29nbGUgU2VhcmNoIFJhbmtpbmdzCi0gImxpZnRvZmYtZXhwb3J0LWNsaSI6IHVudmVyaWZpYWJsZSAoR29vZ2xlIEN1c3RvbSBTZWFyY2ggQVBJIDQwMyBGb3JiaWRkZW4pCi0gImxpZnRvZmYgd29ya291dCBleHBvcnQiOiB1bnZlcmlmaWFibGUgKEdvb2dsZSBDdXN0b20gU2VhcmNoIEFQSSA0MDMgRm9yYmlkZGVuKQotICJsaWZ0b2ZmIGZpdG5lc3MgQ0xJIjogdW52ZXJpZmlhYmxlIChHb29nbGUgQ3VzdG9tIFNlYXJjaCBBUEkgNDAzIEZvcmJpZGRlbikKLSAiZXhwb3J0IGd5bSBhcHAgZGF0YSI6IHVudmVyaWZpYWJsZSAoR29vZ2xlIEN1c3RvbSBTZWFyY2ggQVBJIDQwMyBGb3JiaWRkZW4pCgojIyAyMDI2LTA0LTA5CgojIyMgR2l0SHViIFRyYWZmaWMgKDE0LWRheSB3aW5kb3cpCi0gR0lUSFVCX1RPS0VOIG5vdCBjb25maWd1cmVkCgojIyMgR29vZ2xlIFNlYXJjaCBSYW5raW5ncwotICJsaWZ0b2ZmLWV4cG9ydC1jbGkiOiB1bnZlcmlmaWFibGUgKEdvb2dsZSBDdXN0b20gU2VhcmNoIEFQSSA0MDMgRm9yYmlkZGVuKQotICJsaWZ0b2ZmIHdvcmtvdXQgZXhwb3J0IjogdW52ZXJpZmlhYmxlIChHb29nbGUgQ3VzdG9tIFNlYXJjaCBBUEkgNDAzIEZvcmJpZGRlbikKLSAibGlmdG9mZiBmaXRuZXNzIENMSSI6IHVudmVyaWZpYWJsZSAoR29vZ2xlIEN1c3RvbSBTZWFyY2ggQVBJIDQwMyBGb3JiaWRkZW4pCi0gImV4cG9ydCBneW0gYXBwIGRhdGEiOiB1bnZlcmlmaWFibGUgKEdvb2dsZSBDdXN0b20gU2VhcmNoIEFQSSA0MDMgRm9yYmlkZGVuKQoKIyMgMjAyNi0wNC0wOAoKIyMjIEdpdEh1YiBUcmFmZmljICgxNC1kYXkgd2luZG93KQotIFZpZXdzOiBOL0EgKEdJVEhVQl9UT0tFTiBub3Qgc2V0IGluIGVudmlyb25tZW50KQotIENsb25lczogTi9BIChHSVRIVUJfVE9LRU4gbm90IHNldCBpbiBlbnZpcm9ubWVudCkKLSBUb3AgcmVmZXJyZXJzOiBOL0EKLSBUb3AgcGF0aHM6IE4vQQoKIyMjIEdvb2dsZSBTZWFyY2ggUmVzdWx0cwpOb3RlOiBQbGF5d3JpZ2h0IChjaHJvbWl1bSBoZWFkbGVzcykgd2FzIHVzZWQ7IEdvb2dsZSBzZXJ2ZWQgcmVDQVBUQ0hBIHRvIGFsbCBxdWVyaWVzLiBHb29nbGUgQ3VzdG9tIFNlYXJjaCBBUEkgYWxzbyByZXR1cm5lZCA0MDMgRm9yYmlkZGVuIOKAlCByZXN1bHRzIGNvdWxkIG5vdCBiZSByZXRyaWV2ZWQgZnJvbSB0aGlzIGVudmlyb25tZW50LgotICJsaWZ0b2ZmLWV4cG9ydC1jbGkiOiB1bnZlcmlmaWFibGUgKEdvb2dsZSByZUNBUFRDSEEgLyBBUEkgNDAzKQotICJsaWZ0b2ZmIHdvcmtvdXQgZXhwb3J0IjogdW52ZXJpZmlhYmxlIChHb29nbGUgcmVDQVBUQ0hBIC8gQVBJIDQwMykKLSAibGlmdG9mZiBmaXRuZXNzIENMSSI6IHVudmVyaWZpYWJsZSAoR29vZ2xlIHJlQ0FQVENIQSAvIEFQSSA0MDMpCi0gImV4cG9ydCBneW0gYXBwIGRhdGEiOiB1bnZlcmlmaWFibGUgKEdvb2dsZSByZUNBUFRDSEEgLyBBUEkgNDAzKQo=
+# SEO & Traffic Tracking - liftoff-export-cli
+
+## 2026-05-21
+
+### GitHub Traffic (14-day window)
+GITHUB_TOKEN not configured
+
+### Google Search Rankings
+- "liftoff-export-cli": API error (403 - Custom Search JSON API not enabled for project)
+- "liftoff workout export": API error (403 - Custom Search JSON API not enabled for project)
+- "liftoff fitness CLI": API error (403 - Custom Search JSON API not enabled for project)
+- "export gym app data": API error (403 - Custom Search JSON API not enabled for project)
+
+## 2026-05-20
+
+### GitHub Traffic (14-day window)
+GITHUB_TOKEN not configured
+
+### Google Search Rankings
+- "liftoff-export-cli": API error (403 - Custom Search JSON API not enabled for project)
+- "liftoff workout export": API error (403 - Custom Search JSON API not enabled for project)
+- "liftoff fitness CLI": API error (403 - Custom Search JSON API not enabled for project)
+- "export gym app data": API error (403 - Custom Search JSON API not enabled for project)
+
+## 2026-05-19
+
+### GitHub Traffic (14-day window)
+GITHUB_TOKEN not configured
+
+### Google Search Rankings
+- "liftoff-export-cli": API error (403 - Custom Search JSON API not enabled for project)
+- "liftoff workout export": API error (403 - Custom Search JSON API not enabled for project)
+- "liftoff fitness CLI": API error (403 - Custom Search JSON API not enabled for project)
+- "export gym app data": API error (403 - Custom Search JSON API not enabled for project)
+
+## 2026-05-18
+
+### GitHub Traffic (14-day window)
+GITHUB_TOKEN not configured
+
+### Google Search Rankings
+- "liftoff-export-cli": API error (403 - Custom Search JSON API not enabled for project)
+- "liftoff workout export": API error (403 - Custom Search JSON API not enabled for project)
+- "liftoff fitness CLI": API error (403 - Custom Search JSON API not enabled for project)
+- "export gym app data": API error (403 - Custom Search JSON API not enabled for project)
+
+## 2026-05-17
+
+### GitHub Traffic (14-day window)
+GITHUB_TOKEN not configured
+
+### Google Search Rankings
+- "liftoff-export-cli": API error (403 - Custom Search JSON API not enabled for project)
+- "liftoff workout export": API error (403 - Custom Search JSON API not enabled for project)
+- "liftoff fitness CLI": API error (403 - Custom Search JSON API not enabled for project)
+- "export gym app data": API error (403 - Custom Search JSON API not enabled for project)
+
+## 2026-05-16
+
+### GitHub Traffic (14-day window)
+GITHUB_TOKEN not configured
+
+### Google Search Rankings
+- "liftoff-export-cli": API error (403 - Custom Search JSON API not enabled for project)
+- "liftoff workout export": API error (403 - Custom Search JSON API not enabled for project)
+- "liftoff fitness CLI": API error (403 - Custom Search JSON API not enabled for project)
+- "export gym app data": API error (403 - Custom Search JSON API not enabled for project)
+
+## 2026-05-15
+
+### GitHub Traffic (14-day window)
+GITHUB_TOKEN not configured
+
+### Google Search Rankings
+- "liftoff-export-cli": API error (403 - Custom Search JSON API not enabled for project)
+- "liftoff workout export": API error (403 - Custom Search JSON API not enabled for project)
+- "liftoff fitness CLI": API error (403 - Custom Search JSON API not enabled for project)
+- "export gym app data": API error (403 - Custom Search JSON API not enabled for project)
+
+## 2026-05-14
+
+### GitHub Traffic (14-day window)
+GITHUB_TOKEN not configured
+
+### Google Search Rankings
+- "liftoff-export-cli": API error (403 - Custom Search JSON API not enabled for project)
+- "liftoff workout export": API error (403 - Custom Search JSON API not enabled for project)
+- "liftoff fitness CLI": API error (403 - Custom Search JSON API not enabled for project)
+- "export gym app data": API error (403 - Custom Search JSON API not enabled for project)
+
+## 2026-05-13
+
+### GitHub Traffic (14-day window)
+GITHUB_TOKEN not configured
+
+### Google Search Rankings
+- "liftoff-export-cli": API error (403 - Custom Search JSON API not enabled for project)
+- "liftoff workout export": API error (403 - Custom Search JSON API not enabled for project)
+- "liftoff fitness CLI": API error (403 - Custom Search JSON API not enabled for project)
+- "export gym app data": API error (403 - Custom Search JSON API not enabled for project)
+
+## 2026-05-10
+
+### GitHub Traffic (14-day window)
+GITHUB_TOKEN not configured
+
+### Google Search Rankings
+- "liftoff-export-cli": API error (403 - Custom Search JSON API not enabled for project)
+- "liftoff workout export": API error (403 - Custom Search JSON API not enabled for project)
+- "liftoff fitness CLI": API error (403 - Custom Search JSON API not enabled for project)
+- "export gym app data": API error (403 - Custom Search JSON API not enabled for project)
+
+## 2026-05-08
+
+### GitHub Traffic (14-day window)
+GITHUB_TOKEN not configured
+
+### Google Search Rankings
+- "liftoff-export-cli": API error (403 - Custom Search JSON API not enabled for project)
+- "liftoff workout export": API error (403 - Custom Search JSON API not enabled for project)
+- "liftoff fitness CLI": API error (403 - Custom Search JSON API not enabled for project)
+- "export gym app data": API error (403 - Custom Search JSON API not enabled for project)
+
+## 2026-05-07
+
+### GitHub Traffic (14-day window)
+GITHUB_TOKEN not configured
+
+### Google Search Rankings
+- "liftoff-export-cli": API error (403 - Custom Search JSON API not enabled for project)
+- "liftoff workout export": API error (403 - Custom Search JSON API not enabled for project)
+- "liftoff fitness CLI": API error (403 - Custom Search JSON API not enabled for project)
+- "export gym app data": API error (403 - Custom Search JSON API not enabled for project)
+
+## 2026-05-06
+
+### GitHub Traffic (14-day window)
+GITHUB_TOKEN not configured
+
+### Google Search Rankings
+- "liftoff-export-cli": API error (403 - Custom Search JSON API not enabled for project)
+- "liftoff workout export": API error (403 - Custom Search JSON API not enabled for project)
+- "liftoff fitness CLI": API error (403 - Custom Search JSON API not enabled for project)
+- "export gym app data": API error (403 - Custom Search JSON API not enabled for project)
+
+## 2026-05-03
+
+### GitHub Traffic (14-day window)
+GITHUB_TOKEN not configured
+
+### Google Search Rankings
+- "liftoff-export-cli": API error (403 - Custom Search JSON API not enabled for project)
+- "liftoff workout export": API error (403 - Custom Search JSON API not enabled for project)
+- "liftoff fitness CLI": API error (403 - Custom Search JSON API not enabled for project)
+- "export gym app data": API error (403 - Custom Search JSON API not enabled for project)
+
+## 2026-05-02
+
+### GitHub Traffic (14-day window)
+GITHUB_TOKEN not configured
+
+### Google Search Rankings
+- "liftoff-export-cli": API error (403 - Custom Search JSON API not enabled for project)
+- "liftoff workout export": API error (403 - Custom Search JSON API not enabled for project)
+- "liftoff fitness CLI": API error (403 - Custom Search JSON API not enabled for project)
+- "export gym app data": API error (403 - Custom Search JSON API not enabled for project)
+
+## 2026-04-29
+
+### GitHub Traffic (14-day window)
+GITHUB_TOKEN not configured
+
+### Google Search Rankings
+- "liftoff-export-cli": API error (403 - Custom Search JSON API not enabled for project)
+- "liftoff workout export": API error (403 - Custom Search JSON API not enabled for project)
+- "liftoff fitness CLI": API error (403 - Custom Search JSON API not enabled for project)
+- "export gym app data": API error (403 - Custom Search JSON API not enabled for project)
+
+## 2026-04-27
+
+### GitHub Traffic (14-day window)
+GITHUB_TOKEN not configured
+
+### Google Search Rankings
+- "liftoff-export-cli": API error (403 - Custom Search JSON API not enabled for project)
+- "liftoff workout export": API error (403 - Custom Search JSON API not enabled for project)
+- "liftoff fitness CLI": API error (403 - Custom Search JSON API not enabled for project)
+- "export gym app data": API error (403 - Custom Search JSON API not enabled for project)
+
+## 2026-04-19
+
+### GitHub Traffic (14-day window)
+GITHUB_TOKEN not configured
+
+### Google Search Rankings
+- "liftoff-export-cli": API error (403 - Custom Search JSON API not enabled for project)
+- "liftoff workout export": API error (403 - Custom Search JSON API not enabled for project)
+- "liftoff fitness CLI": API error (403 - Custom Search JSON API not enabled for project)
+- "export gym app data": API error (403 - Custom Search JSON API not enabled for project)
+
+## 2026-04-17
+
+### GitHub Traffic (14-day window)
+GITHUB_TOKEN not configured
+
+### Google Search Rankings
+- "liftoff-export-cli": API error (DNS cache overflow)
+- "liftoff workout export": API error (DNS cache overflow)
+- "liftoff fitness CLI": API error (403 - Custom Search JSON API not enabled for project)
+- "export gym app data": API error (403 - Custom Search JSON API not enabled for project)
+
+## 2026-04-16
+
+### GitHub Traffic (14-day window)
+GITHUB_TOKEN not configured
+
+### Google Search Rankings
+- "liftoff-export-cli": API error (403 Forbidden - Custom Search API not enabled for this project)
+- "liftoff workout export": API error (403 Forbidden - Custom Search API not enabled for this project)
+- "liftoff fitness CLI": API error (403 Forbidden - Custom Search API not enabled for this project)
+- "export gym app data": API error (403 Forbidden - Custom Search API not enabled for this project)
+
+## 2026-04-15
+
+### GitHub Traffic (14-day window)
+GITHUB_TOKEN not configured
+
+### Google Search Rankings
+- "liftoff-export-cli": API error (403 Forbidden - Custom Search API not enabled for this project)
+- "liftoff workout export": API error (403 Forbidden - Custom Search API not enabled for this project)
+- "liftoff fitness CLI": API error (403 Forbidden - Custom Search API not enabled for this project)
+- "export gym app data": API error (403 Forbidden - Custom Search API not enabled for this project)
+
+## 2026-04-14
+
+### GitHub Traffic (14-day window)
+GITHUB_TOKEN not configured
+
+### Google Search Rankings
+- "liftoff-export-cli": API error (403 Forbidden - invalid key or Search Engine ID)
+- "liftoff workout export": API error (403 Forbidden - invalid key or Search Engine ID)
+- "liftoff fitness CLI": API error (403 Forbidden - invalid key or Search Engine ID)
+- "export gym app data": API error (403 Forbidden - invalid key or Search Engine ID)
+
+## 2026-04-13
+
+### GitHub Traffic (14-day window)
+GITHUB_TOKEN not configured
+
+### Google Search Rankings
+- "liftoff-export-cli": API error (403 Forbidden - key not authorized)
+- "liftoff workout export": API error (403 Forbidden - key not authorized)
+- "liftoff fitness CLI": API error (403 Forbidden - key not authorized)
+- "export gym app data": API error (403 Forbidden - key not authorized)
+
+## 2026-04-12
+
+### GitHub Traffic (14-day window)
+GITHUB_TOKEN not configured
+
+### Google Search Rankings
+- "liftoff-export-cli": API error (403 Forbidden - key not authorized)
+- "liftoff workout export": API error (403 Forbidden - key not authorized)
+- "liftoff fitness CLI": API error (403 Forbidden - key not authorized)
+- "export gym app data": API error (403 Forbidden - key not authorized)
+
+## 2026-04-11
+
+### GitHub Traffic (14-day window)
+GITHUB_TOKEN not configured
+
+### Google Search Rankings
+- "liftoff-export-cli": API error (403 Forbidden - key not authorized)
+- "liftoff workout export": API error (403 Forbidden - key not authorized)
+- "liftoff fitness CLI": API error (403 Forbidden - key not authorized)
+- "export gym app data": API error (403 Forbidden - key not authorized)
+
+## 2026-04-10
+
+### GitHub Traffic (14-day window)
+- GITHUB_TOKEN not configured
+
+### Google Search Rankings
+- "liftoff-export-cli": unverifiable (Google Custom Search API 403 Forbidden)
+- "liftoff workout export": unverifiable (Google Custom Search API 403 Forbidden)
+- "liftoff fitness CLI": unverifiable (Google Custom Search API 403 Forbidden)
+- "export gym app data": unverifiable (Google Custom Search API 403 Forbidden)
+
+## 2026-04-09
+
+### GitHub Traffic (14-day window)
+- GITHUB_TOKEN not configured
+
+### Google Search Rankings
+- "liftoff-export-cli": unverifiable (Google Custom Search API 403 Forbidden)
+- "liftoff workout export": unverifiable (Google Custom Search API 403 Forbidden)
+- "liftoff fitness CLI": unverifiable (Google Custom Search API 403 Forbidden)
+- "export gym app data": unverifiable (Google Custom Search API 403 Forbidden)
+
+## 2026-04-08
+
+### GitHub Traffic (14-day window)
+- Views: N/A (GITHUB_TOKEN not set in environment)
+- Clones: N/A (GITHUB_TOKEN not set in environment)
+- Top referrers: N/A
+- Top paths: N/A
+
+### Google Search Results
+Note: Playwright (chromium headless) was used; Google served reCAPTCHA to all queries. Google Custom Search API also returned 403 Forbidden — results could not be retrieved from this environment.
+- "liftoff-export-cli": unverifiable (Google reCAPTCHA / API 403)
+- "liftoff workout export": unverifiable (Google reCAPTCHA / API 403)
+- "liftoff fitness CLI": unverifiable (Google reCAPTCHA / API 403)
+- "export gym app data": unverifiable (Google reCAPTCHA / API 403)
+
+## 2026-05-22
+
+### GitHub Traffic (14-day window)
+GITHUB_TOKEN not configured
+
+### Google Search Rankings
+- "liftoff-export-cli": API error (403 - Custom Search JSON API not enabled for project)
+- "liftoff workout export": API error (403 - Custom Search JSON API not enabled for project)
+- "liftoff fitness CLI": API error (403 - Custom Search JSON API not enabled for project)
+- "export gym app data": API error (403 - Custom Search JSON API not enabled for project)
