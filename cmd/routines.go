@@ -162,9 +162,10 @@ func pickPreset(presets []Preset, arg string) (*Preset, error) {
 }
 
 // printRoutinesFitdown renders presets in the same fitdown notation
-// `workouts list` uses. Each routine gets a header; favorite routines are
-// marked with a star; exerciseNotes per-exercise are surfaced below the
-// exercise name so cues like "Left Only" aren't lost.
+// `workouts list` uses. Each routine gets a markdown H1 header; favorite
+// routines are marked with a star; per-exercise notes are appended to the
+// exercise name in parens so cues like "Left Only" aren't lost without
+// colliding with markdown heading semantics.
 func printRoutinesFitdown(presets []Preset) error {
 	for i, p := range presets {
 		if i > 0 {

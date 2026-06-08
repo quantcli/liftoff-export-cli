@@ -281,20 +281,25 @@ func filterExercises(posts []Post, pattern string) []Post {
 
 func printFitdown(posts []Post) error {
 	for i, post := range posts {
+		var header string
 		t, err := time.Parse(time.RFC3339Nano, post.StartedAt)
 		if err != nil {
-			fmt.Printf("Workout %s\n", post.StartedAt)
+			header = fmt.Sprintf("Workout %s", post.StartedAt)
 		} else {
-			fmt.Printf("Workout %s\n", t.Local().Format("January 2, 2006"))
+			header = fmt.Sprintf("Workout %s", t.Local().Format("January 2, 2006"))
 		}
-
 		if post.SessionNotes != "" {
-			fmt.Printf("# %s\n", post.SessionNotes)
+			header = fmt.Sprintf("%s (%s)", header, post.SessionNotes)
 		}
+		fmt.Println(header)
 
 		for _, ex := range post.ExerciseData {
 			fmt.Println()
-			fmt.Println(ex.ExerciseName)
+			name := ex.ExerciseName
+			if ex.ExerciseNotes != "" {
+				name = fmt.Sprintf("%s (%s)", name, ex.ExerciseNotes)
+			}
+			fmt.Println(name)
 
 			var lines []string
 			for _, s := range ex.SetsData {
