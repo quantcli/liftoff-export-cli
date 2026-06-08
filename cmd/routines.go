@@ -167,11 +167,16 @@ func pickPreset(presets []Preset, arg string) (*Preset, error) {
 // exercise name so cues like "Left Only" aren't lost.
 func printRoutinesFitdown(presets []Preset) error {
 	for i, p := range presets {
+		if i > 0 {
+			fmt.Println()
+			fmt.Println("---")
+			fmt.Println()
+		}
 		star := ""
 		if p.IsFavorite {
 			star = " ★"
 		}
-		fmt.Printf("Routine %s%s\n", p.Name, star)
+		fmt.Printf("# Routine: %s%s\n", p.Name, star)
 		for _, ex := range p.ExerciseData {
 			fmt.Println()
 			fmt.Println(ex.ExerciseName)
@@ -195,9 +200,6 @@ func printRoutinesFitdown(presets []Preset) error {
 				}
 				i = j
 			}
-		}
-		if i < len(presets)-1 {
-			fmt.Println()
 		}
 	}
 	return nil
