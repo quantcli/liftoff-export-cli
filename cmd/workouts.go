@@ -3,6 +3,7 @@ package cmd
 import (
 	"encoding/json"
 	"fmt"
+	"io"
 	"os"
 	"reflect"
 	"strings"
@@ -280,6 +281,10 @@ func filterExercises(posts []Post, pattern string) []Post {
 }
 
 func printFitdown(posts []Post) error {
+	return renderWorkoutsFitdown(os.Stdout, posts)
+}
+
+func renderWorkoutsFitdown(w io.Writer, posts []Post) error {
 	for i, post := range posts {
 		var header string
 		t, err := time.Parse(time.RFC3339Nano, post.StartedAt)
@@ -291,15 +296,15 @@ func printFitdown(posts []Post) error {
 		if post.SessionNotes != "" {
 			header = fmt.Sprintf("%s (%s)", header, post.SessionNotes)
 		}
-		fmt.Println(header)
+		fmt.Fprintln(w, header)
 
 		for _, ex := range post.ExerciseData {
-			fmt.Println()
+			fmt.Fprintln(w)
 			name := ex.ExerciseName
 			if ex.ExerciseNotes != "" {
 				name = fmt.Sprintf("%s (%s)", name, ex.ExerciseNotes)
 			}
-			fmt.Println(name)
+			fmt.Fprintln(w, name)
 
 			var lines []string
 			for _, s := range ex.SetsData {
@@ -334,16 +339,16 @@ func printFitdown(posts []Post) error {
 					j++
 				}
 				if n := j - i; n > 1 {
-					fmt.Printf("%dx%s\n", n, lines[i])
+					fmt.Fprintf(w, "%dx%s\n", n, lines[i])
 				} else {
-					fmt.Println(lines[i])
+					fmt.Fprintln(w, lines[i])
 				}
 				i = j
 			}
 		}
 
 		if i < len(posts)-1 {
-			fmt.Println()
+			fmt.Fprintln(w)
 		}
 	}
 	return nil

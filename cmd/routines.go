@@ -3,6 +3,7 @@ package cmd
 import (
 	"encoding/json"
 	"fmt"
+	"io"
 	"os"
 	"strings"
 
@@ -90,7 +91,7 @@ var routinesListCmd = &cobra.Command{
 		if format == "json" {
 			return printJSON(presets)
 		}
-		return printRoutinesFitdown(presets)
+		return renderRoutinesFitdown(os.Stdout, presets)
 	},
 }
 
@@ -116,7 +117,7 @@ var routinesShowCmd = &cobra.Command{
 		if format == "json" {
 			return printJSON([]Preset{*match})
 		}
-		return printRoutinesFitdown([]Preset{*match})
+		return renderRoutinesFitdown(os.Stdout, []Preset{*match})
 	},
 }
 
@@ -161,30 +162,30 @@ func pickPreset(presets []Preset, arg string) (*Preset, error) {
 	return nil, fmt.Errorf("no routine matches %q", arg)
 }
 
-// printRoutinesFitdown renders presets in the same fitdown notation
+// renderRoutinesFitdown renders presets in the same fitdown notation
 // `workouts list` uses. Each routine gets a markdown H1 header; favorite
 // routines are marked with a star; per-exercise notes are appended to the
 // exercise name in parens so cues like "Left Only" aren't lost without
 // colliding with markdown heading semantics.
-func printRoutinesFitdown(presets []Preset) error {
+func renderRoutinesFitdown(w io.Writer, presets []Preset) error {
 	for i, p := range presets {
 		if i > 0 {
-			fmt.Println()
-			fmt.Println("---")
-			fmt.Println()
+			fmt.Fprintln(w)
+			fmt.Fprintln(w, "---")
+			fmt.Fprintln(w)
 		}
 		star := ""
 		if p.IsFavorite {
 			star = " ★"
 		}
-		fmt.Printf("# Routine: %s%s\n", p.Name, star)
+		fmt.Fprintf(w, "# Routine: %s%s\n", p.Name, star)
 		for _, ex := range p.ExerciseData {
-			fmt.Println()
+			fmt.Fprintln(w)
 			name := ex.ExerciseName
 			if ex.ExerciseNotes != nil && *ex.ExerciseNotes != "" {
 				name = fmt.Sprintf("%s (%s)", name, *ex.ExerciseNotes)
 			}
-			fmt.Println(name)
+			fmt.Fprintln(w, name)
 			var lines []string
 			for _, s := range ex.SetsData {
 				lines = append(lines, fitdownSetLine(ex.ExerciseTypes, s))
@@ -196,9 +197,9 @@ func printRoutinesFitdown(presets []Preset) error {
 					j++
 				}
 				if n := j - i; n > 1 {
-					fmt.Printf("%dx%s\n", n, lines[i])
+					fmt.Fprintf(w, "%dx%s\n", n, lines[i])
 				} else {
-					fmt.Println(lines[i])
+					fmt.Fprintln(w, lines[i])
 				}
 				i = j
 			}
