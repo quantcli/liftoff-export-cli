@@ -179,10 +179,11 @@ func printRoutinesFitdown(presets []Preset) error {
 		fmt.Printf("# Routine: %s%s\n", p.Name, star)
 		for _, ex := range p.ExerciseData {
 			fmt.Println()
-			fmt.Println(ex.ExerciseName)
+			name := ex.ExerciseName
 			if ex.ExerciseNotes != nil && *ex.ExerciseNotes != "" {
-				fmt.Printf("# %s\n", *ex.ExerciseNotes)
+				name = fmt.Sprintf("%s (%s)", name, *ex.ExerciseNotes)
 			}
+			fmt.Println(name)
 			var lines []string
 			for _, s := range ex.SetsData {
 				lines = append(lines, fitdownSetLine(ex.ExerciseTypes, s))
