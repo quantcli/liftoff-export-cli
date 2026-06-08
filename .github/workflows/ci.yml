@@ -45,3 +45,32 @@ jobs:
           # Path the compat-tagged test reads from os.Getenv.
           LIFTOFF_EXPORT_BIN: /tmp/liftoff-export
         run: go test -tags=compat -run TestContractFormats ./...
+
+  artifacts:
+    # Cross-compile review binaries for the platforms reviewers actually use.
+    # Goreleaser owns tagged releases; this job exists so a PR's diff can be
+    # tried end-to-end without a local Go toolchain — download from the run
+    # page, chmod +x, run. Retention is short (14d) to keep storage tidy.
+    name: review binaries
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-go@v5
+        with:
+          go-version-file: go.mod
+          cache: true
+      - name: cross-compile
+        run: |
+          mkdir -p dist
+          for target in darwin/arm64 darwin/amd64 linux/amd64 linux/arm64; do
+            os="${target%/*}"; arch="${target#*/}"
+            GOOS=$os GOARCH=$arch go build -trimpath -ldflags="-s -w" \
+              -o "dist/liftoff-export-${os}-${arch}" .
+          done
+          ls -lh dist/
+      - uses: actions/upload-artifact@v4
+        with:
+          name: liftoff-export-${{ github.sha }}
+          path: dist/
+          retention-days: 14
+          if-no-files-found: error
