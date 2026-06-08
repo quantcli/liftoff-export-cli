@@ -26,5 +26,6 @@ func Execute() {
 func init() {
 	rootCmd.AddCommand(authCmd)
 	rootCmd.AddCommand(bodyweightsCmd)
+	rootCmd.AddCommand(routinesCmd)
 	rootCmd.AddCommand(workoutsCmd)
 }
