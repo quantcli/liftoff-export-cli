@@ -542,3 +542,14 @@ GITHUB_TOKEN not configured
 - "liftoff workout export": API error (403 - Custom Search JSON API not enabled for project)
 - "liftoff fitness CLI": API error (403 - Custom Search JSON API not enabled for project)
 - "export gym app data": API error (403 - Custom Search JSON API not enabled for project)
+
+## 2026-06-14
+
+### GitHub Traffic (14-day window)
+GITHUB_TOKEN not configured
+
+### Google Search Rankings
+- "liftoff-export-cli": not found in top 10
+- "liftoff workout export": not found in top 10
+- "liftoff fitness CLI": not found in top 10
+- "export gym app data": not found in top 10
