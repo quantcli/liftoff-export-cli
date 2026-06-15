@@ -56,14 +56,31 @@ type PresetSetData struct {
 	InputTwo       json.Number `json:"inputTwo"`
 }
 
-// presetsResponse is the top-level shape of fitnessService.fetchUserPresetsWithFolders.
-// We currently surface only presetsWithoutFolder; folders trigger a stderr
-// warning so a non-empty value isn't silently dropped. Folder support is a
-// follow-up once we have a non-empty example to model.
-type presetsResponse struct {
-	Folders                json.RawMessage `json:"folders"`
-	PresetsWithoutFolder   []Preset        `json:"presetsWithoutFolder"`
+// Folder is a Liftoff routine folder — a labeled group of presets in the
+// app's Routines tab. The nested Presets array contains the full Preset
+// objects (each with folderId pointing back to this folder).
+type Folder struct {
+	ID           string   `json:"id"`
+	CreatedAt    string   `json:"createdAt"`
+	UserID       string   `json:"userId"`
+	Name         string   `json:"name"`
+	PresetsOrder []string `json:"presetsOrder"`
+	Presets      []Preset `json:"presets"`
 }
+
+// presetsResponse is the top-level shape of fitnessService.fetchUserPresetsWithFolders.
+// PresetsWithoutFolder are what the Liftoff app surfaces under "My Routines"
+// (the implicit ungrouped section); folder Presets are surfaced under their
+// folder name. Both rendering paths share the same Preset shape.
+type presetsResponse struct {
+	Folders              []Folder `json:"folders"`
+	PresetsWithoutFolder []Preset `json:"presetsWithoutFolder"`
+}
+
+// unfiledLabel is the section title we use for PresetsWithoutFolder in
+// markdown output. Matches the Liftoff app's UI label so a user comparing
+// terminal output to the app sees the same heading.
+const unfiledLabel = "My Routines"
 
 var routinesCmd = &cobra.Command{
 	Use:   "routines",
@@ -84,14 +101,14 @@ var routinesListCmd = &cobra.Command{
 		if err != nil {
 			return err
 		}
-		presets, err := fetchPresets()
+		resp, err := fetchPresets()
 		if err != nil {
 			return err
 		}
 		if format == "json" {
-			return printJSON(presets)
+			return printJSON(resp)
 		}
-		return renderRoutinesFitdown(os.Stdout, presets)
+		return renderRoutinesFitdown(os.Stdout, resp)
 	},
 }
 
@@ -106,37 +123,58 @@ var routinesShowCmd = &cobra.Command{
 		if err != nil {
 			return err
 		}
-		presets, err := fetchPresets()
+		resp, err := fetchPresets()
 		if err != nil {
 			return err
 		}
-		match, err := pickPreset(presets, args[0])
+		match, err := pickPreset(resp, args[0])
 		if err != nil {
 			return err
 		}
 		if format == "json" {
 			return printJSON([]Preset{*match})
 		}
-		return renderRoutinesFitdown(os.Stdout, []Preset{*match})
+		// `show` emits a single routine without any section heading —
+		// the routine name is enough context for a one-off lookup.
+		return renderOnePreset(os.Stdout, *match, "#")
 	},
 }
 
-func fetchPresets() ([]Preset, error) {
+func fetchPresets() (*presetsResponse, error) {
 	c := client.New()
 	var resp presetsResponse
 	if err := c.Query("fitnessService.fetchUserPresetsWithFolders", nil, &resp); err != nil {
 		return nil, err
 	}
-	if len(resp.Folders) > 0 && string(resp.Folders) != "[]" && string(resp.Folders) != "null" {
-		fmt.Fprintln(os.Stderr, "liftoff-export: warning — routine folders detected but not yet rendered; presets outside folders will be shown. File a follow-up if you need folder support.")
+	// Normalize nil → empty slice so --format json emits `[]` not `null`,
+	// matching what the upstream API does on an empty account.
+	if resp.Folders == nil {
+		resp.Folders = []Folder{}
 	}
-	return resp.PresetsWithoutFolder, nil
+	if resp.PresetsWithoutFolder == nil {
+		resp.PresetsWithoutFolder = []Preset{}
+	}
+	return &resp, nil
 }
 
-// pickPreset resolves a `show` argument to exactly one preset. Match order:
-// (1) case-insensitive exact name match, (2) exact id match. Multiple
-// name-matches return an error so the caller can disambiguate by id.
-func pickPreset(presets []Preset, arg string) (*Preset, error) {
+// allPresets flattens both unfiled and foldered presets into one slice for
+// lookup. Used by pickPreset so `routines show "Valley Creek 1"` finds a
+// routine regardless of whether it lives in a folder.
+func allPresets(resp *presetsResponse) []Preset {
+	out := make([]Preset, 0, len(resp.PresetsWithoutFolder))
+	out = append(out, resp.PresetsWithoutFolder...)
+	for _, f := range resp.Folders {
+		out = append(out, f.Presets...)
+	}
+	return out
+}
+
+// pickPreset resolves a `show` argument to exactly one preset across the
+// full account (unfiled + foldered). Match order: (1) case-insensitive
+// exact name match, (2) exact id match. Multiple name-matches return an
+// error so the caller can disambiguate by id.
+func pickPreset(resp *presetsResponse, arg string) (*Preset, error) {
+	presets := allPresets(resp)
 	target := strings.ToLower(strings.TrimSpace(arg))
 	var nameHits []Preset
 	for _, p := range presets {
@@ -162,47 +200,74 @@ func pickPreset(presets []Preset, arg string) (*Preset, error) {
 	return nil, fmt.Errorf("no routine matches %q", arg)
 }
 
-// renderRoutinesFitdown renders presets in the same fitdown notation
-// `workouts list` uses. Each routine gets a markdown H1 header; favorite
-// routines are marked with a star; per-exercise notes are appended to the
-// exercise name in parens so cues like "Left Only" aren't lost without
-// colliding with markdown heading semantics.
-func renderRoutinesFitdown(w io.Writer, presets []Preset) error {
-	for i, p := range presets {
-		if i > 0 {
+// renderRoutinesFitdown renders the full account: a "# My Routines" H1 with
+// each unfiled preset as an H2 underneath, then "# <FolderName>" H1 per
+// folder with its foldered presets as H2. "---" rules separate sibling
+// routines and section boundaries. Favorite routines are marked with a
+// star; per-exercise notes are appended in parens so cues like "Left Only"
+// aren't rendered as a markdown heading by mistake.
+func renderRoutinesFitdown(w io.Writer, resp *presetsResponse) error {
+	first := true
+	emitSection := func(heading string, presets []Preset) {
+		if len(presets) == 0 {
+			return
+		}
+		if !first {
 			fmt.Fprintln(w)
 			fmt.Fprintln(w, "---")
 			fmt.Fprintln(w)
 		}
-		star := ""
-		if p.IsFavorite {
-			star = " ★"
-		}
-		fmt.Fprintf(w, "# Routine: %s%s\n", p.Name, star)
-		for _, ex := range p.ExerciseData {
+		first = false
+		fmt.Fprintf(w, "# %s\n", heading)
+		for i, p := range presets {
+			if i > 0 {
+				fmt.Fprintln(w)
+				fmt.Fprintln(w, "---")
+			}
 			fmt.Fprintln(w)
-			name := ex.ExerciseName
-			if ex.ExerciseNotes != nil && *ex.ExerciseNotes != "" {
-				name = fmt.Sprintf("%s (%s)", name, *ex.ExerciseNotes)
+			renderOnePreset(w, p, "##")
+		}
+	}
+	emitSection(unfiledLabel, resp.PresetsWithoutFolder)
+	for _, f := range resp.Folders {
+		emitSection(f.Name, f.Presets)
+	}
+	return nil
+}
+
+// renderOnePreset prints a single preset under the given heading marker
+// (e.g. "##" inside a folder section, "#" for `routines show` where the
+// routine has no enclosing section). Body format (exercises, set lines,
+// note parens) is identical regardless of caller.
+func renderOnePreset(w io.Writer, p Preset, headingMarker string) error {
+	star := ""
+	if p.IsFavorite {
+		star = " ★"
+	}
+	fmt.Fprintf(w, "%s Routine: %s%s\n", headingMarker, p.Name, star)
+	for _, ex := range p.ExerciseData {
+		fmt.Fprintln(w)
+		name := ex.ExerciseName
+		if ex.ExerciseNotes != nil && *ex.ExerciseNotes != "" {
+			name = fmt.Sprintf("%s (%s)", name, *ex.ExerciseNotes)
+		}
+		fmt.Fprintln(w, name)
+		var lines []string
+		for _, s := range ex.SetsData {
+			lines = append(lines, fitdownSetLine(ex.ExerciseTypes, s))
+		}
+		// Compress consecutive identical lines into Nx... notation.
+		for i := 0; i < len(lines); {
+			j := i + 1
+			for j < len(lines) && lines[j] == lines[i] {
+				j++
 			}
-			fmt.Fprintln(w, name)
-			var lines []string
-			for _, s := range ex.SetsData {
-				lines = append(lines, fitdownSetLine(ex.ExerciseTypes, s))
+			if n := j - i; n > 1 {
+				fmt.Fprintf(w, "%dx%s\n", n, lines[i])
+			} else {
+				fmt.Fprintln(w, lines[i])
 			}
-			// Compress consecutive identical lines into Nx... notation
-			for i := 0; i < len(lines); {
-				j := i + 1
-				for j < len(lines) && lines[j] == lines[i] {
-					j++
-				}
-				if n := j - i; n > 1 {
-					fmt.Fprintf(w, "%dx%s\n", n, lines[i])
-				} else {
-					fmt.Fprintln(w, lines[i])
-				}
-				i = j
-			}
+			i = j
 		}
 	}
 	return nil
