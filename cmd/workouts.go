@@ -3,6 +3,7 @@ package cmd
 import (
 	"encoding/json"
 	"fmt"
+	"io"
 	"os"
 	"reflect"
 	"strings"
@@ -280,21 +281,30 @@ func filterExercises(posts []Post, pattern string) []Post {
 }
 
 func printFitdown(posts []Post) error {
+	return renderWorkoutsFitdown(os.Stdout, posts)
+}
+
+func renderWorkoutsFitdown(w io.Writer, posts []Post) error {
 	for i, post := range posts {
+		var header string
 		t, err := time.Parse(time.RFC3339Nano, post.StartedAt)
 		if err != nil {
-			fmt.Printf("Workout %s\n", post.StartedAt)
+			header = fmt.Sprintf("Workout %s", post.StartedAt)
 		} else {
-			fmt.Printf("Workout %s\n", t.Local().Format("January 2, 2006"))
+			header = fmt.Sprintf("Workout %s", t.Local().Format("January 2, 2006"))
 		}
-
 		if post.SessionNotes != "" {
-			fmt.Printf("# %s\n", post.SessionNotes)
+			header = fmt.Sprintf("%s (%s)", header, post.SessionNotes)
 		}
+		fmt.Fprintln(w, header)
 
 		for _, ex := range post.ExerciseData {
-			fmt.Println()
-			fmt.Println(ex.ExerciseName)
+			fmt.Fprintln(w)
+			name := ex.ExerciseName
+			if ex.ExerciseNotes != "" {
+				name = fmt.Sprintf("%s (%s)", name, ex.ExerciseNotes)
+			}
+			fmt.Fprintln(w, name)
 
 			var lines []string
 			for _, s := range ex.SetsData {
@@ -329,16 +339,16 @@ func printFitdown(posts []Post) error {
 					j++
 				}
 				if n := j - i; n > 1 {
-					fmt.Printf("%dx%s\n", n, lines[i])
+					fmt.Fprintf(w, "%dx%s\n", n, lines[i])
 				} else {
-					fmt.Println(lines[i])
+					fmt.Fprintln(w, lines[i])
 				}
 				i = j
 			}
 		}
 
 		if i < len(posts)-1 {
-			fmt.Println()
+			fmt.Fprintln(w)
 		}
 	}
 	return nil

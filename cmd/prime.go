@@ -29,6 +29,8 @@ SUBCOMMANDS
                                Filters: --exercise NAME, --detail
   bodyweights list             Recorded bodyweights, one per line
   bodyweights stats            Current/high/low + monthly trend + plateau
+  routines list                Saved workout routines (fitdown notation)
+  routines show NAME-OR-ID     One routine by name (case-insensitive) or id
 
   Inspect any subcommand's row schema with: <subcommand> --since 1d --format json
 
@@ -38,6 +40,8 @@ EXAMPLES
     jq '.[] | select(.type == "WR") | {name, vol: ([.sessions[].volume] | add)}'
   liftoff-export bodyweights list --since 90d --format json |
     jq '[.[]] | (.[-1].weight - .[0].weight)'
+  liftoff-export routines list --format json |
+    jq '[.[] | {name, exCount: (.exerciseData|length)}]'
 
 GOTCHAS
   - Workout dates are LOCAL — 11pm workouts bucket on the day you logged them.
@@ -47,6 +51,10 @@ GOTCHAS
     workout). No workout that day means no bodyweight that day.
   - 'workouts stats' bins exercises by name. Renaming an exercise in
     Liftoff splits it into two summaries.
+  - 'routines' are what Liftoff calls "presets" internally; the JSON
+    preserves that naming (id, name, exerciseData, isFavorite, etc.).
+    Folder-organized routines aren't rendered yet — file an issue if you
+    organize routines into folders.
 `
 
 var primeCmd = &cobra.Command{

@@ -111,6 +111,19 @@ liftoff-export bodyweights stats                   # Stats with monthly graph an
 liftoff-export bodyweights stats --since 2025-01-01
 ```
 
+### Routines
+
+Routines are reusable workout templates saved in the Liftoff app (the upstream API calls them "presets"; the JSON output preserves that naming):
+
+```sh
+liftoff-export routines list                       # List all your saved routines (fitdown)
+liftoff-export routines list --format json         # Full JSON for jq / agents
+liftoff-export routines show Push                  # One routine by name (case-insensitive)
+liftoff-export routines show cmkbk9ugu0eej3pv0oyd41x8c   # …or by id
+```
+
+Folder-organized routines are not rendered yet — file an issue if you need folder support.
+
 ## Output Format
 
 Workouts are printed in [fitdown](https://github.com/datavis-tech/fitdown) format by default:
