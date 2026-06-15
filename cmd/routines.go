@@ -252,9 +252,17 @@ func renderOnePreset(w io.Writer, p Preset, headingMarker string) error {
 			name = fmt.Sprintf("%s (%s)", name, *ex.ExerciseNotes)
 		}
 		fmt.Fprintln(w, name)
+		// An exercise added to a routine but never given target sets/reps
+		// arrives as one (or more) all-zero placeholder sets. Rendering them
+		// as `0@0` / `0@+0` / `0:00` looks like nonsense data; suppress the
+		// set lines but keep the exercise name so the LLM-agent reader still
+		// sees that the exercise is part of the routine.
+		if allSetsAreZero(ex.SetsData) {
+			continue
+		}
 		var lines []string
 		for _, s := range ex.SetsData {
-			lines = append(lines, fitdownSetLine(ex.ExerciseTypes, s))
+			lines = append(lines, fitdownSetLine(ex.ExerciseTypes, s.InputOne, s.InputTwo))
 		}
 		// Compress consecutive identical lines into Nx... notation.
 		for i := 0; i < len(lines); {
@@ -273,30 +281,66 @@ func renderOnePreset(w io.Writer, p Preset, headingMarker string) error {
 	return nil
 }
 
-// fitdownSetLine is split out of workouts.printFitdown so routines can render
-// the same notation without duplicating the type switch. Keeping it here
-// rather than in workouts.go keeps the workouts file untouched, at the cost
-// of a tiny bit of duplication of the WR/BR/AB/WD/DD/ND mapping.
-func fitdownSetLine(exTypes string, s PresetSetData) string {
+// allSetsAreZero reports whether every set in the slice has both inputs == 0.
+// Used to detect placeholder sets in routines (an exercise added but never
+// given a target) and an empty `ND` time entry in either renderer.
+func allSetsAreZero(sets []PresetSetData) bool {
+	if len(sets) == 0 {
+		return true
+	}
+	for _, s := range sets {
+		a, _ := s.InputOne.Float64()
+		b, _ := s.InputTwo.Float64()
+		if a != 0 || b != 0 {
+			return false
+		}
+	}
+	return true
+}
+
+// fitdownSetLine renders one set line in fitdown notation. Shared by the
+// workouts and routines renderers — both receive the same `exerciseTypes`
+// tag from Liftoff and emit identical notation. The fitdown spec only
+// documents `${reps}@${poundage}` and `Nx` compression; everything else
+// (WR/BR/AB/WD/DD/ND mapping, the `+`/`-` weight prefixes, the bodyweight
+// simplification below) is our extension.
+//
+// Simplification: when a WR/BR/AB set's weight component is 0 — i.e. a
+// bodyweight rep with no extra load or assistance — we drop the `@…`
+// suffix and emit just the rep count. "5" is clearer than "5@+0".
+func fitdownSetLine(exTypes string, inputOne, inputTwo json.Number) string {
+	weightZero := func() bool {
+		v, _ := inputOne.Float64()
+		return v == 0
+	}
 	switch exTypes {
 	case "WR":
-		return fmt.Sprintf("%s@%s", s.InputTwo, s.InputOne)
+		if weightZero() {
+			return fmt.Sprintf("%s", inputTwo)
+		}
+		return fmt.Sprintf("%s@%s", inputTwo, inputOne)
 	case "AB":
-		return fmt.Sprintf("%s@-%s", s.InputTwo, s.InputOne)
+		if weightZero() {
+			return fmt.Sprintf("%s", inputTwo)
+		}
+		return fmt.Sprintf("%s@-%s", inputTwo, inputOne)
 	case "BR":
-		return fmt.Sprintf("%s@+%s", s.InputTwo, s.InputOne)
+		if weightZero() {
+			return fmt.Sprintf("%s", inputTwo)
+		}
+		return fmt.Sprintf("%s@+%s", inputTwo, inputOne)
 	case "WD":
-		km, _ := s.InputTwo.Float64()
-		return fmt.Sprintf("%slb %.3fmi", s.InputOne, km/1.60934)
+		km, _ := inputTwo.Float64()
+		return fmt.Sprintf("%slb %.3fmi", inputOne, km/1.60934)
 	case "DD":
-		secs, _ := s.InputTwo.Int64()
-		km, _ := s.InputOne.Float64()
+		secs, _ := inputTwo.Int64()
+		km, _ := inputOne.Float64()
 		return fmt.Sprintf("%.2fmi %d:%02d", km/1.60934, secs/60, secs%60)
 	case "ND":
-		secs, _ := s.InputTwo.Int64()
+		secs, _ := inputTwo.Int64()
 		return fmt.Sprintf("%d:%02d", secs/60, secs%60)
 	default:
-		return fmt.Sprintf("[%s] %s %s", exTypes, s.InputOne, s.InputTwo)
+		return fmt.Sprintf("[%s] %s %s", exTypes, inputOne, inputTwo)
 	}
 }
 

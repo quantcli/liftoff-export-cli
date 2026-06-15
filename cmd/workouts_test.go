@@ -66,23 +66,28 @@ func TestRenderWorkoutsFitdown_ExerciseNoteInParens(t *testing.T) {
 	}
 }
 
-// Set-line notation hasn't changed in this PR but is the load-bearing
-// piece routines share with workouts (via the fitdownSetLine duplicate).
-// One representative case per ExerciseType so a regression in either
-// renderer surfaces in CI.
+// Representative cases per ExerciseType so a regression in the shared
+// fitdownSetLine surfaces in CI. The bodyweight cases (BR/AB with zero
+// weight component) verify the @+0/@-0 simplification — the spec is silent
+// on these so the rule lives in code, not docs.
 func TestRenderWorkoutsFitdown_SetNotation(t *testing.T) {
 	cases := []struct {
+		name     string
 		exType   string
 		one, two string
 		want     string
+		notWant  string // optional negative assertion
 	}{
-		{"WR", "100", "5", "5@100"},     // weight/reps
-		{"BR", "0", "10", "10@+0"},      // bodyweight reps
-		{"AB", "20", "10", "10@-20"},    // assisted bodyweight (minus)
-		{"ND", "0", "495", "8:15"},      // no-data duration
+		{"WR weighted", "WR", "100", "5", "5@100", ""},
+		{"WR zero weight simplifies", "WR", "0", "5", "\n5\n", "5@0"},
+		{"BR with extra weight", "BR", "12", "5", "5@+12", ""},
+		{"BR zero added simplifies", "BR", "0", "10", "\n10\n", "10@+0"},
+		{"AB with assistance", "AB", "20", "10", "10@-20", ""},
+		{"AB zero assistance simplifies", "AB", "0", "10", "\n10\n", "10@-0"},
+		{"ND duration", "ND", "0", "495", "8:15", ""},
 	}
 	for _, c := range cases {
-		t.Run(c.exType, func(t *testing.T) {
+		t.Run(c.name, func(t *testing.T) {
 			w := bareWorkout()
 			w.ExerciseData[0].ExerciseTypes = c.exType
 			w.ExerciseData[0].SetsData[0] = SetData{
@@ -91,8 +96,12 @@ func TestRenderWorkoutsFitdown_SetNotation(t *testing.T) {
 			}
 			var buf bytes.Buffer
 			renderWorkoutsFitdown(&buf, []Post{w})
-			if !strings.Contains(buf.String(), c.want) {
-				t.Errorf("%s: expected %q in output; got:\n%s", c.exType, c.want, buf.String())
+			out := buf.String()
+			if !strings.Contains(out, c.want) {
+				t.Errorf("expected %q in output; got:\n%s", c.want, out)
+			}
+			if c.notWant != "" && strings.Contains(out, c.notWant) {
+				t.Errorf("did NOT want %q in output (should have been simplified); got:\n%s", c.notWant, out)
 			}
 		})
 	}
