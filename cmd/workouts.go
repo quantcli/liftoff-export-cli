@@ -308,28 +308,7 @@ func renderWorkoutsFitdown(w io.Writer, posts []Post) error {
 
 			var lines []string
 			for _, s := range ex.SetsData {
-				var line string
-				switch ex.ExerciseTypes {
-				case "WR":
-					line = fmt.Sprintf("%s@%s", s.InputTwo, s.InputOne)
-				case "AB":
-					line = fmt.Sprintf("%s@-%s", s.InputTwo, s.InputOne)
-				case "BR":
-					line = fmt.Sprintf("%s@+%s", s.InputTwo, s.InputOne)
-				case "WD":
-					km, _ := s.InputTwo.Float64()
-					line = fmt.Sprintf("%slb %.3fmi", s.InputOne, km/1.60934)
-				case "DD":
-					secs, _ := s.InputTwo.Int64()
-					km, _ := s.InputOne.Float64()
-					line = fmt.Sprintf("%.2fmi %d:%02d", km/1.60934, secs/60, secs%60)
-				case "ND":
-					secs, _ := s.InputTwo.Int64()
-					line = fmt.Sprintf("%d:%02d", secs/60, secs%60)
-				default:
-					line = fmt.Sprintf("[%s] %s %s", ex.ExerciseTypes, s.InputOne, s.InputTwo)
-				}
-				lines = append(lines, line)
+				lines = append(lines, fitdownSetLine(ex.ExerciseTypes, s.InputOne, s.InputTwo))
 			}
 
 			// Compress consecutive identical lines into Nx... notation

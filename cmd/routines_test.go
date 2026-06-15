@@ -172,6 +172,49 @@ func TestRenderOnePreset_ShowUsesH1(t *testing.T) {
 	}
 }
 
+func TestRenderOnePreset_AllZeroSetsSuppressed(t *testing.T) {
+	// An exercise added to a routine but never given target sets/reps
+	// arrives as one or more zero/zero placeholder sets. The exercise
+	// name should still appear (the LLM-agent reader cares that it's
+	// part of the routine) but the bogus "0@0" / "0:00" set lines must
+	// not.
+	p := Preset{
+		Name: "Free Weights",
+		ExerciseData: []PresetExerciseData{
+			{
+				ExerciseName:  "Bench Press",
+				ExerciseTypes: "WR",
+				SetsData:      []PresetSetData{{InputOne: json.Number("100"), InputTwo: json.Number("5")}},
+			},
+			{
+				ExerciseName:  "Placeholder",
+				ExerciseTypes: "WR",
+				SetsData:      []PresetSetData{{InputOne: json.Number("0"), InputTwo: json.Number("0")}},
+			},
+			{
+				ExerciseName:  "Sci-fit Upper Body",
+				ExerciseTypes: "ND",
+				SetsData:      []PresetSetData{{InputOne: json.Number("0"), InputTwo: json.Number("0")}},
+			},
+		},
+	}
+	var buf bytes.Buffer
+	renderOnePreset(&buf, p, "##")
+	out := buf.String()
+	if !strings.Contains(out, "Bench Press\n5@100") {
+		t.Errorf("real exercise should render normally; got:\n%s", out)
+	}
+	if !strings.Contains(out, "Placeholder") {
+		t.Errorf("placeholder exercise name should still appear; got:\n%s", out)
+	}
+	if strings.Contains(out, "0@0") {
+		t.Errorf("zero/zero WR set should be suppressed; got:\n%s", out)
+	}
+	if strings.Contains(out, "0:00") {
+		t.Errorf("zero ND duration set should be suppressed; got:\n%s", out)
+	}
+}
+
 func TestPickPreset(t *testing.T) {
 	resp := &presetsResponse{
 		PresetsWithoutFolder: []Preset{
