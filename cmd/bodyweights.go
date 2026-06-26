@@ -178,11 +178,33 @@ func loadBodyweightEntries(sinceFlag, untilFlag string) ([]bodyweightEntry, erro
 		})
 	}
 
+	entries = dedupeByDay(entries)
+
 	sort.Slice(entries, func(i, j int) bool {
 		return entries[i].date.Before(entries[j].date)
 	})
 
 	return entries, nil
+}
+
+// dedupeByDay collapses entries to one per local calendar day. Bodyweight is
+// read off each workout post, so logging two workouts on the same day yields
+// two entries for that date (#30). When a day has more than one measurement,
+// keep the latest one (by StartedAt timestamp). Order is not guaranteed; the
+// caller sorts afterward.
+func dedupeByDay(entries []bodyweightEntry) []bodyweightEntry {
+	latest := make(map[string]bodyweightEntry, len(entries))
+	for _, e := range entries {
+		key := e.date.Format("2006-01-02")
+		if cur, ok := latest[key]; !ok || e.date.After(cur.date) {
+			latest[key] = e
+		}
+	}
+	out := make([]bodyweightEntry, 0, len(latest))
+	for _, e := range latest {
+		out = append(out, e)
+	}
+	return out
 }
 
 func printBodyweightStats(entries []bodyweightEntry) {
