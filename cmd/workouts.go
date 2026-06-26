@@ -6,6 +6,7 @@ import (
 	"io"
 	"os"
 	"reflect"
+	"strconv"
 	"strings"
 	"time"
 
@@ -47,6 +48,75 @@ type Post struct {
 	CaloriesBurned  int            `json:"caloriesBurned"`
 	PRCount         int            `json:"prCount"`
 	ExerciseData    []ExerciseData `json:"exerciseData"`
+}
+
+// MarshalJSON normalizes the field types in `workouts list`/`show` JSON so they
+// match the rest of the contract. The Liftoff API delivers two fields in
+// awkward forms that we keep decoding as strings but emit more usefully:
+//
+//   - bodyweight arrives as a quoted string ("175"); we emit it as a JSON
+//     number (or null when absent/unparseable) so it matches the numeric
+//     bodyweight in `workouts stats`. (#33)
+//   - sessionDuration is a human phrase ("01 hours 06 minutes 01 seconds").
+//     We keep it for display but add a numeric sessionDurationSeconds so
+//     consumers can do arithmetic without parsing prose. (#36)
+func (p Post) MarshalJSON() ([]byte, error) {
+	// alias drops Post's methods, so this Marshal call is not recursive. The
+	// outer bodyweight field shadows the embedded string field (same tag,
+	// shallower depth wins), replacing it with a number/null.
+	type alias Post
+	return json.Marshal(struct {
+		alias
+		Bodyweight             *float64 `json:"bodyweight"`
+		SessionDurationSeconds *int     `json:"sessionDurationSeconds"`
+	}{
+		alias:                  alias(p),
+		Bodyweight:             parseBodyweightValue(p.Bodyweight),
+		SessionDurationSeconds: parseDurationSeconds(p.SessionDuration),
+	})
+}
+
+// parseBodyweightValue converts the API's string bodyweight to a number.
+// Empty or unparseable values yield nil, which marshals as null.
+func parseBodyweightValue(s string) *float64 {
+	s = strings.TrimSpace(s)
+	if s == "" {
+		return nil
+	}
+	f, err := strconv.ParseFloat(s, 64)
+	if err != nil {
+		return nil
+	}
+	return &f
+}
+
+// parseDurationSeconds parses Liftoff's "NN hours NN minutes NN seconds"
+// session-duration phrase into a total number of seconds. It tolerates a
+// missing unit group (e.g. "45 minutes 30 seconds") but returns nil on any
+// shape it does not recognize rather than guessing.
+func parseDurationSeconds(s string) *int {
+	fields := strings.Fields(s)
+	if len(fields) < 2 || len(fields)%2 != 0 {
+		return nil
+	}
+	total := 0
+	for i := 0; i+1 < len(fields); i += 2 {
+		n, err := strconv.Atoi(fields[i])
+		if err != nil {
+			return nil
+		}
+		switch strings.ToLower(strings.TrimSuffix(fields[i+1], "s")) {
+		case "hour":
+			total += n * 3600
+		case "minute", "min":
+			total += n * 60
+		case "second", "sec":
+			total += n
+		default:
+			return nil
+		}
+	}
+	return &total
 }
 
 var listFormatFlag string
