@@ -674,3 +674,15 @@ API error (GITHUB_TOKEN is set but outbound curl to GitHub API is blocked by the
 - "liftoff workout export": API error (403 - Custom Search JSON API not enabled for project)
 - "liftoff fitness CLI": API error (403 - Custom Search JSON API not enabled for project)
 - "export gym app data": API error (403 - Custom Search JSON API not enabled for project)
+
+## 2026-06-26
+
+### GitHub Traffic (14-day window)
+API error (outbound curl to GitHub API blocked by remote execution environment proxy; org admin must connect the Claude GitHub App to enable traffic data access)
+
+### Google Search Rankings
+(via WebSearch fallback — Google Custom Search JSON API remains inaccessible from this environment)
+- "liftoff-export-cli": position 1
+- "liftoff workout export": position 1
+- "liftoff fitness CLI": position 1
+- "export gym app data": not found in top 10
