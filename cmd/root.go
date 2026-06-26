@@ -1,6 +1,7 @@
 package cmd
 
 import (
+	"fmt"
 	"os"
 
 	"github.com/spf13/cobra"
@@ -15,10 +16,17 @@ fitdown-style markdown; pass --format json for the full structured row.
 
 LLM agents: run 'liftoff-export prime' for a one-screen orientation
 (I/O contract, subcommands, date flags, jq recipes).`,
+	// Keep the output contract clean: stdout is for data only. By default
+	// cobra dumps the full usage/flags block to stderr on any RunE or
+	// flag-parse error, which clutters logs and buries the actual message.
+	// Silence both and print a single-line error ourselves in Execute. (#31)
+	SilenceUsage:  true,
+	SilenceErrors: true,
 }
 
 func Execute() {
 	if err := rootCmd.Execute(); err != nil {
+		fmt.Fprintln(os.Stderr, "Error:", err)
 		os.Exit(1)
 	}
 }
