@@ -1,0 +1,73 @@
+name: PR review binaries link
+
+# Posts a download link for the review binaries CI just built, so a PR can be
+# tried end-to-end before merge without a local Go toolchain.
+#
+# Why workflow_run and not a step inside CI: contributor PRs come from forks,
+# and fork PRs get a read-only GITHUB_TOKEN, so a comment step inside CI can't
+# post. workflow_run runs in the base-repo context with a writable token.
+# It deliberately does NOT check out or execute any PR code — it only reads
+# the run's metadata and comments — so the writable token never touches
+# untrusted input.
+on:
+  workflow_run:
+    workflows: [CI]
+    types: [completed]
+
+permissions:
+  contents: read
+  pull-requests: write
+
+jobs:
+  comment:
+    if: github.event.workflow_run.event == 'pull_request' && github.event.workflow_run.conclusion == 'success'
+    runs-on: ubuntu-latest
+    steps:
+      - name: find the PR and comment
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          REPO: ${{ github.repository }}
+          RUN_ID: ${{ github.event.workflow_run.id }}
+          HEAD_SHA: ${{ github.event.workflow_run.head_sha }}
+        run: |
+          set -euo pipefail
+
+          # workflow_run.pull_requests is empty for fork PRs, so resolve the
+          # PR from the head SHA instead.
+          pr=$(gh api "repos/$REPO/commits/$HEAD_SHA/pulls" \
+                 --jq '[.[] | select(.state == "open")][0].number // empty')
+          if [ -z "$pr" ]; then
+            echo "no open PR for $HEAD_SHA; nothing to comment on"
+            exit 0
+          fi
+
+          run_url="https://github.com/$REPO/actions/runs/$RUN_ID"
+          body=$(cat <<EOF
+          ### Try this PR without building it
+
+          CI cross-compiled review binaries for commit \`${HEAD_SHA:0:7}\`:
+
+          **[Download from the run page]($run_url#artifacts)** — the \`liftoff-export\` artifact holds all platforms.
+
+          | Platform | File |
+          |---|---|
+          | macOS (Apple silicon) | \`liftoff-export-darwin-arm64\` |
+          | macOS (Intel) | \`liftoff-export-darwin-amd64\` |
+          | Linux x86_64 | \`liftoff-export-linux-amd64\` |
+          | Linux arm64 | \`liftoff-export-linux-arm64\` |
+          | Windows x86_64 | \`liftoff-export-windows-amd64.exe\` |
+
+          On macOS and Linux, unzip then \`chmod +x liftoff-export-*\` before running. macOS Gatekeeper will block the unsigned binary on first run — right-click → Open, or \`xattr -d com.apple.quarantine <file>\`.
+
+          Downloading requires being signed in to GitHub, and artifacts expire 14 days after the run.
+
+          <sub>Posted automatically. Updated on each push to this PR.</sub>
+          EOF
+          )
+          # Strip the heredoc's leading indentation.
+          body=$(printf '%s\n' "$body" | sed 's/^          //')
+
+          # Sticky: edit our previous comment rather than stacking one per push.
+          # --edit-last fails when there's nothing to edit, so fall back to new.
+          gh pr comment "$pr" --repo "$REPO" --edit-last --body "$body" \
+            || gh pr comment "$pr" --repo "$REPO" --body "$body"
