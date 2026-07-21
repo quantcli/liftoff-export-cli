@@ -1,7 +1,7 @@
 name: PR review binaries link
 
-# Posts a download link for the review binaries CI just built, so a PR can be
-# tried end-to-end before merge without a local Go toolchain.
+# Posts one-click download links for the review binaries CI just built, so a
+# PR can be tried end-to-end before merge without a local Go toolchain.
 #
 # Why workflow_run and not a step inside CI: contributor PRs come from forks,
 # and fork PRs get a read-only GITHUB_TOKEN, so a comment step inside CI can't
@@ -9,6 +9,13 @@ name: PR review binaries link
 # It deliberately does NOT check out or execute any PR code — it only reads
 # the run's metadata and comments — so the writable token never touches
 # untrusted input.
+#
+# Why nightly.link: GitHub has no permanent public download URL for an
+# artifact. The /actions/runs/<id>/artifacts/<id> endpoint needs browser
+# session cookies (a token gets a 404), so a plain link only works for signed-in
+# users, and even then only after finding the right row on the run page.
+# nightly.link is a third-party redirector that resolves an artifact to an
+# anonymous, no-login download. Public repos need no app install.
 on:
   workflow_run:
     workflows: [CI]
@@ -41,30 +48,47 @@ jobs:
             exit 0
           fi
 
+          # nightly.link addresses artifacts by check-suite, not run.
+          suite=$(gh api "repos/$REPO/actions/runs/$RUN_ID" --jq '.check_suite_id')
+
+          label() {
+            case "$1" in
+              *darwin-arm64*)  echo "macOS (Apple silicon)" ;;
+              *darwin-amd64*)  echo "macOS (Intel)" ;;
+              *linux-amd64*)   echo "Linux x86_64" ;;
+              *linux-arm64*)   echo "Linux arm64" ;;
+              *windows-amd64*) echo "Windows x86_64" ;;
+              *)               echo "$1" ;;
+            esac
+          }
+
+          rows=""
+          while IFS=$'\t' read -r name id; do
+            [ -n "$name" ] || continue
+            url="https://nightly.link/$REPO/suites/$suite/artifacts/$id"
+            rows="${rows}| $(label "$name") | [\`${name}.zip\`]($url) |"$'\n'
+          done < <(gh api "repos/$REPO/actions/runs/$RUN_ID/artifacts" \
+                     --jq '.artifacts[] | [.name, .id] | @tsv' | sort)
+
+          if [ -z "$rows" ]; then
+            echo "run $RUN_ID produced no artifacts; nothing to link"
+            exit 0
+          fi
+
           run_url="https://github.com/$REPO/actions/runs/$RUN_ID"
           body=$(cat <<EOF
           ### Try this PR without building it
 
-          CI cross-compiled review binaries for commit \`${HEAD_SHA:0:7}\`:
+          Review binaries for commit \`${HEAD_SHA:0:7}\` — direct download, no login required:
 
-          **[Download from the run page]($run_url#artifacts)** — the \`liftoff-export\` artifact holds all platforms.
-
-          | Platform | File |
+          | Platform | Download |
           |---|---|
-          | macOS (Apple silicon) | \`liftoff-export-darwin-arm64\` |
-          | macOS (Intel) | \`liftoff-export-darwin-amd64\` |
-          | Linux x86_64 | \`liftoff-export-linux-amd64\` |
-          | Linux arm64 | \`liftoff-export-linux-arm64\` |
-          | Windows x86_64 | \`liftoff-export-windows-amd64.exe\` |
+          ${rows}
+          Unzip, then on macOS/Linux \`chmod +x\` the binary before running. macOS Gatekeeper blocks unsigned binaries on first run — right-click → Open, or \`xattr -d com.apple.quarantine <file>\`.
 
-          On macOS and Linux, unzip then \`chmod +x liftoff-export-*\` before running. macOS Gatekeeper will block the unsigned binary on first run — right-click → Open, or \`xattr -d com.apple.quarantine <file>\`.
-
-          Downloading requires being signed in to GitHub, and artifacts expire 14 days after the run.
-
-          <sub>Posted automatically. Updated on each push to this PR.</sub>
+          <sub>Links are resolved by [nightly.link](https://nightly.link/), a third-party redirector for GitHub Actions artifacts, because GitHub has no anonymous artifact URL of its own. Signed-in users can also [browse the run directly]($run_url#artifacts). Artifacts expire 14 days after the run. Updated on each push to this PR.</sub>
           EOF
           )
-          # Strip the heredoc's leading indentation.
           body=$(printf '%s\n' "$body" | sed 's/^          //')
 
           # Sticky: edit our previous comment rather than stacking one per push.
