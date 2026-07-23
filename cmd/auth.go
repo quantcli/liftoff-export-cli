@@ -78,12 +78,23 @@ This is a local check — no network call and no refresh is attempted, even
 when the saved token is expired. Use 'auth refresh' (or any export
 subcommand) to actually refresh.
 
+If LIFTOFF_REFRESH_TOKEN is set it wins over any saved token, and status
+reports that instead. Its validity is unknown without a network call, so
+exit 0 there means "a token was supplied", not "the token works".
+
 Per the quantcli shared contract:
 https://github.com/quantcli/common/blob/main/CONTRACT.md#5-auth`,
 	RunE: func(cmd *cobra.Command, args []string) error {
+		// Headless mode has no saved token to inspect and no expiry to
+		// report until a refresh happens, so report the source and stop.
+		if auth.EnvRefreshToken() != "" {
+			fmt.Fprintln(cmd.OutOrStdout(), "using LIFTOFF_REFRESH_TOKEN (headless; no saved token consulted)")
+			return nil
+		}
+
 		store, err := auth.Load()
 		if err != nil {
-			return fmt.Errorf("not logged in — run: liftoff-export auth login")
+			return fmt.Errorf("not logged in — run: liftoff-export auth login (or set LIFTOFF_REFRESH_TOKEN)")
 		}
 		exp := store.ExpiresAt.Local().Format(time.RFC3339)
 		if time.Now().After(store.ExpiresAt) {

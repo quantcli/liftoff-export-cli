@@ -22,6 +22,18 @@ const (
 
 const apiBaseEnvVar = "LIFTOFF_API_BASE"
 
+// refreshTokenEnvVar is the headless auth path required by the quantcli
+// contract (§5): a fresh container exports without an interactive login.
+// It also covers accounts that have no password to type — Google Sign-In
+// accounts can't use 'auth login' at all. (#55)
+const refreshTokenEnvVar = "LIFTOFF_REFRESH_TOKEN"
+
+// EnvRefreshToken returns the refresh token supplied via the environment,
+// or "" when unset. When set it takes precedence over the saved token file.
+func EnvRefreshToken() string {
+	return strings.TrimSpace(os.Getenv(refreshTokenEnvVar))
+}
+
 var (
 	resolveOnce sync.Once
 	resolved    string
@@ -69,9 +81,21 @@ func configPath() string {
 
 // GetToken returns a valid access token, refreshing if needed.
 func GetToken() (string, error) {
+	// Headless mode: the environment supplies the refresh token, so there is
+	// no login step and no token file. Deliberately not persisted — writing
+	// would clobber the token file of whoever is logged in on this machine.
+	// Costs one refresh call per invocation, which is fine for a CLI.
+	if rt := EnvRefreshToken(); rt != "" {
+		store, err := refresh(rt)
+		if err != nil {
+			return "", fmt.Errorf("%s refresh failed: %w", refreshTokenEnvVar, err)
+		}
+		return store.AccessToken, nil
+	}
+
 	store, err := load()
 	if err != nil {
-		return "", fmt.Errorf("not logged in — run: liftoff-export auth login")
+		return "", fmt.Errorf("not logged in — run: liftoff-export auth login (or set %s)", refreshTokenEnvVar)
 	}
 	if time.Now().After(store.ExpiresAt) {
 		store, err = Refresh(store.RefreshToken)
@@ -82,8 +106,19 @@ func GetToken() (string, error) {
 	return store.AccessToken, nil
 }
 
-// Refresh exchanges a refresh token for a new access token via user.refreshToken.
+// Refresh exchanges a refresh token for a new access token and saves the
+// result. Use refresh directly when the tokens must not touch disk.
 func Refresh(refreshToken string) (*TokenStore, error) {
+	store, err := refresh(refreshToken)
+	if err != nil {
+		return nil, err
+	}
+	return store, Save(store)
+}
+
+// refresh exchanges a refresh token for a new access token via
+// user.refreshToken, without persisting anything.
+func refresh(refreshToken string) (*TokenStore, error) {
 	// tRPC batch GET: /api/trpc/user.refreshToken?batch=1&input={"0":{"json":"<token>"}}
 	input, _ := json.Marshal(map[string]any{
 		"0": map[string]any{"json": refreshToken},
@@ -135,12 +170,11 @@ func Refresh(refreshToken string) (*TokenStore, error) {
 
 	expiresAt, _ := time.Parse(time.RFC3339Nano, batch[0].Result.Data.JSON.AccessTokenExpiresAt)
 
-	store := &TokenStore{
+	return &TokenStore{
 		AccessToken:  batch[0].Result.Data.JSON.AccessToken,
 		RefreshToken: refreshToken,
 		ExpiresAt:    expiresAt.Add(-5 * time.Minute), // refresh 5min early
-	}
-	return store, Save(store)
+	}, nil
 }
 
 // Logout removes the stored auth tokens.
