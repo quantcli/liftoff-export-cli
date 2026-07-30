@@ -7,9 +7,15 @@ import (
 	"github.com/spf13/cobra"
 )
 
+// version is overwritten at release time via
+// -ldflags "-X github.com/quantcli/liftoff-export-cli/cmd.version=v1.2.0".
+// Setting rootCmd.Version below makes cobra register --version for free.
+var version = "dev"
+
 var rootCmd = &cobra.Command{
-	Use:   "liftoff-export",
-	Short: "CLI for the Liftoff fitness app",
+	Use:     "liftoff-export",
+	Short:   "CLI for the Liftoff fitness app",
+	Version: version,
 	Long: `liftoff-export reads your personal Liftoff (gymbros.com) workout and
 bodyweight data and prints it on stdout. Default output is narrow,
 fitdown-style markdown; pass --format json for the full structured row.
