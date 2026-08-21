@@ -1,5 +1,17 @@
 # SEO & Traffic Tracking - liftoff-export-cli
 
+## 2026-08-21
+
+### GitHub Traffic (14-day window)
+GITHUB_TOKEN is set, but GitHub API access is blocked in this session ("GitHub access is not enabled for this session — an org admin must connect the Claude GitHub App for this organization")
+
+### Google Search Rankings
+(Google Custom Search JSON API responded successfully — no 403 error — but repo not found in any top 10 results. Rankings have dropped from consistent position 1 (Aug 7–17) to not found in top 10 for two consecutive days.)
+- "liftoff-export-cli": not found in top 10
+- "liftoff workout export": not found in top 10
+- "liftoff fitness CLI": not found in top 10
+- "export gym app data": not found in top 10
+
 ## 2026-08-20
 
 ### GitHub Traffic (14-day window)
