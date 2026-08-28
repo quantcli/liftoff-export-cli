@@ -43,6 +43,76 @@ var loginCmd = &cobra.Command{
 	},
 }
 
+var (
+	importRefreshTokenFlag string
+	importAccessTokenFlag  string
+	importExpiresAtFlag    string
+	importNoVerifyFlag     bool
+)
+
+var importCmd = &cobra.Command{
+	Use:   "import",
+	Short: "Import a refresh token captured from the Liftoff app",
+	Long: `Import a Liftoff refresh token and save it to
+~/.config/liftoff-export/auth.json, the same place 'auth login' writes.
+
+This is the login path for accounts that have no password to type —
+Google Sign-In accounts can't use 'auth login' at all (#55). Liftoff has
+no web login, so the refresh token has to be read off the phone app with
+an HTTPS proxy such as mitmproxy or Proxyman: log in the app, then look
+for the POST to '.../api/trpc/user.signIn' and copy the 'refreshToken'
+out of its JSON response.
+
+By default the token is exchanged for an access token immediately, which
+both verifies it and fills in the expiry. Pass the token on --refresh-token
+or on stdin:
+
+    liftoff-export auth import --refresh-token "$RT"
+    echo "$RT" | liftoff-export auth import
+
+With --no-verify the CLI writes what you give it and makes no network
+call; --access-token and --expires-at (RFC3339) are then required too.
+Headless callers that already have a refresh token don't need this
+command at all — set LIFTOFF_REFRESH_TOKEN and skip the token file.`,
+	RunE: func(cmd *cobra.Command, args []string) error {
+		rt := strings.TrimSpace(importRefreshTokenFlag)
+		if rt == "" {
+			fmt.Fprint(cmd.ErrOrStderr(), "Refresh token: ")
+			scanner := bufio.NewScanner(cmd.InOrStdin())
+			scanner.Scan()
+			rt = strings.TrimSpace(scanner.Text())
+		}
+		if rt == "" {
+			return fmt.Errorf("a refresh token is required (--refresh-token or stdin)")
+		}
+
+		if importNoVerifyFlag {
+			at := strings.TrimSpace(importAccessTokenFlag)
+			exp := strings.TrimSpace(importExpiresAtFlag)
+			if at == "" || exp == "" {
+				return fmt.Errorf("--no-verify requires --access-token and --expires-at")
+			}
+			if _, err := time.Parse(time.RFC3339Nano, exp); err != nil {
+				return fmt.Errorf("--expires-at must be RFC3339 (e.g. 2026-01-02T15:04:05Z): %w", err)
+			}
+			if err := auth.SaveFromCapture(at, rt, exp); err != nil {
+				return err
+			}
+			fmt.Fprintln(cmd.OutOrStdout(), "Imported (unverified). Tokens saved to ~/.config/liftoff-export/auth.json")
+			return nil
+		}
+
+		store, err := auth.Refresh(rt)
+		if err != nil {
+			return fmt.Errorf("refresh token rejected: %w", err)
+		}
+		fmt.Fprintf(cmd.OutOrStdout(),
+			"Imported. Tokens saved to ~/.config/liftoff-export/auth.json (token expires %s)\n",
+			store.ExpiresAt.Local().Format(time.RFC3339))
+		return nil
+	},
+}
+
 var refreshCmd = &cobra.Command{
 	Use:   "refresh",
 	Short: "Manually refresh the access token",
@@ -107,7 +177,13 @@ https://github.com/quantcli/common/blob/main/CONTRACT.md#5-auth`,
 
 func init() {
 	authCmd.AddCommand(loginCmd)
+	authCmd.AddCommand(importCmd)
 	authCmd.AddCommand(logoutCmd)
 	authCmd.AddCommand(refreshCmd)
 	authCmd.AddCommand(statusCmd)
+
+	importCmd.Flags().StringVar(&importRefreshTokenFlag, "refresh-token", "", "refresh token (read from stdin if omitted)")
+	importCmd.Flags().StringVar(&importAccessTokenFlag, "access-token", "", "access token (only with --no-verify)")
+	importCmd.Flags().StringVar(&importExpiresAtFlag, "expires-at", "", "access-token expiry, RFC3339 (only with --no-verify)")
+	importCmd.Flags().BoolVar(&importNoVerifyFlag, "no-verify", false, "save tokens without exchanging them (no network call)")
 }
