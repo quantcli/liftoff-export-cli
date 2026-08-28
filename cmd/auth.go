@@ -79,8 +79,13 @@ command at all — set LIFTOFF_REFRESH_TOKEN and skip the token file.`,
 		if rt == "" {
 			fmt.Fprint(cmd.ErrOrStderr(), "Refresh token: ")
 			scanner := bufio.NewScanner(cmd.InOrStdin())
-			scanner.Scan()
-			rt = strings.TrimSpace(scanner.Text())
+			if !scanner.Scan() {
+				if err := scanner.Err(); err != nil {
+					return err
+				}
+			} else {
+				rt = strings.TrimSpace(scanner.Text())
+			}
 		}
 		if rt == "" {
 			return fmt.Errorf("a refresh token is required (--refresh-token or stdin)")
