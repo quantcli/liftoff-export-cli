@@ -1,5 +1,17 @@
 # SEO & Traffic Tracking - liftoff-export-cli
 
+## 2026-08-29
+
+### GitHub Traffic (14-day window)
+GITHUB_TOKEN is set, but GitHub API access is blocked in this session ("GitHub access is not enabled for this session — an org admin must connect the Claude GitHub App for this organization")
+
+### Google Search Rankings
+(Google Custom Search JSON API responded successfully — no 403 error. All 4 queries returned 10 results but none linked to DTTerastar/liftoff-export-cli. Rankings dropped from position 1 yesterday (Aug 28) to not found today — possible fluctuation or index update.)
+- "liftoff-export-cli": not found in top 10
+- "liftoff workout export": not found in top 10
+- "liftoff fitness CLI": not found in top 10
+- "export gym app data": not found in top 10
+
 ## 2026-08-28
 
 ### GitHub Traffic (14-day window)
