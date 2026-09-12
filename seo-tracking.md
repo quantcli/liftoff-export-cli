@@ -1,5 +1,17 @@
 # SEO & Traffic Tracking - liftoff-export-cli
 
+## 2026-09-12
+
+### GitHub Traffic (14-day window)
+GITHUB_TOKEN is set, but the repo has been transferred to quantcli/liftoff-export-cli. The session is scoped to the old DTTerastar path; the GitHub API redirects to numeric-ID paths which are blocked by this environment's proxy. Traffic data unavailable until session scope is updated to quantcli/liftoff-export-cli.
+
+### Google Search Rankings
+(via WebSearch fallback — Google Custom Search JSON API returns 403 PERMISSION_DENIED from this environment)
+- "liftoff-export-cli": position 1
+- "liftoff workout export": position 1
+- "liftoff fitness CLI": position 1
+- "export gym app data": not found in top 10
+
 ## 2026-09-11
 
 ### GitHub Traffic (14-day window)
