@@ -1,5 +1,17 @@
 # SEO & Traffic Tracking - liftoff-export-cli
 
+## 2026-09-13
+
+### GitHub Traffic (14-day window)
+GITHUB_TOKEN is set, but GitHub traffic API endpoints redirect to numeric-ID paths (repositories/{id}/...) which are blocked by this environment's proxy. Traffic data unavailable until the proxy supports numeric-ID redirects or a workaround is in place.
+
+### Google Search Rankings
+(via WebSearch fallback — Google Custom Search JSON API returns 403 PERMISSION_DENIED from this environment)
+- "liftoff-export-cli": position 1
+- "liftoff workout export": position 1
+- "liftoff fitness CLI": position 1
+- "export gym app data": not found in top 10
+
 ## 2026-09-12
 
 ### GitHub Traffic (14-day window)
