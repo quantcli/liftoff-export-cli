@@ -1,16 +1,41 @@
-# SEO & Traffic Tracking - liftoff-export-cli
+# SEO & Traffic Tracking - quantcli
+
+<!-- Expanded 2026-09-16 to cover all three quantcli export CLIs. Entries before this date tracked liftoff-export-cli only. -->
 
 ## 2026-09-16
 
-### GitHub Traffic (14-day window)
-GITHUB_TOKEN is set, but GitHub traffic API endpoints redirect to numeric-ID paths (repositories/{id}/...) which are blocked by this environment's proxy. Note: repo transferred from DTTerastar/liftoff-export-cli to quantcli/liftoff-export-cli. Traffic data unavailable until proxy supports numeric-ID redirects.
+### liftoff-export-cli
+#### GitHub Traffic (14-day window)
+GITHUB_TOKEN is set, but GitHub traffic API endpoints redirect to numeric-ID paths (repositories/{id}/...) which are blocked by this environment's proxy. Traffic data unavailable until proxy supports numeric-ID redirects.
 
-### Google Search Rankings
-(via WebSearch fallback — Google Custom Search JSON API returns 403 PERMISSION_DENIED from this environment)
+#### Google Search Rankings
+(via WebSearch fallback — Google Custom Search JSON API returns 403 PERMISSION_DENIED)
 - "liftoff-export-cli": position 1
 - "liftoff workout export": position 1
 - "liftoff fitness CLI": position 1
 - "export gym app data": not found in top 10
+
+### crono-export-cli
+#### GitHub Traffic (14-day window)
+GITHUB_TOKEN is set, but GitHub traffic API endpoints redirect to numeric-ID paths which are blocked by the proxy. Traffic data unavailable.
+
+#### Google Search Rankings
+(via WebSearch fallback)
+- "crono-export-cli": position 1
+- "cronometer export CLI": position 1
+- "cronometer nutrition export": not found in top 10
+- "export cronometer data": not found in top 10
+
+### withings-export-cli
+#### GitHub Traffic (14-day window)
+GITHUB_TOKEN is set, but GitHub traffic API endpoints redirect to numeric-ID paths which are blocked by the proxy. Traffic data unavailable.
+
+#### Google Search Rankings
+(via WebSearch fallback)
+- "withings-export-cli": not found in top 10
+- "withings export CLI": not found in top 10
+- "withings data export": not found in top 10
+- "export withings health data": not found in top 10
 
 ## 2026-09-15
 
