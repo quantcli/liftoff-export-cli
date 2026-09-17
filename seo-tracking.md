@@ -2,6 +2,19 @@
 
 <!-- Expanded 2026-09-16 to cover all three quantcli export CLIs. Entries before this date tracked liftoff-export-cli only. -->
 
+## 2026-09-17
+
+### liftoff-export-cli
+#### GitHub Traffic (14-day window)
+GITHUB_TOKEN is set, but GitHub traffic API endpoints redirect to numeric-ID paths (repositories/{id}/...) which are blocked by this environment's proxy. Traffic data unavailable.
+
+#### Google Search Rankings
+(Google Custom Search JSON API responded successfully — no 403 error)
+- "liftoff-export-cli": not found in top 10
+- "liftoff workout export": not found in top 10
+- "liftoff fitness CLI": not found in top 10
+- "export gym app data": not found in top 10
+
 ## 2026-09-16
 
 ### liftoff-export-cli
