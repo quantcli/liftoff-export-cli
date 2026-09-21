@@ -936,3 +936,14 @@ GITHUB_TOKEN is set, but GitHub API access is blocked in this session ("GitHub a
 - "liftoff workout export": API error (403 - Custom Search JSON API not enabled for project)
 - "liftoff fitness CLI": API error (403 - Custom Search JSON API not enabled for project)
 - "export gym app data": API error (403 - Custom Search JSON API not enabled for project)
+
+## 2026-09-21
+
+### GitHub Traffic (14-day window)
+GITHUB_TOKEN is set, but GitHub API access is unavailable. The repository has been transferred from DTTerastar/liftoff-export-cli to quantcli/liftoff-export-cli — the session is still scoped to the old owner and the proxy rejects traffic API calls to the new org. Update the GitHub App installation to the quantcli organization to restore access.
+
+### Google Search Rankings
+- "liftoff-export-cli": API error (403 - Custom Search JSON API not enabled for project)
+- "liftoff workout export": API error (403 - Custom Search JSON API not enabled for project)
+- "liftoff fitness CLI": API error (403 - Custom Search JSON API not enabled for project)
+- "export gym app data": API error (403 - Custom Search JSON API not enabled for project)
