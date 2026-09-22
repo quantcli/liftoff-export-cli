@@ -947,3 +947,15 @@ GITHUB_TOKEN is set, but GitHub API access is unavailable. The repository has be
 - "liftoff workout export": API error (403 - Custom Search JSON API not enabled for project)
 - "liftoff fitness CLI": API error (403 - Custom Search JSON API not enabled for project)
 - "export gym app data": API error (403 - Custom Search JSON API not enabled for project)
+
+## 2026-09-22
+
+### GitHub Traffic (14-day window)
+GITHUB_TOKEN is set, but GitHub traffic API endpoints redirect to numeric-ID paths (repositories/{id}/...) which are blocked by this environment's proxy. Traffic data unavailable.
+
+### Google Search Rankings
+(via WebSearch fallback — Google Custom Search JSON API returns 403 PERMISSION_DENIED from this environment)
+- "liftoff-export-cli": position 1
+- "liftoff workout export": position 1
+- "liftoff fitness CLI": position 1
+- "export gym app data": not found in top 10
