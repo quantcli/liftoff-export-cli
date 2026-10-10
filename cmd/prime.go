@@ -49,7 +49,8 @@ GOTCHAS
     if data calls fail with "server is deprecated".
   - Headless: set LIFTOFF_REFRESH_TOKEN to skip 'auth login' entirely (no
     token file is read or written). Required for Google Sign-In accounts,
-    which have no password to type.
+    which have no password to type. To persist such a token to the normal
+    token file instead, run 'auth import --refresh-token ...' once.
   - Bodyweight is read off Post.bodyweight (the value you entered for that
     workout). No workout that day means no bodyweight that day.
   - 'workouts stats' bins exercises by name. Renaming an exercise in
