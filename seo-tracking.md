@@ -1,5 +1,17 @@
 # SEO & Traffic Tracking - quantcli
 
+## 2026-10-29
+
+### GitHub Traffic (14-day window)
+GITHUB_TOKEN is set, but GitHub traffic API endpoints redirect to numeric-ID paths (repositories/{id}/...) which are blocked by this environment's proxy. Traffic data unavailable.
+
+### Google Search Rankings
+(Google Custom Search JSON API returned no items — likely 403/error response from this environment, consistent with prior days)
+- "liftoff-export-cli": not found in top 10
+- "liftoff workout export": not found in top 10
+- "liftoff fitness CLI": not found in top 10
+- "export gym app data": not found in top 10
+
 ## 2026-10-28
 
 ### GitHub Traffic (14-day window)
@@ -36,6 +48,30 @@ GITHUB_TOKEN is set, but the repo transferred from DTTerastar/liftoff-export-cli
 - "liftoff fitness CLI": position 1 (pkg.go.dev/github.com/quantcli/liftoff-export-cli)
 - "export gym app data": not found in top 10
 
+## 2026-10-25
+
+### GitHub Traffic (14-day window)
+GITHUB_TOKEN is set, but GitHub traffic API endpoints redirect to numeric-ID paths (repositories/{id}/...) which are blocked by this environment's proxy. Traffic data unavailable.
+
+### Google Search Rankings
+(via WebSearch fallback — Google Custom Search JSON API returns "project does not have access" from this environment)
+- "liftoff-export-cli": position 1 (pkg.go.dev/github.com/quantcli/liftoff-export-cli); DTTerastar/liftoff-export-cli not found in top 10
+- "liftoff workout export": position 1 (pkg.go.dev/github.com/quantcli/liftoff-export-cli); DTTerastar/liftoff-export-cli not found in top 10
+- "liftoff fitness CLI": position 1 (pkg.go.dev/github.com/quantcli/liftoff-export-cli); DTTerastar/liftoff-export-cli not found in top 10
+- "export gym app data": not found in top 10
+
+## 2026-10-24
+
+### GitHub Traffic (14-day window)
+GITHUB_TOKEN is set, but GitHub traffic API endpoints redirect to numeric-ID paths (repositories/{id}/...) which are blocked by this environment's proxy. Traffic data unavailable.
+
+### Google Search Rankings
+(via WebSearch fallback — Google Custom Search JSON API returns 403 PERMISSION_DENIED from this environment)
+- "liftoff-export-cli": position 1 (pkg.go.dev/github.com/quantcli/liftoff-export-cli); DTTerastar/liftoff-export-cli not found in top 10
+- "liftoff workout export": position 1 (pkg.go.dev/github.com/quantcli/liftoff-export-cli); DTTerastar/liftoff-export-cli not found in top 10
+- "liftoff fitness CLI": position 1 (pkg.go.dev/github.com/quantcli/liftoff-export-cli); DTTerastar/liftoff-export-cli not found in top 10
+- "export gym app data": not found in top 10
+
 ## 2026-10-23
 
 ### GitHub Traffic (14-day window)
@@ -58,6 +94,30 @@ GITHUB_TOKEN is set, but the repo transferred from DTTerastar/liftoff-export-cli
 - "liftoff-export-cli": position 1 (pkg.go.dev/github.com/quantcli/liftoff-export-cli)
 - "liftoff workout export": position 1 (pkg.go.dev/github.com/quantcli/liftoff-export-cli)
 - "liftoff fitness CLI": position 1 (pkg.go.dev/github.com/quantcli/liftoff-export-cli)
+- "export gym app data": not found in top 10
+
+## 2026-10-21
+
+### GitHub Traffic (14-day window)
+GITHUB_TOKEN is set, but GitHub traffic API endpoints redirect to numeric-ID paths (repositories/{id}/...) which are blocked by this environment's proxy. Traffic data unavailable.
+
+### Google Search Rankings
+(via WebSearch fallback — Google Custom Search JSON API returns 403 PERMISSION_DENIED from this environment)
+- "liftoff-export-cli": position 1 (pkg.go.dev/github.com/quantcli/liftoff-export-cli); DTTerastar/liftoff-export-cli not found in top 10
+- "liftoff workout export": position 1 (pkg.go.dev/github.com/quantcli/liftoff-export-cli); DTTerastar/liftoff-export-cli not found in top 10
+- "liftoff fitness CLI": position 1 (pkg.go.dev/github.com/quantcli/liftoff-export-cli); DTTerastar/liftoff-export-cli not found in top 10
+- "export gym app data": not found in top 10
+
+## 2026-10-20
+
+### GitHub Traffic (14-day window)
+GITHUB_TOKEN is set, but GitHub traffic API endpoints redirect to numeric-ID paths (repositories/{id}/...) which are blocked by this environment's proxy. Traffic data unavailable.
+
+### Google Search Rankings
+(via WebSearch fallback — Google Custom Search JSON API returns 403 PERMISSION_DENIED from this environment)
+- "liftoff-export-cli": position 1 (pkg.go.dev/github.com/quantcli/liftoff-export-cli); DTTerastar/liftoff-export-cli not found in top 10
+- "liftoff workout export": position 1 (pkg.go.dev/github.com/quantcli/liftoff-export-cli); DTTerastar/liftoff-export-cli not found in top 10
+- "liftoff fitness CLI": position 1 (pkg.go.dev/github.com/quantcli/liftoff-export-cli); DTTerastar/liftoff-export-cli not found in top 10
 - "export gym app data": not found in top 10
 
 ## 2026-10-19
@@ -191,6 +251,18 @@ GITHUB_TOKEN is set, but the repository has been transferred to quantcli/liftoff
 - "liftoff workout export": position 1 (pkg.go.dev/github.com/quantcli/liftoff-export-cli)
 - "liftoff fitness CLI": position 1 (pkg.go.dev/github.com/quantcli/liftoff-export-cli)
 - "export gym app data": not found in top 10
+## 2026-10-08
+
+### GitHub Traffic (14-day window)
+GITHUB_TOKEN is set, but GitHub traffic API endpoints redirect to numeric-ID paths (repositories/{id}/...) which are blocked by this environment's proxy. Traffic data unavailable.
+
+### Google Search Rankings
+(via WebSearch fallback — Google Custom Search JSON API returns 403 PERMISSION_DENIED from this environment)
+- "liftoff-export-cli": position 1 (pkg.go.dev/github.com/quantcli/liftoff-export-cli); DTTerastar/liftoff-export-cli not found in top 10
+- "liftoff workout export": position 1 (pkg.go.dev/github.com/quantcli/liftoff-export-cli); DTTerastar/liftoff-export-cli not found in top 10
+- "liftoff fitness CLI": position 1 (pkg.go.dev/github.com/quantcli/liftoff-export-cli); DTTerastar/liftoff-export-cli not found in top 10
+- "export gym app data": not found in top 10
+
 ## 2026-10-07
 
 ### GitHub Traffic (14-day window)
@@ -249,6 +321,30 @@ GITHUB_TOKEN is set, but GitHub traffic API endpoints redirect to numeric-ID pat
 - "liftoff-export-cli": position 1 (pkg.go.dev/github.com/quantcli/liftoff-export-cli); DTTerastar/liftoff-export-cli not found in top 10
 - "liftoff workout export": position 1 (pkg.go.dev/github.com/quantcli/liftoff-export-cli); DTTerastar/liftoff-export-cli not found in top 10
 - "liftoff fitness CLI": position 1 (pkg.go.dev/github.com/quantcli/liftoff-export-cli); DTTerastar/liftoff-export-cli not found in top 10
+- "export gym app data": not found in top 10
+
+## 2026-10-02
+
+### GitHub Traffic (14-day window)
+GITHUB_TOKEN is set, but GitHub traffic API endpoints redirect to numeric-ID paths (repositories/{id}/...) which are blocked by this environment's proxy. Traffic data unavailable.
+
+### Google Search Rankings
+(via WebSearch fallback — Google Custom Search JSON API returns 403 PERMISSION_DENIED from this environment)
+- "liftoff-export-cli": position 1 (pkg.go.dev/github.com/quantcli/liftoff-export-cli); DTTerastar/liftoff-export-cli not found in top 10
+- "liftoff workout export": position 1 (pkg.go.dev/github.com/quantcli/liftoff-export-cli); DTTerastar/liftoff-export-cli not found in top 10
+- "liftoff fitness CLI": position 1 (pkg.go.dev/github.com/quantcli/liftoff-export-cli); DTTerastar/liftoff-export-cli not found in top 10
+- "export gym app data": not found in top 10
+
+## 2026-10-01
+
+### GitHub Traffic (14-day window)
+GITHUB_TOKEN is set, but GitHub traffic API endpoints redirect to numeric-ID paths (repositories/{id}/...) which are blocked by this environment's proxy. Traffic data unavailable.
+
+### Google Search Rankings
+(via WebSearch fallback — Google Custom Search JSON API returns 403 from this environment)
+- "liftoff-export-cli": position 1 (pkg.go.dev/github.com/quantcli/liftoff-export-cli), position 2 (github.com/DTTerastar/liftoff-export-cli)
+- "liftoff workout export": position 1 (pkg.go.dev/github.com/quantcli/liftoff-export-cli), position 2 (github.com/DTTerastar/liftoff-export-cli)
+- "liftoff fitness CLI": position 1 (github.com/DTTerastar/liftoff-export-cli)
 - "export gym app data": not found in top 10
 
 ## 2026-09-30
@@ -355,6 +451,29 @@ GITHUB_TOKEN is set, but GitHub traffic API endpoints redirect to numeric-ID pat
 - "liftoff workout export": position 1
 - "liftoff fitness CLI": position 1
 - "export gym app data": not found in top 10
+
+## 2026-09-22
+
+### GitHub Traffic (14-day window)
+GITHUB_TOKEN is set, but GitHub traffic API endpoints redirect to numeric-ID paths (repositories/{id}/...) which are blocked by this environment's proxy. Traffic data unavailable.
+
+### Google Search Rankings
+(via WebSearch fallback — Google Custom Search JSON API returns 403 PERMISSION_DENIED from this environment)
+- "liftoff-export-cli": position 1
+- "liftoff workout export": position 1
+- "liftoff fitness CLI": position 1
+- "export gym app data": not found in top 10
+
+## 2026-09-21
+
+### GitHub Traffic (14-day window)
+GITHUB_TOKEN is set, but GitHub API access is unavailable. The repository has been transferred from DTTerastar/liftoff-export-cli to quantcli/liftoff-export-cli — the session is still scoped to the old owner and the proxy rejects traffic API calls to the new org. Update the GitHub App installation to the quantcli organization to restore access.
+
+### Google Search Rankings
+- "liftoff-export-cli": API error (403 - Custom Search JSON API not enabled for project)
+- "liftoff workout export": API error (403 - Custom Search JSON API not enabled for project)
+- "liftoff fitness CLI": API error (403 - Custom Search JSON API not enabled for project)
+- "export gym app data": API error (403 - Custom Search JSON API not enabled for project)
 
 ## 2026-09-20
 
@@ -1290,110 +1409,3 @@ GITHUB_TOKEN is set, but GitHub API access is blocked in this session ("GitHub a
 - "liftoff workout export": API error (403 - Custom Search JSON API not enabled for project)
 - "liftoff fitness CLI": API error (403 - Custom Search JSON API not enabled for project)
 - "export gym app data": API error (403 - Custom Search JSON API not enabled for project)
-
-## 2026-09-21
-
-### GitHub Traffic (14-day window)
-GITHUB_TOKEN is set, but GitHub API access is unavailable. The repository has been transferred from DTTerastar/liftoff-export-cli to quantcli/liftoff-export-cli — the session is still scoped to the old owner and the proxy rejects traffic API calls to the new org. Update the GitHub App installation to the quantcli organization to restore access.
-
-### Google Search Rankings
-- "liftoff-export-cli": API error (403 - Custom Search JSON API not enabled for project)
-- "liftoff workout export": API error (403 - Custom Search JSON API not enabled for project)
-- "liftoff fitness CLI": API error (403 - Custom Search JSON API not enabled for project)
-- "export gym app data": API error (403 - Custom Search JSON API not enabled for project)
-
-## 2026-09-22
-
-### GitHub Traffic (14-day window)
-GITHUB_TOKEN is set, but GitHub traffic API endpoints redirect to numeric-ID paths (repositories/{id}/...) which are blocked by this environment's proxy. Traffic data unavailable.
-
-### Google Search Rankings
-(via WebSearch fallback — Google Custom Search JSON API returns 403 PERMISSION_DENIED from this environment)
-- "liftoff-export-cli": position 1
-- "liftoff workout export": position 1
-- "liftoff fitness CLI": position 1
-- "export gym app data": not found in top 10
-
-## 2026-10-01
-
-### GitHub Traffic (14-day window)
-GITHUB_TOKEN is set, but GitHub traffic API endpoints redirect to numeric-ID paths (repositories/{id}/...) which are blocked by this environment's proxy. Traffic data unavailable.
-
-### Google Search Rankings
-(via WebSearch fallback — Google Custom Search JSON API returns 403 from this environment)
-- "liftoff-export-cli": position 1 (pkg.go.dev/github.com/quantcli/liftoff-export-cli), position 2 (github.com/DTTerastar/liftoff-export-cli)
-- "liftoff workout export": position 1 (pkg.go.dev/github.com/quantcli/liftoff-export-cli), position 2 (github.com/DTTerastar/liftoff-export-cli)
-- "liftoff fitness CLI": position 1 (github.com/DTTerastar/liftoff-export-cli)
-- "export gym app data": not found in top 10
-
-## 2026-10-02
-
-### GitHub Traffic (14-day window)
-GITHUB_TOKEN is set, but GitHub traffic API endpoints redirect to numeric-ID paths (repositories/{id}/...) which are blocked by this environment's proxy. Traffic data unavailable.
-
-### Google Search Rankings
-(via WebSearch fallback — Google Custom Search JSON API returns 403 PERMISSION_DENIED from this environment)
-- "liftoff-export-cli": position 1 (pkg.go.dev/github.com/quantcli/liftoff-export-cli); DTTerastar/liftoff-export-cli not found in top 10
-- "liftoff workout export": position 1 (pkg.go.dev/github.com/quantcli/liftoff-export-cli); DTTerastar/liftoff-export-cli not found in top 10
-- "liftoff fitness CLI": position 1 (pkg.go.dev/github.com/quantcli/liftoff-export-cli); DTTerastar/liftoff-export-cli not found in top 10
-- "export gym app data": not found in top 10
-
-## 2026-10-08
-
-### GitHub Traffic (14-day window)
-GITHUB_TOKEN is set, but GitHub traffic API endpoints redirect to numeric-ID paths (repositories/{id}/...) which are blocked by this environment's proxy. Traffic data unavailable.
-
-### Google Search Rankings
-(via WebSearch fallback — Google Custom Search JSON API returns 403 PERMISSION_DENIED from this environment)
-- "liftoff-export-cli": position 1 (pkg.go.dev/github.com/quantcli/liftoff-export-cli); DTTerastar/liftoff-export-cli not found in top 10
-- "liftoff workout export": position 1 (pkg.go.dev/github.com/quantcli/liftoff-export-cli); DTTerastar/liftoff-export-cli not found in top 10
-- "liftoff fitness CLI": position 1 (pkg.go.dev/github.com/quantcli/liftoff-export-cli); DTTerastar/liftoff-export-cli not found in top 10
-- "export gym app data": not found in top 10
-
-## 2026-10-21
-
-### GitHub Traffic (14-day window)
-GITHUB_TOKEN is set, but GitHub traffic API endpoints redirect to numeric-ID paths (repositories/{id}/...) which are blocked by this environment's proxy. Traffic data unavailable.
-
-### Google Search Rankings
-(via WebSearch fallback — Google Custom Search JSON API returns 403 PERMISSION_DENIED from this environment)
-- "liftoff-export-cli": position 1 (pkg.go.dev/github.com/quantcli/liftoff-export-cli); DTTerastar/liftoff-export-cli not found in top 10
-- "liftoff workout export": position 1 (pkg.go.dev/github.com/quantcli/liftoff-export-cli); DTTerastar/liftoff-export-cli not found in top 10
-- "liftoff fitness CLI": position 1 (pkg.go.dev/github.com/quantcli/liftoff-export-cli); DTTerastar/liftoff-export-cli not found in top 10
-- "export gym app data": not found in top 10
-
-## 2026-10-24
-
-### GitHub Traffic (14-day window)
-GITHUB_TOKEN is set, but GitHub traffic API endpoints redirect to numeric-ID paths (repositories/{id}/...) which are blocked by this environment's proxy. Traffic data unavailable.
-
-### Google Search Rankings
-(via WebSearch fallback — Google Custom Search JSON API returns 403 PERMISSION_DENIED from this environment)
-- "liftoff-export-cli": position 1 (pkg.go.dev/github.com/quantcli/liftoff-export-cli); DTTerastar/liftoff-export-cli not found in top 10
-- "liftoff workout export": position 1 (pkg.go.dev/github.com/quantcli/liftoff-export-cli); DTTerastar/liftoff-export-cli not found in top 10
-- "liftoff fitness CLI": position 1 (pkg.go.dev/github.com/quantcli/liftoff-export-cli); DTTerastar/liftoff-export-cli not found in top 10
-- "export gym app data": not found in top 10
-
-## 2026-10-25
-
-### GitHub Traffic (14-day window)
-GITHUB_TOKEN is set, but GitHub traffic API endpoints redirect to numeric-ID paths (repositories/{id}/...) which are blocked by this environment's proxy. Traffic data unavailable.
-
-### Google Search Rankings
-(via WebSearch fallback — Google Custom Search JSON API returns "project does not have access" from this environment)
-- "liftoff-export-cli": position 1 (pkg.go.dev/github.com/quantcli/liftoff-export-cli); DTTerastar/liftoff-export-cli not found in top 10
-- "liftoff workout export": position 1 (pkg.go.dev/github.com/quantcli/liftoff-export-cli); DTTerastar/liftoff-export-cli not found in top 10
-- "liftoff fitness CLI": position 1 (pkg.go.dev/github.com/quantcli/liftoff-export-cli); DTTerastar/liftoff-export-cli not found in top 10
-- "export gym app data": not found in top 10
-
-## 2026-10-20
-
-### GitHub Traffic (14-day window)
-GITHUB_TOKEN is set, but GitHub traffic API endpoints redirect to numeric-ID paths (repositories/{id}/...) which are blocked by this environment's proxy. Traffic data unavailable.
-
-### Google Search Rankings
-(via WebSearch fallback — Google Custom Search JSON API returns 403 PERMISSION_DENIED from this environment)
-- "liftoff-export-cli": position 1 (pkg.go.dev/github.com/quantcli/liftoff-export-cli); DTTerastar/liftoff-export-cli not found in top 10
-- "liftoff workout export": position 1 (pkg.go.dev/github.com/quantcli/liftoff-export-cli); DTTerastar/liftoff-export-cli not found in top 10
-- "liftoff fitness CLI": position 1 (pkg.go.dev/github.com/quantcli/liftoff-export-cli); DTTerastar/liftoff-export-cli not found in top 10
-- "export gym app data": not found in top 10
