@@ -75,9 +75,22 @@ export PATH="$HOME/bin:$PATH"
 
 ```sh
 liftoff-export auth login      # Log in to Liftoff
+liftoff-export auth import     # Save a refresh token captured from the app
 liftoff-export auth logout     # Remove stored auth tokens
 liftoff-export auth refresh    # Manually refresh the access token
 ```
+
+**Google Sign-In accounts** have no password, so `auth login` can't be used. Log
+in on the phone app with an HTTPS proxy (mitmproxy, Proxyman) running, copy the
+`refreshToken` from the `user.signIn` response, and hand it to `auth import`:
+
+```sh
+liftoff-export auth import --refresh-token "$RT"   # verifies + saves
+echo "$RT" | liftoff-export auth import            # same, token on stdin
+```
+
+For CI or containers, set `LIFTOFF_REFRESH_TOKEN` instead and skip the token file
+entirely.
 
 ### Workouts
 
