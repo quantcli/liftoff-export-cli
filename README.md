@@ -15,7 +15,7 @@ Export and analyze your workout data from the [Liftoff](https://getgymbros.com) 
 - **Exercise statistics** — per-exercise PR tracking, volume summaries, and monthly progress bar charts
 - **Bodyweight tracking** — trend analysis with ASCII charts, plateau detection, and rate-of-change
 - **Multi-platform** — pre-built binaries for macOS (Intel + Apple Silicon), Linux, and Windows
-- **JSON output** — pipe workout data to jq, scripts, or other tools with `--json`
+- **JSON output** — pipe workout data to jq, scripts, or other tools with `--format json`
 
 ## Quick Start
 
@@ -96,7 +96,7 @@ entirely.
 
 ```sh
 liftoff-export workouts list                       # List workouts in fitdown format
-liftoff-export workouts list --json                # Output as JSON
+liftoff-export workouts list --format json         # Output as JSON
 liftoff-export workouts list --since 30d           # Filter by relative date (30d, 4w, 6m, 1y)
 liftoff-export workouts list --since 2025-01-01    # Filter by absolute date
 liftoff-export workouts list --exercise bench      # Filter to matching exercises
@@ -112,7 +112,7 @@ liftoff-export workouts stats                      # Per-exercise summaries with
 liftoff-export workouts stats --detail             # Per-session breakdown
 liftoff-export workouts stats --exercise curl      # Filter to matching exercises
 liftoff-export workouts stats --since 6m           # Filter by date
-liftoff-export workouts stats --json               # Output as JSON
+liftoff-export workouts stats --format json        # Output as JSON
 ```
 
 ### Bodyweights
