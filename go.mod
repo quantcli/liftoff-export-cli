@@ -1,6 +1,6 @@
 module github.com/quantcli/liftoff-export-cli
 
-go 1.26.8
+go 1.26.10
 
 require (
 	github.com/quantcli/common/compat v0.0.0-20260519113336-de9219e03369
