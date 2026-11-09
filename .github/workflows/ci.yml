@@ -44,7 +44,7 @@ jobs:
         env:
           # Path the compat-tagged test reads from os.Getenv.
           LIFTOFF_EXPORT_BIN: /tmp/liftoff-export
-        run: go test -tags=compat -run TestContractFormats ./...
+        run: go test -tags=compat -run 'TestContractFormats|TestResolvedWindow' ./...
 
   artifacts:
     # Cross-compile review binaries for the platforms reviewers actually use.
