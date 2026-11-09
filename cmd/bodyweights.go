@@ -44,13 +44,13 @@ type bodyweightJSON struct {
 }
 
 type bodyweightStatsJSON struct {
-	Current      float64          `json:"current"`
-	High         float64          `json:"high"`
-	Low          float64          `json:"low"`
-	Change       float64          `json:"change"`
-	RatePerMonth *float64         `json:"ratePerMonth,omitempty"`
-	Plateau      *plateauJSON     `json:"plateau,omitempty"`
-	Months       []monthAvgJSON   `json:"months"`
+	Current      float64        `json:"current"`
+	High         float64        `json:"high"`
+	Low          float64        `json:"low"`
+	Change       float64        `json:"change"`
+	RatePerMonth *float64       `json:"ratePerMonth,omitempty"`
+	Plateau      *plateauJSON   `json:"plateau,omitempty"`
+	Months       []monthAvgJSON `json:"months"`
 }
 
 type plateauJSON struct {
@@ -72,7 +72,18 @@ var bodyweightsListCmd = &cobra.Command{
 		if err != nil {
 			return err
 		}
-		entries, err := loadBodyweightEntries(bodyweightsListSinceFlag, bodyweightsListUntilFlag)
+		since, err := parseDateValue(bodyweightsListSinceFlag)
+		if err != nil {
+			return err
+		}
+		until, err := parseUntilValue(bodyweightsListUntilFlag)
+		if err != nil {
+			return err
+		}
+		if printed, err := printResolvedWindow(cmd, since, until); printed || err != nil {
+			return err
+		}
+		entries, err := loadBodyweightEntries(since, until)
 		if err != nil {
 			return err
 		}
@@ -106,7 +117,18 @@ var bodyweightsStatsCmd = &cobra.Command{
 		if err != nil {
 			return err
 		}
-		entries, err := loadBodyweightEntries(bodyweightsStatsSinceFlag, bodyweightsStatsUntilFlag)
+		since, err := parseDateValue(bodyweightsStatsSinceFlag)
+		if err != nil {
+			return err
+		}
+		until, err := parseUntilValue(bodyweightsStatsUntilFlag)
+		if err != nil {
+			return err
+		}
+		if printed, err := printResolvedWindow(cmd, since, until); printed || err != nil {
+			return err
+		}
+		entries, err := loadBodyweightEntries(since, until)
 		if err != nil {
 			return err
 		}
@@ -137,19 +159,10 @@ func init() {
 	bodyweightsStatsCmd.Flags().StringVar(&bodyweightsStatsFormatFlag, "format", "markdown", "Output format: markdown (default) or json")
 }
 
-func loadBodyweightEntries(sinceFlag, untilFlag string) ([]bodyweightEntry, error) {
+func loadBodyweightEntries(since, until time.Time) ([]bodyweightEntry, error) {
 	c := client.New()
 	var posts []Post
 	if err := c.Query("post.getMyPosts", nil, &posts); err != nil {
-		return nil, err
-	}
-
-	since, err := parseDateValue(sinceFlag)
-	if err != nil {
-		return nil, err
-	}
-	until, err := parseUntilValue(untilFlag)
-	if err != nil {
 		return nil, err
 	}
 

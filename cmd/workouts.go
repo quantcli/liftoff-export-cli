@@ -21,10 +21,10 @@ var workoutsCmd = &cobra.Command{
 
 // SetData mirrors the setsData array items.
 type SetData struct {
-	SetIndex int            `json:"setIndex"`
-	SetType  string         `json:"setType"`
-	InputOne json.Number    `json:"inputOne"` // weight (kg) or distance
-	InputTwo json.Number    `json:"inputTwo"` // reps or duration (seconds)
+	SetIndex int         `json:"setIndex"`
+	SetType  string      `json:"setType"`
+	InputOne json.Number `json:"inputOne"` // weight (kg) or distance
+	InputTwo json.Number `json:"inputTwo"` // reps or duration (seconds)
 }
 
 // ExerciseData mirrors the exerciseData array items.
@@ -132,18 +132,21 @@ var listCmd = &cobra.Command{
 		if err != nil {
 			return err
 		}
-		c := client.New()
-		var posts []Post
-		// post.getMyPosts returns all the user's own workouts (Memories view)
-		if err := c.Query("post.getMyPosts", nil, &posts); err != nil {
-			return err
-		}
 		since, err := parseDateValue(listSinceFlag)
 		if err != nil {
 			return err
 		}
 		until, err := parseUntilValue(listUntilFlag)
 		if err != nil {
+			return err
+		}
+		if printed, err := printResolvedWindow(cmd, since, until); printed || err != nil {
+			return err
+		}
+		c := client.New()
+		var posts []Post
+		// post.getMyPosts returns all the user's own workouts (Memories view)
+		if err := c.Query("post.getMyPosts", nil, &posts); err != nil {
 			return err
 		}
 		posts = filterByWindow(posts, since, until)
