@@ -16,6 +16,7 @@ import (
 	"testing"
 
 	"github.com/quantcli/common/compat"
+	"github.com/quantcli/common/compat/dates"
 	"github.com/quantcli/common/compat/formats"
 )
 
@@ -60,4 +61,13 @@ func TestContractFormats(t *testing.T) {
 		SupportedFormats: []string{"markdown", "json"},
 		SkipDataPath:     true,
 	})
+}
+
+// TestResolvedWindow verifies local dates independently of upstream credentials.
+func TestResolvedWindow(t *testing.T) {
+	bin := os.Getenv("LIFTOFF_EXPORT_BIN")
+	if bin == "" {
+		t.Skip("LIFTOFF_EXPORT_BIN not set")
+	}
+	dates.RunResolvedWindow(t, compat.Runner{Binary: bin, Subcommands: []string{"workouts list", "workouts stats", "bodyweights list", "bodyweights stats"}})
 }
