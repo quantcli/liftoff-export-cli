@@ -47,17 +47,20 @@ var statsCmd = &cobra.Command{
 		if err != nil {
 			return err
 		}
-		c := client.New()
-		var posts []Post
-		if err := c.Query("post.getMyPosts", nil, &posts); err != nil {
-			return err
-		}
 		since, err := parseDateValue(statsSinceFlag)
 		if err != nil {
 			return err
 		}
 		until, err := parseUntilValue(statsUntilFlag)
 		if err != nil {
+			return err
+		}
+		if printed, err := printResolvedWindow(cmd, since, until); printed || err != nil {
+			return err
+		}
+		c := client.New()
+		var posts []Post
+		if err := c.Query("post.getMyPosts", nil, &posts); err != nil {
 			return err
 		}
 		posts = filterByWindow(posts, since, until)

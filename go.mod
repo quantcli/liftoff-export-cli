@@ -3,7 +3,7 @@ module github.com/quantcli/liftoff-export-cli
 go 1.26.10
 
 require (
-	github.com/quantcli/common/compat v0.0.0-20260519113336-de9219e03369
+	github.com/quantcli/common/compat v0.0.0-20261110001356-0b66a42dfa85
 	github.com/spf13/cobra v1.10.2
 )
 
