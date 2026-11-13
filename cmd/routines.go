@@ -4,7 +4,6 @@ import (
 	"encoding/json"
 	"fmt"
 	"io"
-	"os"
 	"strings"
 
 	"github.com/quantcli/liftoff-export-cli/internal/client"
@@ -106,9 +105,9 @@ var routinesListCmd = &cobra.Command{
 			return err
 		}
 		if format == "json" {
-			return printJSON(resp)
+			return printJSON(cmd.OutOrStdout(), resp)
 		}
-		return renderRoutinesFitdown(os.Stdout, resp)
+		return renderRoutinesFitdown(cmd.OutOrStdout(), resp)
 	},
 }
 
@@ -132,11 +131,11 @@ var routinesShowCmd = &cobra.Command{
 			return err
 		}
 		if format == "json" {
-			return printJSON([]Preset{*match})
+			return printJSON(cmd.OutOrStdout(), []Preset{*match})
 		}
 		// `show` emits a single routine without any section heading —
 		// the routine name is enough context for a one-off lookup.
-		return renderOnePreset(os.Stdout, *match, "#")
+		return renderOnePreset(cmd.OutOrStdout(), *match, "#")
 	},
 }
 
