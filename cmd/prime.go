@@ -14,8 +14,11 @@ WHAT IT IS
   reps/weights and recorded bodyweights.
 
 I/O
-  stdout: data in --format markdown (default; fitdown set notation) or json.
-  stderr: errors. Exit 0 on success including empty results.
+  stdout: data only, in --format markdown (default; fitdown set notation)
+          or json. --format json is always a JSON array, one element per
+          row ('bodyweights stats' is a single-element array).
+  stderr: errors, and the "no results" note. Exit 0 on success including
+          empty results: [] for json, nothing on stdout for markdown.
 
 DATE FLAGS  (every subcommand)
   --since VALUE / --until VALUE
@@ -40,6 +43,7 @@ EXAMPLES
     jq '.[] | select(.type == "WR") | {name, vol: ([.sessions[].volume] | add)}'
   liftoff-export bodyweights list --since 90d --format json |
     jq '[.[]] | (.[-1].weight - .[0].weight)'
+  liftoff-export bodyweights stats --format json | jq '.[0].ratePerMonth'
   liftoff-export routines list --format json |
     jq '[.[] | {name, exCount: (.exerciseData|length)}]'
 
