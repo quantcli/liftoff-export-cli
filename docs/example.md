@@ -55,7 +55,7 @@ WHAT IT IS
   reps/weights and recorded bodyweights.
 
 I/O
-  stdout: data in --format markdown (default; fitdown set notation) or json.
+  stdout: data in --format markdown (default; fitdown set notation), json, or csv.
   stderr: errors. Exit 0 on success including empty results.
 
 DATE FLAGS  (every subcommand)
@@ -167,9 +167,9 @@ LIFTOFF_EXPORT_BIN=/tmp/liftoff-export go test -tags=compat ./...
 ok      github.com/quantcli/liftoff-export-cli    0.003s
 ```
 
-The `compat` suite covers CONTRACT.md §4 across all four data-producing subcommands (`workouts list`, `workouts stats`, `bodyweights list`, `bodyweights stats`): the parse-level checks (`--format` is documented, `UnknownFormatFails`, `FlagValidationIsHermetic`) *and* the data-path checks (`JSONIsArray`, `DefaultIsMarkdown`).
+The `compat` suite covers CONTRACT.md §4 across all four data-producing subcommands (`workouts list`, `workouts stats`, `bodyweights list`, `bodyweights stats`): the parse-level checks (`--format` is documented, `UnknownFormatFails`, `FlagValidationIsHermetic`) *and* the data-path checks (`JSONIsArray`, `CSVHasHeader`, `DefaultIsMarkdown`).
 
-No Liftoff account or network access is needed. The suite starts an in-process stub of the two tRPC procedures the data path calls and points the binary at it with the CLI's own headless knobs (`LIFTOFF_API_BASE` + `LIFTOFF_REFRESH_TOKEN`), so the real fetch/filter/render path runs against a fixed fixture. `CSVHasHeader` skips with a named reason: liftoff declares `SupportedFormats: ["markdown", "json"]` and has no CSV writer yet.
+No Liftoff account or network access is needed. The suite starts an in-process stub of the two tRPC procedures the data path calls and points the binary at it with the CLI's own headless knobs (`LIFTOFF_API_BASE` + `LIFTOFF_REFRESH_TOKEN`), so the real fetch/filter/render path runs against a fixed fixture. liftoff declares all three §4 codecs in `SupportedFormats`, so no subtest is skipped.
 
 ---
 

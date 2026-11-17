@@ -98,6 +98,9 @@ var bodyweightsListCmd = &cobra.Command{
 			}
 			return printJSON(cmd.OutOrStdout(), rows)
 		}
+		if format == "csv" {
+			return writeBodyweightsCSV(cmd.OutOrStdout(), entries)
+		}
 		if len(entries) == 0 {
 			// §4: no rows on stdout, notice on stderr. (#24)
 			emptyNotice(cmd, "No bodyweights found.")
@@ -139,12 +142,19 @@ var bodyweightsStatsCmd = &cobra.Command{
 			if format == "json" {
 				return printJSON(cmd.OutOrStdout(), []bodyweightStatsJSON{})
 			}
+			if format == "csv" {
+				return writeBodyweightStatsCSV(cmd.OutOrStdout(), nil)
+			}
 			// §4: no rows on stdout, notice on stderr. (#24)
 			emptyNotice(cmd, "No bodyweights found.")
 			return nil
 		}
 		if format == "json" {
 			return printJSON(cmd.OutOrStdout(), []bodyweightStatsJSON{buildBodyweightStatsJSON(entries)})
+		}
+		if format == "csv" {
+			stats := buildBodyweightStatsJSON(entries)
+			return writeBodyweightStatsCSV(cmd.OutOrStdout(), &stats)
 		}
 		printBodyweightStats(cmd.OutOrStdout(), entries)
 		return nil
@@ -157,10 +167,10 @@ func init() {
 
 	bodyweightsListCmd.Flags().StringVar(&bodyweightsListSinceFlag, "since", "", "Filter entries on or after date (today, yesterday, YYYY-MM-DD, or Nd/Nw/Nm/Ny)")
 	bodyweightsListCmd.Flags().StringVar(&bodyweightsListUntilFlag, "until", "", "Filter entries through date, inclusive (today, yesterday, YYYY-MM-DD, or Nd/Nw/Nm/Ny)")
-	bodyweightsListCmd.Flags().StringVar(&bodyweightsListFormatFlag, "format", "markdown", "Output format: markdown (default) or json")
+	bodyweightsListCmd.Flags().StringVar(&bodyweightsListFormatFlag, "format", "markdown", "Output format: markdown (default), json, or csv")
 	bodyweightsStatsCmd.Flags().StringVar(&bodyweightsStatsSinceFlag, "since", "", "Filter entries on or after date (today, yesterday, YYYY-MM-DD, or Nd/Nw/Nm/Ny)")
 	bodyweightsStatsCmd.Flags().StringVar(&bodyweightsStatsUntilFlag, "until", "", "Filter entries through date, inclusive (today, yesterday, YYYY-MM-DD, or Nd/Nw/Nm/Ny)")
-	bodyweightsStatsCmd.Flags().StringVar(&bodyweightsStatsFormatFlag, "format", "markdown", "Output format: markdown (default) or json")
+	bodyweightsStatsCmd.Flags().StringVar(&bodyweightsStatsFormatFlag, "format", "markdown", "Output format: markdown (default), json, or csv")
 }
 
 func loadBodyweightEntries(since, until time.Time) ([]bodyweightEntry, error) {
@@ -405,4 +415,50 @@ func scaledBarLength(value, minValue, maxValue, width float64) int {
 		ratio = 1
 	}
 	return int(math.Round(ratio * width))
+}
+
+// writeBodyweightsCSV renders `bodyweights list --format csv`: the same
+// two fields as the JSON rows, one row per local calendar day.
+func writeBodyweightsCSV(w io.Writer, entries []bodyweightEntry) error {
+	rows := make([][]string, 0, len(entries))
+	for _, entry := range entries {
+		rows = append(rows, []string{entry.date.Format("2006-01-02"), csvFloat(entry.weight)})
+	}
+	return writeCSV(w, []string{"date", "weight"}, rows)
+}
+
+// bodyweightStatsCSVHeader is the column set for `bodyweights stats
+// --format csv`: the bodyweightStatsJSON keys in snake_case, with the
+// nested plateau object and months array prefixed by their parent key
+// (both carry an `avg`).
+var bodyweightStatsCSVHeader = []string{
+	"current", "high", "low", "change", "rate_per_month",
+	"plateau_since", "plateau_avg", "plateau_stddev",
+	"month", "month_avg",
+}
+
+// writeBodyweightStatsCSV renders the stats object as one row per month
+// of the trend, with the window-wide summary columns repeated on each
+// row. rate_per_month and the plateau_* columns are empty when JSON omits
+// them (window too short, or no plateau detected). A nil stats is the
+// empty result: header only.
+func writeBodyweightStatsCSV(w io.Writer, stats *bodyweightStatsJSON) error {
+	var rows [][]string
+	if stats != nil {
+		summary := []string{
+			csvFloat(stats.Current),
+			csvFloat(stats.High),
+			csvFloat(stats.Low),
+			csvFloat(stats.Change),
+			csvFloatPtr(stats.RatePerMonth),
+			"", "", "",
+		}
+		if p := stats.Plateau; p != nil {
+			summary[5], summary[6], summary[7] = p.Since, csvFloat(p.Avg), csvFloat(p.Stddev)
+		}
+		for _, m := range stats.Months {
+			rows = append(rows, append(append([]string{}, summary...), m.Month, csvFloat(m.Avg)))
+		}
+	}
+	return writeCSV(w, bodyweightStatsCSVHeader, rows)
 }

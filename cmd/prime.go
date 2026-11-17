@@ -14,11 +14,15 @@ WHAT IT IS
   reps/weights and recorded bodyweights.
 
 I/O
-  stdout: data only, in --format markdown (default; fitdown set notation)
-          or json. --format json is always a JSON array, one element per
-          row ('bodyweights stats' is a single-element array).
+  stdout: data only, in --format markdown (default; fitdown set notation),
+          json, or csv. --format json is always a JSON array, one element
+          per row ('bodyweights stats' is a single-element array).
+          --format csv is one header row plus one flat row per set /
+          session / day / month, parent columns repeated; columns are the
+          JSON keys in snake_case, timestamps local, absent = empty cell.
   stderr: errors, and the "no results" note. Exit 0 on success including
-          empty results: [] for json, nothing on stdout for markdown.
+          empty results: [] for json, header row only for csv, nothing on
+          stdout for markdown.
 
 DATE FLAGS  (every subcommand)
   --since VALUE / --until VALUE

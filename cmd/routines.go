@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"io"
+	"strconv"
 	"strings"
 
 	"github.com/quantcli/liftoff-export-cli/internal/client"
@@ -107,6 +108,9 @@ var routinesListCmd = &cobra.Command{
 		if format == "json" {
 			return printJSON(cmd.OutOrStdout(), resp)
 		}
+		if format == "csv" {
+			return writeRoutinesCSV(cmd.OutOrStdout(), routineCSVRows(resp))
+		}
 		return renderRoutinesFitdown(cmd.OutOrStdout(), resp)
 	},
 }
@@ -132,6 +136,9 @@ var routinesShowCmd = &cobra.Command{
 		}
 		if format == "json" {
 			return printJSON(cmd.OutOrStdout(), []Preset{*match})
+		}
+		if format == "csv" {
+			return writeRoutinesCSV(cmd.OutOrStdout(), presetCSVRows(*match, folderNameFor(resp, *match)))
 		}
 		// `show` emits a single routine without any section heading —
 		// the routine name is enough context for a one-off lookup.
@@ -347,7 +354,104 @@ func init() {
 	routinesCmd.AddCommand(routinesListCmd)
 	routinesCmd.AddCommand(routinesShowCmd)
 	routinesListCmd.Flags().StringVar(&routinesListFormatFlag, "format", "markdown",
-		"Output format: markdown (default, fitdown-style) or json")
+		"Output format: markdown (default, fitdown-style), json, or csv")
 	routinesShowCmd.Flags().StringVar(&routinesShowFormatFlag, "format", "markdown",
-		"Output format: markdown (default, fitdown-style) or json")
+		"Output format: markdown (default, fitdown-style), json, or csv")
+}
+
+// routinesCSVHeader is the column set for `routines list|show --format
+// csv`: the Preset, PresetExerciseData and PresetSetData JSON keys in
+// snake_case, plus folder_name from the enclosing Folder.
+//
+// Unlike workouts, the preset JSON carries upstream bookkeeping that is
+// noise in a spreadsheet — userId, image, bookmarkId, the market/cuid
+// linkage ids and the per-exercise and per-set row ids — so those are
+// left to --format json. withings-export-cli curates its csv columns the
+// same way.
+var routinesCSVHeader = []string{
+	"folder_id", "folder_name",
+	"id", "name", "created_at", "is_favorite", "completed", "avg_duration",
+	"exercise_index", "exercise_name", "exercise_id", "exercise_types",
+	"superset", "override_weight_unit", "exercise_notes",
+	"set_index", "set_type", "input_one", "input_two",
+}
+
+func writeRoutinesCSV(w io.Writer, rows [][]string) error {
+	return writeCSV(w, routinesCSVHeader, rows)
+}
+
+// routineCSVRows flattens the whole account in the order the markdown
+// renderer walks it: unfiled routines first, then each folder's.
+func routineCSVRows(resp *presetsResponse) [][]string {
+	var rows [][]string
+	for _, p := range resp.PresetsWithoutFolder {
+		rows = append(rows, presetCSVRows(p, "")...)
+	}
+	for _, f := range resp.Folders {
+		for _, p := range f.Presets {
+			rows = append(rows, presetCSVRows(p, f.Name)...)
+		}
+	}
+	return rows
+}
+
+// folderNameFor returns the name of the folder p lives in, or "" when it
+// is unfiled. ("My Routines" is the markdown heading for that section,
+// not data, so it is not written into the csv.)
+func folderNameFor(resp *presetsResponse, p Preset) string {
+	if p.FolderID == nil {
+		return ""
+	}
+	for _, f := range resp.Folders {
+		if f.ID == *p.FolderID {
+			return f.Name
+		}
+	}
+	return ""
+}
+
+// presetCSVRows renders one routine as one row per set, with the routine
+// and exercise columns repeated. A routine with no exercises, or an
+// exercise with no sets, still gets one row with the deeper columns
+// empty. Placeholder all-zero sets are written as-is: the markdown
+// renderer hides them for readability, but csv, like json, is the data.
+func presetCSVRows(p Preset, folderName string) [][]string {
+	routine := []string{
+		csvStrPtr(p.FolderID),
+		folderName,
+		p.ID,
+		p.Name,
+		csvLocalTime(p.CreatedAt),
+		strconv.FormatBool(p.IsFavorite),
+		strconv.Itoa(p.Completed),
+		strconv.Itoa(p.AvgDuration),
+	}
+	if len(p.ExerciseData) == 0 {
+		return [][]string{csvPad(routine, len(routinesCSVHeader))}
+	}
+	var rows [][]string
+	for _, e := range p.ExerciseData {
+		exercise := append(append([]string{}, routine...),
+			strconv.Itoa(e.ExerciseIndex),
+			e.ExerciseName,
+			e.ExerciseID,
+			e.ExerciseTypes,
+			csvStrPtr(e.Superset),
+			csvStrPtr(e.OverrideWeightUnit),
+			csvStrPtr(e.ExerciseNotes),
+		)
+		if len(e.SetsData) == 0 {
+			rows = append(rows, csvPad(exercise, len(routinesCSVHeader)))
+			continue
+		}
+		for _, s := range e.SetsData {
+			rows = append(rows, append(append([]string{}, exercise...),
+				strconv.Itoa(s.SetIndex),
+				s.SetType,
+				s.InputOne.String(),
+				s.InputTwo.String(),
+			))
+		}
+	}
+	return rows
 }

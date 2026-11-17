@@ -46,7 +46,7 @@ func TestContractFormats(t *testing.T) {
 		t.Skip("LIFTOFF_EXPORT_BIN not set; skipping compat suite")
 	}
 
-	// The data-path subtests (JSONIsArray, DefaultIsMarkdown) need the
+	// The data-path subtests (JSONIsArray, CSVHasHeader, DefaultIsMarkdown) need the
 	// binary to reach a successful export, which previously meant a
 	// Liftoff OAuth token this job has no way to provision — so they
 	// were disabled via Runner.SkipDataPath and §4 was attested at
@@ -73,13 +73,15 @@ func TestContractFormats(t *testing.T) {
 		"TZ=UTC",
 	}
 
-	// liftoff implements --format markdown (default) and --format json
-	// today; CSV is not yet wired. SupportedFormats: ["markdown","json"]
-	// skips CSVHasHeader with a named reason rather than failing it.
+	// liftoff implements all three §4 codecs — markdown (default), json
+	// and csv (#26) — so every data-path subtest runs, CSVHasHeader
+	// included. The set is spelled out rather than left nil ("all of §4")
+	// so the declaration stays greppable and a future codec added to the
+	// contract is not claimed here by default.
 	formats.RunContract(t, compat.Runner{
 		Binary:           bin,
 		Subcommands:      liftoffFormatSubcommands,
-		SupportedFormats: []string{"markdown", "json"},
+		SupportedFormats: []string{"markdown", "json", "csv"},
 		Env:              env,
 	})
 }
