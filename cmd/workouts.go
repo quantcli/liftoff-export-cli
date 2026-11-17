@@ -154,6 +154,10 @@ var listCmd = &cobra.Command{
 		if format == "json" {
 			return printJSON(cmd.OutOrStdout(), posts)
 		}
+		if format == "csv" {
+			// Header-only when posts is empty; see writeCSV.
+			return writeWorkoutsCSV(cmd.OutOrStdout(), posts)
+		}
 		if len(posts) == 0 {
 			// §4: no rows on stdout, notice on stderr. (#24, #37)
 			emptyNotice(cmd, "No workouts found.")
@@ -179,10 +183,12 @@ func validateFormat(format string) (string, error) {
 		return "markdown", nil
 	case "json":
 		return "json", nil
+	case "csv":
+		return "csv", nil
 	case "":
-		return "", fmt.Errorf(`--format was given an empty value (use markdown or json)`)
+		return "", fmt.Errorf(`--format was given an empty value (use markdown, json, or csv)`)
 	default:
-		return "", fmt.Errorf("unknown --format %q (use markdown or json)", format)
+		return "", fmt.Errorf("unknown --format %q (use markdown, json, or csv)", format)
 	}
 }
 
@@ -308,12 +314,18 @@ var showCmd = &cobra.Command{
 			if format == "json" {
 				return printJSON(cmd.OutOrStdout(), []Post{})
 			}
+			if format == "csv" {
+				return writeWorkoutsCSV(cmd.OutOrStdout(), nil)
+			}
 			emptyNotice(cmd, "No workouts found for %s.", target.Format("January 2, 2006"))
 			return nil
 		}
 
 		if format == "json" {
 			return printJSON(cmd.OutOrStdout(), matched)
+		}
+		if format == "csv" {
+			return writeWorkoutsCSV(cmd.OutOrStdout(), matched)
 		}
 		return renderWorkoutsFitdown(cmd.OutOrStdout(), matched)
 	},
@@ -323,9 +335,9 @@ func init() {
 	workoutsCmd.AddCommand(listCmd)
 	workoutsCmd.AddCommand(showCmd)
 	showCmd.Flags().StringVar(&showFormatFlag, "format", "markdown",
-		"Output format: markdown (default, fitdown-style) or json")
+		"Output format: markdown (default, fitdown-style), json, or csv")
 	listCmd.Flags().StringVar(&listFormatFlag, "format", "markdown",
-		"Output format: markdown (default, fitdown-style) or json")
+		"Output format: markdown (default, fitdown-style), json, or csv")
 	listCmd.Flags().StringVar(&listSinceFlag, "since", "", "Filter workouts on or after date (today, yesterday, YYYY-MM-DD, or Nd/Nw/Nm/Ny)")
 	listCmd.Flags().StringVar(&listUntilFlag, "until", "", "Filter workouts through date, inclusive (today, yesterday, YYYY-MM-DD, or Nd/Nw/Nm/Ny)")
 	listCmd.Flags().StringVar(&listExerciseFlag, "exercise", "", "Filter to exercises matching this name (word-prefix match)")
@@ -418,4 +430,71 @@ func renderWorkoutsFitdown(w io.Writer, posts []Post) error {
 		}
 	}
 	return nil
+}
+
+// workoutsCSVHeader is the column set for `workouts list|show --format csv`:
+// the Post, ExerciseData and SetData JSON keys in snake_case, plus `date`
+// (the local calendar day, as in `workouts stats` and `bodyweights list`).
+var workoutsCSVHeader = []string{
+	"id", "date", "started_at", "posted_at",
+	"session_duration", "session_duration_seconds", "session_notes",
+	"bodyweight", "calories_burned", "pr_count",
+	"exercise_index", "exercise_name", "exercise_id", "exercise_types", "exercise_notes",
+	"set_index", "set_type", "input_one", "input_two",
+}
+
+// writeWorkoutsCSV renders posts as one row per set, with the workout and
+// exercise columns repeated on each row.
+//
+// input_one / input_two are the raw upstream pair, exactly as in --format
+// json; their meaning depends on exercise_types (WR: weight, reps — see
+// fitdownSetLine). They are not split into weight/reps/distance columns
+// because an exercise type this CLI does not know about would then have
+// nowhere to go.
+//
+// A workout with no exercises, or an exercise with no sets, still gets one
+// row with the deeper columns empty, so it does not silently vanish from
+// the export the way an inner join would drop it.
+func writeWorkoutsCSV(w io.Writer, posts []Post) error {
+	var rows [][]string
+	for _, p := range posts {
+		workout := []string{
+			p.ID,
+			csvLocalDate(p.StartedAt),
+			csvLocalTime(p.StartedAt),
+			csvLocalTime(p.PostedAt),
+			p.SessionDuration,
+			csvIntPtr(parseDurationSeconds(p.SessionDuration)),
+			p.SessionNotes,
+			csvFloatPtr(parseBodyweightValue(p.Bodyweight)),
+			strconv.Itoa(p.CaloriesBurned),
+			strconv.Itoa(p.PRCount),
+		}
+		if len(p.ExerciseData) == 0 {
+			rows = append(rows, csvPad(workout, len(workoutsCSVHeader)))
+			continue
+		}
+		for _, e := range p.ExerciseData {
+			exercise := append(append([]string{}, workout...),
+				strconv.Itoa(e.ExerciseIndex),
+				e.ExerciseName,
+				e.ExerciseID,
+				e.ExerciseTypes,
+				e.ExerciseNotes,
+			)
+			if len(e.SetsData) == 0 {
+				rows = append(rows, csvPad(exercise, len(workoutsCSVHeader)))
+				continue
+			}
+			for _, s := range e.SetsData {
+				rows = append(rows, append(append([]string{}, exercise...),
+					strconv.Itoa(s.SetIndex),
+					s.SetType,
+					s.InputOne.String(),
+					s.InputTwo.String(),
+				))
+			}
+		}
+	}
+	return writeCSV(w, workoutsCSVHeader, rows)
 }

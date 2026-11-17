@@ -18,7 +18,8 @@ var rootCmd = &cobra.Command{
 	Version: version,
 	Long: `liftoff-export reads your personal Liftoff (gymbros.com) workout and
 bodyweight data and prints it on stdout. Default output is narrow,
-fitdown-style markdown; pass --format json for the full structured row.
+fitdown-style markdown; pass --format json for the full structured row,
+or --format csv for a flat, spreadsheet-friendly table.
 
 LLM agents: run 'liftoff-export prime' for a one-screen orientation
 (I/O contract, subcommands, date flags, jq recipes).`,

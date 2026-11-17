@@ -9,13 +9,14 @@ Export and analyze your workout data from the [Liftoff](https://getgymbros.com) 
 
 ## Features
 
-- **Workout export** — list, search, and display workouts in [fitdown](https://github.com/datavis-tech/fitdown) or JSON format
+- **Workout export** — list, search, and display workouts in [fitdown](https://github.com/datavis-tech/fitdown), JSON, or CSV format
 - **Exercise filtering** — filter by exercise name with word-prefix matching (e.g. `--exercise bench`)
 - **Date filtering** — relative (`30d`, `4w`, `6m`, `1y`) or absolute (`2025-01-01`)
 - **Exercise statistics** — per-exercise PR tracking, volume summaries, and monthly progress bar charts
 - **Bodyweight tracking** — trend analysis with ASCII charts, plateau detection, and rate-of-change
 - **Multi-platform** — pre-built binaries for macOS (Intel + Apple Silicon), Linux, and Windows
 - **JSON output** — pipe workout data to jq, scripts, or other tools with `--format json`
+- **CSV output** — open workouts, stats, bodyweights, and routines in a spreadsheet with `--format csv`
 
 ## Quick Start
 
@@ -157,6 +158,23 @@ Scapular Pull Ups
 Walking
 1.00mi 18:00
 ```
+
+### CSV
+
+Every data subcommand also takes `--format csv` for spreadsheets, pandas, and the like:
+
+```
+$ liftoff-export bodyweights list --since 7d --format csv
+date,weight
+2026-06-08,175
+2026-06-10,174.5
+```
+
+- One header row, always — an empty window prints the header alone.
+- One flat row per data point, with the parent's columns repeated: per **set** for `workouts list` / `workouts show` / `routines list` / `routines show`, per **exercise session** for `workouts stats`, per **day** for `bodyweights list`, per **month** for `bodyweights stats`.
+- Columns are the `--format json` keys in snake_case (`startedAt` → `started_at`). `input_one` / `input_two` are the raw set values; what they mean depends on `exercise_types` (for `WR`, weight and reps).
+- Timestamps are RFC3339 in your local zone; a missing value is an empty cell, never `0`.
+- Standard RFC 4180 quoting, so notes containing commas, quotes, or line breaks survive a round trip.
 
 ## About Liftoff
 

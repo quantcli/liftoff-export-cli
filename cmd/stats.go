@@ -72,6 +72,9 @@ var statsCmd = &cobra.Command{
 			if format == "json" {
 				return printJSON(cmd.OutOrStdout(), []ExerciseSummary{})
 			}
+			if format == "csv" {
+				return writeStatsCSV(cmd.OutOrStdout(), nil)
+			}
 			// §4: no rows on stdout, notice on stderr. (#24)
 			emptyNotice(cmd, "No workouts found.")
 			return nil
@@ -85,6 +88,11 @@ var statsCmd = &cobra.Command{
 		summaries := buildSummaries(posts)
 		if format == "json" {
 			return printJSON(cmd.OutOrStdout(), summaries)
+		}
+		if format == "csv" {
+			// Like json, csv is always the per-session rows; --detail only
+			// switches the markdown renderer.
+			return writeStatsCSV(cmd.OutOrStdout(), summaries)
 		}
 		if statsDetailFlag {
 			printSummariesTextDetail(cmd.OutOrStdout(), summaries)
@@ -100,7 +108,7 @@ func init() {
 	statsCmd.Flags().StringVar(&statsSinceFlag, "since", "", "Filter workouts on or after date (today, yesterday, YYYY-MM-DD, or Nd/Nw/Nm/Ny)")
 	statsCmd.Flags().StringVar(&statsUntilFlag, "until", "", "Filter workouts through date, inclusive (today, yesterday, YYYY-MM-DD, or Nd/Nw/Nm/Ny)")
 	statsCmd.Flags().StringVar(&statsExerciseFlag, "exercise", "", "Filter to exercises matching this name (word-prefix match)")
-	statsCmd.Flags().StringVar(&statsFormatFlag, "format", "markdown", "Output format: markdown (default) or json")
+	statsCmd.Flags().StringVar(&statsFormatFlag, "format", "markdown", "Output format: markdown (default), json, or csv")
 	statsCmd.Flags().BoolVar(&statsDetailFlag, "detail", false, "Show per-session breakdown")
 }
 
@@ -352,4 +360,40 @@ func printSummariesTextDetail(w io.Writer, summaries []ExerciseSummary) {
 			fmt.Fprintln(w)
 		}
 	}
+}
+
+// statsCSVHeader is the column set for `workouts stats --format csv`: the
+// ExerciseSummary and SessionStats JSON keys in snake_case.
+var statsCSVHeader = []string{
+	"name", "type",
+	"date", "bodyweight", "sets", "reps",
+	"best_weight", "best_reps", "volume", "duration", "distance",
+}
+
+// writeStatsCSV renders summaries as one row per exercise session, with
+// the exercise name and type repeated on each row. The five trailing
+// columns are `omitempty` in JSON (best_weight/volume do not apply to a
+// distance exercise, and so on); a key JSON drops is an empty cell here.
+// bodyweight is likewise empty when the workout recorded none — SessionStats
+// holds 0 for that case, which a spreadsheet would average as a real weight.
+func writeStatsCSV(w io.Writer, summaries []ExerciseSummary) error {
+	var rows [][]string
+	for _, ex := range summaries {
+		for _, ss := range ex.Sessions {
+			rows = append(rows, []string{
+				ex.Name,
+				ex.Type,
+				ss.Date,
+				csvOmitZeroFloat(ss.Bodyweight),
+				strconv.Itoa(ss.Sets),
+				strconv.Itoa(ss.Reps),
+				csvOmitZeroFloat(ss.BestWeight),
+				csvOmitZeroInt(ss.BestReps),
+				csvOmitZeroFloat(ss.Volume),
+				csvOmitZeroInt(ss.Duration),
+				csvOmitZeroFloat(ss.Distance),
+			})
+		}
+	}
+	return writeCSV(w, statsCSVHeader, rows)
 }
