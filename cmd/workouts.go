@@ -4,8 +4,6 @@ import (
 	"encoding/json"
 	"fmt"
 	"io"
-	"os"
-	"reflect"
 	"strconv"
 	"strings"
 	"time"
@@ -154,9 +152,14 @@ var listCmd = &cobra.Command{
 			posts = filterExercises(posts, listExerciseFlag)
 		}
 		if format == "json" {
-			return printJSON(posts)
+			return printJSON(cmd.OutOrStdout(), posts)
 		}
-		return printFitdown(posts)
+		if len(posts) == 0 {
+			// §4: no rows on stdout, notice on stderr. (#24, #37)
+			emptyNotice(cmd, "No workouts found.")
+			return nil
+		}
+		return renderWorkoutsFitdown(cmd.OutOrStdout(), posts)
 	},
 }
 
@@ -164,12 +167,20 @@ var listCmd = &cobra.Command{
 // (CONTRACT §4) and normalizes it to a canonical value. Liftoff currently
 // supports markdown (the default; fitdown-style) and json. "md" is accepted
 // as an alias.
+//
+// The empty string is rejected rather than silently treated as markdown
+// (#32). Every --format flag in this CLI is declared with a "markdown"
+// default, so "" can only reach here from an explicit `--format ""` —
+// almost always an unset shell variable (`--format "$FMT"`), where
+// quietly emitting markdown hands a jq pipeline prose instead of failing.
 func validateFormat(format string) (string, error) {
 	switch format {
-	case "", "markdown", "md":
+	case "markdown", "md":
 		return "markdown", nil
 	case "json":
 		return "json", nil
+	case "":
+		return "", fmt.Errorf(`--format was given an empty value (use markdown or json)`)
 	default:
 		return "", fmt.Errorf("unknown --format %q (use markdown or json)", format)
 	}
@@ -290,14 +301,21 @@ var showCmd = &cobra.Command{
 		}
 
 		if len(matched) == 0 {
-			fmt.Printf("No workouts found for %s.\n", target.Format("January 2, 2006"))
+			// §4: an empty result is `[]` on stdout for json and no rows
+			// for markdown, exit 0 either way. Printing the prose line on
+			// stdout broke both codecs — `show --format json` emitted
+			// text that no JSON parser accepts. (#23)
+			if format == "json" {
+				return printJSON(cmd.OutOrStdout(), []Post{})
+			}
+			emptyNotice(cmd, "No workouts found for %s.", target.Format("January 2, 2006"))
 			return nil
 		}
 
 		if format == "json" {
-			return printJSON(matched)
+			return printJSON(cmd.OutOrStdout(), matched)
 		}
-		return printFitdown(matched)
+		return renderWorkoutsFitdown(cmd.OutOrStdout(), matched)
 	},
 }
 
@@ -353,10 +371,6 @@ func filterExercises(posts []Post, pattern string) []Post {
 	return out
 }
 
-func printFitdown(posts []Post) error {
-	return renderWorkoutsFitdown(os.Stdout, posts)
-}
-
 func renderWorkoutsFitdown(w io.Writer, posts []Post) error {
 	for i, post := range posts {
 		var header string
@@ -402,21 +416,6 @@ func renderWorkoutsFitdown(w io.Writer, posts []Post) error {
 		if i < len(posts)-1 {
 			fmt.Fprintln(w)
 		}
-	}
-	return nil
-}
-
-func printJSON(v any) error {
-	// A nil slice marshals as "null"; force "[]" so empty windows match the
-	// prime contract (and don't blow up jq pipelines).
-	if rv := reflect.ValueOf(v); rv.Kind() == reflect.Slice && rv.IsNil() {
-		_, err := os.Stdout.WriteString("[]\n")
-		return err
-	}
-	enc := json.NewEncoder(os.Stdout)
-	enc.SetIndent("", "  ")
-	if err := enc.Encode(v); err != nil {
-		return fmt.Errorf("failed to encode output: %w", err)
 	}
 	return nil
 }

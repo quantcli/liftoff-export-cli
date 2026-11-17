@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"fmt"
+	"io"
 	"math"
 	"sort"
 	"strconv"
@@ -95,15 +96,17 @@ var bodyweightsListCmd = &cobra.Command{
 					Weight: entry.weight,
 				})
 			}
-			return printJSON(rows)
+			return printJSON(cmd.OutOrStdout(), rows)
 		}
 		if len(entries) == 0 {
-			fmt.Println("No bodyweights found.")
+			// §4: no rows on stdout, notice on stderr. (#24)
+			emptyNotice(cmd, "No bodyweights found.")
 			return nil
 		}
 
+		out := cmd.OutOrStdout()
 		for _, entry := range entries {
-			fmt.Printf("%s  %s lbs\n", entry.date.Format("2006-01-02"), formatWeight(entry.weight))
+			fmt.Fprintf(out, "%s  %s lbs\n", entry.date.Format("2006-01-02"), formatWeight(entry.weight))
 		}
 		return nil
 	},
@@ -134,15 +137,16 @@ var bodyweightsStatsCmd = &cobra.Command{
 		}
 		if len(entries) == 0 {
 			if format == "json" {
-				return printJSON(bodyweightStatsJSON{Months: []monthAvgJSON{}})
+				return printJSON(cmd.OutOrStdout(), []bodyweightStatsJSON{})
 			}
-			fmt.Println("No bodyweights found.")
+			// §4: no rows on stdout, notice on stderr. (#24)
+			emptyNotice(cmd, "No bodyweights found.")
 			return nil
 		}
 		if format == "json" {
-			return printJSON(buildBodyweightStatsJSON(entries))
+			return printJSON(cmd.OutOrStdout(), []bodyweightStatsJSON{buildBodyweightStatsJSON(entries)})
 		}
-		printBodyweightStats(entries)
+		printBodyweightStats(cmd.OutOrStdout(), entries)
 		return nil
 	},
 }
@@ -220,7 +224,7 @@ func dedupeByDay(entries []bodyweightEntry) []bodyweightEntry {
 	return out
 }
 
-func printBodyweightStats(entries []bodyweightEntry) {
+func printBodyweightStats(w io.Writer, entries []bodyweightEntry) {
 	first := entries[0]
 	last := entries[len(entries)-1]
 	minWeight := entries[0].weight
@@ -235,16 +239,19 @@ func printBodyweightStats(entries []bodyweightEntry) {
 		}
 	}
 
-	fmt.Println("Bodyweight")
-	fmt.Printf("  Current: %s lbs | High: %s | Low: %s\n", formatWeight(last.weight), formatWeight(maxWeight), formatWeight(minWeight))
+	fmt.Fprintln(w, "Bodyweight")
+	// Every number on this line is pounds; labelling only the first left
+	// High/Low looking unitless next to the kg-vs-lbs ambiguity the CLI
+	// already carries. (#35)
+	fmt.Fprintf(w, "  Current: %s lbs | High: %s lbs | Low: %s lbs\n", formatWeight(last.weight), formatWeight(maxWeight), formatWeight(minWeight))
 
 	change := last.weight - first.weight
-	fmt.Printf("  Change:  %+.1f lbs (%s → %s)\n", change, first.date.Format("Jan 2006"), last.date.Format("Jan 2006"))
+	fmt.Fprintf(w, "  Change:  %+.1f lbs (%s → %s)\n", change, first.date.Format("Jan 2006"), last.date.Format("Jan 2006"))
 
 	months := last.date.Sub(first.date).Hours() / 24 / 30.44
 	if months > 0.5 {
 		rate := change / months
-		fmt.Printf("  Rate:    %+.1f lbs/month\n", rate)
+		fmt.Fprintf(w, "  Rate:    %+.1f lbs/month\n", rate)
 	}
 
 	monthAvgs := monthlyBodyweightAverages(entries)
@@ -266,15 +273,15 @@ func printBodyweightStats(entries []bodyweightEntry) {
 		}
 		stddev := math.Sqrt(variance / float64(len(tail)-1))
 		if stddev < 2.0 {
-			fmt.Printf("  Plateau: %s - present (%s lbs avg, %.1f stddev)\n", monthNameFromKey(tail[0].month), formatWeight(mean), stddev)
+			fmt.Fprintf(w, "  Plateau: %s - present (%s lbs avg, %.1f stddev)\n", monthNameFromKey(tail[0].month), formatWeight(mean), stddev)
 		}
 	}
 
-	fmt.Println()
+	fmt.Fprintln(w)
 	chartMin := minWeight - 10
 	for _, month := range monthAvgs {
 		barLen := scaledBarLength(month.avg, chartMin, maxWeight, 40)
-		fmt.Printf("  %s  %5s %s\n", month.month, formatWeight(month.avg), strings.Repeat("█", barLen))
+		fmt.Fprintf(w, "  %s  %5s %s\n", month.month, formatWeight(month.avg), strings.Repeat("█", barLen))
 	}
 }
 

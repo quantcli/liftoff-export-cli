@@ -167,7 +167,9 @@ LIFTOFF_EXPORT_BIN=/tmp/liftoff-export go test -tags=compat ./...
 ok      github.com/quantcli/liftoff-export-cli    0.003s
 ```
 
-The `compat` suite covers CONTRACT.md §4 parse-level conformance (the `--format` flag, `UnknownFormatFails`, `FlagValidationIsHermetic`) across all four data-producing subcommands (`workouts list`, `workouts stats`, `bodyweights list`, `bodyweights stats`). Data-path subtests (`--format json` with live data) are skipped because the suite does not provision a Liftoff OAuth token; the parse-level subtests run without credentials.
+The `compat` suite covers CONTRACT.md §4 across all four data-producing subcommands (`workouts list`, `workouts stats`, `bodyweights list`, `bodyweights stats`): the parse-level checks (`--format` is documented, `UnknownFormatFails`, `FlagValidationIsHermetic`) *and* the data-path checks (`JSONIsArray`, `DefaultIsMarkdown`).
+
+No Liftoff account or network access is needed. The suite starts an in-process stub of the two tRPC procedures the data path calls and points the binary at it with the CLI's own headless knobs (`LIFTOFF_API_BASE` + `LIFTOFF_REFRESH_TOKEN`), so the real fetch/filter/render path runs against a fixed fixture. `CSVHasHeader` skips with a named reason: liftoff declares `SupportedFormats: ["markdown", "json"]` and has no CSV writer yet.
 
 ---
 

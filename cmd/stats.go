@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"fmt"
+	"io"
 	"sort"
 	"strconv"
 	"strings"
@@ -69,9 +70,10 @@ var statsCmd = &cobra.Command{
 		}
 		if len(posts) == 0 {
 			if format == "json" {
-				return printJSON([]ExerciseSummary{})
+				return printJSON(cmd.OutOrStdout(), []ExerciseSummary{})
 			}
-			fmt.Println("No workouts found.")
+			// §4: no rows on stdout, notice on stderr. (#24)
+			emptyNotice(cmd, "No workouts found.")
 			return nil
 		}
 
@@ -82,12 +84,12 @@ var statsCmd = &cobra.Command{
 
 		summaries := buildSummaries(posts)
 		if format == "json" {
-			return printJSON(summaries)
+			return printJSON(cmd.OutOrStdout(), summaries)
 		}
 		if statsDetailFlag {
-			printSummariesTextDetail(summaries)
+			printSummariesTextDetail(cmd.OutOrStdout(), summaries)
 		} else {
-			printSummariesText(summaries)
+			printSummariesText(cmd.OutOrStdout(), summaries)
 		}
 		return nil
 	},
@@ -188,30 +190,30 @@ func sessionStats(e ExerciseData, bw float64) SessionStats {
 	return ss
 }
 
-func printSummariesText(summaries []ExerciseSummary) {
+func printSummariesText(w io.Writer, summaries []ExerciseSummary) {
 	for i, ex := range summaries {
-		fmt.Printf("%s — %d sessions\n", ex.Name, len(ex.Sessions))
+		fmt.Fprintf(w, "%s — %s\n", ex.Name, countNoun(len(ex.Sessions), "session"))
 
 		switch ex.Type {
 		case "WR", "AB", "BR":
-			printWeightSummary(ex.Sessions)
+			printWeightSummary(w, ex.Sessions)
 		case "DD":
-			printDurationSummary(ex.Sessions)
+			printDurationSummary(w, ex.Sessions)
 		}
 
 		months := monthlyExerciseStats(ex.Sessions, ex.Type)
 		if len(months) > 0 && ex.Type != "ND" {
-			fmt.Println()
-			printExerciseBarGraph(months, ex.Type)
+			fmt.Fprintln(w)
+			printExerciseBarGraph(w, months, ex.Type)
 		}
 
 		if i < len(summaries)-1 {
-			fmt.Println()
+			fmt.Fprintln(w)
 		}
 	}
 }
 
-func printWeightSummary(sessions []SessionStats) {
+func printWeightSummary(w io.Writer, sessions []SessionStats) {
 	var prIdx int
 	for i, ss := range sessions {
 		if ss.BestWeight > sessions[prIdx].BestWeight ||
@@ -223,11 +225,11 @@ func printWeightSummary(sessions []SessionStats) {
 	recent := sessions[len(sessions)-1]
 
 	prDate, _ := time.Parse("2006-01-02", pr.Date)
-	fmt.Printf("  PR:     %sx%d (%s)\n", formatWeight(pr.BestWeight), pr.BestReps, prDate.Format("Jan 2006"))
-	fmt.Printf("  Recent: %sx%d\n", formatWeight(recent.BestWeight), recent.BestReps)
+	fmt.Fprintf(w, "  PR:     %sx%d (%s)\n", formatWeight(pr.BestWeight), pr.BestReps, prDate.Format("Jan 2006"))
+	fmt.Fprintf(w, "  Recent: %sx%d\n", formatWeight(recent.BestWeight), recent.BestReps)
 }
 
-func printDurationSummary(sessions []SessionStats) {
+func printDurationSummary(w io.Writer, sessions []SessionStats) {
 	var bestIdx int
 	for i, ss := range sessions {
 		if ss.Duration > sessions[bestIdx].Duration {
@@ -238,8 +240,8 @@ func printDurationSummary(sessions []SessionStats) {
 	recent := sessions[len(sessions)-1]
 
 	bestDate, _ := time.Parse("2006-01-02", best.Date)
-	fmt.Printf("  Best:   %s (%s)\n", formatDuration(best.Duration), bestDate.Format("Jan 2006"))
-	fmt.Printf("  Recent: %s\n", formatDuration(recent.Duration))
+	fmt.Fprintf(w, "  Best:   %s (%s)\n", formatDuration(best.Duration), bestDate.Format("Jan 2006"))
+	fmt.Fprintf(w, "  Recent: %s\n", formatDuration(recent.Duration))
 }
 
 type monthStat struct {
@@ -278,7 +280,7 @@ func monthlyExerciseStats(sessions []SessionStats, exType string) []monthStat {
 	return months
 }
 
-func printExerciseBarGraph(months []monthStat, exType string) {
+func printExerciseBarGraph(w io.Writer, months []monthStat, exType string) {
 	minVal := months[0].value
 	maxVal := months[0].value
 	for _, m := range months {
@@ -311,7 +313,7 @@ func printExerciseBarGraph(months []monthStat, exType string) {
 	fmtStr := fmt.Sprintf("  %%s  %%%ds %%s\n", maxLabelLen)
 	for i, m := range months {
 		barLen := scaledBarLength(m.value, chartMin, maxVal, 40)
-		fmt.Printf(fmtStr, m.month, labels[i], strings.Repeat("█", barLen))
+		fmt.Fprintf(w, fmtStr, m.month, labels[i], strings.Repeat("█", barLen))
 	}
 }
 
@@ -332,21 +334,22 @@ func formatDuration(totalSecs int) string {
 	return fmt.Sprintf("%d:%02d", m, s)
 }
 
-func printSummariesTextDetail(summaries []ExerciseSummary) {
+func printSummariesTextDetail(w io.Writer, summaries []ExerciseSummary) {
 	for i, ex := range summaries {
-		fmt.Printf("%s — %d sessions\n", ex.Name, len(ex.Sessions))
+		fmt.Fprintf(w, "%s — %s\n", ex.Name, countNoun(len(ex.Sessions), "session"))
 		for _, ss := range ex.Sessions {
-			fmt.Printf("  %s  BW=%.0f  %d sets  %d reps", ss.Date, ss.Bodyweight, ss.Sets, ss.Reps)
+			fmt.Fprintf(w, "  %s  BW=%.0f  %s  %s", ss.Date, ss.Bodyweight,
+				countNoun(ss.Sets, "set"), countNoun(ss.Reps, "rep"))
 			if ss.BestWeight > 0 {
-				fmt.Printf("  %sx%d", formatWeight(ss.BestWeight), ss.BestReps)
+				fmt.Fprintf(w, "  %sx%d", formatWeight(ss.BestWeight), ss.BestReps)
 			}
 			if ss.Volume > 0 {
-				fmt.Printf("  vol=%.0f", ss.Volume)
+				fmt.Fprintf(w, "  vol=%.0f", ss.Volume)
 			}
-			fmt.Println()
+			fmt.Fprintln(w)
 		}
 		if i < len(summaries)-1 {
-			fmt.Println()
+			fmt.Fprintln(w)
 		}
 	}
 }
