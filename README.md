@@ -136,7 +136,7 @@ liftoff-export routines show Push                  # One routine by name (case-i
 liftoff-export routines show cmkbk9ugu0eej3pv0oyd41x8c   # …or by id
 ```
 
-Folder-organized routines are not rendered yet — file an issue if you need folder support.
+Folder-organized routines are included on every codec: markdown prints one section per folder, `--format csv` carries `folder_id` / `folder_name` columns, and `--format json` emits one flat array of every routine, each element carrying `folderId` and an additive `folderName` label.
 
 ## Output Format
 

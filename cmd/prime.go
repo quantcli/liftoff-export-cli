@@ -65,8 +65,8 @@ GOTCHAS
     Liftoff splits it into two summaries.
   - 'routines' are what Liftoff calls "presets" internally; the JSON
     preserves that naming (id, name, exerciseData, isFavorite, etc.).
-    Folder-organized routines aren't rendered yet — file an issue if you
-    organize routines into folders.
+    'routines list --format json' is one flat array of every routine,
+    foldered ones included; each carries folderId plus a folderName label.
 `
 
 var primeCmd = &cobra.Command{
