@@ -77,6 +77,52 @@ type presetsResponse struct {
 	PresetsWithoutFolder []Preset `json:"presetsWithoutFolder"`
 }
 
+// presetJSON is one element of `routines list|show --format json`: a
+// Preset, flattened out of the upstream envelope, plus the enclosing
+// folder's human-readable name.
+//
+// CONTRACT §4 requires `--format json` to be an "array on stdout", so
+// both subcommands emit a flat []presetJSON rather than the upstream
+// {folders, presetsWithoutFolder} object. Flattening keeps folder
+// membership: `folderId` is canonical and was already on every Preset.
+// `folderName` is additive and carries the one thing flattening would
+// otherwise drop — the label. A folder's `presetsOrder` is deliberately
+// not carried over: it is folder-presentation state, not routine data.
+type presetJSON struct {
+	Preset
+	FolderName *string `json:"folderName"`
+}
+
+// newPresetJSON wraps one preset for json output. An empty folderName —
+// an unfiled routine, or a folderId with no matching folder in the
+// response — marshals as null rather than "", per §4's rule that an
+// absent value is null and never "".
+func newPresetJSON(p Preset, folderName string) presetJSON {
+	out := presetJSON{Preset: p}
+	if folderName != "" {
+		out.FolderName = &folderName
+	}
+	return out
+}
+
+// presetJSONRows flattens the whole account into the json element list,
+// in the order the markdown and csv renderers walk it: unfiled routines
+// first, then each folder's. The folder name comes from the enclosing
+// Folder rather than a folderId lookup, so json row order and
+// folder_name agree with routineCSVRows by construction.
+func presetJSONRows(resp *presetsResponse) []presetJSON {
+	out := make([]presetJSON, 0, len(resp.PresetsWithoutFolder))
+	for _, p := range resp.PresetsWithoutFolder {
+		out = append(out, newPresetJSON(p, ""))
+	}
+	for _, f := range resp.Folders {
+		for _, p := range f.Presets {
+			out = append(out, newPresetJSON(p, f.Name))
+		}
+	}
+	return out
+}
+
 // unfiledLabel is the section title we use for PresetsWithoutFolder in
 // markdown output. Matches the Liftoff app's UI label so a user comparing
 // terminal output to the app sees the same heading.
@@ -106,7 +152,7 @@ var routinesListCmd = &cobra.Command{
 			return err
 		}
 		if format == "json" {
-			return printJSON(cmd.OutOrStdout(), resp)
+			return printJSON(cmd.OutOrStdout(), presetJSONRows(resp))
 		}
 		if format == "csv" {
 			return writeRoutinesCSV(cmd.OutOrStdout(), routineCSVRows(resp))
@@ -135,7 +181,7 @@ var routinesShowCmd = &cobra.Command{
 			return err
 		}
 		if format == "json" {
-			return printJSON(cmd.OutOrStdout(), []Preset{*match})
+			return printJSON(cmd.OutOrStdout(), []presetJSON{newPresetJSON(*match, folderNameFor(resp, *match))})
 		}
 		if format == "csv" {
 			return writeRoutinesCSV(cmd.OutOrStdout(), presetCSVRows(*match, folderNameFor(resp, *match)))
