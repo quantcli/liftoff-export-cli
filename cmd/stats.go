@@ -8,7 +8,6 @@ import (
 	"strings"
 	"time"
 
-	"github.com/quantcli/liftoff-export-cli/internal/client"
 	"github.com/spf13/cobra"
 )
 
@@ -59,9 +58,8 @@ var statsCmd = &cobra.Command{
 		if printed, err := printResolvedWindow(cmd, since, until); printed || err != nil {
 			return err
 		}
-		c := client.New()
-		var posts []Post
-		if err := c.Query("post.getMyPosts", nil, &posts); err != nil {
+		posts, err := fetchPosts()
+		if err != nil {
 			return err
 		}
 		posts = filterByWindow(posts, since, until)

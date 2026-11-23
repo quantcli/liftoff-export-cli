@@ -152,15 +152,57 @@ func fetchPresets() (*presetsResponse, error) {
 	if err := c.Query("fitnessService.fetchUserPresetsWithFolders", nil, &resp); err != nil {
 		return nil, err
 	}
-	// Normalize nil → empty slice so --format json emits `[]` not `null`,
-	// matching what the upstream API does on an empty account.
+	normalizePresetsResponse(&resp)
+	return &resp, nil
+}
+
+// normalizePresetsResponse allocates every nil slice reachable from the
+// upstream response, so --format json emits `[]` and never `null` —
+// CONTRACT §4 record shape: "An empty collection is `[]`, never
+// `null`". The two top-level slices were already normalized here (an
+// empty account); the nested ones were not, so a routine saved with no
+// exercises emitted `"exerciseData": null`, and an exercise added
+// without target sets emitted `"setsData": null`.
+//
+// See normalizePostCollections in workouts.go for why the nested case
+// matters as much as the top-level one.
+func normalizePresetsResponse(resp *presetsResponse) {
 	if resp.Folders == nil {
 		resp.Folders = []Folder{}
 	}
 	if resp.PresetsWithoutFolder == nil {
 		resp.PresetsWithoutFolder = []Preset{}
 	}
-	return &resp, nil
+	for i := range resp.PresetsWithoutFolder {
+		normalizePresetCollections(&resp.PresetsWithoutFolder[i])
+	}
+	for i := range resp.Folders {
+		f := &resp.Folders[i]
+		if f.PresetsOrder == nil {
+			f.PresetsOrder = []string{}
+		}
+		if f.Presets == nil {
+			f.Presets = []Preset{}
+		}
+		for j := range f.Presets {
+			normalizePresetCollections(&f.Presets[j])
+		}
+	}
+}
+
+// normalizePresetCollections is normalizePresetsResponse's per-routine
+// half. allPresets and pickPreset copy Preset values out of the response
+// after this has run, and a copied slice header keeps pointing at the
+// allocated backing array, so `routines show` inherits the fix.
+func normalizePresetCollections(p *Preset) {
+	if p.ExerciseData == nil {
+		p.ExerciseData = []PresetExerciseData{}
+	}
+	for i := range p.ExerciseData {
+		if p.ExerciseData[i].SetsData == nil {
+			p.ExerciseData[i].SetsData = []PresetSetData{}
+		}
+	}
 }
 
 // allPresets flattens both unfiled and foldered presets into one slice for
