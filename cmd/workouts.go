@@ -38,6 +38,82 @@ type SetData struct {
 	InputTwo json.Number `json:"inputTwo"` // reps, kilometres or seconds, per exerciseTypes
 }
 
+// setDataWithUnits is the shape `workouts list`/`show --format json`
+// actually emits for a set: SetData plus the two unit-named siblings
+// CONTRACT §4 asks for beside a polymorphic field.
+//
+//	"the dispatch field and its full mapping MUST appear in `prime`
+//	 under SUBCOMMANDS, and the preferred fix is additive unit-named
+//	 siblings (`weight_lb` / `distance_km`) beside the polymorphic field"
+//	 — §4, Units and cross-codec parity
+//
+// Spelled weightLb/distanceKm rather than weight_lb/distance_km: §4 fixes
+// the field *name* (unit in the key) and leaves the case convention to
+// each CLI, declared in `prime` — liftoff's json is camelCase throughout
+// and maps camelCase → snake_case for csv, so the csv columns are
+// weight_lb / distance_km. compat/parity's CSVColumnsExistInJSON
+// compares names ignoring case and `_`, so both spellings are one field
+// to the conformance bundle. The precedent in this file is
+// sessionDurationSeconds, the §4 sibling added for a display phrase.
+//
+// Both keys are always present, `null` where the exercise type has no
+// such quantity (§4 record shape: a field with no value is present and
+// null, not omitted). They declare the *unit* of an input, not its
+// meaning: for AB the pounds number is assistance subtracted from
+// bodyweight and for BR it is load added to it, so what a weight means
+// still comes from exerciseTypes. The bare inputOne/inputTwo are
+// untouched — §9 forbids redefining a field under its existing name.
+type setDataWithUnits struct {
+	SetData
+	WeightLb   *json.Number `json:"weightLb"`
+	DistanceKm *json.Number `json:"distanceKm"`
+}
+
+// setUnitFields resolves one set's polymorphic inputs into the pounds
+// and kilometres siblings, dispatched on the enclosing exercise's
+// exerciseTypes (the table on SetData above is the full mapping).
+//
+// An exerciseTypes code this CLI does not know about yields two nulls.
+// We cannot say what its inputs mean, and a guess here is the exact
+// failure the siblings exist to prevent — the bare inputOne/inputTwo
+// still carry the values, and `prime` names the codes we do handle.
+func setUnitFields(exTypes string, s SetData) (weightLb, distanceKm *json.Number) {
+	switch exTypes {
+	case "WR", "AB", "BR":
+		return numberPtr(s.InputOne), nil
+	case "WD":
+		return numberPtr(s.InputOne), numberPtr(s.InputTwo)
+	case "DD":
+		return nil, numberPtr(s.InputOne)
+	default: // ND has neither; an unknown code gets no guess.
+		return nil, nil
+	}
+}
+
+// numberPtr carries a set input into a sibling field unchanged — same
+// digits, no arithmetic (§4: "A codec MUST NOT convert on the way out",
+// so 110.2311310925 lb stays 110.2311310925 lb). An absent or
+// non-numeric input yields nil, which marshals as null; returning the
+// raw value there would emit an empty token and produce invalid JSON.
+func numberPtr(n json.Number) *json.Number {
+	if _, err := n.Float64(); err != nil {
+		return nil
+	}
+	return &n
+}
+
+// setsWithUnits decorates every set of one exercise. The result is
+// always non-nil so an exercise with no sets still marshals as `[]` and
+// never `null`, independently of normalizePostCollections below.
+func setsWithUnits(exTypes string, sets []SetData) []setDataWithUnits {
+	out := make([]setDataWithUnits, 0, len(sets))
+	for _, s := range sets {
+		weightLb, distanceKm := setUnitFields(exTypes, s)
+		out = append(out, setDataWithUnits{SetData: s, WeightLb: weightLb, DistanceKm: distanceKm})
+	}
+	return out
+}
+
 // ExerciseData mirrors the exerciseData array items.
 type ExerciseData struct {
 	ExerciseIndex int       `json:"exerciseIndex"`
@@ -46,6 +122,23 @@ type ExerciseData struct {
 	ExerciseTypes string    `json:"exerciseTypes"` // WR=weight/reps, DD=distance/duration, ND=no data
 	ExerciseNotes string    `json:"exerciseNotes"`
 	SetsData      []SetData `json:"setsData"`
+}
+
+// MarshalJSON replaces setsData with the unit-decorated form. The
+// dispatch field lives on the exercise, not the set, so this is the
+// shallowest place that knows both — a SetData cannot decorate itself.
+func (e ExerciseData) MarshalJSON() ([]byte, error) {
+	// alias drops ExerciseData's methods, so this Marshal call is not
+	// recursive. The outer setsData field shadows the embedded one (same
+	// tag, shallower depth wins).
+	type alias ExerciseData
+	return json.Marshal(struct {
+		alias
+		SetsData []setDataWithUnits `json:"setsData"`
+	}{
+		alias:    alias(e),
+		SetsData: setsWithUnits(e.ExerciseTypes, e.SetsData),
+	})
 }
 
 // Post is a Liftoff workout post.
@@ -498,6 +591,7 @@ var workoutsCSVHeader = []string{
 	"bodyweight", "calories_burned", "pr_count",
 	"exercise_index", "exercise_name", "exercise_id", "exercise_types", "exercise_notes",
 	"set_index", "set_type", "input_one", "input_two",
+	"weight_lb", "distance_km",
 }
 
 // writeWorkoutsCSV renders posts as one row per set, with the workout and
@@ -508,6 +602,16 @@ var workoutsCSVHeader = []string{
 // fitdownSetLine). They are not split into weight/reps/distance columns
 // because an exercise type this CLI does not know about would then have
 // nowhere to go.
+//
+// weight_lb / distance_km are the §4 unit-named siblings, projected from
+// the json weightLb / distanceKm keys by this codec's declared
+// camelCase → snake_case mapping, and carrying the same digits. §4 makes
+// csv a projection of the json record and lets it omit a field, so these
+// columns are a choice rather than an obligation; they are here because
+// a spreadsheet is where someone sums a weight column by hand, which is
+// the case most exposed to mistaking kilometres for pounds. Empty where
+// the exercise type has no such quantity, per the empty-cell rule for an
+// absent value.
 //
 // A workout with no exercises, or an exercise with no sets, still gets one
 // row with the deeper columns empty, so it does not silently vanish from
@@ -544,11 +648,14 @@ func writeWorkoutsCSV(w io.Writer, posts []Post) error {
 				continue
 			}
 			for _, s := range e.SetsData {
+				weightLb, distanceKm := setUnitFields(e.ExerciseTypes, s)
 				rows = append(rows, append(append([]string{}, exercise...),
 					strconv.Itoa(s.SetIndex),
 					s.SetType,
 					s.InputOne.String(),
 					s.InputTwo.String(),
+					csvNumberPtr(weightLb),
+					csvNumberPtr(distanceKm),
 				))
 			}
 		}

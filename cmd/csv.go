@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"encoding/csv"
+	"encoding/json"
 	"io"
 	"strconv"
 	"time"
@@ -65,6 +66,18 @@ func csvIntPtr(v *int) string {
 		return ""
 	}
 	return strconv.Itoa(*v)
+}
+
+// csvNumberPtr renders a nullable json.Number; nil is an empty cell. The
+// digits pass through verbatim, the way input_one / input_two already do
+// — csvFloat would re-render them through a float64 round trip, and a
+// unit sibling that disagrees in its last decimal place with the bare
+// field it was projected from is worse than no sibling at all.
+func csvNumberPtr(n *json.Number) string {
+	if n == nil {
+		return ""
+	}
+	return n.String()
 }
 
 // csvStrPtr renders a nullable string; nil is an empty cell. CSV cannot

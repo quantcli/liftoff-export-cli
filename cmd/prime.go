@@ -41,6 +41,26 @@ SUBCOMMANDS
 
   Inspect any subcommand's row schema with: <subcommand> --since 1d --format json
 
+  SET VALUES  A set's inputOne/inputTwo are a generic pair, not weight and
+              reps. The enclosing exercise's exerciseTypes selects what each
+              one holds. Units never vary by codec or subcommand: weights are
+              POUNDS, distances KILOMETRES, durations SECONDS.
+
+                      inputOne                  inputTwo
+                WR    weight (lb)               reps
+                AB    assistance (lb)           reps   [off bodyweight]
+                BR    added load (lb)           reps   [on bodyweight]
+                WD    weight (lb)               distance (km)
+                DD    distance (km)             duration (sec)
+                ND    unused                    duration (sec)
+
+              'workouts list' and 'workouts show' also emit weightLb and
+              distanceKm on every set — the lb-valued and km-valued input
+              under a unit-declaring name, null where the type has neither,
+              so reading a weight needs no dispatch. They fix the unit only:
+              load vs assistance vs added load still comes from
+              exerciseTypes. inputOne/inputTwo are unchanged.
+
 EXAMPLES
   liftoff-export workouts show today
   liftoff-export workouts stats --since 30d --format json |
