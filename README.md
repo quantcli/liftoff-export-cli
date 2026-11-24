@@ -181,8 +181,8 @@ date,weight
 Set weights are **pounds**, and `inputOne` / `inputTwo` mean different things
 depending on the exercise. If you consume `--format json` or `--format csv`
 directly — in a script, a notebook, or an LLM agent — read this before you
-aggregate anything. Both facts fail silently: you get plausible numbers that are
-wrong, not an error.
+aggregate anything. The exported numbers themselves are correct; misreading
+either fact produces plausible results and raises no error.
 
 ### Set weights are canonical pounds
 
@@ -207,11 +207,27 @@ values arrive with a long fractional tail. That tail is the only tell:
 Natively-entered pound values are clean increments by contrast — `230`, `177`,
 `75`, `40`.
 
-**Why this matters:** a 10 kg lateral raise exports as `22.0462262185` and so
-compares as *lower* than a 28 lb set done on home dumbbells, even though it is
-heavier. Trend lines, PR detection, and volume totals silently mix two
-measurement systems. A 90 kg machine press (`198.4160359665`) likewise reads as
-a new PR over a genuine 177 lb barbell best.
+**Why this matters:** the arithmetic is not the problem. Every value is already
+in pounds, so comparing them is valid — `22.0462262185` really is lighter than
+`28`, and `198.4160359665` really is a heavier lift than `177`. Totals, trends,
+and PR detection over these numbers are sound.
+
+The risk is **reading a pound value as a kilogram one**. A 50 kg set exports as
+`110.2311310925`; label or chart that as kilograms and you overstate the load by
+a factor of 2.2. Rounding it to "110 kg" is the same mistake with a tidier face
+on it. The long fractional tail is what invites this, because it looks like the
+output of a conversion the reader has not accounted for — so the tail is a
+reason to check the unit, not evidence that the number is wrong.
+
+Two narrower consequences follow from the tail itself:
+
+- **Equipment provenance is not in the data.** The tail is the only hint that a
+  set came off kilogram plates. If you want to keep travel-gym sessions out of a
+  home-equipment trend, you have to infer it — see below.
+- **Exact matching and plate math break.** A kilogram-origin 10 kg set
+  (`22.0462262185`) never compares equal to a native `22`, so grouping or
+  deduplicating sets by weight splits them, and nothing lands on tidy 2.5 or
+  5 lb increments.
 
 ### Spotting kilogram-origin values
 
@@ -268,9 +284,10 @@ miles for display; `--format json` and `--format csv` leave them in kilometers.
 
 ### What `workouts stats` already handles
 
-`workouts stats` dispatches on `exerciseTypes` itself, so its own summaries do
-not mix units. The risk above is to downstream consumers of raw `--format json`
-and `--format csv` output, not to this CLI's own summaries:
+`workouts stats` dispatches on `exerciseTypes` itself, so it never adds a
+kilometer distance into a pound volume. The misreading risk described above
+applies to downstream consumers of raw `--format json` and `--format csv`
+output, not to this CLI's own summaries:
 
 - `WR`, `AB`, `BR` produce volume and best-weight, with `AB` and `BR` folding
   `bodyweight` into effective load (175 lb bodyweight with 100 lb assistance
