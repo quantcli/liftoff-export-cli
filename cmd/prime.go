@@ -15,8 +15,9 @@ WHAT IT IS
 
 I/O
   stdout: data only, in --format markdown (default; fitdown set notation),
-          json, or csv. --format json is always a JSON array, one element
-          per row ('bodyweights stats' is a single-element array).
+          json, or csv. --format json is a JSON array, one element per row
+          ('bodyweights stats' is a single-element array), except
+          'routines list', which is {folders, presetsWithoutFolder}.
           --format csv is one header row plus one flat row per set /
           session / day / month, parent columns repeated; columns are the
           JSON keys in snake_case, timestamps local, absent = empty cell.
@@ -41,6 +42,12 @@ SUBCOMMANDS
 
   Inspect any subcommand's row schema with: <subcommand> --since 1d --format json
 
+SET UNITS  json/csv inputOne/inputTwo are raw: weights in POUNDS whatever the
+  app displays, distances KILOMETRES, durations SECONDS. The exercise's
+  exerciseTypes says what each holds (markdown shows distances in miles):
+    WR weight/reps   AB assistance/reps   BR added-load/reps
+    WD weight/km     DD km/seconds        ND -/seconds
+
 EXAMPLES
   liftoff-export workouts show today
   liftoff-export workouts stats --since 30d --format json |
@@ -49,7 +56,8 @@ EXAMPLES
     jq '[.[]] | (.[-1].weight - .[0].weight)'
   liftoff-export bodyweights stats --format json | jq '.[0].ratePerMonth'
   liftoff-export routines list --format json |
-    jq '[.[] | {name, exCount: (.exerciseData|length)}]'
+    jq '[(.presetsWithoutFolder[], .folders[].presets[]) |
+        {name, exCount: (.exerciseData|length)}]'
 
 GOTCHAS
   - Workout dates are LOCAL — 11pm workouts bucket on the day you logged them.
@@ -65,8 +73,6 @@ GOTCHAS
     Liftoff splits it into two summaries.
   - 'routines' are what Liftoff calls "presets" internally; the JSON
     preserves that naming (id, name, exerciseData, isFavorite, etc.).
-    Folder-organized routines aren't rendered yet — file an issue if you
-    organize routines into folders.
 `
 
 var primeCmd = &cobra.Command{
