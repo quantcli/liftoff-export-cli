@@ -47,6 +47,9 @@ SET UNITS  json/csv inputOne/inputTwo are raw: weights in POUNDS whatever the
   exerciseTypes says what each holds (markdown shows distances in miles):
     WR weight/reps   AB assistance/reps   BR added-load/reps
     WD weight/km     DD km/seconds        ND -/seconds
+  'workouts list'/'show' also emit weightLb and distanceKm on every set (csv
+  weight_lb, distance_km): the same number under a unit-named key, null where
+  the type has none. AB's weightLb is still assistance, BR's is added load.
 
 EXAMPLES
   liftoff-export workouts show today
