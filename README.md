@@ -172,9 +172,134 @@ date,weight
 
 - One header row, always — an empty window prints the header alone.
 - One flat row per data point, with the parent's columns repeated: per **set** for `workouts list` / `workouts show` / `routines list` / `routines show`, per **exercise session** for `workouts stats`, per **day** for `bodyweights list`, per **month** for `bodyweights stats`.
-- Columns are the `--format json` keys in snake_case (`startedAt` → `started_at`). `input_one` / `input_two` are the raw set values; what they mean depends on `exercise_types` (for `WR`, weight and reps).
+- Columns are the `--format json` keys in snake_case (`startedAt` → `started_at`). `input_one` / `input_two` are the raw set values; what they mean depends on `exercise_types` — see [Units and set values](#units-and-set-values).
 - Timestamps are RFC3339 in your local zone; a missing value is an empty cell, never `0`.
 - Standard RFC 4180 quoting, so notes containing commas, quotes, or line breaks survive a round trip.
+
+## Units and set values
+
+Set weights are **pounds**, and `inputOne` / `inputTwo` mean different things
+depending on the exercise. If you consume `--format json` or `--format csv`
+directly — in a script, a notebook, or an LLM agent — read this before you
+aggregate anything. The exported numbers themselves are correct; misreading
+either fact produces plausible results and raises no error.
+
+### Set weights are canonical pounds
+
+Liftoff stores a single weight unit. Kilogram input is converted to pounds
+before the API returns it, and the original unit is not exposed anywhere in the
+payload. This CLI applies no weight conversion of its own, so every exported
+weight is pounds and there is no unit field to check.
+
+Because the pound-per-kilogram factor does not divide evenly, kilogram-origin
+values arrive with a long fractional tail. That tail is the only tell:
+
+| exported `inputOne` (lb) | actual kg |
+|---|---|
+| 17.6369809748 | 8 |
+| 22.0462262185 | 10 |
+| 35.2739619496 | 16 |
+| 39.6832071933 | 18 |
+| 48.5016976807 | 22 |
+| 110.2311310925 | 50 |
+| 198.4160359665 | 90 |
+
+Natively-entered pound values are clean increments by contrast — `230`, `177`,
+`75`, `40`.
+
+**Why this matters:** the arithmetic is not the problem. Every value is already
+in pounds, so comparing them is valid — `22.0462262185` really is lighter than
+`28`, and `198.4160359665` really is a heavier lift than `177`. Totals, trends,
+and PR detection over these numbers are sound.
+
+The risk is **reading a pound value as a kilogram one**. A 50 kg set exports as
+`110.2311310925`; label or chart that as kilograms and you overstate the load by
+a factor of 2.2. Rounding it to "110 kg" is the same mistake with a tidier face
+on it. The long fractional tail is what invites this, because it looks like the
+output of a conversion the reader has not accounted for — so the tail is a
+reason to check the unit, not evidence that the number is wrong.
+
+Two narrower consequences follow from the tail itself:
+
+- **Equipment provenance is not in the data.** The tail is the only hint that a
+  set came off kilogram plates. If you want to keep travel-gym sessions out of a
+  home-equipment trend, you have to infer it — see below.
+- **Exact matching and plate math break.** A kilogram-origin 10 kg set
+  (`22.0462262185`) never compares equal to a native `22`, so grouping or
+  deduplicating sets by weight splits them, and nothing lands on tidy 2.5 or
+  5 lb increments.
+
+### Spotting kilogram-origin values
+
+The fractional tail is detectable. This flags weighted sets whose `inputOne`
+carries more than four decimal places and recovers the kilogram value:
+
+```sh
+liftoff-export workouts list --format json \
+| jq -r '.[] | .startedAt[:10] as $date | .exerciseData[]
+    | select(.exerciseTypes | IN("WR","AB","BR","WD"))
+    | .exerciseName as $name | .setsData[].inputOne | tostring
+    | select((split(".")[1] // "" | length) > 4)
+    | "\($date)  \($name)  \(.) lb  = \((tonumber / 2.20462262185) * 100 | round / 100) kg"'
+```
+
+```text
+2026-11-17  Seated Cable Chest Press  110.2311310925 lb  = 50 kg
+2026-11-17  Seated Cable Chest Press  198.4160359665 lb  = 90 kg
+2026-11-17  Dumbbell Lateral Raise  22.0462262185 lb  = 10 kg
+2026-11-17  Kettlebell Bottoms Up  17.6369809748 lb  = 8 kg
+```
+
+A result that lands on a whole kilogram, as all four above do, is very likely
+kilogram-origin. Treat this as a heuristic and not as provenance: the unit
+origin genuinely is not in the data, so nothing here can distinguish a 90 kg
+machine press from a dialed-in 198.4160359665 lb one. Rounding in the app can
+also leave a short tail on a native pound entry, which is why the filter tests
+for a *long* tail rather than for any fraction at all.
+
+### `inputOne` / `inputTwo` depend on `exerciseTypes`
+
+The two set fields are a generic pair, not weight and reps. `exerciseTypes` on
+the parent exercise is the dispatch field, and it is exported — as the
+`exerciseTypes` JSON key and the `exercise_types` CSV column — so the semantics
+are recoverable. Six codes are live:
+
+| `exerciseTypes` | `inputOne` | `inputTwo` |
+|---|---|---|
+| `WR` | weight (lb) | reps |
+| `AB` | assistance (lb), subtracted from bodyweight | reps |
+| `BR` | added load (lb), added to bodyweight | reps |
+| `WD` | weight (lb) | distance (km) |
+| `DD` | distance (km) | duration (seconds) |
+| `ND` | unused | duration (seconds) |
+
+Read `inputOne` as a weight without checking `exerciseTypes` and a one-hour
+hike (`DD`, `inputOne` = `8.04672` km) becomes an 8 lb lift with 3600 reps.
+
+The `fitdown` default output renders each code distinctly, so it is a quick way
+to see which type an exercise is: `12@28` for `WR`, `3@-100` for `AB`, `6@+25`
+for `BR`, `80lb 0.249mi` for `WD`, `5.00mi 60:00` for `DD`, and a bare `8:15`
+for `ND`. Note that `fitdown` converts the `WD` and `DD` kilometer values to
+miles for display; `--format json` and `--format csv` leave them in kilometers.
+
+### What `workouts stats` already handles
+
+`workouts stats` dispatches on `exerciseTypes` itself, so it never adds a
+kilometer distance into a pound volume. The misreading risk described above
+applies to downstream consumers of raw `--format json` and `--format csv`
+output, not to this CLI's own summaries:
+
+- `WR`, `AB`, `BR` produce volume and best-weight, with `AB` and `BR` folding
+  `bodyweight` into effective load (175 lb bodyweight with 100 lb assistance
+  summarizes as `75x3`; with 25 lb added, as `200x6`).
+- `DD` accumulates `duration` and `distance` only, and never contributes to
+  volume or best-weight.
+- `WD` and `ND` contribute a set count only, so neither pollutes volume or
+  best-weight. The trade-off is that a `WD` exercise gets no summary lines and
+  its monthly graph plots `0`; read its weight and distance from
+  `workouts list` instead.
+- In `stats --format json`, a `DD` session's `reps` field repeats the duration
+  in seconds. Use `duration` instead; `reps` is not a rep count for `DD`.
 
 ## About Liftoff
 
