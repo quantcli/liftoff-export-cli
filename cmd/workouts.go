@@ -18,11 +18,24 @@ var workoutsCmd = &cobra.Command{
 }
 
 // SetData mirrors the setsData array items.
+//
+// Both inputs are polymorphic, dispatched on the enclosing exercise's
+// exerciseTypes (fitdownSetLine holds the full mapping):
+//
+//	WR/BR/AB  inputOne = weight, assistance or added weight in POUNDS
+//	          inputTwo = reps
+//	WD        inputOne = pounds, inputTwo = kilometres
+//	DD        inputOne = kilometres, inputTwo = seconds
+//	ND        inputTwo = seconds; inputOne is unused
+//
+// Pounds, not kilograms: every weight this CLI prints is labelled lbs,
+// and bodyweight — which AB and BR arithmetic adds to these values — is
+// pounds upstream.
 type SetData struct {
 	SetIndex int         `json:"setIndex"`
 	SetType  string      `json:"setType"`
-	InputOne json.Number `json:"inputOne"` // weight (kg) or distance
-	InputTwo json.Number `json:"inputTwo"` // reps or duration (seconds)
+	InputOne json.Number `json:"inputOne"` // pounds or kilometres, per exerciseTypes
+	InputTwo json.Number `json:"inputTwo"` // reps, kilometres or seconds, per exerciseTypes
 }
 
 // ExerciseData mirrors the exerciseData array items.
@@ -117,6 +130,53 @@ func parseDurationSeconds(s string) *int {
 	return &total
 }
 
+// fetchPosts loads the user's own workouts — the app's Memories view —
+// and normalizes their collections on the way through.
+//
+// post.getMyPosts is the one upstream call behind `workouts list`,
+// `workouts show`, `workouts stats`, `bodyweights list` and `bodyweights
+// stats`, so the normalization lives here rather than at each call site.
+// Routing every caller through one function is also what keeps the
+// invariant checkable: grep for the procedure name and there is exactly
+// one hit.
+func fetchPosts() ([]Post, error) {
+	c := client.New()
+	var posts []Post
+	if err := c.Query("post.getMyPosts", nil, &posts); err != nil {
+		return nil, err
+	}
+	for i := range posts {
+		normalizePostCollections(&posts[i])
+	}
+	return posts, nil
+}
+
+// normalizePostCollections allocates every nil slice reachable from a
+// Post, so `--format json` emits `[]` and never `null`.
+//
+// CONTRACT §4 record shape: "An empty collection is `[]`, never `null`."
+// In Go that is a default rather than a decision — a field declared []T
+// marshals as `null` when the slice is nil, which is what the decoder
+// leaves behind when upstream sends `null` or omits the key for a
+// workout logged with no exercises. printJSON already covers the
+// top-level slice; these are the nested ones it cannot see.
+//
+// The cost of getting it wrong is out of proportion to the cause: a
+// consumer that recognizes one of our records by duck-typing this field
+// (`Array.isArray(exerciseData)`) fails recognition rather than one
+// value, and one that validates the whole array before accepting it then
+// rejects the entire export over a single empty element.
+func normalizePostCollections(p *Post) {
+	if p.ExerciseData == nil {
+		p.ExerciseData = []ExerciseData{}
+	}
+	for i := range p.ExerciseData {
+		if p.ExerciseData[i].SetsData == nil {
+			p.ExerciseData[i].SetsData = []SetData{}
+		}
+	}
+}
+
 var listFormatFlag string
 var listSinceFlag string
 var listUntilFlag string
@@ -141,10 +201,8 @@ var listCmd = &cobra.Command{
 		if printed, err := printResolvedWindow(cmd, since, until); printed || err != nil {
 			return err
 		}
-		c := client.New()
-		var posts []Post
-		// post.getMyPosts returns all the user's own workouts (Memories view)
-		if err := c.Query("post.getMyPosts", nil, &posts); err != nil {
+		posts, err := fetchPosts()
+		if err != nil {
 			return err
 		}
 		posts = filterByWindow(posts, since, until)
@@ -289,9 +347,8 @@ var showCmd = &cobra.Command{
 			return fmt.Errorf("date argument is required")
 		}
 
-		c := client.New()
-		var posts []Post
-		if err := c.Query("post.getMyPosts", nil, &posts); err != nil {
+		posts, err := fetchPosts()
+		if err != nil {
 			return err
 		}
 
