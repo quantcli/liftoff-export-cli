@@ -90,21 +90,13 @@ func csvStrPtr(v *string) string {
 	return *v
 }
 
-// csvOmitZeroFloat and csvOmitZeroInt mirror `json:",omitempty"`: where
-// the JSON codec drops a zero-valued key because the stat does not apply
-// to that row, the csv cell is empty rather than a misleading 0.
+// csvOmitZeroFloat renders the stats bodyweight column, leaving an empty cell
+// when its zero value means no bodyweight was recorded.
 func csvOmitZeroFloat(v float64) string {
 	if v == 0 {
 		return ""
 	}
 	return csvFloat(v)
-}
-
-func csvOmitZeroInt(v int) string {
-	if v == 0 {
-		return ""
-	}
-	return strconv.Itoa(v)
 }
 
 // csvLocalTime renders an upstream RFC3339 timestamp in the local zone

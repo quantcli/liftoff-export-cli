@@ -144,8 +144,6 @@ func TestCSVCellHelpers(t *testing.T) {
 		{"empty string ptr", csvStrPtr(&s), ""},
 		{"omitted zero float", csvOmitZeroFloat(0), ""},
 		{"kept float", csvOmitZeroFloat(1.5), "1.5"},
-		{"omitted zero int", csvOmitZeroInt(0), ""},
-		{"kept int", csvOmitZeroInt(7), "7"},
 		// 02:30Z is still the previous evening at UTC-5.
 		{"timestamp to local zone", csvLocalTime("2026-06-08T02:30:00.000Z"), "2026-06-07T21:30:00-05:00"},
 		{"date is the local day", csvLocalDate("2026-06-08T02:30:00.000Z"), "2026-06-07"},
@@ -418,7 +416,7 @@ func TestWorkoutsStatsCSV(t *testing.T) {
 		"best_weight": "102.5",
 		"best_reps":   "5",
 		"volume":      "512.5",
-		"duration":    "", // omitempty in JSON: not a duration exercise
+		"duration":    "", // null in JSON: not a duration exercise
 		"distance":    "",
 	} {
 		if got := col(t, header, squat, name); got != want {
@@ -426,7 +424,7 @@ func TestWorkoutsStatsCSV(t *testing.T) {
 		}
 	}
 
-	// An ND exercise has none of the omitempty stats; all five are empty
+	// An ND exercise measures none of these stats; all five are empty
 	// cells, not zeros.
 	stretch := rows[1]
 	for _, c := range []string{"best_weight", "best_reps", "volume", "duration", "distance"} {
