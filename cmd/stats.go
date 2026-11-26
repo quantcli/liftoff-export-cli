@@ -1,6 +1,7 @@
 package cmd
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"sort"
@@ -25,11 +26,57 @@ type SessionStats struct {
 	Bodyweight float64 `json:"bodyweight"`
 	Sets       int     `json:"sets"`
 	Reps       int     `json:"reps"`
-	BestWeight float64 `json:"bestWeight,omitempty"`
-	BestReps   int     `json:"bestReps,omitempty"`
-	Volume     float64 `json:"volume,omitempty"`
-	Duration   int     `json:"duration,omitempty"`
-	Distance   float64 `json:"distance,omitempty"`
+	BestWeight float64 `json:"bestWeight"`
+	BestReps   int     `json:"bestReps"`
+	Volume     float64 `json:"volume"`
+	Duration   int     `json:"duration"`
+	Distance   float64 `json:"distance"`
+
+	exerciseType string
+}
+
+func (ss SessionStats) measuresWeight() bool {
+	switch ss.exerciseType {
+	case "WR", "AB", "BR":
+		return true
+	default:
+		return false
+	}
+}
+
+func (ss SessionStats) measuresDistance() bool {
+	return ss.exerciseType == "DD"
+}
+
+// MarshalJSON preserves measured zeros and emits null for stats the exercise
+// type does not measure, following the dispatch in sessionStats.
+func (ss SessionStats) MarshalJSON() ([]byte, error) {
+	out := struct {
+		Date       string   `json:"date"`
+		Bodyweight float64  `json:"bodyweight"`
+		Sets       int      `json:"sets"`
+		Reps       int      `json:"reps"`
+		BestWeight *float64 `json:"bestWeight"`
+		BestReps   *int     `json:"bestReps"`
+		Volume     *float64 `json:"volume"`
+		Duration   *int     `json:"duration"`
+		Distance   *float64 `json:"distance"`
+	}{
+		Date:       ss.Date,
+		Bodyweight: ss.Bodyweight,
+		Sets:       ss.Sets,
+		Reps:       ss.Reps,
+	}
+	if ss.measuresWeight() {
+		out.BestWeight = &ss.BestWeight
+		out.BestReps = &ss.BestReps
+		out.Volume = &ss.Volume
+	}
+	if ss.measuresDistance() {
+		out.Duration = &ss.Duration
+		out.Distance = &ss.Distance
+	}
+	return json.Marshal(out)
 }
 
 // ExerciseSummary holds all sessions for one exercise.
@@ -146,7 +193,7 @@ func buildSummaries(posts []Post) []ExerciseSummary {
 }
 
 func sessionStats(e ExerciseData, bw float64) SessionStats {
-	ss := SessionStats{}
+	ss := SessionStats{exerciseType: e.ExerciseTypes}
 
 	for _, s := range e.SetsData {
 		if s.SetType == "warmup" {
@@ -370,14 +417,24 @@ var statsCSVHeader = []string{
 
 // writeStatsCSV renders summaries as one row per exercise session, with
 // the exercise name and type repeated on each row. The five trailing
-// columns are `omitempty` in JSON (best_weight/volume do not apply to a
-// distance exercise, and so on); a key JSON drops is an empty cell here.
+// columns contain measured values, including zero, when the exercise type
+// measures that stat; otherwise JSON emits null and CSV leaves the cell empty.
 // bodyweight is likewise empty when the workout recorded none — SessionStats
 // holds 0 for that case, which a spreadsheet would average as a real weight.
 func writeStatsCSV(w io.Writer, summaries []ExerciseSummary) error {
 	var rows [][]string
 	for _, ex := range summaries {
 		for _, ss := range ex.Sessions {
+			var bestWeight, bestReps, volume, duration, distance string
+			if ss.measuresWeight() {
+				bestWeight = csvFloat(ss.BestWeight)
+				bestReps = strconv.Itoa(ss.BestReps)
+				volume = csvFloat(ss.Volume)
+			}
+			if ss.measuresDistance() {
+				duration = strconv.Itoa(ss.Duration)
+				distance = csvFloat(ss.Distance)
+			}
 			rows = append(rows, []string{
 				ex.Name,
 				ex.Type,
@@ -385,11 +442,11 @@ func writeStatsCSV(w io.Writer, summaries []ExerciseSummary) error {
 				csvOmitZeroFloat(ss.Bodyweight),
 				strconv.Itoa(ss.Sets),
 				strconv.Itoa(ss.Reps),
-				csvOmitZeroFloat(ss.BestWeight),
-				csvOmitZeroInt(ss.BestReps),
-				csvOmitZeroFloat(ss.Volume),
-				csvOmitZeroInt(ss.Duration),
-				csvOmitZeroFloat(ss.Distance),
+				bestWeight,
+				bestReps,
+				volume,
+				duration,
+				distance,
 			})
 		}
 	}
